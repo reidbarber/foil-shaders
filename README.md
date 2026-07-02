@@ -21,3 +21,10 @@ Run the companion app with:
 ```sh
 swift run AluminumFoilStudio
 ```
+
+Regenerate Paper-derived preset metadata with:
+
+```sh
+node Scripts/extract-paper-presets.mjs <path-to-paper-shaders> > paper-presets.json
+node Scripts/generate-swift-presets.mjs paper-presets.json > Sources/AluminumFoil/Presets.swift
+```

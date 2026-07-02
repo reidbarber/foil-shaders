@@ -59,165 +59,41 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate {
   private var pixelRatio: Float = 1.0
 
   // Sizing params
-  public var sizingParams: ShaderSizingParams = .default
-  public var motionParams: ShaderMotionParams = ShaderMotionParams()
+  public var sizingParams: ShaderSizingParams = meshGradientPresets[0].sizing
+  public var motionParams: ShaderMotionParams = meshGradientPresets[0].motion
 
-  // Mesh gradient params
-  public var meshGradientParams: MeshGradientParams = MeshGradientParams(colors: [
-    SIMD4<Float>(0.95, 0.45, 0.65, 1.0),
-    SIMD4<Float>(0.25, 0.65, 0.95, 1.0),
-    SIMD4<Float>(0.45, 0.85, 0.55, 1.0),
-  ])
-  public var staticMeshGradientParams: StaticMeshGradientParams = StaticMeshGradientParams(colors: [
-    SIMD4<Float>(0.95, 0.45, 0.65, 1.0),
-    SIMD4<Float>(0.25, 0.65, 0.95, 1.0),
-    SIMD4<Float>(0.45, 0.85, 0.55, 1.0),
-  ])
-  public var staticRadialGradientParams: StaticRadialGradientParams = StaticRadialGradientParams(
-    colorBack: SIMD4<Float>(0.08, 0.08, 0.08, 1.0),
-    colors: [
-      SIMD4<Float>(0.95, 0.45, 0.65, 1.0),
-      SIMD4<Float>(0.25, 0.65, 0.95, 1.0),
-      SIMD4<Float>(0.45, 0.85, 0.55, 1.0),
-    ]
-  )
-  public var swirlParams: SwirlParams = SwirlParams(
-    colorBack: SIMD4<Float>(0.05, 0.05, 0.06, 1.0),
-    colors: [
-      SIMD4<Float>(0.95, 0.45, 0.65, 1.0),
-      SIMD4<Float>(0.25, 0.65, 0.95, 1.0),
-      SIMD4<Float>(0.45, 0.85, 0.55, 1.0),
-    ],
-    bandCount: 6.0,
-    twist: 0.5,
-    center: 0.2,
-    proportion: 0.5,
-    softness: 0.5,
-    noise: 0.15,
-    noiseFrequency: 0.5
-  )
-  public var spiralParams: SpiralParams = SpiralParams(
-    colorBack: SIMD4<Float>(0.06, 0.06, 0.06, 1.0),
-    colorFront: SIMD4<Float>(0.95, 0.8, 0.6, 1.0),
-    density: 0.6,
-    distortion: 0.2,
-    strokeWidth: 0.4,
-    strokeTaper: 0.3,
-    strokeCap: 0.2,
-    noise: 0.15,
-    noiseFrequency: 0.5,
-    softness: 0.1
-  )
-  public var dotGridParams: DotGridParams = DotGridParams(
-    colorBack: SIMD4<Float>(0.06, 0.06, 0.06, 1.0),
-    colorFill: SIMD4<Float>(0.95, 0.85, 0.65, 1.0),
-    colorStroke: SIMD4<Float>(0.2, 0.2, 0.2, 1.0),
-    dotSize: 18,
-    gapX: 40,
-    gapY: 40,
-    strokeWidth: 3,
-    sizeRange: 0.2,
-    opacityRange: 0.2,
-    shape: 0
-  )
-  public var simplexNoiseParams: SimplexNoiseParams = SimplexNoiseParams(colors: [
-    SIMD4<Float>(0.96, 0.36, 0.54, 1.0),
-    SIMD4<Float>(0.2, 0.68, 0.95, 1.0),
-    SIMD4<Float>(0.46, 0.9, 0.63, 1.0),
-  ])
-  public var perlinNoiseParams: PerlinNoiseParams = PerlinNoiseParams(
-    colorFront: SIMD4<Float>(0.92, 0.78, 0.62, 1.0),
-    colorBack: SIMD4<Float>(0.08, 0.08, 0.1, 1.0)
-  )
-  public var neuroNoiseParams: NeuroNoiseParams = NeuroNoiseParams(
-    colorFront: SIMD4<Float>(0.95, 0.84, 0.64, 1.0),
-    colorMid: SIMD4<Float>(0.35, 0.68, 0.95, 1.0),
-    colorBack: SIMD4<Float>(0.06, 0.06, 0.08, 1.0),
-    brightness: 0.2,
-    contrast: 0.4
-  )
-  public var wavesParams: WavesParams = WavesParams(
-    colorFront: SIMD4<Float>(0.95, 0.85, 0.72, 1.0),
-    colorBack: SIMD4<Float>(0.08, 0.08, 0.08, 1.0),
-    shape: 1.2,
-    frequency: 1.2,
-    amplitude: 0.6,
-    spacing: 0.45,
-    proportion: 0.5,
-    softness: 0.3
-  )
-  public var ditheringParams: DitheringParams = DitheringParams(
-    colorBack: SIMD4<Float>(0.06, 0.06, 0.06, 1.0),
-    colorFront: SIMD4<Float>(0.95, 0.9, 0.75, 1.0),
-    shape: 2.0,
-    type: 3.0,
-    size: 3.0
-  )
-  public var colorPanelsParams: ColorPanelsParams = ColorPanelsParams(colors: [
-    SIMD4<Float>(0.92, 0.38, 0.62, 1.0),
-    SIMD4<Float>(0.28, 0.64, 0.95, 1.0),
-    SIMD4<Float>(0.45, 0.86, 0.6, 1.0),
-  ])
-  public var dotOrbitParams: DotOrbitParams = DotOrbitParams(colors: [
-    SIMD4<Float>(0.92, 0.38, 0.62, 1.0),
-    SIMD4<Float>(0.28, 0.64, 0.95, 1.0),
-    SIMD4<Float>(0.45, 0.86, 0.6, 1.0),
-  ])
-  public var godRaysParams: GodRaysParams = GodRaysParams(colors: [
-    SIMD4<Float>(0.92, 0.38, 0.62, 0.8),
-    SIMD4<Float>(0.28, 0.64, 0.95, 0.7),
-    SIMD4<Float>(0.45, 0.86, 0.6, 0.75),
-  ])
-  public var grainGradientParams: GrainGradientParams = GrainGradientParams(colors: [
-    SIMD4<Float>(0.92, 0.38, 0.62, 1.0),
-    SIMD4<Float>(0.28, 0.64, 0.95, 1.0),
-    SIMD4<Float>(0.45, 0.86, 0.6, 1.0),
-  ])
-  public var metaballsParams: MetaballsParams = MetaballsParams(colors: [
-    SIMD4<Float>(0.92, 0.38, 0.62, 1.0),
-    SIMD4<Float>(0.28, 0.64, 0.95, 1.0),
-    SIMD4<Float>(0.45, 0.86, 0.6, 1.0),
-  ])
-  public var warpParams: WarpParams = WarpParams(colors: [
-    SIMD4<Float>(0.92, 0.38, 0.62, 1.0),
-    SIMD4<Float>(0.28, 0.64, 0.95, 1.0),
-    SIMD4<Float>(0.45, 0.86, 0.6, 1.0),
-  ])
-  public var voronoiParams: VoronoiParams = VoronoiParams(colors: [
-    SIMD4<Float>(0.92, 0.38, 0.62, 1.0),
-    SIMD4<Float>(0.28, 0.64, 0.95, 1.0),
-    SIMD4<Float>(0.45, 0.86, 0.6, 1.0),
-  ])
-  public var pulsingBorderParams: PulsingBorderParams = PulsingBorderParams(colors: [
-    SIMD4<Float>(0.92, 0.38, 0.62, 1.0),
-    SIMD4<Float>(0.28, 0.64, 0.95, 1.0),
-    SIMD4<Float>(0.45, 0.86, 0.6, 1.0),
-  ])
-  public var smokeRingParams: SmokeRingParams = SmokeRingParams(colors: [
-    SIMD4<Float>(0.92, 0.38, 0.62, 1.0),
-    SIMD4<Float>(0.28, 0.64, 0.95, 1.0),
-    SIMD4<Float>(0.45, 0.86, 0.6, 1.0),
-  ])
-  public var imageDitheringParams: ImageDitheringParams = ImageDitheringParams(
-    colorFront: SIMD4<Float>(0.95, 0.9, 0.75, 1.0)
-  )
-  public var halftoneDotsParams: HalftoneDotsParams = HalftoneDotsParams(
-    colorFront: SIMD4<Float>(0.95, 0.9, 0.75, 1.0)
-  )
-  public var halftoneCmykParams: HalftoneCmykParams = HalftoneCmykParams()
-  public var heatmapParams: HeatmapParams = HeatmapParams(colors: [
-    SIMD4<Float>(0.2, 0.6, 1.0, 1.0),
-    SIMD4<Float>(0.9, 0.5, 0.2, 1.0),
-    SIMD4<Float>(0.95, 0.9, 0.7, 1.0),
-  ])
-  public var liquidMetalParams: LiquidMetalParams = LiquidMetalParams()
-  public var paperTextureParams: PaperTextureParams = PaperTextureParams()
-  public var waterParams: WaterParams = WaterParams()
-  public var flutedGlassParams: FlutedGlassParams = FlutedGlassParams()
-  public var gemSmokeParams: GemSmokeParams = GemSmokeParams(colors: [
-    SIMD4<Float>(0.2, 0.2, 0.2, 1.0),
-    SIMD4<Float>(0.9, 0.9, 0.87, 1.0),
-  ])
+  // Shader params
+  public var meshGradientParams: MeshGradientParams = meshGradientPresets[0].params
+  public var staticMeshGradientParams: StaticMeshGradientParams = staticMeshGradientPresets[0]
+    .params
+  public var staticRadialGradientParams: StaticRadialGradientParams = staticRadialGradientPresets[0]
+    .params
+  public var swirlParams: SwirlParams = swirlPresets[0].params
+  public var spiralParams: SpiralParams = spiralPresets[0].params
+  public var dotGridParams: DotGridParams = dotGridPresets[0].params
+  public var simplexNoiseParams: SimplexNoiseParams = simplexNoisePresets[0].params
+  public var perlinNoiseParams: PerlinNoiseParams = perlinNoisePresets[0].params
+  public var neuroNoiseParams: NeuroNoiseParams = neuroNoisePresets[0].params
+  public var wavesParams: WavesParams = wavesPresets[0].params
+  public var ditheringParams: DitheringParams = ditheringPresets[0].params
+  public var colorPanelsParams: ColorPanelsParams = colorPanelsPresets[0].params
+  public var dotOrbitParams: DotOrbitParams = dotOrbitPresets[0].params
+  public var godRaysParams: GodRaysParams = godRaysPresets[0].params
+  public var grainGradientParams: GrainGradientParams = grainGradientPresets[0].params
+  public var metaballsParams: MetaballsParams = metaballsPresets[0].params
+  public var warpParams: WarpParams = warpPresets[0].params
+  public var voronoiParams: VoronoiParams = voronoiPresets[0].params
+  public var pulsingBorderParams: PulsingBorderParams = pulsingBorderPresets[0].params
+  public var smokeRingParams: SmokeRingParams = smokeRingPresets[0].params
+  public var imageDitheringParams: ImageDitheringParams = imageDitheringPresets[0].params
+  public var halftoneDotsParams: HalftoneDotsParams = halftoneDotsPresets[0].params
+  public var halftoneCmykParams: HalftoneCmykParams = halftoneCmykPresets[0].params
+  public var heatmapParams: HeatmapParams = heatmapPresets[0].params
+  public var liquidMetalParams: LiquidMetalParams = liquidMetalPresets[0].params
+  public var paperTextureParams: PaperTextureParams = paperTexturePresets[0].params
+  public var waterParams: WaterParams = waterPresets[0].params
+  public var flutedGlassParams: FlutedGlassParams = flutedGlassPresets[0].params
+  public var gemSmokeParams: GemSmokeParams = gemSmokePresets[0].params
   public var activeShader: ShaderKind = .meshGradient
 
   private var library: MTLLibrary?
@@ -971,6 +847,7 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate {
         index: 0)
     case .liquidMetal:
       var liquidMetalUniforms = LiquidMetalUniformsRaw(time: time, params: liquidMetalParams)
+      liquidMetalUniforms.u_isImage = imageTexture == nil ? 0 : 1
       renderEncoder.setFragmentBytes(
         &liquidMetalUniforms,
         length: MemoryLayout<LiquidMetalUniformsRaw>.stride,
@@ -999,6 +876,7 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate {
         index: 0)
     case .gemSmoke:
       var gemSmokeUniforms = GemSmokeUniformsRaw(time: time, params: gemSmokeParams)
+      gemSmokeUniforms.u_isImage = imageTexture == nil ? 0 : 1
       renderEncoder.setFragmentBytes(
         &gemSmokeUniforms,
         length: MemoryLayout<GemSmokeUniformsRaw>.stride,
@@ -1167,6 +1045,7 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate {
         &heatmapUniforms, length: MemoryLayout<HeatmapUniformsRaw>.stride, index: 0)
     case .liquidMetal:
       var liquidMetalUniforms = LiquidMetalUniformsRaw(time: time, params: liquidMetalParams)
+      liquidMetalUniforms.u_isImage = imageTexture == nil ? 0 : 1
       encoder.setFragmentBytes(
         &liquidMetalUniforms, length: MemoryLayout<LiquidMetalUniformsRaw>.stride, index: 0)
     case .paperTexture:
@@ -1187,6 +1066,7 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate {
         &flutedGlassUniforms, length: MemoryLayout<FlutedGlassUniformsRaw>.stride, index: 0)
     case .gemSmoke:
       var gemSmokeUniforms = GemSmokeUniformsRaw(time: time, params: gemSmokeParams)
+      gemSmokeUniforms.u_isImage = imageTexture == nil ? 0 : 1
       encoder.setFragmentBytes(
         &gemSmokeUniforms, length: MemoryLayout<GemSmokeUniformsRaw>.stride, index: 0)
     }

@@ -217,26 +217,26 @@ public struct ShaderPreset<Params>: @unchecked Sendable {
 
 public enum DotGridShape: Float, CaseIterable, Sendable {
   case circle = 0
-  case square = 1
-  case diamond = 2
+  case diamond = 1
+  case square = 2
   case triangle = 3
 }
 
 public enum DitheringShape: Float, CaseIterable, Sendable {
-  case simple = 0
-  case warp = 1
-  case dots = 2
-  case waves = 3
-  case ripple = 4
-  case swirl = 5
-  case sphere = 6
+  case simplex = 1
+  case warp = 2
+  case dots = 3
+  case wave = 4
+  case ripple = 5
+  case swirl = 6
+  case sphere = 7
 }
 
 public enum DitheringType: Float, CaseIterable, Sendable {
-  case random = 0
-  case `ordered` = 1
-  case halftone = 2
-  case noise = 3
+  case random = 1
+  case twoByTwo = 2
+  case fourByFour = 3
+  case eightByEight = 4
 }
 
 public enum WarpPattern: Float, CaseIterable, Sendable {
@@ -246,35 +246,36 @@ public enum WarpPattern: Float, CaseIterable, Sendable {
 }
 
 public enum GrainGradientShape: Float, CaseIterable, Sendable {
-  case blob = 0
   case wave = 1
   case dots = 2
   case truchet = 3
-  case ripple = 4
-  case swirl = 5
-  case sphere = 6
+  case corners = 4
+  case ripple = 5
+  case blob = 6
+  case sphere = 7
 }
 
 public enum PulsingBorderAspectRatio: Float, CaseIterable, Sendable {
   case auto = 0
   case square = 1
-  case wide = 2
 }
 
 public enum HalftoneDotsType: Float, CaseIterable, Sendable {
-  case dots = 0
-  case rings = 1
-  case squares = 2
+  case classic = 0
+  case gooey = 1
+  case holes = 2
+  case soft = 3
 }
 
 public enum HalftoneDotsGrid: Float, CaseIterable, Sendable {
-  case orthogonal = 0
-  case diagonal = 1
+  case square = 0
+  case hex = 1
 }
 
 public enum HalftoneCmykType: Float, CaseIterable, Sendable {
-  case classic = 0
-  case drops = 1
+  case dots = 0
+  case ink = 1
+  case sharp = 2
 }
 
 public enum LiquidMetalShape: Float, CaseIterable, Sendable {
@@ -286,15 +287,19 @@ public enum LiquidMetalShape: Float, CaseIterable, Sendable {
 }
 
 public enum GlassGridShape: Float, CaseIterable, Sendable {
-  case columns = 0
-  case rows = 1
-  case grid = 2
+  case lines = 1
+  case linesIrregular = 2
+  case wave = 3
+  case zigzag = 4
+  case pattern = 5
 }
 
 public enum GlassDistortionShape: Float, CaseIterable, Sendable {
-  case linear = 0
-  case sine = 1
-  case random = 2
+  case prism = 1
+  case lens = 2
+  case contour = 3
+  case cascade = 4
+  case flat = 5
 }
 
 public enum GemSmokeShape: Float, CaseIterable, Sendable {

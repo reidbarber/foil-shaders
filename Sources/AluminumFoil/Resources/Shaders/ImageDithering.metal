@@ -25,6 +25,7 @@ struct ImageDitheringUniforms {
     float u_type;
     float u_pxSize;
     float u_originalColors;
+    float u_inverted;
     float u_colorSteps;
 };
 
@@ -113,6 +114,7 @@ fragment float4 image_dithering_fragment(VertexOutput in [[stage_in]],
     int type = int(floor(uniforms.u_type));
     float dithering = 0.0;
     float lum = dot(float3(0.2126, 0.7152, 0.0722), image.rgb);
+    lum = uniforms.u_inverted > 0.5 ? (1.0 - lum) : lum;
     switch (type) {
         case 1:
             dithering = step(hash21(ditheringNoiseUV), lum);

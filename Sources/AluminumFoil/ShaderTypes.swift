@@ -77,10 +77,10 @@ public struct MeshGradientParams {
 
   public init(
     colors: [SIMD4<Float>],
-    distortion: Float = 0.25,
-    swirl: Float = 0.25,
-    grainMixer: Float = 0.15,
-    grainOverlay: Float = 0.1
+    distortion: Float = 0.8,
+    swirl: Float = 0.1,
+    grainMixer: Float = 0,
+    grainOverlay: Float = 0
   ) {
     self.colors = Array(colors.prefix(Self.maxColorCount))
     self.distortion = distortion
@@ -106,14 +106,14 @@ public struct StaticMeshGradientParams {
 
   public init(
     colors: [SIMD4<Float>],
-    positions: Float = 20.0,
-    waveX: Float = 0.3,
-    waveXShift: Float = 0.0,
-    waveY: Float = 0.3,
-    waveYShift: Float = 0.0,
-    mixing: Float = 0.5,
-    grainMixer: Float = 0.15,
-    grainOverlay: Float = 0.1
+    positions: Float = 2.0,
+    waveX: Float = 1.0,
+    waveXShift: Float = 0.6,
+    waveY: Float = 1.0,
+    waveYShift: Float = 0.21,
+    mixing: Float = 0.93,
+    grainMixer: Float = 0,
+    grainOverlay: Float = 0
   ) {
     self.colors = Array(colors.prefix(Self.maxColorCount))
     self.positions = positions
@@ -147,16 +147,16 @@ public struct StaticRadialGradientParams {
   public init(
     colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
     colors: [SIMD4<Float>],
-    radius: Float = 1.0,
-    focalDistance: Float = 0.0,
+    radius: Float = 0.8,
+    focalDistance: Float = 0.99,
     focalAngle: Float = 0.0,
-    falloff: Float = 0.0,
+    falloff: Float = 0.24,
     mixing: Float = 0.5,
     distortion: Float = 0.0,
     distortionShift: Float = 0.0,
-    distortionFreq: Float = 4.0,
-    grainMixer: Float = 0.15,
-    grainOverlay: Float = 0.1
+    distortionFreq: Float = 12.0,
+    grainMixer: Float = 0,
+    grainOverlay: Float = 0
   ) {
     self.colorBack = colorBack
     self.colors = Array(colors.prefix(Self.maxColorCount))
@@ -188,15 +188,15 @@ public struct SwirlParams {
   public var noiseFrequency: Float
 
   public init(
-    colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
+    colorBack: SIMD4<Float> = SIMD4<Float>(0.2, 0, 0, 1),
     colors: [SIMD4<Float>],
-    bandCount: Float = 6.0,
-    twist: Float = 0.5,
+    bandCount: Float = 4.0,
+    twist: Float = 0.1,
     center: Float = 0.2,
     proportion: Float = 0.5,
-    softness: Float = 0.5,
-    noise: Float = 0.0,
-    noiseFrequency: Float = 0.0
+    softness: Float = 0,
+    noise: Float = 0.2,
+    noiseFrequency: Float = 0.4
   ) {
     self.colorBack = colorBack
     self.colors = Array(colors.prefix(Self.maxColorCount))
@@ -225,16 +225,16 @@ public struct SpiralParams {
   public var softness: Float
 
   public init(
-    colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
+    colorBack: SIMD4<Float> = SIMD4<Float>(0, 0.078431375, 0.16078432, 1),
     colorFront: SIMD4<Float>,
-    density: Float = 0.5,
-    distortion: Float = 0.2,
-    strokeWidth: Float = 0.4,
-    strokeTaper: Float = 0.3,
-    strokeCap: Float = 0.2,
-    noise: Float = 0.1,
-    noiseFrequency: Float = 0.5,
-    softness: Float = 0.1
+    density: Float = 1.0,
+    distortion: Float = 0,
+    strokeWidth: Float = 0.5,
+    strokeTaper: Float = 0,
+    strokeCap: Float = 0,
+    noise: Float = 0,
+    noiseFrequency: Float = 0,
+    softness: Float = 0
   ) {
     self.colorBack = colorBack
     self.colorFront = colorFront
@@ -267,12 +267,12 @@ public struct DotGridParams {
     colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
     colorFill: SIMD4<Float>,
     colorStroke: SIMD4<Float>,
-    dotSize: Float = 18,
-    gapX: Float = 40,
-    gapY: Float = 40,
-    strokeWidth: Float = 3,
-    sizeRange: Float = 0.2,
-    opacityRange: Float = 0.2,
+    dotSize: Float = 2,
+    gapX: Float = 32,
+    gapY: Float = 32,
+    strokeWidth: Float = 0,
+    sizeRange: Float = 0,
+    opacityRange: Float = 0,
     shape: Float = 0
   ) {
     self.colorBack = colorBack
@@ -299,7 +299,7 @@ public struct SimplexNoiseParams {
   public init(
     colors: [SIMD4<Float>],
     stepsPerColor: Float = 2.0,
-    softness: Float = 0.6
+    softness: Float = 0
   ) {
     self.colors = Array(colors.prefix(Self.maxColorCount))
     self.stepsPerColor = stepsPerColor
@@ -320,12 +320,12 @@ public struct PerlinNoiseParams {
 
   public init(
     colorFront: SIMD4<Float>,
-    colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
-    proportion: Float = 0.5,
-    softness: Float = 0.6,
-    octaveCount: Float = 4.0,
-    persistence: Float = 0.55,
-    lacunarity: Float = 2.3
+    colorBack: SIMD4<Float> = SIMD4<Float>(0.3882353, 0.16470589, 0.8352941, 1),
+    proportion: Float = 0.35,
+    softness: Float = 0.1,
+    octaveCount: Float = 1.0,
+    persistence: Float = 1.0,
+    lacunarity: Float = 1.5
   ) {
     self.colorFront = colorFront
     self.colorBack = colorBack
@@ -350,8 +350,8 @@ public struct NeuroNoiseParams {
     colorFront: SIMD4<Float>,
     colorMid: SIMD4<Float>,
     colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
-    brightness: Float = 0.2,
-    contrast: Float = 0.4
+    brightness: Float = 0.05,
+    contrast: Float = 0.3
   ) {
     self.colorFront = colorFront
     self.colorMid = colorMid
@@ -376,12 +376,12 @@ public struct WavesParams {
   public init(
     colorFront: SIMD4<Float>,
     colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
-    shape: Float = 1.0,
-    frequency: Float = 1.0,
-    amplitude: Float = 0.6,
-    spacing: Float = 0.4,
-    proportion: Float = 0.5,
-    softness: Float = 0.4
+    shape: Float = 0,
+    frequency: Float = 0.5,
+    amplitude: Float = 0.5,
+    spacing: Float = 1.2,
+    proportion: Float = 0.1,
+    softness: Float = 0
   ) {
     self.colorFront = colorFront
     self.colorBack = colorBack
@@ -406,9 +406,9 @@ public struct DitheringParams {
   public init(
     colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
     colorFront: SIMD4<Float>,
-    shape: Float = 1.0,
+    shape: Float = 7.0,
     type: Float = 3.0,
-    size: Float = 3.0
+    size: Float = 2.0
   ) {
     self.colorBack = colorBack
     self.colorFront = colorFront
@@ -437,15 +437,15 @@ public struct ColorPanelsParams {
   public init(
     colors: [SIMD4<Float>],
     colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
-    density: Float = 1.5,
-    angle1: Float = 0.2,
-    angle2: Float = -0.2,
-    length: Float = 1.5,
-    edges: Float = 1.0,
-    blur: Float = 0.15,
-    fadeIn: Float = 0.3,
-    fadeOut: Float = 0.6,
-    gradient: Float = 0.4
+    density: Float = 3.0,
+    angle1: Float = 0,
+    angle2: Float = 0,
+    length: Float = 1.1,
+    edges: Float = 0,
+    blur: Float = 0,
+    fadeIn: Float = 1,
+    fadeOut: Float = 0.3,
+    gradient: Float = 0
   ) {
     self.colors = Array(colors.prefix(Self.maxColorCount))
     self.colorBack = colorBack
@@ -475,10 +475,10 @@ public struct DotOrbitParams {
   public init(
     colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
     colors: [SIMD4<Float>],
-    stepsPerColor: Float = 2.0,
-    size: Float = 0.4,
-    sizeRange: Float = 0.3,
-    spreading: Float = 0.5
+    stepsPerColor: Float = 4.0,
+    size: Float = 1.0,
+    sizeRange: Float = 0,
+    spreading: Float = 1.0
   ) {
     self.colorBack = colorBack
     self.colors = Array(colors.prefix(Self.maxColorCount))
@@ -505,13 +505,13 @@ public struct GodRaysParams {
 
   public init(
     colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
-    colorBloom: SIMD4<Float> = SIMD4<Float>(1, 1, 1, 0.25),
+    colorBloom: SIMD4<Float> = SIMD4<Float>(0, 0, 1, 1),
     colors: [SIMD4<Float>],
-    density: Float = 0.5,
-    spotty: Float = 0.5,
-    midSize: Float = 0.3,
-    midIntensity: Float = 0.6,
-    intensity: Float = 0.7,
+    density: Float = 0.3,
+    spotty: Float = 0.3,
+    midSize: Float = 0.2,
+    midIntensity: Float = 0.4,
+    intensity: Float = 0.8,
     bloom: Float = 0.4
   ) {
     self.colorBack = colorBack
@@ -540,10 +540,10 @@ public struct GrainGradientParams {
   public init(
     colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
     colors: [SIMD4<Float>],
-    softness: Float = 0.6,
-    intensity: Float = 0.45,
-    noise: Float = 0.3,
-    shape: Float = 1.0
+    softness: Float = 0.5,
+    intensity: Float = 0.5,
+    noise: Float = 0.25,
+    shape: Float = 4.0
   ) {
     self.colorBack = colorBack
     self.colors = Array(colors.prefix(Self.maxColorCount))
@@ -568,7 +568,7 @@ public struct MetaballsParams {
     colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
     colors: [SIMD4<Float>],
     count: Float = 10,
-    size: Float = 0.6,
+    size: Float = 0.83,
     sizeRange: Float = 0.2
   ) {
     self.colorBack = colorBack
@@ -594,13 +594,13 @@ public struct WarpParams {
 
   public init(
     colors: [SIMD4<Float>],
-    proportion: Float = 0.5,
-    softness: Float = 0.6,
+    proportion: Float = 0.45,
+    softness: Float = 1.0,
     shape: Float = 0.0,
-    shapeScale: Float = 0.5,
-    distortion: Float = 0.4,
-    swirl: Float = 0.3,
-    swirlIterations: Float = 6.0
+    shapeScale: Float = 0.1,
+    distortion: Float = 0.25,
+    swirl: Float = 0.8,
+    swirlIterations: Float = 10.0
   ) {
     self.colors = Array(colors.prefix(Self.maxColorCount))
     self.proportion = proportion
@@ -627,12 +627,12 @@ public struct VoronoiParams {
 
   public init(
     colors: [SIMD4<Float>],
-    stepsPerColor: Float = 2.0,
-    colorGap: SIMD4<Float> = SIMD4<Float>(0.05, 0.05, 0.05, 1.0),
-    colorGlow: SIMD4<Float> = SIMD4<Float>(1.0, 1.0, 1.0, 0.2),
-    distortion: Float = 0.2,
-    gap: Float = 0.02,
-    glow: Float = 0.4
+    stepsPerColor: Float = 3.0,
+    colorGap: SIMD4<Float> = SIMD4<Float>(0.18039216, 0, 0, 1),
+    colorGlow: SIMD4<Float> = SIMD4<Float>(1, 1, 1, 1),
+    distortion: Float = 0.4,
+    gap: Float = 0.04,
+    glow: Float = 0
   ) {
     self.colors = Array(colors.prefix(Self.maxColorCount))
     self.stepsPerColor = stepsPerColor
@@ -669,21 +669,21 @@ public struct PulsingBorderParams {
   public init(
     colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
     colors: [SIMD4<Float>],
-    roundness: Float = 0.6,
-    thickness: Float = 0.25,
-    marginLeft: Float = 0.05,
-    marginRight: Float = 0.05,
-    marginTop: Float = 0.05,
-    marginBottom: Float = 0.05,
+    roundness: Float = 0.25,
+    thickness: Float = 0.1,
+    marginLeft: Float = 0,
+    marginRight: Float = 0,
+    marginTop: Float = 0,
+    marginBottom: Float = 0,
     aspectRatio: Float = 0.0,
-    softness: Float = 0.6,
-    intensity: Float = 0.6,
-    bloom: Float = 0.4,
-    spots: Float = 3.0,
+    softness: Float = 0.75,
+    intensity: Float = 0.2,
+    bloom: Float = 0.25,
+    spots: Float = 5.0,
     spotSize: Float = 0.5,
-    pulse: Float = 0.4,
+    pulse: Float = 0.25,
     smoke: Float = 0.3,
-    smokeSize: Float = 0.5
+    smokeSize: Float = 0.6
   ) {
     self.colorBack = colorBack
     self.colors = Array(colors.prefix(Self.maxColorCount))
@@ -720,11 +720,11 @@ public struct SmokeRingParams {
   public init(
     colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
     colors: [SIMD4<Float>],
-    noiseScale: Float = 1.4,
-    thickness: Float = 0.3,
-    radius: Float = 0.5,
-    innerShape: Float = 0.8,
-    noiseIterations: Float = 6.0
+    noiseScale: Float = 3.0,
+    thickness: Float = 0.65,
+    radius: Float = 0.25,
+    innerShape: Float = 0.7,
+    noiseIterations: Float = 8.0
   ) {
     self.colorBack = colorBack
     self.colors = Array(colors.prefix(Self.maxColorCount))
@@ -746,15 +746,17 @@ public struct ImageDitheringParams {
   public var size: Float
   public var colorSteps: Float
   public var originalColors: Float
+  public var inverted: Float
 
   public init(
     colorFront: SIMD4<Float>,
-    colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
-    colorHighlight: SIMD4<Float> = SIMD4<Float>(1, 1, 1, 1),
-    type: Float = 3.0,
-    size: Float = 3.0,
-    colorSteps: Float = 3.0,
-    originalColors: Float = 0.0
+    colorBack: SIMD4<Float> = SIMD4<Float>(0, 0.047058824, 0.21960784, 1),
+    colorHighlight: SIMD4<Float> = SIMD4<Float>(0.91764706, 1, 0.5803922, 1),
+    type: Float = 4.0,
+    size: Float = 2.0,
+    colorSteps: Float = 2.0,
+    originalColors: Float = 0.0,
+    inverted: Float = 0.0
   ) {
     self.colorFront = colorFront
     self.colorBack = colorBack
@@ -763,6 +765,7 @@ public struct ImageDitheringParams {
     self.size = size
     self.colorSteps = colorSteps
     self.originalColors = originalColors
+    self.inverted = inverted
   }
 }
 
@@ -784,17 +787,17 @@ public struct HalftoneDotsParams {
 
   public init(
     colorFront: SIMD4<Float>,
-    colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
-    size: Float = 0.6,
-    grid: Float = 0.0,
-    radius: Float = 0.6,
-    contrast: Float = 0.5,
+    colorBack: SIMD4<Float> = SIMD4<Float>(0.9490196, 0.94509804, 0.9098039, 1),
+    size: Float = 0.5,
+    grid: Float = 1.0,
+    radius: Float = 1.25,
+    contrast: Float = 0.4,
     originalColors: Float = 0.0,
     inverted: Float = 0.0,
     grainMixer: Float = 0.2,
-    grainOverlay: Float = 0.1,
+    grainOverlay: Float = 0.2,
     grainSize: Float = 0.5,
-    type: Float = 0.0
+    type: Float = 1.0
   ) {
     self.colorFront = colorFront
     self.colorBack = colorBack
@@ -837,27 +840,27 @@ public struct HalftoneCmykParams {
   public var type: Float
 
   public init(
-    colorBack: SIMD4<Float> = SIMD4<Float>(1, 1, 1, 1),
-    colorC: SIMD4<Float> = SIMD4<Float>(0.0, 0.7, 0.9, 1.0),
-    colorM: SIMD4<Float> = SIMD4<Float>(0.9, 0.2, 0.5, 1.0),
-    colorY: SIMD4<Float> = SIMD4<Float>(0.98, 0.9, 0.2, 1.0),
-    colorK: SIMD4<Float> = SIMD4<Float>(0.05, 0.05, 0.05, 1.0),
-    size: Float = 0.5,
+    colorBack: SIMD4<Float> = SIMD4<Float>(0.9843137, 0.98039216, 0.9607843, 1),
+    colorC: SIMD4<Float> = SIMD4<Float>(0, 0.7058824, 1, 1),
+    colorM: SIMD4<Float> = SIMD4<Float>(0.9882353, 0.31764707, 0.62352943, 1),
+    colorY: SIMD4<Float> = SIMD4<Float>(1, 0.84705883, 0, 1),
+    colorK: SIMD4<Float> = SIMD4<Float>(0.13725491, 0.12156863, 0.1254902, 1),
+    size: Float = 0.2,
     contrast: Float = 1.0,
-    softness: Float = 0.5,
+    softness: Float = 1.0,
     grainSize: Float = 0.5,
-    grainMixer: Float = 0.2,
-    grainOverlay: Float = 0.1,
+    grainMixer: Float = 0,
+    grainOverlay: Float = 0,
     gridNoise: Float = 0.2,
-    floodC: Float = 0.0,
+    floodC: Float = 0.15,
     floodM: Float = 0.0,
     floodY: Float = 0.0,
     floodK: Float = 0.0,
-    gainC: Float = 0.0,
+    gainC: Float = 0.3,
     gainM: Float = 0.0,
-    gainY: Float = 0.0,
+    gainY: Float = 0.2,
     gainK: Float = 0.0,
-    type: Float = 0.0
+    type: Float = 1.0
   ) {
     self.colorBack = colorBack
     self.colorC = colorC
@@ -898,9 +901,9 @@ public struct HeatmapParams {
   public init(
     colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
     colors: [SIMD4<Float>],
-    contour: Float = 0.4,
+    contour: Float = 0.5,
     angle: Float = 0.0,
-    noise: Float = 0.1,
+    noise: Float = 0,
     innerGlow: Float = 0.5,
     outerGlow: Float = 0.5
   ) {
@@ -930,17 +933,17 @@ public struct LiquidMetalParams {
   public var isImage: Float
 
   public init(
-    colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
-    colorTint: SIMD4<Float> = SIMD4<Float>(1, 1, 1, 0.2),
-    repetition: Float = 4.0,
-    softness: Float = 0.4,
-    shiftRed: Float = 0.2,
-    shiftBlue: Float = -0.2,
-    distortion: Float = 0.4,
-    contour: Float = 0.6,
-    angle: Float = 0.0,
-    shape: Float = 1.0,
-    isImage: Float = 1.0
+    colorBack: SIMD4<Float> = SIMD4<Float>(0.6666667, 0.6666667, 0.6745098, 1),
+    colorTint: SIMD4<Float> = SIMD4<Float>(1, 1, 1, 1),
+    repetition: Float = 2.0,
+    softness: Float = 0.1,
+    shiftRed: Float = 0.3,
+    shiftBlue: Float = 0.3,
+    distortion: Float = 0.07,
+    contour: Float = 0.4,
+    angle: Float = 70.0,
+    shape: Float = 3.0,
+    isImage: Float = 0
   ) {
     self.colorBack = colorBack
     self.colorTint = colorTint
@@ -974,19 +977,19 @@ public struct PaperTextureParams {
   public var seed: Float
 
   public init(
-    colorFront: SIMD4<Float> = SIMD4<Float>(0.95, 0.94, 0.92, 1.0),
-    colorBack: SIMD4<Float> = SIMD4<Float>(0.86, 0.85, 0.83, 1.0),
-    contrast: Float = 0.6,
+    colorFront: SIMD4<Float> = SIMD4<Float>(0.62352943, 0.6784314, 0.7372549, 1),
+    colorBack: SIMD4<Float> = SIMD4<Float>(1, 1, 1, 1),
+    contrast: Float = 0.3,
     roughness: Float = 0.4,
-    fiber: Float = 0.4,
-    fiberSize: Float = 0.6,
-    crumples: Float = 0.4,
-    foldCount: Float = 6.0,
-    folds: Float = 0.4,
-    fade: Float = 0.2,
-    crumpleSize: Float = 0.6,
+    fiber: Float = 0.3,
+    fiberSize: Float = 0.2,
+    crumples: Float = 0.3,
+    foldCount: Float = 5.0,
+    folds: Float = 0.65,
+    fade: Float = 0,
+    crumpleSize: Float = 0.35,
     drops: Float = 0.2,
-    seed: Float = 0.0
+    seed: Float = 5.8
   ) {
     self.colorFront = colorFront
     self.colorBack = colorBack
@@ -1017,13 +1020,13 @@ public struct WaterParams {
   public var size: Float
 
   public init(
-    colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
-    colorHighlight: SIMD4<Float> = SIMD4<Float>(1, 1, 1, 0.4),
-    highlights: Float = 0.4,
+    colorBack: SIMD4<Float> = SIMD4<Float>(0.5647059, 0.5647059, 0.5647059, 1),
+    colorHighlight: SIMD4<Float> = SIMD4<Float>(1, 1, 1, 1),
+    highlights: Float = 0.07,
     layering: Float = 0.5,
-    edges: Float = 0.4,
-    caustic: Float = 0.6,
-    waves: Float = 0.4,
+    edges: Float = 0.8,
+    caustic: Float = 0.1,
+    waves: Float = 0.3,
     size: Float = 1.0
   ) {
     self.colorBack = colorBack
@@ -1062,26 +1065,26 @@ public struct FlutedGlassParams {
   public var grainOverlay: Float
 
   public init(
-    colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
-    colorShadow: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 0.4),
-    colorHighlight: SIMD4<Float> = SIMD4<Float>(1, 1, 1, 0.6),
-    shadows: Float = 0.6,
+    colorBack: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 0),
+    colorShadow: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1),
+    colorHighlight: SIMD4<Float> = SIMD4<Float>(1, 1, 1, 1),
+    shadows: Float = 0.25,
     size: Float = 0.5,
     angle: Float = 0.0,
     distortion: Float = 0.5,
     shift: Float = 0.0,
-    blur: Float = 0.3,
-    edges: Float = 0.4,
+    blur: Float = 0,
+    edges: Float = 0.25,
     marginLeft: Float = 0.0,
     marginRight: Float = 0.0,
     marginTop: Float = 0.0,
     marginBottom: Float = 0.0,
-    stretch: Float = 0.2,
+    stretch: Float = 0,
     distortionShape: Float = 1.0,
-    highlights: Float = 0.4,
+    highlights: Float = 0.1,
     shape: Float = 1.0,
-    grainMixer: Float = 0.2,
-    grainOverlay: Float = 0.1
+    grainMixer: Float = 0,
+    grainOverlay: Float = 0
   ) {
     self.colorBack = colorBack
     self.colorShadow = colorShadow
@@ -1125,8 +1128,8 @@ public struct GemSmokeParams {
 
   public init(
     colors: [SIMD4<Float>],
-    colorBack: SIMD4<Float> = SIMD4<Float>(0.94, 0.94, 0.92, 1),
-    colorInner: SIMD4<Float> = SIMD4<Float>(0.98, 0.98, 0.96, 1),
+    colorBack: SIMD4<Float> = SIMD4<Float>(0.9411765, 0.9372549, 0.91764706, 1),
+    colorInner: SIMD4<Float> = SIMD4<Float>(0.98039216, 0.98039216, 0.9607843, 1),
     innerDistortion: Float = 0.8,
     outerDistortion: Float = 0.6,
     outerGlow: Float = 0.55,
@@ -1983,6 +1986,7 @@ public struct ImageDitheringUniformsRaw {
   public var u_type: Float
   public var u_pxSize: Float
   public var u_originalColors: Float
+  public var u_inverted: Float
   public var u_colorSteps: Float
 
   public init(params: ImageDitheringParams) {
@@ -1992,6 +1996,7 @@ public struct ImageDitheringUniformsRaw {
     self.u_type = params.type
     self.u_pxSize = params.size
     self.u_originalColors = params.originalColors
+    self.u_inverted = params.inverted
     self.u_colorSteps = params.colorSteps
   }
 }

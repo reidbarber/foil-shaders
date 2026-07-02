@@ -44,8 +44,42 @@ final class AluminumFoilTests: XCTestCase {
     counts.append(halftoneDotsPresets.count)
     counts.append(halftoneCmykPresets.count)
     counts.append(gemSmokePresets.count)
-    XCTAssertEqual(counts.count, 29)
-    XCTAssertTrue(counts.allSatisfy { $0 > 0 })
+    XCTAssertEqual(
+      counts,
+      [
+        4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+        6, 4, 4, 4, 6, 6, 4, 4, 4, 4,
+        4, 4, 4, 4, 2, 4, 4, 4, 4,
+      ])
+  }
+
+  func testPaperEnumRawValueParity() {
+    XCTAssertEqual(DotGridShape.diamond.rawValue, 1)
+    XCTAssertEqual(DitheringShape.sphere.rawValue, 7)
+    XCTAssertEqual(DitheringType.eightByEight.rawValue, 4)
+    XCTAssertEqual(GrainGradientShape.corners.rawValue, 4)
+    XCTAssertEqual(HalftoneDotsGrid.hex.rawValue, 1)
+    XCTAssertEqual(HalftoneCmykType.ink.rawValue, 1)
+    XCTAssertEqual(GlassGridShape.lines.rawValue, 1)
+    XCTAssertEqual(GlassDistortionShape.prism.rawValue, 1)
+  }
+
+  func testPaperDefaultPresetValues() {
+    XCTAssertEqual(meshGradientPresets[0].name, "Default")
+    XCTAssertEqual(meshGradientPresets[0].params.colors.count, 4)
+    XCTAssertEqual(meshGradientPresets[0].params.distortion, 0.8, accuracy: 0.0001)
+    XCTAssertEqual(meshGradientPresets[0].params.swirl, 0.1, accuracy: 0.0001)
+    XCTAssertEqual(meshGradientPresets[0].motion.speed, 1, accuracy: 0.0001)
+    XCTAssertEqual(meshGradientPresets[0].sizing.fit, .contain)
+
+    XCTAssertEqual(dotGridPresets[0].params.dotSize, 2, accuracy: 0.0001)
+    XCTAssertEqual(dotGridPresets[0].params.shape, DotGridShape.circle.rawValue, accuracy: 0.0001)
+    XCTAssertEqual(dotGridPresets[0].renderOptions.maxPixelCount, 6016 * 3384)
+
+    XCTAssertEqual(imageDitheringPresets[0].params.type, DitheringType.eightByEight.rawValue)
+    XCTAssertEqual(imageDitheringPresets[0].params.inverted, 0)
+    XCTAssertEqual(liquidMetalPresets[0].params.isImage, 0)
+    XCTAssertEqual(gemSmokePresets[0].params.shape, GemSmokeShape.diamond.rawValue)
   }
 
   func testCodeGeneratorQualifiesMeshGradient() {
