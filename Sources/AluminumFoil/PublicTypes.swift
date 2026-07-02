@@ -154,7 +154,7 @@ public struct ShaderColor: Equatable, Sendable, ExpressibleByStringLiteral {
   }
 }
 
-public enum ShaderImage {
+public enum ShaderImage: @unchecked Sendable {
   case cgImage(CGImage)
   case url(URL)
   case bundleResource(name: String, extension: String, bundle: Bundle)
@@ -164,6 +164,23 @@ public enum ShaderImage {
     name: String, extension fileExtension: String, bundle: Bundle = .main
   ) -> ShaderImage {
     .bundleResource(name: name, extension: fileExtension, bundle: bundle)
+  }
+}
+
+extension ShaderImage: Equatable {
+  public static func == (lhs: ShaderImage, rhs: ShaderImage) -> Bool {
+    switch (lhs, rhs) {
+    case let (.cgImage(a), .cgImage(b)):
+      return a === b
+    case let (.url(a), .url(b)):
+      return a == b
+    case let (.remoteURL(a), .remoteURL(b)):
+      return a == b
+    case let (.bundleResource(n1, e1, b1), .bundleResource(n2, e2, b2)):
+      return n1 == n2 && e1 == e2 && b1 == b2
+    default:
+      return false
+    }
   }
 }
 
