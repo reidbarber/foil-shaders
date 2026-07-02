@@ -41,5 +41,13 @@ let package = Package(
       name: "AluminumFoilTests",
       dependencies: ["AluminumFoil"]
     ),
+    .testTarget(
+      name: "AluminumFoilParityTests",
+      dependencies: ["AluminumFoil"],
+      resources: [
+        .copy("Goldens"),
+        .copy("Fixtures"),
+      ]
+    ),
   ]
 )

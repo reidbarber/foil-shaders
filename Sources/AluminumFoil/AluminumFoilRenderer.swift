@@ -146,15 +146,55 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
     let bundles = [Bundle.module, Bundle.main]
     for bundle in bundles {
       if let url = bundle.url(forResource: "noise-texture", withExtension: "png") {
-        noiseTexture = try? textureLoader.newTexture(
-          URL: url,
-          options: [
-            MTKTextureLoader.Option.SRGB: false
-          ]
-        )
+        // The bundled noise texture is a palette (indexed-color) PNG.
+        // MTKTextureLoader cannot decode those (neither from a URL nor from
+        // the indexed-colorspace CGImage ImageIO returns), so expand it to
+        // RGBA8 through a device-RGB bitmap context (device space = no color
+        // matching, keeping the exact palette byte values the WebGL reference
+        // sees) and upload the raw bytes.
+        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil),
+          let image = CGImageSourceCreateImageAtIndex(source, 0, nil)
+        else { break }
+        noiseTexture = makeTexture(expandingPalette: image)
         break
       }
     }
+  }
+
+  private func makeTexture(expandingPalette image: CGImage) -> MTLTexture? {
+    let width = image.width
+    let height = image.height
+    var rgba = [UInt8](repeating: 0, count: width * height * 4)
+    guard
+      let context = CGContext(
+        data: &rgba,
+        width: width,
+        height: height,
+        bitsPerComponent: 8,
+        bytesPerRow: width * 4,
+        space: CGColorSpaceCreateDeviceRGB(),
+        bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue
+      )
+    else { return nil }
+    context.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
+
+    let descriptor = MTLTextureDescriptor.texture2DDescriptor(
+      pixelFormat: .rgba8Unorm,
+      width: width,
+      height: height,
+      mipmapped: false
+    )
+    descriptor.usage = [.shaderRead]
+    guard let texture = device.makeTexture(descriptor: descriptor) else { return nil }
+    rgba.withUnsafeBytes { buffer in
+      texture.replace(
+        region: MTLRegionMake2D(0, 0, width, height),
+        mipmapLevel: 0,
+        withBytes: buffer.baseAddress!,
+        bytesPerRow: width * 4
+      )
+    }
+    return texture
   }
 
   private func setupFallbackTextures() {
@@ -1026,6 +1066,33 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
   }
 
   public func captureCurrentImage() -> CGImage? {
+    guard let capture = captureCurrentPixels() else { return nil }
+    let bytesPerRow = capture.width * 4
+    guard let provider = CGDataProvider(data: Data(capture.rgba) as CFData) else { return nil }
+    let colorSpace = CGColorSpaceCreateDeviceRGB()
+    // The shaders output premultiplied alpha (each composites `color.rgb *= a`),
+    // so the rendered texture holds premultiplied data — hence `premultipliedLast`.
+    let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+      .union(.byteOrder32Big)
+    return CGImage(
+      width: capture.width,
+      height: capture.height,
+      bitsPerComponent: 8,
+      bitsPerPixel: 32,
+      bytesPerRow: bytesPerRow,
+      space: colorSpace,
+      bitmapInfo: bitmapInfo,
+      provider: provider,
+      decode: nil,
+      shouldInterpolate: false,
+      intent: .defaultIntent
+    )
+  }
+
+  /// Renders the current shader offscreen and returns the raw RGBA8 bytes
+  /// (premultiplied alpha, top-down row order), exactly as produced by the
+  /// fragment shader with no color management applied.
+  func captureCurrentPixels() -> (rgba: [UInt8], width: Int, height: Int)? {
     guard let pipelineState = pipelineState,
       let vertexBuffer = vertexBuffer
     else {
@@ -1230,25 +1297,7 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
       raw[i + 3] = a
     }
 
-    guard let provider = CGDataProvider(data: Data(raw) as CFData) else { return nil }
-    let colorSpace = CGColorSpaceCreateDeviceRGB()
-    // The shaders output premultiplied alpha (each composites `color.rgb *= a`),
-    // so the rendered texture holds premultiplied data — hence `premultipliedLast`.
-    let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-      .union(.byteOrder32Big)
-    return CGImage(
-      width: width,
-      height: height,
-      bitsPerComponent: 8,
-      bitsPerPixel: 32,
-      bytesPerRow: bytesPerRow,
-      space: colorSpace,
-      bitmapInfo: bitmapInfo,
-      provider: provider,
-      decode: nil,
-      shouldInterpolate: false,
-      intent: .defaultIntent
-    )
+    return (rgba: raw, width: width, height: height)
   }
 }
 

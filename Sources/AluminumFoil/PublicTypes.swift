@@ -170,13 +170,13 @@ public enum ShaderImage: @unchecked Sendable {
 extension ShaderImage: Equatable {
   public static func == (lhs: ShaderImage, rhs: ShaderImage) -> Bool {
     switch (lhs, rhs) {
-    case let (.cgImage(a), .cgImage(b)):
+    case (.cgImage(let a), .cgImage(let b)):
       return a === b
-    case let (.url(a), .url(b)):
+    case (.url(let a), .url(let b)):
       return a == b
-    case let (.remoteURL(a), .remoteURL(b)):
+    case (.remoteURL(let a), .remoteURL(let b)):
       return a == b
-    case let (.bundleResource(n1, e1, b1), .bundleResource(n2, e2, b2)):
+    case (.bundleResource(let n1, let e1, let b1), .bundleResource(let n2, let e2, let b2)):
       return n1 == n2 && e1 == e2 && b1 == b2
     default:
       return false
