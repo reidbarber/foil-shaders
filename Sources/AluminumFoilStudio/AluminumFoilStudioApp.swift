@@ -7,8 +7,8 @@ struct AluminumFoilStudioApp: App {
   var body: some Scene {
     WindowGroup("Aluminum Foil Studio") {
       StudioView()
-        .frame(minWidth: 1120, minHeight: 720)
     }
+    .defaultSize(width: 1180, height: 760)
   }
 }
 
@@ -30,14 +30,15 @@ private struct StudioView: View {
           .tag(shader)
       }
       .navigationTitle("Shaders")
-      .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 320)
+      .navigationSplitViewColumnWidth(min: 180, ideal: 240, max: 320)
     } detail: {
       HSplitView {
         previewPane
-          .frame(minWidth: 560)
+          .frame(minWidth: 300)
+          .layoutPriority(1)
 
         inspectorPane
-          .frame(minWidth: 360, idealWidth: 420, maxWidth: 520)
+          .frame(minWidth: 280, idealWidth: 380, maxWidth: 520)
       }
       .navigationTitle(selectedShader.displayName)
       .toolbar {
@@ -52,13 +53,20 @@ private struct StudioView: View {
   }
 
   private var previewPane: some View {
-    VStack(spacing: 16) {
-      AluminumFoilShaderView(configuration: currentConfiguration)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    GeometryReader { proxy in
+      let availableSize = CGSize(
+        width: max(1, proxy.size.width - 32),
+        height: max(1, proxy.size.height - 32)
+      )
+      let previewSize = fittedPreviewSize(in: availableSize)
+
+      AluminumFoilShaderView(configuration: previewConfiguration(size: previewSize))
+        .frame(width: previewSize.width, height: previewSize.height)
         .background(.black.opacity(0.08))
         .clipShape(RoundedRectangle(cornerRadius: 8))
-        .padding(16)
+        .frame(width: proxy.size.width, height: proxy.size.height)
     }
+    .frame(minWidth: 300, minHeight: 240)
   }
 
   private var inspectorPane: some View {
@@ -152,6 +160,25 @@ private struct StudioView: View {
       motion: currentConfiguration.motion,
       renderOptions: currentConfiguration.renderOptions
     )
+  }
+
+  private func previewConfiguration(size: CGSize) -> ShaderConfiguration {
+    var configuration = currentConfiguration
+    configuration.renderOptions = ShaderRenderOptions(width: size.width, height: size.height)
+    return configuration
+  }
+
+  private func fittedPreviewSize(in availableSize: CGSize) -> CGSize {
+    let aspectRatio = CGFloat(16.0 / 9.0)
+    let availableWidth = max(1, availableSize.width)
+    let availableHeight = max(1, availableSize.height)
+    let widthForHeight = availableHeight * aspectRatio
+
+    if widthForHeight <= availableWidth {
+      return CGSize(width: widthForHeight, height: availableHeight)
+    }
+
+    return CGSize(width: availableWidth, height: availableWidth / aspectRatio)
   }
 
   private func chooseImage() {
@@ -349,6 +376,7 @@ private enum StudioShader: String, CaseIterable, Identifiable {
     }
   }
 
+  @MainActor
   func configuration(at index: Int) -> ShaderConfiguration {
     switch self {
     case .meshGradient: MeshGradient(meshGradientPresets[index]).configuration
