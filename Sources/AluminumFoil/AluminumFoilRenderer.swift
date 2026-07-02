@@ -282,6 +282,17 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
     view.isPaused = false
     view.framebufferOnly = true
     view.preferredFramesPerSecond = 60
+    // Transparency: match the web version, where the canvas composites its
+    // (premultiplied-alpha) output over the page. The shaders emit meaningful
+    // alpha (e.g. FlutedGlass's transparent colorBack, mesh-gradient fractional
+    // opacity), so clear to transparent and make the layer non-opaque; otherwise
+    // those regions composite onto opaque black. CAMetalLayer composites using
+    // premultiplied alpha, which is exactly what the shaders output.
+    view.clearColor = MTLClearColorMake(0, 0, 0, 0)
+    #if os(iOS)
+      view.isOpaque = false
+    #endif
+    (view.layer as? CAMetalLayer)?.isOpaque = false
   }
 
   public func configureMeshGradient() throws {
@@ -1152,6 +1163,8 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
 
     guard let provider = CGDataProvider(data: Data(raw) as CFData) else { return nil }
     let colorSpace = CGColorSpaceCreateDeviceRGB()
+    // The shaders output premultiplied alpha (each composites `color.rgb *= a`),
+    // so the rendered texture holds premultiplied data — hence `premultipliedLast`.
     let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
       .union(.byteOrder32Big)
     return CGImage(
