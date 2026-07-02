@@ -5,7 +5,11 @@ import MetalKit
 
 // MARK: - AluminumFoilRenderer
 
-public class AluminumFoilRenderer: NSObject, MTKViewDelegate {
+// `@unchecked Sendable`: all mutable state is touched on the main thread (via
+// the MTKView delegate callbacks and SwiftUI update path). The one background
+// hop — remote image decoding in `loadRemoteImage` — marshals its result back
+// to the main thread before mutating any state.
+public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendable {
   public enum ShaderKind: CaseIterable, Sendable {
     case meshGradient
     case staticMeshGradient
@@ -99,6 +103,18 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate {
   private var library: MTLLibrary?
   private var libraryShaderName: String?
 
+  // Last-applied configuration values, used to diff on `apply(_:)` so that
+  // repeated SwiftUI updates don't reset the animation, reload the image, or
+  // re-trigger network fetches. `nil` means "not yet applied".
+  private var appliedImage: ShaderImage?
+  private var appliedImageIsSet = false
+  private var appliedFrame: Float?
+  private var appliedSpeed: Float?
+
+  // Incremented on every image request so an in-flight async (remote) load can
+  // tell whether its result is still the most recent one before installing it.
+  private var imageRequestID: UInt64 = 0
+
   // Weak reference to the view to control animation
   private weak var mtkView: MTKView?
 
@@ -173,6 +189,8 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate {
   }
 
   public func setImage(_ shaderImage: ShaderImage?) {
+    // Any new image request supersedes an in-flight remote load.
+    imageRequestID &+= 1
     guard let shaderImage else {
       setImage(nil as CGImage?)
       return
@@ -180,12 +198,39 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate {
     switch shaderImage {
     case .cgImage(let image):
       setImage(image)
-    case .url(let url), .remoteURL(let url):
+    case .url(let url):
       setImage(AluminumFoilDefaultImageLoader.loadCGImage(from: url))
     case .bundleResource(let name, let fileExtension, let bundle):
       let url = bundle.url(forResource: name, withExtension: fileExtension)
       setImage(url.flatMap(AluminumFoilDefaultImageLoader.loadCGImage(from:)))
+    case .remoteURL(let url):
+      loadRemoteImage(from: url, requestID: imageRequestID)
     }
+  }
+
+  /// Loads a remote image off the main thread and installs it once ready. If a
+  /// newer image has been requested in the meantime, the stale result is dropped.
+  private func loadRemoteImage(from url: URL, requestID: UInt64) {
+    DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+      let image = AluminumFoilDefaultImageLoader.loadCGImage(from: url)
+      DispatchQueue.main.async {
+        guard let self, self.imageRequestID == requestID else { return }
+        self.setImage(image)
+        // A static shader won't redraw on its own, so nudge it.
+        if self.speed == 0.0 {
+          self.mtkView?.setNeedsDisplay(self.mtkView?.bounds ?? .zero)
+        }
+      }
+    }
+  }
+
+  /// Applies a new image only when it differs from the last one applied,
+  /// so repeated SwiftUI updates don't re-decode or re-fetch the same image.
+  private func updateImage(_ image: ShaderImage?) {
+    if appliedImageIsSet && appliedImage == image { return }
+    appliedImage = image
+    appliedImageIsSet = true
+    setImage(image)
   }
 
   private func setupVertexBuffer() {
@@ -597,9 +642,19 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate {
     case .flutedGlass(let params): flutedGlassParams = params
     case .gemSmoke(let params): gemSmokeParams = params
     }
-    setImage(configuration.image)
-    setFrame(configuration.motion.frame)
-    setSpeed(configuration.motion.speed)
+    updateImage(configuration.image)
+    // Only reset the frame / speed when the values actually change, otherwise a
+    // routine SwiftUI update (e.g. an unrelated parent state change) would
+    // restart the animation. Mirrors the React wrapper, which calls setFrame
+    // only when the `frame` prop changes.
+    if appliedFrame != configuration.motion.frame {
+      appliedFrame = configuration.motion.frame
+      setFrame(configuration.motion.frame)
+    }
+    if appliedSpeed != configuration.motion.speed {
+      appliedSpeed = configuration.motion.speed
+      setSpeed(configuration.motion.speed)
+    }
   }
 
   private func ensureLibrary(shaderName: String) throws {
@@ -899,6 +954,10 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate {
     let width = Int(resolution.x)
     let height = Int(resolution.y)
     if width <= 0 || height <= 0 { return nil }
+
+    // The export path never runs `draw(in:)`, so compute the shader time from
+    // the current frame here; otherwise captures always encode `time == 0`.
+    time = currentFrame * 0.001  // seconds (matches WebGL implementation)
 
     let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(
       pixelFormat: .bgra8Unorm,
