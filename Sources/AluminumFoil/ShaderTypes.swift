@@ -930,7 +930,6 @@ public struct LiquidMetalParams {
   public var contour: Float
   public var angle: Float
   public var shape: Float
-  public var isImage: Float
 
   public init(
     colorBack: SIMD4<Float> = SIMD4<Float>(0.6666667, 0.6666667, 0.6745098, 1),
@@ -942,8 +941,7 @@ public struct LiquidMetalParams {
     distortion: Float = 0.07,
     contour: Float = 0.4,
     angle: Float = 70.0,
-    shape: Float = 3.0,
-    isImage: Float = 0
+    shape: Float = 3.0
   ) {
     self.colorBack = colorBack
     self.colorTint = colorTint
@@ -955,7 +953,6 @@ public struct LiquidMetalParams {
     self.contour = contour
     self.angle = angle
     self.shape = shape
-    self.isImage = isImage
   }
 }
 
@@ -1124,7 +1121,6 @@ public struct GemSmokeParams {
   public var angle: Float
   public var size: Float
   public var shape: Float
-  public var isImage: Float
 
   public init(
     colors: [SIMD4<Float>],
@@ -1137,8 +1133,7 @@ public struct GemSmokeParams {
     offset: Float = 0,
     angle: Float = 0,
     size: Float = 0.8,
-    shape: Float = 3,
-    isImage: Float = 0
+    shape: Float = 3
   ) {
     self.colors = Array(colors.prefix(Self.maxColorCount))
     self.colorBack = colorBack
@@ -1151,7 +1146,6 @@ public struct GemSmokeParams {
     self.angle = angle
     self.size = size
     self.shape = shape
-    self.isImage = isImage
   }
 }
 // MARK: - Metal Uniforms
@@ -2156,7 +2150,8 @@ public struct LiquidMetalUniformsRaw {
     self.u_contour = params.contour
     self.u_angle = params.angle
     self.u_shape = params.shape
-    self.u_isImage = params.isImage
+    // Set by the renderer from whether an image texture is bound.
+    self.u_isImage = 0
   }
 }
 
@@ -2315,6 +2310,7 @@ public struct GemSmokeUniformsRaw {
     self.u_angle = params.angle
     self.u_size = params.size
     self.u_shape = params.shape
-    self.u_isImage = params.isImage
+    // Set by the renderer from whether an image texture is bound.
+    self.u_isImage = 0
   }
 }

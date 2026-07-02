@@ -1971,8 +1971,7 @@ public let liquidMetalPresets: [LiquidMetalPreset] = [
       distortion: 0.07,
       contour: 0.4,
       angle: 70,
-      shape: 3,
-      isImage: 0
+      shape: 3
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -1991,8 +1990,7 @@ public let liquidMetalPresets: [LiquidMetalPreset] = [
       distortion: 0,
       contour: 0,
       angle: 90,
-      shape: 3,
-      isImage: 0
+      shape: 3
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2011,8 +2009,7 @@ public let liquidMetalPresets: [LiquidMetalPreset] = [
       distortion: 0.1,
       contour: 0.4,
       angle: 90,
-      shape: 0,
-      isImage: 0
+      shape: 0
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2031,8 +2028,7 @@ public let liquidMetalPresets: [LiquidMetalPreset] = [
       distortion: 0.4,
       contour: 0.4,
       angle: 0,
-      shape: 1,
-      isImage: 0
+      shape: 1
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2265,8 +2261,7 @@ public let gemSmokePresets: [GemSmokePreset] = [
       offset: 0,
       angle: 0,
       size: 0.8,
-      shape: 3,
-      isImage: 0
+      shape: 3
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2286,8 +2281,7 @@ public let gemSmokePresets: [GemSmokePreset] = [
       offset: 0,
       angle: 0,
       size: 0.8,
-      shape: 3,
-      isImage: 0
+      shape: 3
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2307,8 +2301,7 @@ public let gemSmokePresets: [GemSmokePreset] = [
       offset: 0,
       angle: 0,
       size: 0.8,
-      shape: 3,
-      isImage: 0
+      shape: 3
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2330,8 +2323,7 @@ public let gemSmokePresets: [GemSmokePreset] = [
       offset: 0.2,
       angle: 0,
       size: 1,
-      shape: 3,
-      isImage: 0
+      shape: 3
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,

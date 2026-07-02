@@ -78,7 +78,7 @@ final class AluminumFoilTests: XCTestCase {
 
     XCTAssertEqual(imageDitheringPresets[0].params.type, DitheringType.eightByEight.rawValue)
     XCTAssertEqual(imageDitheringPresets[0].params.inverted, 0)
-    XCTAssertEqual(liquidMetalPresets[0].params.isImage, 0)
+    XCTAssertEqual(liquidMetalPresets[0].params.shape, LiquidMetalShape.diamond.rawValue)
     XCTAssertEqual(gemSmokePresets[0].params.shape, GemSmokeShape.diamond.rawValue)
   }
 

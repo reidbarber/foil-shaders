@@ -308,7 +308,7 @@ private enum StudioShader: String, CaseIterable, Identifiable {
   var usesImage: Bool {
     switch self {
     case .flutedGlass, .water, .imageDithering, .heatmap, .liquidMetal, .halftoneDots,
-      .halftoneCmyk:
+      .halftoneCmyk, .gemSmoke:
       true
     default:
       false

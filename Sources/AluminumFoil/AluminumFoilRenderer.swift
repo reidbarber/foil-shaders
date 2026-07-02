@@ -66,6 +66,11 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
   public var sizingParams: ShaderSizingParams = meshGradientPresets[0].sizing
   public var motionParams: ShaderMotionParams = meshGradientPresets[0].motion
 
+  // Backing-store resolution controls (mirrors the web `minPixelRatio` /
+  // `maxPixelCount`): raise the render scale to at least `minPixelRatio` for
+  // sharper output, and cap total drawable pixels at `maxPixelCount`.
+  public var renderOptions: ShaderRenderOptions = .default
+
   // Shader params
   public var meshGradientParams: MeshGradientParams = meshGradientPresets[0].params
   public var staticMeshGradientParams: StaticMeshGradientParams = staticMeshGradientPresets[0]
@@ -114,6 +119,11 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
   // Incremented on every image request so an in-flight async (remote) load can
   // tell whether its result is still the most recent one before installing it.
   private var imageRequestID: UInt64 = 0
+
+  // Guards against re-entrancy: `MTKView.setDrawableSize` invokes the delegate's
+  // `drawableSizeWillChange` synchronously (before committing the new value), so
+  // without this flag `updateDrawableSizing` would recurse forever.
+  private var isUpdatingDrawableSize = false
 
   // Weak reference to the view to control animation
   private weak var mtkView: MTKView?
@@ -666,6 +676,14 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
       appliedSpeed = configuration.motion.speed
       setSpeed(configuration.motion.speed)
     }
+    // Re-clamp the drawable if the resolution controls changed (e.g. a new
+    // maxPixelCount), matching the reference which re-runs its resize handler.
+    if renderOptions != configuration.renderOptions {
+      renderOptions = configuration.renderOptions
+      if let mtkView {
+        updateDrawableSizing(for: mtkView)
+      }
+    }
   }
 
   private func ensureLibrary(shaderName: String) throws {
@@ -695,12 +713,63 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
   }
 
   public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-    let scale = Float(view.layer?.contentsScale ?? 1.0)
-    resolution = SIMD2<Float>(Float(size.width), Float(size.height))
-    pixelRatio = scale
+    updateDrawableSizing(for: view)
+  }
+
+  /// Sizes the view's drawable to honor `minPixelRatio` / `maxPixelCount`, then
+  /// records the resulting resolution and render scale. Mirrors the reference's
+  /// resize handler. `autoResizeDrawable` stays enabled, so this re-runs whenever
+  /// the view's bounds or backing scale change and overrides MTKView's default
+  /// native-scale drawable.
+  private func updateDrawableSizing(for view: MTKView) {
+    // Ignore the delegate callback triggered by our own `drawableSize` write.
+    if isUpdatingDrawableSize { return }
+
+    let pointSize = view.bounds.size
+    guard pointSize.width > 0, pointSize.height > 0 else {
+      // Bounds not laid out yet; fall back to whatever MTKView computed.
+      let fallback = view.drawableSize
+      resolution = SIMD2<Float>(Float(fallback.width), Float(fallback.height))
+      pixelRatio = Float(view.layer?.contentsScale ?? 1.0)
+      return
+    }
+    let nativeScale = view.layer?.contentsScale ?? 1.0
+    let (clamped, renderScale) = clampedDrawableSize(
+      pointSize: pointSize, nativeScale: nativeScale)
+    if view.drawableSize != clamped {
+      isUpdatingDrawableSize = true
+      view.drawableSize = clamped
+      isUpdatingDrawableSize = false
+    }
+    resolution = SIMD2<Float>(Float(clamped.width), Float(clamped.height))
+    pixelRatio = renderScale
     if speed == 0.0 {
       view.setNeedsDisplay(view.bounds)
     }
+  }
+
+  /// Computes the clamped drawable pixel size and the corresponding render scale
+  /// (the `u_pixelRatio` uniform = drawable pixels per point).
+  private func clampedDrawableSize(pointSize: CGSize, nativeScale: CGFloat) -> (
+    size: CGSize, renderScale: Float
+  ) {
+    let pointWidth = max(1.0, Double(pointSize.width))
+    let pointHeight = max(1.0, Double(pointSize.height))
+    // Never downscale below the native backing scale, but reach at least minPixelRatio.
+    let targetScale = max(Double(nativeScale), Double(renderOptions.minPixelRatio))
+    var targetWidth = pointWidth * targetScale
+    var targetHeight = pointHeight * targetScale
+    // Cap the total pixel count.
+    let maxPixels = Double(renderOptions.maxPixelCount)
+    let targetPixels = targetWidth * targetHeight
+    if maxPixels > 0, targetPixels > maxPixels {
+      let downscale = (maxPixels / targetPixels).squareRoot()
+      targetWidth *= downscale
+      targetHeight *= downscale
+    }
+    let width = max(1.0, targetWidth.rounded())
+    let height = max(1.0, targetHeight.rounded())
+    return (CGSize(width: width, height: height), Float(width / pointWidth))
   }
 
   public func setRenderSize(width: Int, height: Int, pixelRatio: Float = 1) {
