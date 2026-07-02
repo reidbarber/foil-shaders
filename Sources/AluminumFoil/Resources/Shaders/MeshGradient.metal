@@ -62,9 +62,12 @@ fragment float4 mesh_gradient_fragment(VertexOutput in [[stage_in]],
     float radius = smoothstep(0.0, 1.0, length(uv - 0.5));
     float center = 1.0 - radius;
     for (float i = 1.0; i <= 2.0; i += 1.0) {
+        // Match the reference evaluation order: the uv.y update reads uv.x
+        // *after* it has been mutated on the line above, so smoothX must be
+        // recomputed here rather than hoisted before the uv.x update.
         float smoothY = smoothstep(0.0, 1.0, uv.y);
-        float smoothX = smoothstep(0.0, 1.0, uv.x);
         uv.x += uniforms.u_distortion * center / i * sin(t + i * 0.4 * smoothY) * cos(0.2 * t + i * 2.4 * smoothY);
+        float smoothX = smoothstep(0.0, 1.0, uv.x);
         uv.y += uniforms.u_distortion * center / i * cos(t + i * 2.0 * smoothX);
     }
     
