@@ -145,8 +145,7 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
   }
 
   private func loadNoiseTexture() {
-    let bundles = [Bundle.module, Bundle.main]
-    for bundle in bundles {
+    for bundle in AluminumFoilResourceBundles.candidates {
       if let url = bundle.url(forResource: "noise-texture", withExtension: "png") {
         // The bundled noise texture is a palette (indexed-color) PNG.
         // MTKTextureLoader cannot decode those (neither from a URL nor from

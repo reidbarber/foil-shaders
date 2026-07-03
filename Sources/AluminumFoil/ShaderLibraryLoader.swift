@@ -3,8 +3,10 @@ import Metal
 
 public enum ShaderLibraryLoader {
   public static func makeLibrary(device: MTLDevice, shaderNames: [String]) throws -> MTLLibrary {
-    if let defaultLibrary = try? device.makeDefaultLibrary(bundle: .module) {
-      return defaultLibrary
+    for bundle in AluminumFoilResourceBundles.candidates {
+      if let defaultLibrary = try? device.makeDefaultLibrary(bundle: bundle) {
+        return defaultLibrary
+      }
     }
     return try makeLibraryFromSources(device: device, shaderNames: shaderNames)
   }
@@ -12,11 +14,10 @@ public enum ShaderLibraryLoader {
   private static func makeLibraryFromSources(device: MTLDevice, shaderNames: [String]) throws
     -> MTLLibrary
   {
-    let bundles = [Bundle.module, Bundle.main]
     var commonURL: URL?
     var vertexURL: URL?
     var shaderURLs: [URL] = []
-    for bundle in bundles {
+    for bundle in AluminumFoilResourceBundles.candidates {
       commonURL =
         commonURL
         ?? bundle.url(forResource: "Common", withExtension: "metal", subdirectory: "Shaders")

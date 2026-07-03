@@ -22,6 +22,15 @@ Run the companion app with:
 swift run AluminumFoilStudio
 ```
 
+Package the companion app as a macOS app bundle with:
+
+```sh
+Scripts/package-macos-app.sh
+
+# Also create dist/AluminumFoilStudio.dmg:
+Scripts/package-macos-app.sh --dmg
+```
+
 Regenerate Paper-derived preset metadata with:
 
 ```sh

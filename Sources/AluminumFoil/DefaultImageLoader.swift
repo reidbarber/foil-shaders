@@ -10,8 +10,7 @@ import UniformTypeIdentifiers
 
 public enum AluminumFoilDefaultImageLoader {
   public static func defaultImage() -> CGImage? {
-    let bundles = [Bundle.module, Bundle.main]
-    let url = bundles.compactMap { bundle in
+    let url = AluminumFoilResourceBundles.candidates.compactMap { bundle in
       bundle.url(forResource: "default-image", withExtension: "svg")
     }.first
     guard let url else {
