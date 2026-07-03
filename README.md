@@ -1,68 +1,104 @@
 # Foil Shaders
 
-Foil Shaders is a Swift and SwiftUI Metal port of Paper Shaders. It exposes
-SwiftUI components named after the React components from
-`@paper-design/shaders-react`, backed by a lower-level Metal renderer.
+Foil Shaders is a [Metal](https://developer.apple.com/metal/)-based Swift and SwiftUI port of
+[Paper Shaders](https://github.com/paper-design/shaders) for iOS and macOS.
+
+## Requirements
+
+- iOS 15+
+- macOS 13+
+- Xcode with Swift 6 support
+- Metal-capable device or simulator host
+
+## Install With Xcode
+
+1. Open your app project in Xcode.
+2. Choose File > Add Package Dependencies.
+3. Enter `https://github.com/reidbarber/foil-shaders.git`.
+4. Select version `0.1.0`.
+5. Add the `FoilShaders` product to your app target.
+
+For alpha releases, pinning to an exact version is the safest option. If you
+want automatic compatible updates, use the standard package rule starting at
+`0.1.0`.
+
+## Install With Package.swift
 
 ```swift
+dependencies: [
+  .package(url: "https://github.com/reidbarber/foil-shaders.git", from: "0.1.0")
+],
+targets: [
+  .target(
+    name: "YourTarget",
+    dependencies: [
+      .product(name: "FoilShaders", package: "foil-shaders")
+    ]
+  )
+]
+```
+
+## Usage
+
+```swift
+import SwiftUI
 import FoilShaders
 
-FoilShaders.MeshGradient(
-    colors: ["#5100ff", "#00ff80", "#ffcc00", "#ea00ff"],
-    distortion: 1,
-    swirl: 0.8,
-    speed: 0.2
-)
-.frame(width: 200, height: 200)
+struct ContentView: View {
+  var body: some View {
+    FoilShaders.MeshGradient(
+      colors: ["#5100ff", "#00ff80", "#ffcc00", "#ea00ff"],
+      distortion: 1,
+      swirl: 0.8,
+      speed: 0.2
+    )
+    .frame(width: 240, height: 240)
+  }
+}
 ```
 
-Run the companion app with:
+Most shader components also include Paper-derived presets:
 
-```sh
-swift run FoilShadersStudio
+```swift
+FoilShaders.Swirl(FoilShaders.Swirl.presets[1])
+  .frame(width: 240, height: 240)
 ```
 
-Package the companion app as a macOS app bundle with:
+## Studio App
 
-```sh
-Scripts/package-macos-app.sh
+Foil Shaders Studio is a macOS companion app for previewing shaders, adjusting
+presets, and copying SwiftUI code.
 
-# Also create dist/FoilShadersStudio.dmg:
-Scripts/package-macos-app.sh --dmg
-```
+Download the latest DMG from
+[GitHub Releases](https://github.com/reidbarber/foil-shaders/releases/latest/download/FoilShadersStudio.dmg).
 
-Regenerate Paper-derived preset metadata with:
+## Visual Parity
 
-```sh
-node Scripts/extract-paper-presets.mjs <path-to-paper-shaders> > paper-presets.json
-node Scripts/generate-swift-presets.mjs paper-presets.json > Sources/FoilShaders/Presets.swift
-```
+Foil Shaders ports the Paper Shaders APIs, preset metadata, and shader behavior
+to Metal. The repository includes a visual parity suite that compares Foil
+Shaders output against golden images rendered from the original Paper Shaders
+WebGL implementation.
 
-## Visual parity suite
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the local parity test and golden
+regeneration workflow.
 
-`Tests/FoilShadersParityTests` renders every shader × preset × frame with the
-Metal renderer and compares the raw pixels against golden images generated
-from the original Paper Shaders WebGL implementation (committed under
-`Tests/FoilShadersParityTests/Goldens`). Run it with:
+## Status
 
-```sh
-swift test --filter FoilShadersParityTests
+Alpha, pre-1.0. APIs may change before the first stable release.
 
-# Iterate on one shader / preset:
-PARITY_FILTER=swirl swift test --filter FoilShadersParityTests
-PARITY_FILTER="swirl/Candy" swift test --filter FoilShadersParityTests
-```
+## Contributing
 
-Comparison uses a tight per-pixel tolerance (channel delta ≤ 2/255 with a cap
-on the fraction of out-of-tolerance pixels; per-shader overrides in
-`ParityTolerances`). On failure, expected/actual/diff PNGs are written to a
-temp directory (override with `PARITY_ARTIFACTS_DIR`) and the path is printed.
+Development setup, testing, parity workflow, preset generation, and release
+packaging notes live in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Shaders that currently diverge structurally from the reference are tracked in
-`GoldenParityTests.knownParityGaps`; they don't fail the suite, but the list is
-strict — once a shader is fixed, the test demands its entry be removed.
+## License
 
-Goldens were generated on one machine under SwiftShader (environment recorded
-in `Goldens/manifest.json`). To regenerate them — required whenever
-`Presets.swift` is regenerated or the paper repo is updated — see
-[Scripts/parity-harness/README.md](Scripts/parity-harness/README.md).
+Copyright 2026 Reid Barber.
+
+Foil Shaders is licensed under the Apache License, Version 2.0. See
+[LICENSE](LICENSE).
+
+Foil Shaders includes Metal ports, API design, presets, and parity references
+derived from [Paper Shaders](https://github.com/paper-design/shaders), which is
+also licensed under Apache-2.0. See
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for attribution details.
