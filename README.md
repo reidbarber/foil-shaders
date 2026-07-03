@@ -1,14 +1,9 @@
 # Foil Shaders
 
-Foil Shaders is a [Metal](https://developer.apple.com/metal/)-based Swift and SwiftUI port of
+A Metal-based SwiftUI port of
 [Paper Shaders](https://github.com/paper-design/shaders) for iOS and macOS.
 
-## Requirements
-
-- iOS 15+
-- macOS 13+
-- Xcode with Swift 6 support
-- Metal-capable device or simulator host
+[Download the Foil Shaders Studio app](https://github.com/reidbarber/foil-shaders/releases/latest/download/FoilShadersStudio.dmg) to preview shaders, adjust presets, and copy SwiftUI code.
 
 ## Install With Xcode
 
@@ -57,20 +52,12 @@ struct ContentView: View {
 }
 ```
 
-Most shader components also include Paper-derived presets:
+Most shader components also include the presets from Paper Shader's documentation:
 
 ```swift
 FoilShaders.Swirl(FoilShaders.Swirl.presets[1])
   .frame(width: 240, height: 240)
 ```
-
-## Studio App
-
-Foil Shaders Studio is a macOS companion app for previewing shaders, adjusting
-presets, and copying SwiftUI code.
-
-Download the latest DMG from
-[GitHub Releases](https://github.com/reidbarber/foil-shaders/releases/latest/download/FoilShadersStudio.dmg).
 
 ## Visual Parity
 
