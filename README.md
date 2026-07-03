@@ -52,7 +52,7 @@ struct ContentView: View {
 }
 ```
 
-Most shader components also include the presets from Paper Shader's documentation:
+Most shader components also include the presets from Paper Shaders documentation:
 
 ```swift
 FoilShaders.Swirl(FoilShaders.Swirl.presets[1])
@@ -65,6 +65,17 @@ Foil Shaders ports the Paper Shaders APIs, preset metadata, and shader behavior
 to Metal. The repository includes a visual parity suite that compares Foil
 Shaders output against golden images rendered from the original Paper Shaders
 WebGL implementation.
+
+These examples use the same preset, frame, and 320x240 canvas on both sides.
+
+| Shader | Paper Shaders | Foil Shaders |
+| --- | --- | --- |
+| Mesh Gradient / Default | <img src="Docs/Media/parity/paper-mesh-gradient-default.png" alt="Paper Shaders Mesh Gradient Default" width="220"> | <img src="Docs/Media/parity/foil-mesh-gradient-default.png" alt="Foil Shaders Mesh Gradient Default" width="220"> |
+| Swirl / Candy | <img src="Docs/Media/parity/paper-swirl-candy.png" alt="Paper Shaders Swirl Candy" width="220"> | <img src="Docs/Media/parity/foil-swirl-candy.png" alt="Foil Shaders Swirl Candy" width="220"> |
+| Dithering / Ripple | <img src="Docs/Media/parity/paper-dithering-ripple.png" alt="Paper Shaders Dithering Ripple" width="220"> | <img src="Docs/Media/parity/foil-dithering-ripple.png" alt="Foil Shaders Dithering Ripple" width="220"> |
+| Voronoi / Lights | <img src="Docs/Media/parity/paper-voronoi-lights.png" alt="Paper Shaders Voronoi Lights" width="220"> | <img src="Docs/Media/parity/foil-voronoi-lights.png" alt="Foil Shaders Voronoi Lights" width="220"> |
+| Paper Texture / Cardboard | <img src="Docs/Media/parity/paper-paper-texture-cardboard.png" alt="Paper Shaders Paper Texture Cardboard" width="220"> | <img src="Docs/Media/parity/foil-paper-texture-cardboard.png" alt="Foil Shaders Paper Texture Cardboard" width="220"> |
+| Liquid Metal / Stripes | <img src="Docs/Media/parity/paper-liquid-metal-stripes.png" alt="Paper Shaders Liquid Metal Stripes" width="220"> | <img src="Docs/Media/parity/foil-liquid-metal-stripes.png" alt="Foil Shaders Liquid Metal Stripes" width="220"> |
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the local parity test and golden
 regeneration workflow.

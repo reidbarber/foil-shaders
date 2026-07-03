@@ -105,6 +105,15 @@ Goldens were generated under SwiftShader, with the environment recorded in
 See [Scripts/parity-harness/README.md](Scripts/parity-harness/README.md) for
 golden regeneration instructions.
 
+Regenerate the README visual parity table assets:
+
+```sh
+Scripts/generate-readme-parity-assets.sh
+```
+
+The script copies the selected Paper Shaders goldens and renders the matching
+Foil Shaders outputs into `Docs/Media/parity/`.
+
 ## Package Products
 
 Apps should depend on the `FoilShaders` library product.

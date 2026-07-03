@@ -5,46 +5,248 @@ import ImageIO
 import Metal
 import UniformTypeIdentifiers
 
-let arguments = CommandLine.arguments.dropFirst()
-let outputURL: URL
-if let first = arguments.first {
-  outputURL = URL(fileURLWithPath: first)
-} else {
-  outputURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+struct ExportOptions {
+  var outputURL = defaultOutputURL()
+  var shader = "mesh-gradient"
+  var preset = "Default"
+  var frame: Float = 0
+  var width = 1280
+  var height = 720
+  var imageURL: URL?
+}
+
+enum ExportError: Error, CustomStringConvertible {
+  case missingValue(String)
+  case unknownArgument(String)
+  case unexpectedPositionalArguments([String])
+  case unknownShader(String)
+  case missingPreset(shader: String, preset: String)
+  case invalidNumber(option: String, value: String)
+  case invalidImage(URL)
+  case cannotCreateDestination(URL)
+  case cannotWriteImage(URL)
+
+  var description: String {
+    switch self {
+    case .missingValue(let option):
+      return "\(option) requires a value."
+    case .unknownArgument(let argument):
+      return "Unknown argument: \(argument)"
+    case .unexpectedPositionalArguments(let arguments):
+      return "Unexpected positional arguments: \(arguments.joined(separator: ", "))"
+    case .unknownShader(let shader):
+      return "Unknown shader: \(shader)"
+    case .missingPreset(let shader, let preset):
+      return "Preset \"\(preset)\" was not found for shader \"\(shader)\"."
+    case .invalidNumber(let option, let value):
+      return "\(option) must be numeric, got \"\(value)\"."
+    case .invalidImage(let url):
+      return "Could not load image at \(url.path)."
+    case .cannotCreateDestination(let url):
+      return "Could not create PNG destination at \(url.path)."
+    case .cannotWriteImage(let url):
+      return "Could not write PNG at \(url.path)."
+    }
+  }
+}
+
+func defaultOutputURL() -> URL {
+  URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
     .appendingPathComponent("foil-shaders-export.png")
 }
 
-guard let device = MTLCreateSystemDefaultDevice() else {
-  fputs("Metal is not available on this machine.\n", stderr)
-  exit(1)
+func usage() -> String {
+  """
+  Usage: swift run FoilShadersExport [output.png]
+         swift run FoilShadersExport --shader <shader> --preset <preset> --frame <frame> --width <px> --height <px> --output <output.png>
+
+  Options:
+    --shader <slug>       Shader slug, for example mesh-gradient, swirl, dithering, voronoi, paper-texture, or liquid-metal.
+    --preset <name>       Preset display name. Defaults to Default.
+    --frame <number>      Animation frame in milliseconds. Defaults to 0.
+    --width <px>          Output width. Defaults to 1280.
+    --height <px>         Output height. Defaults to 720.
+    --image <path>        Fixture image for image-based shaders.
+    --output <path>       Output PNG path.
+    -h, --help            Show this help message.
+  """
+}
+
+func takeValue(_ option: String, from args: inout [String]) throws -> String {
+  guard !args.isEmpty else { throw ExportError.missingValue(option) }
+  return args.removeFirst()
+}
+
+func parseInt(_ value: String, option: String) throws -> Int {
+  guard let parsed = Int(value) else {
+    throw ExportError.invalidNumber(option: option, value: value)
+  }
+  return parsed
+}
+
+func parseFloat(_ value: String, option: String) throws -> Float {
+  guard let parsed = Float(value) else {
+    throw ExportError.invalidNumber(option: option, value: value)
+  }
+  return parsed
+}
+
+func parseArguments(_ rawArguments: [String]) throws -> ExportOptions {
+  var args = rawArguments
+  var options = ExportOptions()
+  var positionalArguments: [String] = []
+
+  while !args.isEmpty {
+    let argument = args.removeFirst()
+    switch argument {
+    case "-h", "--help":
+      print(usage())
+      exit(0)
+    case "--shader":
+      options.shader = try takeValue(argument, from: &args)
+    case "--preset":
+      options.preset = try takeValue(argument, from: &args)
+    case "--frame":
+      options.frame = try parseFloat(try takeValue(argument, from: &args), option: argument)
+    case "--width":
+      options.width = try parseInt(try takeValue(argument, from: &args), option: argument)
+    case "--height":
+      options.height = try parseInt(try takeValue(argument, from: &args), option: argument)
+    case "--image":
+      options.imageURL = URL(fileURLWithPath: try takeValue(argument, from: &args))
+    case "--output":
+      options.outputURL = URL(fileURLWithPath: try takeValue(argument, from: &args))
+    default:
+      if argument.hasPrefix("-") {
+        throw ExportError.unknownArgument(argument)
+      }
+      positionalArguments.append(argument)
+    }
+  }
+
+  if positionalArguments.count == 1 {
+    options.outputURL = URL(fileURLWithPath: positionalArguments[0])
+  } else if positionalArguments.count > 1 {
+    throw ExportError.unexpectedPositionalArguments(positionalArguments)
+  }
+
+  return options
+}
+
+func preset<Params>(
+  _ presets: [ShaderPreset<Params>], shader: String, name: String
+) throws -> ShaderPreset<Params> {
+  guard let preset = presets.first(where: { $0.name == name }) else {
+    throw ExportError.missingPreset(shader: shader, preset: name)
+  }
+  return preset
+}
+
+func configuration(for shader: String, presetName: String, image: ShaderImage?) throws
+  -> ShaderConfiguration
+{
+  var configuration: ShaderConfiguration
+
+  func makeConfiguration<Params>(
+    kind: FoilShadersRenderer.ShaderKind,
+    presets: [ShaderPreset<Params>],
+    wrap: (Params) -> ShaderParameters
+  ) throws -> ShaderConfiguration {
+    let selectedPreset = try preset(presets, shader: shader, name: presetName)
+    return ShaderConfiguration(
+      kind: kind,
+      parameters: wrap(selectedPreset.params),
+      sizing: selectedPreset.sizing,
+      motion: selectedPreset.motion,
+      renderOptions: selectedPreset.renderOptions,
+      image: selectedPreset.image
+    )
+  }
+
+  switch shader {
+  case "mesh-gradient":
+    configuration = try makeConfiguration(kind: .meshGradient, presets: meshGradientPresets) {
+      .meshGradient($0)
+    }
+  case "swirl":
+    configuration = try makeConfiguration(kind: .swirl, presets: swirlPresets) { .swirl($0) }
+  case "dithering":
+    configuration = try makeConfiguration(kind: .dithering, presets: ditheringPresets) {
+      .dithering($0)
+    }
+  case "voronoi":
+    configuration = try makeConfiguration(kind: .voronoi, presets: voronoiPresets) { .voronoi($0) }
+  case "paper-texture":
+    configuration = try makeConfiguration(kind: .paperTexture, presets: paperTexturePresets) {
+      .paperTexture($0)
+    }
+  case "liquid-metal":
+    configuration = try makeConfiguration(kind: .liquidMetal, presets: liquidMetalPresets) {
+      .liquidMetal($0)
+    }
+  default:
+    throw ExportError.unknownShader(shader)
+  }
+
+  if let image {
+    configuration.image = image
+  }
+  return configuration
+}
+
+func loadImage(at url: URL) throws -> CGImage {
+  guard
+    let source = CGImageSourceCreateWithURL(url as CFURL, nil),
+    let image = CGImageSourceCreateImageAtIndex(source, 0, nil)
+  else {
+    throw ExportError.invalidImage(url)
+  }
+  return image
+}
+
+func writePNG(_ image: CGImage, to url: URL) throws {
+  try FileManager.default.createDirectory(
+    at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+  guard
+    let destination = CGImageDestinationCreateWithURL(
+      url as CFURL, UTType.png.identifier as CFString, 1, nil)
+  else {
+    throw ExportError.cannotCreateDestination(url)
+  }
+  CGImageDestinationAddImage(destination, image, nil)
+  guard CGImageDestinationFinalize(destination) else {
+    throw ExportError.cannotWriteImage(url)
+  }
 }
 
 do {
+  let options = try parseArguments(Array(CommandLine.arguments.dropFirst()))
+  guard let device = MTLCreateSystemDefaultDevice() else {
+    fputs("Metal is not available on this machine.\n", stderr)
+    exit(1)
+  }
+
+  let fixture = try options.imageURL.map { ShaderImage.cgImage(try loadImage(at: $0)) }
   let renderer = try FoilShadersRenderer(device: device)
-  let configuration = MeshGradient(meshGradientPresets[0]).configuration
-  try renderer.configure(configuration.kind)
-  renderer.apply(configuration)
-  renderer.setRenderSize(width: 1280, height: 720, pixelRatio: 1)
+  var shaderConfiguration = try configuration(
+    for: options.shader, presetName: options.preset, image: fixture)
+  shaderConfiguration.renderOptions = ShaderRenderOptions(
+    width: CGFloat(options.width), height: CGFloat(options.height))
+
+  try renderer.configure(shaderConfiguration.kind)
+  renderer.apply(shaderConfiguration)
+  renderer.setSpeed(0)
+  renderer.setFrame(options.frame)
+  renderer.setRenderSize(width: options.width, height: options.height, pixelRatio: 1)
 
   guard let image = renderer.captureCurrentImage() else {
     fputs("Could not capture shader image.\n", stderr)
     exit(1)
   }
 
-  guard
-    let destination = CGImageDestinationCreateWithURL(
-      outputURL as CFURL, UTType.png.identifier as CFString, 1, nil)
-  else {
-    fputs("Could not create PNG destination.\n", stderr)
-    exit(1)
-  }
-  CGImageDestinationAddImage(destination, image, nil)
-  guard CGImageDestinationFinalize(destination) else {
-    fputs("Could not write PNG.\n", stderr)
-    exit(1)
-  }
-  print(outputURL.path)
+  try writePNG(image, to: options.outputURL)
+  print(options.outputURL.path)
 } catch {
-  fputs("Export failed: \(error)\n", stderr)
+  fputs("Export failed: \(error)\n\n\(usage())\n", stderr)
   exit(1)
 }
