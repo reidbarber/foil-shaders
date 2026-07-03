@@ -1,11 +1,11 @@
-import AluminumFoil
 import AppKit
+import FoilShaders
 import SwiftUI
 
 @main
-struct AluminumFoilStudioApp: App {
+struct FoilShadersStudioApp: App {
   var body: some Scene {
-    WindowGroup("Aluminum Foil Studio") {
+    WindowGroup("Foil Shaders Studio") {
       StudioView()
     }
     .defaultSize(width: 1180, height: 760)
@@ -60,7 +60,7 @@ private struct StudioView: View {
       )
       let previewSize = fittedPreviewSize(in: availableSize)
 
-      AluminumFoilShaderView(configuration: previewConfiguration(size: previewSize))
+      FoilShadersShaderView(configuration: previewConfiguration(size: previewSize))
         .frame(width: previewSize.width, height: previewSize.height)
         .background(.black.opacity(0.08))
         .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -153,7 +153,7 @@ private struct StudioView: View {
 
   private var currentCode: String {
     let index = presetIndexByShader[selectedShader, default: 0]
-    return AluminumFoilCodeGenerator.swiftUICode(
+    return FoilShadersCodeGenerator.swiftUICode(
       componentName: selectedShader.componentName,
       presetReference: "\(selectedShader.presetArrayName)[\(index)]",
       sizing: currentConfiguration.sizing,

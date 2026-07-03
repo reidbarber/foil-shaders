@@ -1,9 +1,9 @@
 {
-  "name": "aluminum-foil-parity-harness",
+  "name": "foil-shaders-parity-harness",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Renders Paper Shaders (WebGL2) headlessly to generate golden images for the AluminumFoil visual parity suite.",
+  "description": "Renders Paper Shaders (WebGL2) headlessly to generate golden images for the Foil Shaders visual parity suite.",
   "scripts": {
     "generate": "node generate-goldens.mjs"
   },

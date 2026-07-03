@@ -42,9 +42,9 @@ if (!paperRepo || !fs.existsSync(path.join(paperRepo, "packages/shaders/src"))) 
   console.error("Pass the Paper Shaders repo with --repo <path> or PAPER_SHADERS_REPO=<path>.");
   process.exit(1);
 }
-const outDir = path.resolve(argValue("--out") ?? path.join(repoRoot, "Tests/AluminumFoilParityTests/Goldens"));
+const outDir = path.resolve(argValue("--out") ?? path.join(repoRoot, "Tests/FoilShadersParityTests/Goldens"));
 const shaderFilter = argValues("--shader");
-const fixturePath = argValue("--fixture") ?? path.join(repoRoot, "Tests/AluminumFoilParityTests/Fixtures/fixture.png");
+const fixturePath = argValue("--fixture") ?? path.join(repoRoot, "Tests/FoilShadersParityTests/Fixtures/fixture.png");
 
 // 1. Preset snapshot straight from the paper repo (single source of truth).
 const snapshot = JSON.parse(

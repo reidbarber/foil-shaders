@@ -1,6 +1,6 @@
 import Foundation
 
-public enum AluminumFoilCodeGenerator {
+public enum FoilShadersCodeGenerator {
   public static func swiftUICode(
     componentName: String,
     presetReference: String,
@@ -9,9 +9,9 @@ public enum AluminumFoilCodeGenerator {
     renderOptions: ShaderRenderOptions
   ) -> String {
     let qualifiedName =
-      componentName == "MeshGradient" ? "AluminumFoil.MeshGradient" : componentName
+      componentName == "MeshGradient" ? "FoilShaders.MeshGradient" : componentName
     var lines: [String] = [
-      "import AluminumFoil",
+      "import FoilShaders",
       "",
       "\(qualifiedName)(",
       "    params: \(presetReference).params,",

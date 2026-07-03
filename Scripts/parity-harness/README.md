@@ -1,7 +1,7 @@
 # Parity harness
 
 Generates the golden images for the visual parity suite
-(`Tests/AluminumFoilParityTests`) by rendering the **original** Paper Shaders
+(`Tests/FoilShadersParityTests`) by rendering the **original** Paper Shaders
 WebGL2 implementation headlessly and dumping raw framebuffer pixels.
 
 ## How it works
@@ -38,7 +38,7 @@ node make-fixture.mjs                       # only if the image fixture changed
 node generate-goldens.mjs --repo ~/dev/shaders
 
 cd ../..
-swift test --filter AluminumFoilParityTests
+swift test --filter FoilShadersParityTests
 ```
 
 `--repo` defaults to `$PAPER_SHADERS_REPO`. Use `--shader <key>` (repeatable)

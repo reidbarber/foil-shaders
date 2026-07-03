@@ -1,7 +1,7 @@
 import Foundation
 
-enum AluminumFoilResourceBundles {
-  private static let resourceBundleName = "AluminumFoil_AluminumFoil"
+enum FoilShadersResourceBundles {
+  private static let resourceBundleName = "FoilShaders_FoilShaders"
 
   static let candidates: [Bundle] = {
     var bundles: [Bundle] = []

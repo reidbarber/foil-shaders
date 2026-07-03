@@ -2,7 +2,7 @@ import CoreGraphics
 import Metal
 import XCTest
 
-@testable import AluminumFoil
+@testable import FoilShaders
 
 /// Visual parity suite: renders every shader × preset × frame with the Metal
 /// port and compares raw RGBA output against golden PNGs generated from the
@@ -41,7 +41,7 @@ final class GoldenParityTests: XCTestCase {
 
     let manifest = try ParityManifest.load()
     let fixture = try Self.loadFixture(manifest: manifest)
-    let renderer = try AluminumFoilRenderer(device: device)
+    let renderer = try FoilShadersRenderer(device: device)
 
     let filter = ProcessInfo.processInfo.environment["PARITY_FILTER"]
     var cases = manifest.cases

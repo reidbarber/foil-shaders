@@ -1,5 +1,5 @@
 // Deterministically generates the shared image fixture used by image-based
-// shader parity cases (Tests/AluminumFoilParityTests/Fixtures/fixture.png).
+// shader parity cases (Tests/FoilShadersParityTests/Fixtures/fixture.png).
 // Untagged PNG (no ICC/sRGB chunk) so the browser and ImageIO decode it to
 // identical bytes. Synthetic but photo-like: smooth multi-hue gradients,
 // circles, and a luminance ramp so dithering/halftone/heatmap shaders have
@@ -13,7 +13,7 @@ import { goldenCanvas } from "../preset-specs.mjs";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const outPath = path.resolve(
   here,
-  "../../Tests/AluminumFoilParityTests/Fixtures/fixture.png"
+  "../../Tests/FoilShadersParityTests/Fixtures/fixture.png"
 );
 
 const { width, height } = goldenCanvas;

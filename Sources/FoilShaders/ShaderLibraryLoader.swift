@@ -3,7 +3,7 @@ import Metal
 
 public enum ShaderLibraryLoader {
   public static func makeLibrary(device: MTLDevice, shaderNames: [String]) throws -> MTLLibrary {
-    for bundle in AluminumFoilResourceBundles.candidates {
+    for bundle in FoilShadersResourceBundles.candidates {
       if let defaultLibrary = try? device.makeDefaultLibrary(bundle: bundle) {
         return defaultLibrary
       }
@@ -17,7 +17,7 @@ public enum ShaderLibraryLoader {
     var commonURL: URL?
     var vertexURL: URL?
     var shaderURLs: [URL] = []
-    for bundle in AluminumFoilResourceBundles.candidates {
+    for bundle in FoilShadersResourceBundles.candidates {
       commonURL =
         commonURL
         ?? bundle.url(forResource: "Common", withExtension: "metal", subdirectory: "Shaders")

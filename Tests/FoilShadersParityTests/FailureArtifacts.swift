@@ -7,7 +7,7 @@ enum FailureArtifacts {
       base = URL(fileURLWithPath: override)
     } else {
       base = URL(fileURLWithPath: NSTemporaryDirectory())
-        .appendingPathComponent("aluminum-foil-parity")
+        .appendingPathComponent("foil-shaders-parity")
     }
     try? FileManager.default.createDirectory(at: base, withIntermediateDirectories: true)
     return base

@@ -360,7 +360,7 @@ public enum ShaderParameters {
 }
 
 public struct ShaderConfiguration {
-  public var kind: AluminumFoilRenderer.ShaderKind
+  public var kind: FoilShadersRenderer.ShaderKind
   public var parameters: ShaderParameters
   public var sizing: ShaderSizingParams
   public var motion: ShaderMotionParams
@@ -368,7 +368,7 @@ public struct ShaderConfiguration {
   public var image: ShaderImage?
 
   public init(
-    kind: AluminumFoilRenderer.ShaderKind,
+    kind: FoilShadersRenderer.ShaderKind,
     parameters: ShaderParameters,
     sizing: ShaderSizingParams = .defaultPatternSizing,
     motion: ShaderMotionParams = ShaderMotionParams(),

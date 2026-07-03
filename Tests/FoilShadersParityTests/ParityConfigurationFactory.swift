@@ -1,7 +1,7 @@
 import Foundation
 import simd
 
-@testable import AluminumFoil
+@testable import FoilShaders
 
 /// Builds a `ShaderConfiguration` for a manifest case by looking up the preset
 /// BY NAME in the generated `Presets.swift` arrays (the same data the golden
@@ -20,7 +20,7 @@ enum ParityConfigurationFactory {
       return preset
     }
 
-    let kind: AluminumFoilRenderer.ShaderKind
+    let kind: FoilShadersRenderer.ShaderKind
     let parameters: ShaderParameters
     let sizing: ShaderSizingParams
     let motion: ShaderMotionParams

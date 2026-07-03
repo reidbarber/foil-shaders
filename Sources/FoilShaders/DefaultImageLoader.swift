@@ -8,9 +8,9 @@ import UniformTypeIdentifiers
   import AppKit
 #endif
 
-public enum AluminumFoilDefaultImageLoader {
+public enum FoilShadersDefaultImageLoader {
   public static func defaultImage() -> CGImage? {
-    let url = AluminumFoilResourceBundles.candidates.compactMap { bundle in
+    let url = FoilShadersResourceBundles.candidates.compactMap { bundle in
       bundle.url(forResource: "default-image", withExtension: "svg")
     }.first
     guard let url else {

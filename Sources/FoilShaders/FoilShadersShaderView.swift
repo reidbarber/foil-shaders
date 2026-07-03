@@ -3,7 +3,7 @@ import Metal
 import MetalKit
 import SwiftUI
 
-public struct AluminumFoilShaderView: SwiftUI.View {
+public struct FoilShadersShaderView: SwiftUI.View {
   public var configuration: ShaderConfiguration
 
   public init(configuration: ShaderConfiguration) {
@@ -52,14 +52,14 @@ public struct AluminumFoilShaderView: SwiftUI.View {
       let mtkView = MTKView(frame: .zero, device: MTLCreateSystemDefaultDevice())
       guard let device = mtkView.device else { return mtkView }
       do {
-        let renderer = try AluminumFoilRenderer(device: device)
+        let renderer = try FoilShadersRenderer(device: device)
         renderer.attach(to: mtkView)
         try renderer.configure(configuration.kind)
         renderer.apply(configuration)
         context.coordinator.renderer = renderer
         context.coordinator.currentKind = configuration.kind
       } catch {
-        assertionFailure("AluminumFoil renderer setup failed: \(error)")
+        assertionFailure("FoilShaders renderer setup failed: \(error)")
       }
       return mtkView
     }
@@ -71,7 +71,7 @@ public struct AluminumFoilShaderView: SwiftUI.View {
           try renderer.configure(configuration.kind)
           context.coordinator.currentKind = configuration.kind
         } catch {
-          assertionFailure("AluminumFoil shader configure failed: \(error)")
+          assertionFailure("FoilShaders shader configure failed: \(error)")
         }
       }
       renderer.apply(configuration)
@@ -79,8 +79,8 @@ public struct AluminumFoilShaderView: SwiftUI.View {
     }
 
     fileprivate final class Coordinator {
-      var renderer: AluminumFoilRenderer?
-      var currentKind: AluminumFoilRenderer.ShaderKind?
+      var renderer: FoilShadersRenderer?
+      var currentKind: FoilShadersRenderer.ShaderKind?
     }
   }
 #endif

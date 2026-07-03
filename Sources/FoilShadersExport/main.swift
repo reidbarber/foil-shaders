@@ -1,5 +1,5 @@
-import AluminumFoil
 import CoreGraphics
+import FoilShaders
 import Foundation
 import ImageIO
 import Metal
@@ -11,7 +11,7 @@ if let first = arguments.first {
   outputURL = URL(fileURLWithPath: first)
 } else {
   outputURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-    .appendingPathComponent("aluminum-foil-export.png")
+    .appendingPathComponent("foil-shaders-export.png")
 }
 
 guard let device = MTLCreateSystemDefaultDevice() else {
@@ -20,7 +20,7 @@ guard let device = MTLCreateSystemDefaultDevice() else {
 }
 
 do {
-  let renderer = try AluminumFoilRenderer(device: device)
+  let renderer = try FoilShadersRenderer(device: device)
   let configuration = MeshGradient(meshGradientPresets[0]).configuration
   try renderer.configure(configuration.kind)
   renderer.apply(configuration)

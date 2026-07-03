@@ -4,37 +4,37 @@
 			"type": "lldb",
 			"request": "launch",
 			"args": [],
-			"cwd": "${workspaceFolder:aluminum-foil}",
-			"name": "Debug AluminumFoilStudio",
-			"program": "${workspaceFolder:aluminum-foil}/.build/debug/AluminumFoilStudio",
-			"preLaunchTask": "swift: Build Debug AluminumFoilStudio"
+			"cwd": "${workspaceFolder}",
+			"name": "Debug FoilShadersStudio",
+			"program": "${workspaceFolder}/.build/debug/FoilShadersStudio",
+			"preLaunchTask": "swift: Build Debug FoilShadersStudio"
 		},
 		{
 			"type": "lldb",
 			"request": "launch",
 			"args": [],
-			"cwd": "${workspaceFolder:aluminum-foil}",
-			"name": "Release AluminumFoilStudio",
-			"program": "${workspaceFolder:aluminum-foil}/.build/release/AluminumFoilStudio",
-			"preLaunchTask": "swift: Build Release AluminumFoilStudio"
+			"cwd": "${workspaceFolder}",
+			"name": "Release FoilShadersStudio",
+			"program": "${workspaceFolder}/.build/release/FoilShadersStudio",
+			"preLaunchTask": "swift: Build Release FoilShadersStudio"
 		},
 		{
 			"type": "lldb",
 			"request": "launch",
 			"args": [],
-			"cwd": "${workspaceFolder:aluminum-foil}",
-			"name": "Debug AluminumFoilExport",
-			"program": "${workspaceFolder:aluminum-foil}/.build/debug/AluminumFoilExport",
-			"preLaunchTask": "swift: Build Debug AluminumFoilExport"
+			"cwd": "${workspaceFolder}",
+			"name": "Debug FoilShadersExport",
+			"program": "${workspaceFolder}/.build/debug/FoilShadersExport",
+			"preLaunchTask": "swift: Build Debug FoilShadersExport"
 		},
 		{
 			"type": "lldb",
 			"request": "launch",
 			"args": [],
-			"cwd": "${workspaceFolder:aluminum-foil}",
-			"name": "Release AluminumFoilExport",
-			"program": "${workspaceFolder:aluminum-foil}/.build/release/AluminumFoilExport",
-			"preLaunchTask": "swift: Build Release AluminumFoilExport"
+			"cwd": "${workspaceFolder}",
+			"name": "Release FoilShadersExport",
+			"program": "${workspaceFolder}/.build/release/FoilShadersExport",
+			"preLaunchTask": "swift: Build Release FoilShadersExport"
 		}
 	]
 }

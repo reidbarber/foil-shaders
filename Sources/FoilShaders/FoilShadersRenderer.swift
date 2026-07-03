@@ -3,13 +3,13 @@ import Foundation
 import Metal
 import MetalKit
 
-// MARK: - AluminumFoilRenderer
+// MARK: - FoilShadersRenderer
 
 // `@unchecked Sendable`: all mutable state is touched on the main thread (via
 // the MTKView delegate callbacks and SwiftUI update path). The one background
 // hop — remote image decoding in `loadRemoteImage` — marshals its result back
 // to the main thread before mutating any state.
-public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendable {
+public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable {
   public enum ShaderKind: CaseIterable, Sendable {
     case meshGradient
     case staticMeshGradient
@@ -145,7 +145,7 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
   }
 
   private func loadNoiseTexture() {
-    for bundle in AluminumFoilResourceBundles.candidates {
+    for bundle in FoilShadersResourceBundles.candidates {
       if let url = bundle.url(forResource: "noise-texture", withExtension: "png") {
         // The bundled noise texture is a palette (indexed-color) PNG.
         // MTKTextureLoader cannot decode those (neither from a URL nor from
@@ -429,10 +429,10 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
     case .cgImage(let image):
       setImage(image)
     case .url(let url):
-      setImage(AluminumFoilDefaultImageLoader.loadCGImage(from: url))
+      setImage(FoilShadersDefaultImageLoader.loadCGImage(from: url))
     case .bundleResource(let name, let fileExtension, let bundle):
       let url = bundle.url(forResource: name, withExtension: fileExtension)
-      setImage(url.flatMap(AluminumFoilDefaultImageLoader.loadCGImage(from:)))
+      setImage(url.flatMap(FoilShadersDefaultImageLoader.loadCGImage(from:)))
     case .remoteURL(let url):
       loadRemoteImage(from: url, requestID: imageRequestID)
     }
@@ -442,7 +442,7 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
   /// newer image has been requested in the meantime, the stale result is dropped.
   private func loadRemoteImage(from url: URL, requestID: UInt64) {
     DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-      let image = AluminumFoilDefaultImageLoader.loadCGImage(from: url)
+      let image = FoilShadersDefaultImageLoader.loadCGImage(from: url)
       DispatchQueue.main.async {
         guard let self, self.imageRequestID == requestID else { return }
         self.setImage(image)

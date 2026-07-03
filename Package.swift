@@ -3,47 +3,47 @@
 import PackageDescription
 
 let package = Package(
-  name: "AluminumFoil",
+  name: "FoilShaders",
   platforms: [
     .iOS(.v15),
     .macOS(.v13),
   ],
   products: [
     .library(
-      name: "AluminumFoil",
-      targets: ["AluminumFoil"]
+      name: "FoilShaders",
+      targets: ["FoilShaders"]
     ),
     .executable(
-      name: "AluminumFoilStudio",
-      targets: ["AluminumFoilStudio"]
+      name: "FoilShadersStudio",
+      targets: ["FoilShadersStudio"]
     ),
     .executable(
-      name: "AluminumFoilExport",
-      targets: ["AluminumFoilExport"]
+      name: "FoilShadersExport",
+      targets: ["FoilShadersExport"]
     ),
   ],
   targets: [
     .target(
-      name: "AluminumFoil",
+      name: "FoilShaders",
       resources: [
         .process("Resources")
       ]
     ),
     .executableTarget(
-      name: "AluminumFoilStudio",
-      dependencies: ["AluminumFoil"]
+      name: "FoilShadersStudio",
+      dependencies: ["FoilShaders"]
     ),
     .executableTarget(
-      name: "AluminumFoilExport",
-      dependencies: ["AluminumFoil"]
+      name: "FoilShadersExport",
+      dependencies: ["FoilShaders"]
     ),
     .testTarget(
-      name: "AluminumFoilTests",
-      dependencies: ["AluminumFoil"]
+      name: "FoilShadersTests",
+      dependencies: ["FoilShaders"]
     ),
     .testTarget(
-      name: "AluminumFoilParityTests",
-      dependencies: ["AluminumFoil"],
+      name: "FoilShadersParityTests",
+      dependencies: ["FoilShaders"],
       resources: [
         .copy("Goldens"),
         .copy("Fixtures"),

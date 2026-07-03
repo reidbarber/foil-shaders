@@ -7,7 +7,7 @@ private func shaderColors(_ values: [ShaderColor]) -> [SIMD4<Float>] {
 
 @MainActor
 private func shaderBody(_ configuration: ShaderConfiguration) -> some SwiftUI.View {
-  AluminumFoilShaderView(configuration: configuration)
+  FoilShadersShaderView(configuration: configuration)
 }
 
 public struct MeshGradient: SwiftUI.View {

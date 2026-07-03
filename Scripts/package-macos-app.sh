@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PRODUCT_NAME="AluminumFoilStudio"
-APP_NAME="Aluminum Foil Studio"
-BUNDLE_IDENTIFIER="com.reidbarber.AluminumFoilStudio"
+PRODUCT_NAME="FoilShadersStudio"
+APP_NAME="Foil Shaders Studio"
+BUNDLE_IDENTIFIER="com.reidbarber.FoilShadersStudio"
 BUNDLE_VERSION="1"
 BUNDLE_SHORT_VERSION="0.1.0"
 MINIMUM_SYSTEM_VERSION="13.0"
@@ -17,7 +17,7 @@ Usage: Scripts/package-macos-app.sh [--dmg] [--configuration release|debug]
 Builds dist/${APP_NAME}.app from the SwiftPM ${PRODUCT_NAME} executable.
 
 Options:
-  --dmg                         Also create dist/AluminumFoilStudio.dmg.
+  --dmg                         Also create dist/FoilShadersStudio.dmg.
   --configuration <config>      SwiftPM configuration to build. Defaults to release.
   -h, --help                    Show this help message.
 EOF
@@ -63,14 +63,14 @@ MACOS_DIR="${CONTENTS_DIR}/MacOS"
 RESOURCES_DIR="${CONTENTS_DIR}/Resources"
 APP_ICONSET="${DIST_DIR}/AppIcon.iconset"
 APP_ICON="${RESOURCES_DIR}/AppIcon.icns"
-DMG_PATH="${DIST_DIR}/AluminumFoilStudio.dmg"
+DMG_PATH="${DIST_DIR}/FoilShadersStudio.dmg"
 DMG_STAGING_DIR="${DIST_DIR}/dmg-staging"
 ICON_SOURCE_DIR="${REPO_ROOT}/Icons/Assets.xcassets/AppIcon.appiconset"
 BUILD_ROOT="${REPO_ROOT}/.build"
 PLATFORM_DIR="$(uname -m)-apple-macosx"
 BUILD_DIR="${BUILD_ROOT}/${PLATFORM_DIR}/${CONFIGURATION}"
 EXECUTABLE_PATH="${BUILD_DIR}/${PRODUCT_NAME}"
-RESOURCE_BUNDLE_NAME="AluminumFoil_AluminumFoil.bundle"
+RESOURCE_BUNDLE_NAME="FoilShaders_FoilShaders.bundle"
 RESOURCE_BUNDLE_PATH="${BUILD_DIR}/${RESOURCE_BUNDLE_NAME}"
 
 if [[ ! -d "$ICON_SOURCE_DIR" ]]; then

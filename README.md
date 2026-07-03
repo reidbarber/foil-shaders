@@ -1,13 +1,13 @@
-# Aluminum Foil
+# Foil Shaders
 
-Aluminum Foil is a Swift and SwiftUI Metal port of Paper Shaders. It exposes
+Foil Shaders is a Swift and SwiftUI Metal port of Paper Shaders. It exposes
 SwiftUI components named after the React components from
 `@paper-design/shaders-react`, backed by a lower-level Metal renderer.
 
 ```swift
-import AluminumFoil
+import FoilShaders
 
-AluminumFoil.MeshGradient(
+FoilShaders.MeshGradient(
     colors: ["#5100ff", "#00ff80", "#ffcc00", "#ea00ff"],
     distortion: 1,
     swirl: 0.8,
@@ -19,7 +19,7 @@ AluminumFoil.MeshGradient(
 Run the companion app with:
 
 ```sh
-swift run AluminumFoilStudio
+swift run FoilShadersStudio
 ```
 
 Package the companion app as a macOS app bundle with:
@@ -27,7 +27,7 @@ Package the companion app as a macOS app bundle with:
 ```sh
 Scripts/package-macos-app.sh
 
-# Also create dist/AluminumFoilStudio.dmg:
+# Also create dist/FoilShadersStudio.dmg:
 Scripts/package-macos-app.sh --dmg
 ```
 
@@ -35,22 +35,22 @@ Regenerate Paper-derived preset metadata with:
 
 ```sh
 node Scripts/extract-paper-presets.mjs <path-to-paper-shaders> > paper-presets.json
-node Scripts/generate-swift-presets.mjs paper-presets.json > Sources/AluminumFoil/Presets.swift
+node Scripts/generate-swift-presets.mjs paper-presets.json > Sources/FoilShaders/Presets.swift
 ```
 
 ## Visual parity suite
 
-`Tests/AluminumFoilParityTests` renders every shader × preset × frame with the
+`Tests/FoilShadersParityTests` renders every shader × preset × frame with the
 Metal renderer and compares the raw pixels against golden images generated
 from the original Paper Shaders WebGL implementation (committed under
-`Tests/AluminumFoilParityTests/Goldens`). Run it with:
+`Tests/FoilShadersParityTests/Goldens`). Run it with:
 
 ```sh
-swift test --filter AluminumFoilParityTests
+swift test --filter FoilShadersParityTests
 
 # Iterate on one shader / preset:
-PARITY_FILTER=swirl swift test --filter AluminumFoilParityTests
-PARITY_FILTER="swirl/Candy" swift test --filter AluminumFoilParityTests
+PARITY_FILTER=swirl swift test --filter FoilShadersParityTests
+PARITY_FILTER="swirl/Candy" swift test --filter FoilShadersParityTests
 ```
 
 Comparison uses a tight per-pixel tolerance (channel delta ≤ 2/255 with a cap

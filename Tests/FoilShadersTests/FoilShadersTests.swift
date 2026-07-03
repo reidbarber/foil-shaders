@@ -1,9 +1,9 @@
 import Metal
 import XCTest
 
-@testable import AluminumFoil
+@testable import FoilShaders
 
-final class AluminumFoilTests: XCTestCase {
+final class FoilShadersTests: XCTestCase {
   func testShaderColorParsesHexRGBAndHSL() {
     XCTAssertEqual(ShaderColor("#ff0000" as String)?.rgba, SIMD4<Float>(1, 0, 0, 1))
     XCTAssertEqual(ShaderColor("rgb(0, 255, 0)" as String)?.rgba, SIMD4<Float>(0, 1, 0, 1))
@@ -83,14 +83,14 @@ final class AluminumFoilTests: XCTestCase {
   }
 
   func testCodeGeneratorQualifiesMeshGradient() {
-    let code = AluminumFoilCodeGenerator.swiftUICode(
+    let code = FoilShadersCodeGenerator.swiftUICode(
       componentName: "MeshGradient",
       presetReference: "meshGradientPresets[0]",
       sizing: .defaultPatternSizing,
       motion: ShaderMotionParams(speed: 0.2, frame: 0),
       renderOptions: ShaderRenderOptions(width: 1280, height: 720)
     )
-    XCTAssertTrue(code.contains("AluminumFoil.MeshGradient"))
+    XCTAssertTrue(code.contains("FoilShaders.MeshGradient"))
     XCTAssertTrue(code.contains("params: meshGradientPresets[0].params"))
   }
 
@@ -98,8 +98,8 @@ final class AluminumFoilTests: XCTestCase {
     guard let device = MTLCreateSystemDefaultDevice() else {
       throw XCTSkip("Metal is not available")
     }
-    let renderer = try AluminumFoilRenderer(device: device)
-    for shader in AluminumFoilRenderer.ShaderKind.allCases {
+    let renderer = try FoilShadersRenderer(device: device)
+    for shader in FoilShadersRenderer.ShaderKind.allCases {
       XCTAssertNoThrow(try renderer.configure(shader), "Failed to configure \(shader)")
     }
   }
