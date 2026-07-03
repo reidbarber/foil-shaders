@@ -2,7 +2,7 @@
 set -euo pipefail
 
 PRODUCT_NAME="FoilShadersStudio"
-APP_NAME="Foil Shaders Studio"
+APP_NAME="Foil Shader Studio"
 BUNDLE_IDENTIFIER="com.reidbarber.FoilShadersStudio"
 BUNDLE_VERSION="1"
 BUNDLE_SHORT_VERSION="0.1.0"

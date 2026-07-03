@@ -5,7 +5,7 @@ import SwiftUI
 @main
 struct FoilShadersStudioApp: App {
   var body: some Scene {
-    WindowGroup("Foil Shaders Studio") {
+    WindowGroup("Foil Shader Studio") {
       StudioView()
     }
     .defaultSize(width: 1180, height: 760)
