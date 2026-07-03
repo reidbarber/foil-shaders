@@ -207,7 +207,8 @@ fragment float4 paper_texture_fragment(VertexOutput in [[stage_in]],
     float2 patternUV = in.imageUV - 0.5;
     patternUV = 5.0 * (patternUV * float2(vertexUniforms.u_imageAspectRatio, 1.0));
 
-    float2 roughnessUv = 1.5 * (in.position.xy - 0.5 * vertexUniforms.u_resolution) / vertexUniforms.u_pixelRatio;
+    float2 fragCoord = float2(in.position.x, vertexUniforms.u_resolution.y - in.position.y);
+    float2 roughnessUv = 1.5 * (fragCoord - 0.5 * vertexUniforms.u_resolution) / vertexUniforms.u_pixelRatio;
     float roughness = roughnessValue(roughnessUv + float2(1.0, 0.0), noiseTexture) -
                       roughnessValue(roughnessUv - float2(1.0, 0.0), noiseTexture);
 
@@ -260,7 +261,7 @@ fragment float4 paper_texture_fragment(VertexOutput in [[stage_in]],
 
     imageUV += 0.02 * normalImage;
     float frame = getUvFrame(imageUV);
-    float4 image = imageTexture.sample(linearSampler, imageUV);
+    float4 image = imageTexture.sample(linearMipSampler, imageUV);
     image.rgb += 0.6 * pow(uniforms.u_contrast, 0.4) * (res - 0.7);
     frame *= image.a;
 

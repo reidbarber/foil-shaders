@@ -106,14 +106,14 @@ inline float blurEdge3x3(texture2d<float> tex, float2 uv, float2 dudx, float2 du
     float w1 = 1.0, w2 = 2.0, w4 = 4.0;
     float norm = 16.0;
     float sum = w4 * centerSample;
-    sum += w2 * tex.sample(linearSampler, uv + float2(0.0, -r.y), gradient2d(dudx, dudy)).g;
-    sum += w2 * tex.sample(linearSampler, uv + float2(0.0, r.y), gradient2d(dudx, dudy)).g;
-    sum += w2 * tex.sample(linearSampler, uv + float2(-r.x, 0.0), gradient2d(dudx, dudy)).g;
-    sum += w2 * tex.sample(linearSampler, uv + float2(r.x, 0.0), gradient2d(dudx, dudy)).g;
-    sum += w1 * tex.sample(linearSampler, uv + float2(-r.x, -r.y), gradient2d(dudx, dudy)).g;
-    sum += w1 * tex.sample(linearSampler, uv + float2(r.x, -r.y), gradient2d(dudx, dudy)).g;
-    sum += w1 * tex.sample(linearSampler, uv + float2(-r.x, r.y), gradient2d(dudx, dudy)).g;
-    sum += w1 * tex.sample(linearSampler, uv + float2(r.x, r.y), gradient2d(dudx, dudy)).g;
+    sum += w2 * tex.sample(linearMipSampler, uv + float2(0.0, -r.y), gradient2d(dudx, dudy)).g;
+    sum += w2 * tex.sample(linearMipSampler, uv + float2(0.0, r.y), gradient2d(dudx, dudy)).g;
+    sum += w2 * tex.sample(linearMipSampler, uv + float2(-r.x, 0.0), gradient2d(dudx, dudy)).g;
+    sum += w2 * tex.sample(linearMipSampler, uv + float2(r.x, 0.0), gradient2d(dudx, dudy)).g;
+    sum += w1 * tex.sample(linearMipSampler, uv + float2(-r.x, -r.y), gradient2d(dudx, dudy)).g;
+    sum += w1 * tex.sample(linearMipSampler, uv + float2(r.x, -r.y), gradient2d(dudx, dudy)).g;
+    sum += w1 * tex.sample(linearMipSampler, uv + float2(-r.x, r.y), gradient2d(dudx, dudy)).g;
+    sum += w1 * tex.sample(linearMipSampler, uv + float2(r.x, r.y), gradient2d(dudx, dudy)).g;
     return sum / norm;
 }
 
@@ -128,7 +128,7 @@ fragment float4 heatmap_fragment(VertexOutput in [[stage_in]],
     imgUV += 0.5;
     float imgSoftFrame = getImgFrame(imgUV, 0.03);
 
-    float4 img = imageTexture.sample(linearSampler, imgUV);
+    float4 img = imageTexture.sample(linearMipSampler, imgUV);
     float2 dudx = dfdx(imgUV);
     float2 dudy = dfdy(imgUV);
     if (img.a == 0.0) {

@@ -100,39 +100,121 @@ inline float gemShapeEdge(VertexOutput in, float shape, float time) {
     return pow(edge, 4.0);
 }
 
+inline float2 gaussBlur9x9RG(texture2d<float> tex, float2 uv, float2 dudx, float2 dudy, float radius) {
+    float2 texel = 1.0 / float2(tex.get_width(), tex.get_height());
+    float2 r = max(radius, 0.0) * texel;
+    const float k[9] = {1.0, 8.0, 28.0, 56.0, 70.0, 56.0, 28.0, 8.0, 1.0};
+    float2 sum = float2(0.0);
+    for (int j = -4; j <= 4; ++j) {
+        float wy = k[j + 4];
+        for (int i = -4; i <= 4; ++i) {
+            float w = k[i + 4] * wy;
+            float2 off = float2(float(i) * r.x, float(j) * r.y);
+            sum += w * tex.sample(linearMipSampler, uv + off, gradient2d(dudx, dudy)).rg;
+        }
+    }
+    return sum / 65536.0;
+}
+
+inline float sst(float a, float b, float x) {
+    return smoothstep(a, b, x);
+}
+
 fragment float4 gem_smoke_fragment(VertexOutput in [[stage_in]],
                                    constant GemSmokeUniforms &uniforms [[buffer(0)]],
                                    texture2d<float> imageTexture [[texture(0)]]) {
     float time = uniforms.u_time;
-    float edge = 0.0;
-    float alpha = 1.0;
+    float roundness = 0.0;
+    float imgAlpha = 0.0;
 
     if (uniforms.u_isImage > 0.5) {
         float2 imageUV = (in.imageUV - 0.5) * 0.95 + 0.5;
-        float4 sample = imageTexture.sample(linearSampler, imageUV, gradient2d(dfdx(in.imageUV), dfdy(in.imageUV)));
-        edge = 1.0 - sample.r;
-        alpha = sample.g;
+        float2 dudx = dfdx(in.imageUV);
+        float2 dudy = dfdy(in.imageUV);
+        float2 blurred = gaussBlur9x9RG(imageTexture, imageUV, dudx, dudy, 10.0);
+        roundness = 1.0 - blurred.x;
+        float2 texel = 1.0 / float2(imageTexture.get_width(), imageTexture.get_height());
+        const float k3[3] = {1.0, 2.0, 1.0};
+        for (int j = -1; j <= 1; ++j) {
+            for (int i = -1; i <= 1; ++i) {
+                imgAlpha += k3[i + 1] * k3[j + 1] *
+                    imageTexture.sample(linearMipSampler, imageUV + float2(float(i) * texel.x, float(j) * texel.y)).g;
+            }
+        }
+        imgAlpha /= 16.0;
     } else {
-        edge = gemShapeEdge(in, uniforms.u_shape, time);
-        alpha = 1.0 - smoothstep(0.9 - 2.0 * fwidth(edge), 0.9, edge);
+        float edge = gemShapeEdge(in, uniforms.u_shape, time);
+        imgAlpha = 1.0 - smoothstep(0.9 - 2.0 * fwidth(edge), 0.9, edge);
+        roundness = 1.0 - edge;
     }
 
-    float roundness = 1.0 - edge;
     float2 smokeUV = rotate(in.objectUV, uniforms.u_angle * PI / 180.0);
     smokeUV *= mix(4.0, 1.0, uniforms.u_size);
 
-    float innerNoise = 0.5 + 0.5 * snoise(smokeUV * 1.25 + float2(0.0, time * 0.32 + uniforms.u_offset));
-    float outerNoise = 0.5 + 0.5 * snoise(smokeUV * 1.1 + float2(time * 0.22, -time * 0.18 - uniforms.u_offset));
-    float innerField = smoothstep(0.15, 0.95, innerNoise + uniforms.u_innerDistortion * (1.0 - roundness));
-    float outerField = smoothstep(0.1, 1.0, outerNoise + uniforms.u_outerDistortion * roundness);
+    float2 innerUV = smokeUV;
+    float2 outerUV = smokeUV;
 
-    float4 innerSmoke = gemPalette(innerField, uniforms);
-    float4 outerSmoke = gemPalette(outerField, uniforms);
-    float4 smoke = mix(outerSmoke * uniforms.u_outerGlow, innerSmoke * uniforms.u_innerGlow, alpha);
-    smoke.rgb = mix(smoke.rgb, uniforms.u_colorInner.rgb, alpha * uniforms.u_colorInner.a * (0.25 + 0.75 * innerField));
+    innerUV.y += uniforms.u_innerDistortion * (1.0 - sst(0.0, 1.0, length(0.4 * innerUV)));
+    innerUV.y -= 0.4 * uniforms.u_innerDistortion;
+    innerUV.y += 0.7 * uniforms.u_offset * roundness;
 
-    float glow = smoothstep(0.2, 1.0, roundness) * uniforms.u_outerGlow * (1.0 - alpha);
-    float4 color = mix(uniforms.u_colorBack, smoke, clamp(alpha + glow, 0.0, 1.0));
-    color.a = max(uniforms.u_colorBack.a, smoke.a * clamp(alpha + glow, 0.0, 1.0));
-    return color;
+    outerUV.y += uniforms.u_outerDistortion * (1.0 - sst(0.0, 1.0, length(0.4 * outerUV)));
+    outerUV.y -= 0.4 * uniforms.u_outerDistortion;
+
+    float innerSwirl = uniforms.u_innerDistortion * roundness;
+    float outerSwirl = uniforms.u_outerDistortion;
+
+    for (int i = 1; i < 5; i++) {
+        float fi = float(i);
+
+        float stretchIn = max(length(dfdx(innerUV)), length(dfdy(innerUV)));
+        float dampenIn = 1.0 / (1.0 + stretchIn * 8.0);
+        float sIn = innerSwirl * dampenIn;
+        innerUV.x += sIn / fi * cos(time + fi * 2.9 * innerUV.y);
+        innerUV.y += sIn / fi * cos(time + fi * 1.5 * innerUV.x);
+
+        float stretchOut = max(length(dfdx(outerUV)), length(dfdy(outerUV)));
+        float dampenOut = 1.0 / (1.0 + stretchOut * 8.0);
+        float sOut = outerSwirl * dampenOut;
+        outerUV.x += sOut / fi * cos(time + fi * 2.9 * outerUV.y);
+        outerUV.y += sOut / fi * cos(time + fi * 1.5 * outerUV.x);
+    }
+
+    float innerShape = exp(-1.5 * dot(innerUV, innerUV));
+    float outerShape = exp(-1.5 * dot(outerUV, outerUV));
+
+    float outerMask = pow(uniforms.u_outerGlow, 2.0) * (1.0 - imgAlpha);
+    float innerMask = (0.01 + 0.99 * uniforms.u_innerGlow) * imgAlpha;
+    innerShape *= innerMask;
+    outerShape *= outerMask;
+
+    float mixer = (innerShape + outerShape) * uniforms.u_colorsCount;
+    float4 gradient = gemColorAt(uniforms, 0);
+    gradient.rgb *= gradient.a;
+
+    float smokeMask = 0.0;
+    for (int i = 1; i < 7; i++) {
+        if (i > int(uniforms.u_colorsCount)) { break; }
+
+        float m = sst(0.0, 1.0, clamp(mixer - float(i - 1), 0.0, 1.0));
+        if (i == 1) { smokeMask = m; }
+
+        float4 c = gemColorAt(uniforms, i - 1);
+        c.rgb *= c.a;
+        gradient = mix(gradient, c, m);
+    }
+
+    float3 color = gradient.rgb * smokeMask;
+    float opacity = gradient.a * smokeMask;
+
+    float innerOpacity = uniforms.u_colorInner.a * imgAlpha;
+    float3 innerColor = uniforms.u_colorInner.rgb * innerOpacity;
+    color += innerColor * (1.0 - opacity);
+    opacity += innerOpacity * (1.0 - opacity);
+
+    float3 backColor = uniforms.u_colorBack.rgb * uniforms.u_colorBack.a;
+    color += backColor * (1.0 - opacity);
+    opacity += uniforms.u_colorBack.a * (1.0 - opacity);
+
+    return float4(color, opacity);
 }

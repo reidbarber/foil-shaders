@@ -21,20 +21,10 @@ final class GoldenParityTests: XCTestCase {
   ///
   /// Matched by prefix against the case id (`shader` or `shader/Preset`).
   static let knownParityGaps: [String] = [
-    "dithering",  // dither pattern/type logic diverges (mean delta up to 84)
-    "image-dithering",  // same dithering core (mean delta up to 100)
-    "grain-gradient",  // grain field diverges; Blob preset fully structural
-    "paper-texture/Default",  // other presets pass; Default's fiber layer diverges
-    "water/Default",  // caustic/highlight layer diverges (mean delta up to 12)
-    "water/Slow-mo",
-    "water/Abstract",
-    "heatmap",  // completely different output (mean delta ~100)
-    "liquid-metal",  // shape-mode edges + Backdrop preset structural
+    "heatmap",  // image preprocessing / heat sampling still diverges
     "halftone-dots/Default",  // dot density/contrast systematically off (mean delta ~6)
     "halftone-dots/Mosaic",
     "halftone-dots/Round and square",
-    "halftone-cmyk",  // channel plates diverge (mean delta up to 37)
-    "gem-smoke",  // inner shape/glow diverges (mean delta up to 50)
   ]
 
   private static func isKnownGap(_ id: String) -> Bool {

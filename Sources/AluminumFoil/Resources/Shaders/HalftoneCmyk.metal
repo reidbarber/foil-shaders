@@ -123,9 +123,10 @@ inline float2 cellCenterPos(float2 uv, float2 cellOffset, float channelIdx, floa
 }
 
 inline float2 gridToImageUV(float2 cellCenter, float cosA, float sinA, float shift, float2 pad) {
+    float2 shifted = cellCenter - shift;
     float2 uvGrid = float2(
-        cosA * (cellCenter.x - shift) - sinA * (cellCenter.y - shift),
-        sinA * (cellCenter.x - shift) + cosA * (cellCenter.y - shift)
+        cosA * shifted.x + sinA * shifted.y,
+        -sinA * shifted.x + cosA * shifted.y
     );
     return uvGrid * pad + 0.5;
 }
@@ -144,10 +145,10 @@ inline float colorMask(float2 pos,
     float dist = length(pos - cellCenter);
     float radius = rad;
     radius *= (1.0 + generalComp);
-    radius += channelAddon + channelGain * radius;
-    radius += 0.15;
+    radius += 0.15 + channelGain * radius;
     radius = max(0.0, radius);
     radius = mix(0.0, radius, outOfFrame);
+    radius += channelAddon;
     radius *= (1.0 - grain);
     float mask = 1.0 - sst(0.0, radius, dist);
     if (isJoined) {
@@ -188,10 +189,10 @@ fragment float4 halftone_cmyk_fragment(VertexOutput in [[stage_in]],
     const float shiftY = 0.2;
     const float shiftK = 0.0;
 
-    float2 uvC = float2(cosC * uvGrid.x + sinC * uvGrid.y, -sinC * uvGrid.x + cosC * uvGrid.y) + shiftC;
-    float2 uvM = float2(cosM * uvGrid.x + sinM * uvGrid.y, -sinM * uvGrid.x + cosM * uvGrid.y) + shiftM;
-    float2 uvY = float2(cosY * uvGrid.x + sinY * uvGrid.y, -sinY * uvGrid.x + cosY * uvGrid.y) + shiftY;
-    float2 uvK = float2(cosK * uvGrid.x + sinK * uvGrid.y, -sinK * uvGrid.x + cosK * uvGrid.y) + shiftK;
+    float2 uvC = float2(cosC * uvGrid.x - sinC * uvGrid.y, sinC * uvGrid.x + cosC * uvGrid.y) + shiftC;
+    float2 uvM = float2(cosM * uvGrid.x - sinM * uvGrid.y, sinM * uvGrid.x + cosM * uvGrid.y) + shiftM;
+    float2 uvY = float2(cosY * uvGrid.x - sinY * uvGrid.y, sinY * uvGrid.x + cosY * uvGrid.y) + shiftY;
+    float2 uvK = float2(cosK * uvGrid.x - sinK * uvGrid.y, sinK * uvGrid.x + cosK * uvGrid.y) + shiftK;
 
     float2 grainSize = mix(2000.0, 200.0, uniforms.u_grainSize) * float2(1.0, 1.0 / vertexUniforms.u_imageAspectRatio);
     float2 grainUV = (in.imageUV - 0.5) * grainSize + 0.5;
@@ -208,24 +209,25 @@ fragment float4 halftone_cmyk_fragment(VertexOutput in [[stage_in]],
                 float2 cellOffset = float2(float(dx), float(dy));
                 float2 cellCenterC = cellCenterPos(uvC, cellOffset, 0.0, uniforms.u_gridNoise, noiseTexture);
                 float4 texC = imageTexture.sample(linearSampler, gridToImageUV(cellCenterC, cosC, sinC, shiftC, pad));
-                outMask.x = colorMask(uvC, cellCenterC, getCyan(texC, uniforms.u_contrast), outOfFrame, grain, uniforms.u_floodC, uniforms.u_gainC, generalComp, isJoined, uniforms.u_softness, outMask.x);
+                outMask.x = colorMask(uvC, cellCenterC, getCyan(texC, uniforms.u_contrast), outOfFrame * texC.a, grain, uniforms.u_floodC, uniforms.u_gainC, generalComp, isJoined, uniforms.u_softness, outMask.x);
 
                 float2 cellCenterM = cellCenterPos(uvM, cellOffset, 1.0, uniforms.u_gridNoise, noiseTexture);
                 float4 texM = imageTexture.sample(linearSampler, gridToImageUV(cellCenterM, cosM, sinM, shiftM, pad));
-                outMask.y = colorMask(uvM, cellCenterM, getMagenta(texM, uniforms.u_contrast), outOfFrame, grain, uniforms.u_floodM, uniforms.u_gainM, generalComp, isJoined, uniforms.u_softness, outMask.y);
+                outMask.y = colorMask(uvM, cellCenterM, getMagenta(texM, uniforms.u_contrast), outOfFrame * texM.a, grain, uniforms.u_floodM, uniforms.u_gainM, generalComp, isJoined, uniforms.u_softness, outMask.y);
 
                 float2 cellCenterY = cellCenterPos(uvY, cellOffset, 2.0, uniforms.u_gridNoise, noiseTexture);
                 float4 texY = imageTexture.sample(linearSampler, gridToImageUV(cellCenterY, cosY, sinY, shiftY, pad));
-                outMask.z = colorMask(uvY, cellCenterY, getYellow(texY, uniforms.u_contrast), outOfFrame, grain, uniforms.u_floodY, uniforms.u_gainY, generalComp, isJoined, uniforms.u_softness, outMask.z);
+                outMask.z = colorMask(uvY, cellCenterY, getYellow(texY, uniforms.u_contrast), outOfFrame * texY.a, grain, uniforms.u_floodY, uniforms.u_gainY, generalComp, isJoined, uniforms.u_softness, outMask.z);
 
                 float2 cellCenterK = cellCenterPos(uvK, cellOffset, 3.0, uniforms.u_gridNoise, noiseTexture);
                 float4 texK = imageTexture.sample(linearSampler, gridToImageUV(cellCenterK, cosK, sinK, shiftK, pad));
-                outMask.w = colorMask(uvK, cellCenterK, getBlack(texK, uniforms.u_contrast), outOfFrame, grain, uniforms.u_floodK, uniforms.u_gainK, generalComp, isJoined, uniforms.u_softness, outMask.w);
+                outMask.w = colorMask(uvK, cellCenterK, getBlack(texK, uniforms.u_contrast), outOfFrame * texK.a, grain, uniforms.u_floodK, uniforms.u_gainK, generalComp, isJoined, uniforms.u_softness, outMask.w);
             }
         }
     } else {
         float4 tex = imageTexture.sample(linearSampler, uv);
         tex.rgb = applyContrast(tex.rgb, uniforms.u_contrast);
+        outOfFrame *= tex.a;
         float4 cmykOriginal = RGBAtoCMYK(tex);
         for (int dy = -1; dy <= 1; dy++) {
             for (int dx = -1; dx <= 1; dx++) {

@@ -100,7 +100,7 @@ fragment float4 image_dithering_fragment(VertexOutput in [[stage_in]],
                                         constant FragmentVertexUniforms &vertexUniforms [[buffer(1)]],
                                         texture2d<float> imageTexture [[texture(0)]]) {
     float pxSize = uniforms.u_pxSize * vertexUniforms.u_pixelRatio;
-    float2 fragCoord = in.position.xy;
+    float2 fragCoord = float2(in.position.x, vertexUniforms.u_resolution.y - in.position.y);
     float2 pxSizeUV = fragCoord - 0.5 * vertexUniforms.u_resolution;
     pxSizeUV /= pxSize;
     float2 canvasPixelizedUV = (floor(pxSizeUV) + 0.5) * pxSize;

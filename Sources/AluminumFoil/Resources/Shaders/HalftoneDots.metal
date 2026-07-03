@@ -204,11 +204,11 @@ fragment float4 halftone_dots_fragment(VertexOutput in [[stage_in]],
                     }
                 }
                 if (uniforms.u_type > 0.5 && uniforms.u_type < 1.5) {
-                    if (fmod(rowIndex + colIndex, 2.0) == 1.0) {
+                    if (mod(rowIndex + colIndex, 2.0) == 1.0) {
                         continue;
                     }
                 } else {
-                    if (fmod(rowIndex, 2.0) == 1.0) {
+                    if (mod(rowIndex, 2.0) == 1.0) {
                         offset.x += 0.5 * stepSize;
                     }
                 }

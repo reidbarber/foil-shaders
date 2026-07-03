@@ -44,13 +44,17 @@ inline float2x2 rotate2D(float r) {
     return float2x2(cos(r), sin(r), -sin(r), cos(r));
 }
 
+inline float2 mulVectorMatrix(float2 v, float2x2 m) {
+    return float2(dot(v, m[0]), dot(v, m[1]));
+}
+
 inline float getCausticNoise(float2 uv, float t, float scale) {
     float2 n = float2(0.1);
     float2 N = float2(0.1);
     float2x2 m = rotate2D(0.5);
     for (int j = 0; j < 6; j++) {
-        uv = m * uv;
-        n = m * n;
+        uv = mulVectorMatrix(uv, m);
+        n = mulVectorMatrix(n, m);
         float2 q = uv * scale + float(j) + n + (0.5 + 0.5 * float(j)) * (fmod(float(j), 2.0) - 1.0) * t;
         n += sin(q);
         N += cos(q) / scale;
@@ -86,7 +90,7 @@ fragment float4 water_fragment(VertexOutput in [[stage_in]],
     imageUV += uniforms.u_caustic * causticNoiseDistortion;
 
     float frame = getUvFrame(imageUV);
-    float4 image = imageTexture.sample(linearSampler, imageUV);
+    float4 image = imageTexture.sample(linearMipSampler, imageUV);
     float4 backColor = uniforms.u_colorBack;
     backColor.rgb *= backColor.a;
 

@@ -48,9 +48,11 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
   private var vertexBuffer: MTLBuffer?
   private var noiseTexture: MTLTexture?
   private var imageTexture: MTLTexture?
+  private var heatmapImageTexture: MTLTexture?
   private var fallbackImageTexture: MTLTexture?
   private var fallbackNoiseTexture: MTLTexture?
   private var imageAspectRatio: Float = 1.0
+  private var heatmapImageAspectRatio: Float = 1.0
 
   // Time management (mirrors WebGL implementation)
   private var currentFrame: Float = 0.0
@@ -184,7 +186,7 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
       height: height,
       mipmapped: false
     )
-    descriptor.usage = [.shaderRead]
+    descriptor.usage = [.shaderRead, .renderTarget]
     guard let texture = device.makeTexture(descriptor: descriptor) else { return nil }
     rgba.withUnsafeBytes { buffer in
       texture.replace(
@@ -223,19 +225,198 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
     return texture
   }
 
+  private func makeTexture(rgba: [UInt8], width: Int, height: Int, mipmapped: Bool = false)
+    -> MTLTexture?
+  {
+    let descriptor = MTLTextureDescriptor.texture2DDescriptor(
+      pixelFormat: .rgba8Unorm,
+      width: width,
+      height: height,
+      mipmapped: mipmapped
+    )
+    descriptor.usage = [.shaderRead]
+    guard let texture = device.makeTexture(descriptor: descriptor) else {
+      return nil
+    }
+    rgba.withUnsafeBytes { buffer in
+      texture.replace(
+        region: MTLRegionMake2D(0, 0, width, height),
+        mipmapLevel: 0,
+        withBytes: buffer.baseAddress!,
+        bytesPerRow: width * 4
+      )
+    }
+    if mipmapped,
+      let commandBuffer = commandQueue.makeCommandBuffer(),
+      let blitEncoder = commandBuffer.makeBlitCommandEncoder()
+    {
+      blitEncoder.generateMipmaps(for: texture)
+      blitEncoder.endEncoding()
+      commandBuffer.commit()
+      commandBuffer.waitUntilCompleted()
+    }
+    return texture
+  }
+
+  private func makeHeatmapImageTexture(from image: CGImage) -> (
+    texture: MTLTexture, aspectRatio: Float
+  )? {
+    let canvasSize = 1000
+    let maxBlur = Int(floor(Double(canvasSize) * 0.15))
+    let padding = Int(ceil(Double(maxBlur) * 2.5))
+    let ratio = Double(image.width) / max(1.0, Double(image.height))
+    var imageWidth = canvasSize
+    var imageHeight = canvasSize
+    if ratio > 1.0 {
+      imageHeight = Int(floor(Double(canvasSize) / ratio))
+    } else {
+      imageWidth = Int(floor(Double(canvasSize) * ratio))
+    }
+
+    let width = imageWidth + 2 * padding
+    let height = imageHeight + 2 * padding
+    var rgba = [UInt8](repeating: 255, count: width * height * 4)
+    guard
+      let context = CGContext(
+        data: &rgba,
+        width: width,
+        height: height,
+        bitsPerComponent: 8,
+        bytesPerRow: width * 4,
+        space: CGColorSpaceCreateDeviceRGB(),
+        bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+          .union(.byteOrder32Big).rawValue
+      )
+    else {
+      return nil
+    }
+
+    context.interpolationQuality = .default
+    context.translateBy(x: 0, y: CGFloat(height))
+    context.scaleBy(x: 1, y: -1)
+    context.draw(
+      image,
+      in: CGRect(x: padding, y: padding, width: imageWidth, height: imageHeight))
+
+    let pixelCount = width * height
+    var gray = [UInt8](repeating: 0, count: pixelCount)
+    for i in 0..<pixelCount {
+      let base = i * 4
+      let r = Double(rgba[base])
+      let g = Double(rgba[base + 1])
+      let b = Double(rgba[base + 2])
+      gray[i] = UInt8(max(0, min(255, Int(0.299 * r + 0.587 * g + 0.114 * b))))
+    }
+
+    let bigBlur = multiPassBlurGray(gray, width: width, height: height, radius: maxBlur, passes: 3)
+    let innerBlur = multiPassBlurGray(
+      gray, width: width, height: height, radius: max(1, Int((0.12 * Double(maxBlur)).rounded())),
+      passes: 3)
+    let contour = multiPassBlurGray(gray, width: width, height: height, radius: 5, passes: 1)
+
+    var processed = [UInt8](repeating: 255, count: pixelCount * 4)
+    for i in 0..<pixelCount {
+      let base = i * 4
+      processed[base] = contour[i]
+      processed[base + 1] = bigBlur[i]
+      processed[base + 2] = innerBlur[i]
+      processed[base + 3] = 255
+    }
+
+    guard let texture = makeTexture(rgba: processed, width: width, height: height, mipmapped: true)
+    else {
+      return nil
+    }
+    return (texture, Float(width) / Float(height))
+  }
+
+  private func multiPassBlurGray(
+    _ gray: [UInt8], width: Int, height: Int, radius: Int, passes: Int
+  ) -> [UInt8] {
+    if radius <= 0 || passes <= 1 {
+      return blurGray(gray, width: width, height: height, radius: radius)
+    }
+
+    var input = gray
+    var output = gray
+    for _ in 0..<passes {
+      output = blurGray(input, width: width, height: height, radius: radius)
+      input = output
+    }
+    return output
+  }
+
+  private func blurGray(_ gray: [UInt8], width: Int, height: Int, radius: Int) -> [UInt8] {
+    if radius <= 0 {
+      return gray
+    }
+
+    var output = [UInt8](repeating: 0, count: width * height)
+    var integral = [UInt32](repeating: 0, count: width * height)
+    for y in 0..<height {
+      var rowSum: UInt32 = 0
+      for x in 0..<width {
+        let index = y * width + x
+        rowSum += UInt32(gray[index])
+        integral[index] = rowSum + (y > 0 ? integral[index - width] : 0)
+      }
+    }
+
+    for y in 0..<height {
+      let y1 = max(0, y - radius)
+      let y2 = min(height - 1, y + radius)
+      for x in 0..<width {
+        let x1 = max(0, x - radius)
+        let x2 = min(width - 1, x + radius)
+        let a = integral[y2 * width + x2]
+        let b = x1 > 0 ? integral[y2 * width + x1 - 1] : 0
+        let c = y1 > 0 ? integral[(y1 - 1) * width + x2] : 0
+        let d = x1 > 0 && y1 > 0 ? integral[(y1 - 1) * width + x1 - 1] : 0
+        let sum = Int(a) - Int(b) - Int(c) + Int(d)
+        let area = (x2 - x1 + 1) * (y2 - y1 + 1)
+        output[y * width + x] = UInt8(max(0, min(255, Int((Double(sum) / Double(area)).rounded()))))
+      }
+    }
+    return output
+  }
+
+  private var activeImageAspectRatio: Float {
+    if activeShader == .heatmap, heatmapImageTexture != nil {
+      return heatmapImageAspectRatio
+    }
+    return imageAspectRatio
+  }
+
+  private var activeImageTexture: MTLTexture? {
+    if activeShader == .heatmap {
+      return heatmapImageTexture ?? imageTexture ?? fallbackImageTexture
+    }
+    return imageTexture ?? fallbackImageTexture
+  }
+
   public func setImage(_ image: CGImage?) {
     guard let image else {
       imageTexture = nil
+      heatmapImageTexture = nil
       imageAspectRatio = 1.0
+      heatmapImageAspectRatio = 1.0
       return
     }
     imageTexture = try? textureLoader.newTexture(
       cgImage: image,
       options: [
-        MTKTextureLoader.Option.SRGB: false
+        MTKTextureLoader.Option.SRGB: false,
+        MTKTextureLoader.Option.generateMipmaps: true,
       ]
     )
     imageAspectRatio = Float(image.width) / max(1.0, Float(image.height))
+    if let heatmapImage = makeHeatmapImageTexture(from: image) {
+      heatmapImageTexture = heatmapImage.texture
+      heatmapImageAspectRatio = heatmapImage.aspectRatio
+    } else {
+      heatmapImageTexture = nil
+      heatmapImageAspectRatio = imageAspectRatio
+    }
   }
 
   public func setImage(_ shaderImage: ShaderImage?) {
@@ -851,7 +1032,7 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
     var vertexUniforms = VertexUniforms(
       u_resolution: resolution,
       u_pixelRatio: pixelRatio,
-      u_imageAspectRatio: imageAspectRatio,
+      u_imageAspectRatio: activeImageAspectRatio,
       u_originX: sizingParams.originX,
       u_originY: sizingParams.originY,
       u_worldWidth: sizingParams.worldWidth,
@@ -870,7 +1051,7 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
       &vertexUniforms,
       length: MemoryLayout<VertexUniforms>.stride,
       index: 1)
-    renderEncoder.setFragmentTexture(imageTexture ?? fallbackImageTexture, index: 0)
+    renderEncoder.setFragmentTexture(activeImageTexture, index: 0)
     renderEncoder.setFragmentTexture(noiseTexture ?? fallbackNoiseTexture, index: 1)
 
     switch activeShader {
@@ -1132,7 +1313,7 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
     var vertexUniforms = VertexUniforms(
       u_resolution: resolution,
       u_pixelRatio: pixelRatio,
-      u_imageAspectRatio: imageAspectRatio,
+      u_imageAspectRatio: activeImageAspectRatio,
       u_originX: sizingParams.originX,
       u_originY: sizingParams.originY,
       u_worldWidth: sizingParams.worldWidth,
@@ -1147,7 +1328,7 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
     encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
     encoder.setVertexBytes(&vertexUniforms, length: MemoryLayout<VertexUniforms>.stride, index: 1)
     encoder.setFragmentBytes(&vertexUniforms, length: MemoryLayout<VertexUniforms>.stride, index: 1)
-    encoder.setFragmentTexture(imageTexture ?? fallbackImageTexture, index: 0)
+    encoder.setFragmentTexture(activeImageTexture, index: 0)
     encoder.setFragmentTexture(noiseTexture ?? fallbackNoiseTexture, index: 1)
     switch activeShader {
     case .meshGradient:

@@ -82,6 +82,10 @@ inline float2 truchet(float2 uv, float idx) {
     return uv;
 }
 
+inline float blobReferenceClamp(float x) {
+    return max(min(0.0, x), 1.0);
+}
+
 fragment float4 grain_gradient_fragment(VertexOutput in [[stage_in]],
                                        constant GrainGradientUniforms &uniforms [[buffer(0)]],
                                        constant FragmentVertexUniforms &vertexUniforms [[buffer(1)]],
@@ -171,10 +175,10 @@ fragment float4 grain_gradient_fragment(VertexOutput in [[stage_in]],
         float2 f2_traj = 0.2 * float2(1.2 * sin(-t), 1.3 * sin(1.6 * t));
         float2 f3_traj = 0.25 * float2(1.7 * cos(-0.6 * t), cos(-1.6 * t));
         float2 f4_traj = 0.3 * float2(1.4 * cos(0.8 * t), 1.2 * sin(-0.6 * t - 3.0));
-        shape = 0.5 * pow(1.0 - clamp(length(shape_uv + f1_traj), 0.0, 1.0), 5.0);
-        shape += 0.5 * pow(1.0 - clamp(length(shape_uv + f2_traj), 0.0, 1.0), 5.0);
-        shape += 0.5 * pow(1.0 - clamp(length(shape_uv + f3_traj), 0.0, 1.0), 5.0);
-        shape += 0.5 * pow(1.0 - clamp(length(shape_uv + f4_traj), 0.0, 1.0), 5.0);
+        shape = 0.5 * pow(1.0 - blobReferenceClamp(length(shape_uv + f1_traj)), 5.0);
+        shape += 0.5 * pow(1.0 - blobReferenceClamp(length(shape_uv + f2_traj)), 5.0);
+        shape += 0.5 * pow(1.0 - blobReferenceClamp(length(shape_uv + f3_traj)), 5.0);
+        shape += 0.5 * pow(1.0 - blobReferenceClamp(length(shape_uv + f4_traj)), 5.0);
         shape = smoothstep(0.0, 0.9, shape);
         float edge = smoothstep(0.25, 0.3, shape);
         shape = mix(0.0, shape, edge);

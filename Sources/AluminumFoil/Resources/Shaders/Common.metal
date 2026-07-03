@@ -9,6 +9,7 @@ using namespace metal;
 constant float PI = 3.14159265358979323846;
 constant float TWO_PI = 6.28318530718;
 constexpr sampler linearSampler(coord::normalized, address::clamp_to_edge, filter::linear);
+constexpr sampler linearMipSampler(coord::normalized, address::clamp_to_edge, filter::linear, mip_filter::linear);
 
 // MARK: - GLSL-like helpers
 

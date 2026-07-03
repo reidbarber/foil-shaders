@@ -77,6 +77,7 @@ window.renderCase = async ({ component, params, frame, width, height, imageDataU
       height,
     };
     if (imageDataUrl) props.image = imageDataUrl;
+    if (component === "Heatmap") props.suspendWhenProcessingImage = true;
 
     root.render(React.createElement(Component, props));
     const mount = await waitForMount(host, width, height, Boolean(imageDataUrl));
