@@ -9,16 +9,6 @@ import UniformTypeIdentifiers
 #endif
 
 public enum FoilShadersDefaultImageLoader {
-  public static func defaultImage() -> CGImage? {
-    let url = FoilShadersResourceBundles.candidates.compactMap { bundle in
-      bundle.url(forResource: "default-image", withExtension: "svg")
-    }.first
-    guard let url else {
-      return nil
-    }
-    return loadCGImage(from: url)
-  }
-
   public static func loadCGImage(from url: URL) -> CGImage? {
     if let data = try? Data(contentsOf: url),
       let image = loadCGImage(from: data)
