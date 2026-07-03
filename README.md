@@ -3,6 +3,8 @@
 A Metal-based SwiftUI port of
 [Paper Shaders](https://github.com/paper-design/shaders) for iOS and macOS.
 
+<img src="Docs/Media/readme/mesh-gradient-hero.png" alt="Foil Shaders Mesh Gradient output" width="830">
+
 [Download the Foil Shaders Studio app](https://github.com/reidbarber/foil-shaders/releases/latest/download/FoilShadersStudio.dmg) to preview shaders, adjust presets, and copy SwiftUI code.
 
 ## Install With Xcode
@@ -73,9 +75,8 @@ These examples use the same preset, frame, and 320x240 canvas on both sides.
 | Mesh Gradient / Default | <img src="Docs/Media/parity/paper-mesh-gradient-default.png" alt="Paper Shaders Mesh Gradient Default" width="220"> | <img src="Docs/Media/parity/foil-mesh-gradient-default.png" alt="Foil Shaders Mesh Gradient Default" width="220"> |
 | Swirl / Candy | <img src="Docs/Media/parity/paper-swirl-candy.png" alt="Paper Shaders Swirl Candy" width="220"> | <img src="Docs/Media/parity/foil-swirl-candy.png" alt="Foil Shaders Swirl Candy" width="220"> |
 | Dithering / Ripple | <img src="Docs/Media/parity/paper-dithering-ripple.png" alt="Paper Shaders Dithering Ripple" width="220"> | <img src="Docs/Media/parity/foil-dithering-ripple.png" alt="Foil Shaders Dithering Ripple" width="220"> |
-| Voronoi / Lights | <img src="Docs/Media/parity/paper-voronoi-lights.png" alt="Paper Shaders Voronoi Lights" width="220"> | <img src="Docs/Media/parity/foil-voronoi-lights.png" alt="Foil Shaders Voronoi Lights" width="220"> |
+| Voronoi / Default | <img src="Docs/Media/parity/paper-voronoi-default.png" alt="Paper Shaders Voronoi Default" width="220"> | <img src="Docs/Media/parity/foil-voronoi-default.png" alt="Foil Shaders Voronoi Default" width="220"> |
 | Paper Texture / Cardboard | <img src="Docs/Media/parity/paper-paper-texture-cardboard.png" alt="Paper Shaders Paper Texture Cardboard" width="220"> | <img src="Docs/Media/parity/foil-paper-texture-cardboard.png" alt="Foil Shaders Paper Texture Cardboard" width="220"> |
-| Liquid Metal / Stripes | <img src="Docs/Media/parity/paper-liquid-metal-stripes.png" alt="Paper Shaders Liquid Metal Stripes" width="220"> | <img src="Docs/Media/parity/foil-liquid-metal-stripes.png" alt="Foil Shaders Liquid Metal Stripes" width="220"> |
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the local parity test and golden
 regeneration workflow.

@@ -90,6 +90,13 @@ function presetArray(spec) {
   return presets;
 }
 
+function fixtureMimeType(filePath) {
+  const extension = path.extname(filePath).toLowerCase();
+  if (extension === ".jpg" || extension === ".jpeg") return "image/jpeg";
+  if (extension === ".webp") return "image/webp";
+  return "image/png";
+}
+
 let fixtureDataUrl;
 const needsFixture = activeSpecs.some((spec) => spec.usesImage);
 if (needsFixture) {
@@ -98,7 +105,7 @@ if (needsFixture) {
     console.error("Generate it first with: node make-fixture.mjs");
     process.exit(1);
   }
-  fixtureDataUrl = `data:image/png;base64,${fs.readFileSync(fixturePath).toString("base64")}`;
+  fixtureDataUrl = `data:${fixtureMimeType(fixturePath)};base64,${fs.readFileSync(fixturePath).toString("base64")}`;
 }
 
 // 4. Launch headless Chromium under SwiftShader.
