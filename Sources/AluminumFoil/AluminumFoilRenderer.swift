@@ -504,25 +504,27 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
   }
 
   public func attach(to view: MTKView) {
-    self.mtkView = view
-    view.delegate = self
-    view.device = device
-    view.colorPixelFormat = .bgra8Unorm
-    view.enableSetNeedsDisplay = false
-    view.isPaused = false
-    view.framebufferOnly = true
-    view.preferredFramesPerSecond = 60
-    // Transparency: match the web version, where the canvas composites its
-    // (premultiplied-alpha) output over the page. The shaders emit meaningful
-    // alpha (e.g. FlutedGlass's transparent colorBack, mesh-gradient fractional
-    // opacity), so clear to transparent and make the layer non-opaque; otherwise
-    // those regions composite onto opaque black. CAMetalLayer composites using
-    // premultiplied alpha, which is exactly what the shaders output.
-    view.clearColor = MTLClearColorMake(0, 0, 0, 0)
-    #if os(iOS)
-      view.isOpaque = false
-    #endif
-    (view.layer as? CAMetalLayer)?.isOpaque = false
+    MainActor.assumeIsolated {
+      self.mtkView = view
+      view.delegate = self
+      view.device = device
+      view.colorPixelFormat = .bgra8Unorm
+      view.enableSetNeedsDisplay = false
+      view.isPaused = false
+      view.framebufferOnly = true
+      view.preferredFramesPerSecond = 60
+      // Transparency: match the web version, where the canvas composites its
+      // (premultiplied-alpha) output over the page. The shaders emit meaningful
+      // alpha (e.g. FlutedGlass's transparent colorBack, mesh-gradient fractional
+      // opacity), so clear to transparent and make the layer non-opaque; otherwise
+      // those regions composite onto opaque black. CAMetalLayer composites using
+      // premultiplied alpha, which is exactly what the shaders output.
+      view.clearColor = MTLClearColorMake(0, 0, 0, 0)
+      #if os(iOS)
+        view.isOpaque = false
+      #endif
+      (view.layer as? CAMetalLayer)?.isOpaque = false
+    }
   }
 
   public func configureMeshGradient() throws {
@@ -917,13 +919,19 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
     let wasStatic = self.speed == 0.0
     self.speed = speed
     let isStatic = speed == 0.0
-    mtkView?.enableSetNeedsDisplay = isStatic
-    mtkView?.isPaused = isStatic
+    if let mtkView {
+      MainActor.assumeIsolated {
+        mtkView.enableSetNeedsDisplay = isStatic
+        mtkView.isPaused = isStatic
+      }
+    }
     if wasStatic && !isStatic {
       lastRenderTime = CACurrentMediaTime()
     }
-    if isStatic {
-      mtkView?.setNeedsDisplay(mtkView?.bounds ?? .zero)
+    if isStatic, let mtkView {
+      MainActor.assumeIsolated {
+        mtkView.setNeedsDisplay(mtkView.bounds)
+      }
     }
   }
 
@@ -942,29 +950,31 @@ public class AluminumFoilRenderer: NSObject, MTKViewDelegate, @unchecked Sendabl
   /// the view's bounds or backing scale change and overrides MTKView's default
   /// native-scale drawable.
   private func updateDrawableSizing(for view: MTKView) {
-    // Ignore the delegate callback triggered by our own `drawableSize` write.
-    if isUpdatingDrawableSize { return }
+    MainActor.assumeIsolated {
+      // Ignore the delegate callback triggered by our own `drawableSize` write.
+      if isUpdatingDrawableSize { return }
 
-    let pointSize = view.bounds.size
-    guard pointSize.width > 0, pointSize.height > 0 else {
-      // Bounds not laid out yet; fall back to whatever MTKView computed.
-      let fallback = view.drawableSize
-      resolution = SIMD2<Float>(Float(fallback.width), Float(fallback.height))
-      pixelRatio = Float(view.layer?.contentsScale ?? 1.0)
-      return
-    }
-    let nativeScale = view.layer?.contentsScale ?? 1.0
-    let (clamped, renderScale) = clampedDrawableSize(
-      pointSize: pointSize, nativeScale: nativeScale)
-    if view.drawableSize != clamped {
-      isUpdatingDrawableSize = true
-      view.drawableSize = clamped
-      isUpdatingDrawableSize = false
-    }
-    resolution = SIMD2<Float>(Float(clamped.width), Float(clamped.height))
-    pixelRatio = renderScale
-    if speed == 0.0 {
-      view.setNeedsDisplay(view.bounds)
+      let pointSize = view.bounds.size
+      guard pointSize.width > 0, pointSize.height > 0 else {
+        // Bounds not laid out yet; fall back to whatever MTKView computed.
+        let fallback = view.drawableSize
+        resolution = SIMD2<Float>(Float(fallback.width), Float(fallback.height))
+        pixelRatio = Float(view.layer?.contentsScale ?? 1.0)
+        return
+      }
+      let nativeScale = view.layer?.contentsScale ?? 1.0
+      let (clamped, renderScale) = clampedDrawableSize(
+        pointSize: pointSize, nativeScale: nativeScale)
+      if view.drawableSize != clamped {
+        isUpdatingDrawableSize = true
+        view.drawableSize = clamped
+        isUpdatingDrawableSize = false
+      }
+      resolution = SIMD2<Float>(Float(clamped.width), Float(clamped.height))
+      pixelRatio = renderScale
+      if speed == 0.0 {
+        view.setNeedsDisplay(view.bounds)
+      }
     }
   }
 
