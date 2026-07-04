@@ -1,7 +1,33 @@
 import CoreGraphics
+import Foundation
 import Metal
 import MetalKit
 import SwiftUI
+
+#if os(macOS)
+  import AppKit
+#elseif os(iOS)
+  import UIKit
+#endif
+
+private struct FoilShadersRespectsReduceMotionKey: EnvironmentKey {
+  static let defaultValue = true
+}
+
+extension EnvironmentValues {
+  /// Controls whether Foil Shaders SwiftUI components pause animation when Reduce Motion is enabled.
+  public var foilShadersRespectsReduceMotion: Bool {
+    get { self[FoilShadersRespectsReduceMotionKey.self] }
+    set { self[FoilShadersRespectsReduceMotionKey.self] = newValue }
+  }
+}
+
+extension SwiftUI.View {
+  /// Sets whether Foil Shaders descendants pause animation when Reduce Motion is enabled.
+  public func foilShadersRespectsReduceMotion(_ respectsReduceMotion: Bool) -> some SwiftUI.View {
+    environment(\.foilShadersRespectsReduceMotion, respectsReduceMotion)
+  }
+}
 
 public struct FoilShadersShaderView: SwiftUI.View {
   /// The color shown by the SwiftUI wrapper when renderer setup fails in release builds.
@@ -9,7 +35,11 @@ public struct FoilShadersShaderView: SwiftUI.View {
 
   public var configuration: ShaderConfiguration
   public var failureFallbackColor: ShaderColor
+  public var respectsReduceMotion: Bool
 
+  @Environment(\.accessibilityReduceMotion) private var accessibilityReduceMotion
+  @Environment(\.foilShadersRespectsReduceMotion) private var environmentRespectsReduceMotion
+  @Environment(\.scenePhase) private var scenePhase
   @Binding private var rendererError: FoilShadersError?
   private var onRendererError: ((FoilShadersError) -> Void)?
 
@@ -19,24 +49,31 @@ public struct FoilShadersShaderView: SwiftUI.View {
   ///   - configuration: The shader configuration to render.
   ///   - rendererError: Optional binding updated when renderer setup or reconfiguration fails.
   ///   - failureFallbackColor: Solid fallback color shown if the renderer cannot be configured.
+  ///   - respectsReduceMotion: Whether animation pauses when the system Reduce Motion setting is enabled.
   ///   - onRendererError: Optional callback invoked once for each distinct renderer failure.
   public init(
     configuration: ShaderConfiguration,
     rendererError: Binding<FoilShadersError?> = .constant(nil),
     failureFallbackColor: ShaderColor = FoilShadersShaderView.defaultFailureFallbackColor,
+    respectsReduceMotion: Bool = true,
     onRendererError: ((FoilShadersError) -> Void)? = nil
   ) {
     self.configuration = configuration
     self._rendererError = rendererError
     self.failureFallbackColor = failureFallbackColor
+    self.respectsReduceMotion = respectsReduceMotion
     self.onRendererError = onRendererError
   }
 
   public var body: some SwiftUI.View {
+    let pausesForReduceMotion =
+      respectsReduceMotion && environmentRespectsReduceMotion && accessibilityReduceMotion
     PlatformShaderView(
       configuration: configuration,
       rendererError: $rendererError,
       failureFallbackColor: failureFallbackColor,
+      pausesForReduceMotion: pausesForReduceMotion,
+      isSceneActive: scenePhase == .active,
       onRendererError: onRendererError
     )
     .frame(width: configuration.renderOptions.width, height: configuration.renderOptions.height)
@@ -48,6 +85,8 @@ public struct FoilShadersShaderView: SwiftUI.View {
     var configuration: ShaderConfiguration
     @Binding var rendererError: FoilShadersError?
     var failureFallbackColor: ShaderColor
+    var pausesForReduceMotion: Bool
+    var isSceneActive: Bool
     var onRendererError: ((FoilShadersError) -> Void)?
 
     func makeNSView(context: Context) -> MTKView {
@@ -63,6 +102,8 @@ public struct FoilShadersShaderView: SwiftUI.View {
     var configuration: ShaderConfiguration
     @Binding var rendererError: FoilShadersError?
     var failureFallbackColor: ShaderColor
+    var pausesForReduceMotion: Bool
+    var isSceneActive: Bool
     var onRendererError: ((FoilShadersError) -> Void)?
 
     func makeUIView(context: Context) -> MTKView {
@@ -82,7 +123,8 @@ public struct FoilShadersShaderView: SwiftUI.View {
     }
 
     @MainActor fileprivate func makeView(context: Context) -> MTKView {
-      let mtkView = MTKView(frame: .zero, device: nil)
+      let mtkView = VisibilityTrackingMTKView(frame: .zero, device: nil)
+      context.coordinator.installVisibilityTracking(on: mtkView)
       do {
         let metalContext = try FoilShadersMetalContext.sharedDefault()
         mtkView.device = metalContext.device
@@ -94,6 +136,11 @@ public struct FoilShadersShaderView: SwiftUI.View {
         context.coordinator.renderer = renderer
         context.coordinator.currentKind = shaderKind
         context.coordinator.currentConfiguration = configuration
+        context.coordinator.updateRenderingPolicy(
+          on: mtkView,
+          pausesForReduceMotion: pausesForReduceMotion,
+          isSceneActive: isSceneActive
+        )
       } catch {
         handleFailure(FoilShadersError.wrapping(error), in: mtkView, context: context)
       }
@@ -120,6 +167,11 @@ public struct FoilShadersShaderView: SwiftUI.View {
         renderer.apply(configuration)
         context.coordinator.currentConfiguration = configuration
       }
+      context.coordinator.updateRenderingPolicy(
+        on: view,
+        pausesForReduceMotion: pausesForReduceMotion,
+        isSceneActive: isSceneActive
+      )
       view.setNeedsDisplay(view.bounds)
     }
 
@@ -140,7 +192,39 @@ public struct FoilShadersShaderView: SwiftUI.View {
       var renderer: FoilShadersRenderer?
       var currentKind: FoilShadersRenderer.ShaderKind?
       var currentConfiguration: ShaderConfiguration?
+      private var pausesForReduceMotion = false
+      private var isSceneActive = true
+      private var isViewVisible = true
       private var lastReportedFailureDescription: String?
+
+      @MainActor func installVisibilityTracking(on view: VisibilityTrackingMTKView) {
+        view.onVisibilityChanged = { [weak self] view in
+          self?.setViewVisible(view.isVisibleForRendering)
+        }
+        setViewVisible(view.isVisibleForRendering)
+      }
+
+      @MainActor func updateRenderingPolicy(
+        on view: MTKView,
+        pausesForReduceMotion: Bool,
+        isSceneActive: Bool
+      ) {
+        self.pausesForReduceMotion = pausesForReduceMotion
+        self.isSceneActive = isSceneActive
+        if let view = view as? VisibilityTrackingMTKView {
+          isViewVisible = view.isVisibleForRendering
+        }
+        applyRenderingPause()
+      }
+
+      @MainActor private func setViewVisible(_ isVisible: Bool) {
+        isViewVisible = isVisible
+        applyRenderingPause()
+      }
+
+      @MainActor private func applyRenderingPause() {
+        renderer?.setRenderingPaused(pausesForReduceMotion || !isSceneActive || !isViewVisible)
+      }
 
       @MainActor func showFailureFallback(on view: MTKView, color: ShaderColor) {
         view.delegate = nil
@@ -195,6 +279,151 @@ public struct FoilShadersShaderView: SwiftUI.View {
           (view.layer as? CAMetalLayer)?.isOpaque = isOpaque
         #endif
       }
+    }
+  }
+#endif
+
+#if os(macOS)
+  @MainActor private final class VisibilityTrackingMTKView: MTKView {
+    var onVisibilityChanged: ((VisibilityTrackingMTKView) -> Void)?
+
+    private weak var observedWindow: NSWindow?
+    private var windowObservers: [NSObjectProtocol] = []
+
+    var isVisibleForRendering: Bool {
+      guard let window,
+        !isHiddenOrHasHiddenAncestor,
+        bounds.width > 0,
+        bounds.height > 0,
+        !window.isMiniaturized,
+        window.occlusionState.contains(.visible),
+        !visibleRect.isEmpty
+      else {
+        return false
+      }
+      return true
+    }
+
+    override var isHidden: Bool {
+      didSet { notifyVisibilityChanged() }
+    }
+
+    override func viewDidMoveToWindow() {
+      super.viewDidMoveToWindow()
+      updateWindowObservation()
+      notifyVisibilityChanged()
+    }
+
+    override func viewDidMoveToSuperview() {
+      super.viewDidMoveToSuperview()
+      notifyVisibilityChanged()
+    }
+
+    override func setFrameSize(_ newSize: NSSize) {
+      super.setFrameSize(newSize)
+      notifyVisibilityChanged()
+    }
+
+    override func setBoundsSize(_ newSize: NSSize) {
+      super.setBoundsSize(newSize)
+      notifyVisibilityChanged()
+    }
+
+    deinit {
+      MainActor.assumeIsolated {
+        removeWindowObservers()
+      }
+    }
+
+    private func updateWindowObservation() {
+      guard observedWindow !== window else { return }
+      removeWindowObservers()
+      observedWindow = window
+      guard let window else { return }
+      observeWindow(NSWindow.didChangeOcclusionStateNotification, window: window)
+      observeWindow(NSWindow.didMiniaturizeNotification, window: window)
+      observeWindow(NSWindow.didDeminiaturizeNotification, window: window)
+    }
+
+    private func observeWindow(_ name: Notification.Name, window: NSWindow) {
+      let observer = NotificationCenter.default.addObserver(
+        forName: name,
+        object: window,
+        queue: .main
+      ) { [weak self] _ in
+        Task { @MainActor in
+          self?.notifyVisibilityChanged()
+        }
+      }
+      windowObservers.append(observer)
+    }
+
+    private func removeWindowObservers() {
+      for observer in windowObservers {
+        NotificationCenter.default.removeObserver(observer)
+      }
+      windowObservers.removeAll()
+    }
+
+    private func notifyVisibilityChanged() {
+      onVisibilityChanged?(self)
+    }
+  }
+#elseif os(iOS)
+  @MainActor private final class VisibilityTrackingMTKView: MTKView {
+    var onVisibilityChanged: ((VisibilityTrackingMTKView) -> Void)?
+
+    var isVisibleForRendering: Bool {
+      guard let window,
+        !window.isHidden,
+        window.alpha > 0.01,
+        bounds.width > 0,
+        bounds.height > 0
+      else {
+        return false
+      }
+
+      var visibleRect = convert(bounds, to: window)
+      guard !visibleRect.isNull, !visibleRect.isEmpty else { return false }
+
+      var currentView: UIView? = self
+      while let view = currentView {
+        guard !view.isHidden, view.alpha > 0.01 else { return false }
+        if view.clipsToBounds {
+          visibleRect = visibleRect.intersection(view.convert(view.bounds, to: window))
+          guard !visibleRect.isNull, !visibleRect.isEmpty else { return false }
+        }
+        currentView = view.superview
+      }
+
+      return visibleRect.intersects(window.bounds)
+    }
+
+    override var isHidden: Bool {
+      didSet { notifyVisibilityChanged() }
+    }
+
+    override var alpha: CGFloat {
+      didSet { notifyVisibilityChanged() }
+    }
+
+    override func didMoveToWindow() {
+      super.didMoveToWindow()
+      notifyVisibilityChanged()
+    }
+
+    override func didMoveToSuperview() {
+      super.didMoveToSuperview()
+      notifyVisibilityChanged()
+    }
+
+    override func layoutSubviews() {
+      super.layoutSubviews()
+      notifyVisibilityChanged()
+    }
+
+    private func notifyVisibilityChanged() {
+      onVisibilityChanged?(self)
     }
   }
 #endif

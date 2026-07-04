@@ -48,6 +48,27 @@ final class PublicAPITests: XCTestCase {
 
     XCTAssertEqual(view.configuration, configuration)
     XCTAssertEqual(view.failureFallbackColor, .white)
+    XCTAssertTrue(view.respectsReduceMotion)
     XCTAssertNil(reportedError)
+  }
+
+  @MainActor
+  func testShaderViewAcceptsReduceMotionOptOut() {
+    let configuration = MeshGradient().configuration
+
+    let view = FoilShadersShaderView(
+      configuration: configuration,
+      respectsReduceMotion: false
+    )
+
+    XCTAssertEqual(view.configuration, configuration)
+    XCTAssertFalse(view.respectsReduceMotion)
+  }
+
+  @MainActor
+  func testShaderComponentsAcceptReduceMotionEnvironmentOptOut() {
+    let view = MeshGradient().foilShadersRespectsReduceMotion(false)
+
+    XCTAssertFalse(String(describing: type(of: view)).isEmpty)
   }
 }

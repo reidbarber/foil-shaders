@@ -56,6 +56,7 @@ import MetalKit
   private var currentFrame: Float = 0.0
   private var lastRenderTime: CFTimeInterval = 0.0
   private var speed: Float = 0.0
+  private var isRenderingPaused = false
 
   // Uniforms
   private var time: Float = 0.0
@@ -402,7 +403,7 @@ import MetalKit
       guard let self, self.imageRequestID == requestID else { return }
       self.setImage(image)
       // A static shader won't redraw on its own, so nudge it.
-      if self.speed == 0.0 {
+      if self.isDemandDriven {
         self.mtkView?.setNeedsDisplay(self.mtkView?.bounds ?? .zero)
       }
     }
@@ -444,8 +445,6 @@ import MetalKit
     view.delegate = viewDelegate
     view.device = device
     view.colorPixelFormat = .bgra8Unorm
-    view.enableSetNeedsDisplay = false
-    view.isPaused = false
     view.framebufferOnly = true
     view.preferredFramesPerSecond = 60
     // Transparency: match the web version, where the canvas composites its
@@ -459,6 +458,7 @@ import MetalKit
       view.isOpaque = false
     #endif
     (view.layer as? CAMetalLayer)?.isOpaque = false
+    updateAttachedViewPlayback(wasDemandDriven: true)
   }
 
   private func configureMeshGradient() throws {
@@ -854,18 +854,37 @@ import MetalKit
     }
   }
 
+  /// Pauses or resumes delegate-driven rendering for an attached live view.
+  ///
+  /// This does not change `ShaderMotionParams.speed`: while paused, the renderer
+  /// holds the current frame and switches the attached `MTKView` to demand-driven
+  /// drawing until rendering is resumed.
+  public func setRenderingPaused(_ isPaused: Bool) {
+    let wasDemandDriven = isDemandDriven
+    isRenderingPaused = isPaused
+    updateAttachedViewPlayback(wasDemandDriven: wasDemandDriven)
+  }
+
+  private var isDemandDriven: Bool {
+    speed == 0.0 || isRenderingPaused
+  }
+
   private func setSpeed(_ speed: Float) {
-    let wasStatic = self.speed == 0.0
+    let wasDemandDriven = isDemandDriven
     self.speed = speed
-    let isStatic = speed == 0.0
+    updateAttachedViewPlayback(wasDemandDriven: wasDemandDriven)
+  }
+
+  private func updateAttachedViewPlayback(wasDemandDriven: Bool) {
+    let shouldUseDemandDrivenDrawing = isDemandDriven
     if let mtkView {
-      mtkView.enableSetNeedsDisplay = isStatic
-      mtkView.isPaused = isStatic
+      mtkView.enableSetNeedsDisplay = shouldUseDemandDrivenDrawing
+      mtkView.isPaused = shouldUseDemandDrivenDrawing
     }
-    if wasStatic && !isStatic {
+    if wasDemandDriven && !shouldUseDemandDrivenDrawing {
       lastRenderTime = CACurrentMediaTime()
     }
-    if isStatic, let mtkView {
+    if shouldUseDemandDrivenDrawing, let mtkView {
       mtkView.setNeedsDisplay(mtkView.bounds)
     }
   }
@@ -906,7 +925,7 @@ import MetalKit
     }
     resolution = SIMD2<Float>(Float(clamped.width), Float(clamped.height))
     pixelRatio = renderScale
-    if speed == 0.0 {
+    if isDemandDriven {
       view.setNeedsDisplay(view.bounds)
     }
   }
@@ -953,7 +972,7 @@ import MetalKit
     let currentTime = CACurrentMediaTime()
     if lastRenderTime > 0 {
       let dt = Float(currentTime - lastRenderTime) * 1000.0  // Convert to milliseconds
-      if speed != 0.0 {
+      if speed != 0.0 && !isRenderingPaused {
         currentFrame += dt * speed
       }
     } else {

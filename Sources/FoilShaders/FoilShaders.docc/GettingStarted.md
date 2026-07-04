@@ -56,6 +56,12 @@ FoilShaders.Dithering(
 )
 ```
 
+## Motion And Energy
+
+Animated SwiftUI components respect the system Reduce Motion setting by default
+and pause rendering while inactive or offscreen. Apply
+``foilShadersRespectsReduceMotion(_:)`` to opt out for a subtree.
+
 ## Ranges
 
 See <doc:ParameterRanges> for shader-specific ranges, units, and enum cases.

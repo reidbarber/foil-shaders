@@ -75,6 +75,11 @@ FoilShaders.Dithering(
 )
 ```
 
+Animated SwiftUI components respect the system Reduce Motion setting by default
+and pause rendering while inactive or offscreen. Use
+`.foilShadersRespectsReduceMotion(false)` when a subtree should keep animating
+despite Reduce Motion.
+
 ## Visual Parity
 
 Foil Shaders ports the Paper Shaders APIs, preset metadata, and shader behavior
