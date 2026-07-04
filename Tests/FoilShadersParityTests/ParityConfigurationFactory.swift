@@ -36,7 +36,7 @@ enum ParityConfigurationFactory {
 
     switch parityCase.shader {
     case "mesh-gradient":
-      (parameters, sizing, motion, renderOptions) = try unpack(MeshGradient.presets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(AnimatedMeshGradient.presets) {
         .meshGradient($0)
       }
     case "smoke-ring":

@@ -16,7 +16,7 @@ final class FoilShadersTests: XCTestCase {
 
   func testAllReactExportedShaderComponentsHavePresets() {
     var counts: [Int] = []
-    counts.append(MeshGradient.presets.count)
+    counts.append(AnimatedMeshGradient.presets.count)
     counts.append(SmokeRing.presets.count)
     counts.append(NeuroNoise.presets.count)
     counts.append(DotOrbit.presets.count)
@@ -231,7 +231,7 @@ final class FoilShadersTests: XCTestCase {
   @MainActor
   func testFlatInitializersAcceptShaderColorLiterals() {
     let configurations: [ShaderConfiguration] = [
-      MeshGradient(colors: ["#5100ff", "#00ff80", "#ffcc00", "#ea00ff"]).configuration,
+      AnimatedMeshGradient(colors: ["#5100ff", "#00ff80", "#ffcc00", "#ea00ff"]).configuration,
       SmokeRing(colorBack: "#000000", colors: ["#ffffff"]).configuration,
       NeuroNoise(colorFront: "#ffffff", colorMid: "#47a6ff", colorBack: "#000000").configuration,
       DotOrbit(colorBack: "#000000", colors: ["#ffffff"]).configuration,
@@ -280,7 +280,7 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertEqual(configurations.count, 29)
   }
 
-  func testCodeGeneratorQualifiesMeshGradient() {
+  func testCodeGeneratorUsesAnimatedMeshGradient() {
     let code = FoilShadersCodeGenerator.swiftUICode(
       componentName: "MeshGradient",
       presetReference: "MeshGradientPreset.default",
@@ -288,7 +288,7 @@ final class FoilShadersTests: XCTestCase {
       motion: ShaderMotionParams(speed: 0.2, frame: 0),
       renderOptions: ShaderRenderOptions(width: 1280, height: 720)
     )
-    XCTAssertTrue(code.contains("FoilShaders.MeshGradient"))
+    XCTAssertTrue(code.contains("\nAnimatedMeshGradient(\n"))
     XCTAssertTrue(code.contains("params: MeshGradientPreset.default.params"))
   }
 

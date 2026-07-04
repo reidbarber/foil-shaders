@@ -26,6 +26,18 @@ jobs:
       - name: Unit tests
         run: swift test --filter FoilShadersTests
 
+  public-api:
+    name: Public API
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: swift --version
+
+      - name: Check public API baseline
+        run: Scripts/check-api-baseline.sh
+
   parity:
     name: Visual Parity
     runs-on: macos-15

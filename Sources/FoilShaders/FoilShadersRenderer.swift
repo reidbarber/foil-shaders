@@ -912,10 +912,10 @@ import MetalKit
       // Bounds not laid out yet; fall back to whatever MTKView computed.
       let fallback = view.drawableSize
       resolution = SIMD2<Float>(Float(fallback.width), Float(fallback.height))
-      pixelRatio = Float(view.layer?.contentsScale ?? 1.0)
+      pixelRatio = Float(backingScale(for: view))
       return
     }
-    let nativeScale = view.layer?.contentsScale ?? 1.0
+    let nativeScale = backingScale(for: view)
     let (clamped, renderScale) = clampedDrawableSize(
       pointSize: pointSize, nativeScale: nativeScale)
     if view.drawableSize != clamped {
@@ -928,6 +928,14 @@ import MetalKit
     if isDemandDriven {
       view.setNeedsDisplay(view.bounds)
     }
+  }
+
+  private func backingScale(for view: MTKView) -> CGFloat {
+    #if os(iOS)
+      view.layer.contentsScale
+    #else
+      view.layer?.contentsScale ?? 1.0
+    #endif
   }
 
   /// Computes the clamped drawable pixel size and the corresponding render scale

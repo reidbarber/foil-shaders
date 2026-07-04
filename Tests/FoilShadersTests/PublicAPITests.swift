@@ -31,7 +31,7 @@ final class PublicAPITests: XCTestCase {
 
   @MainActor
   func testShaderViewAcceptsPublicRendererErrorReportingHooks() {
-    let configuration = MeshGradient().configuration
+    let configuration = AnimatedMeshGradient().configuration
     var reportedError: FoilShadersError?
     let rendererError = Binding<FoilShadersError?>(
       get: { reportedError },
@@ -55,7 +55,7 @@ final class PublicAPITests: XCTestCase {
 
   @MainActor
   func testShaderViewAcceptsEnergyAndAccessibilityOptOuts() {
-    let configuration = MeshGradient().configuration
+    let configuration = AnimatedMeshGradient().configuration
 
     let view = FoilShadersShaderView(
       configuration: configuration,
@@ -70,7 +70,7 @@ final class PublicAPITests: XCTestCase {
 
   @MainActor
   func testShaderComponentsAcceptEnergyAndAccessibilityEnvironmentOptOuts() {
-    let view = MeshGradient()
+    let view = AnimatedMeshGradient()
       .foilShadersRespectsReduceMotion(false)
       .foilShadersPausesWhenInactiveOrOffscreen(false)
 

@@ -25,6 +25,24 @@ Run the lightweight unit test target:
 swift test --filter FoilShadersTests
 ```
 
+## Public API Baseline
+
+CI checks the `FoilShaders` public API with `swift-api-digester` against the
+committed macOS and iOS baselines in `API/`.
+
+Run the check locally:
+
+```sh
+Scripts/check-api-baseline.sh
+```
+
+When a breaking API change is intentional, regenerate the baseline and commit it
+with the API change:
+
+```sh
+Scripts/check-api-baseline.sh --update
+```
+
 ## Studio App
 
 Run the companion app locally:
