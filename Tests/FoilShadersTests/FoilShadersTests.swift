@@ -137,6 +137,56 @@ final class FoilShadersTests: XCTestCase {
     }
   }
 
+  func testShaderImageCGImageEqualityUsesPixelFingerprint() throws {
+    let imageA = try Self.makeTopDarkBottomLightImage(width: 8, height: 8)
+    let imageB = try Self.makeTopDarkBottomLightImage(width: 8, height: 8)
+
+    XCTAssertFalse(imageA === imageB)
+    XCTAssertEqual(ShaderImage.cgImage(imageA), .cgImage(imageB))
+  }
+
+  func testShaderImageCGImageEqualityDetectsDifferentPixels() throws {
+    let imageA = try Self.makeTopDarkBottomLightImage(width: 8, height: 8)
+    let imageB = try Self.makeTwoToneImage(width: 8, height: 8, topValue: 255, bottomValue: 0)
+
+    XCTAssertNotEqual(ShaderImage.cgImage(imageA), .cgImage(imageB))
+  }
+
+  func testShaderImageURLCodableRoundTrip() throws {
+    let image = ShaderImage.url(URL(fileURLWithPath: "/tmp/source.png"))
+
+    let data = try JSONEncoder().encode(image)
+    let decoded = try JSONDecoder().decode(ShaderImage.self, from: data)
+
+    XCTAssertEqual(decoded, image)
+  }
+
+  func testShaderImageBundledResourceCodableRoundTrip() throws {
+    let image = ShaderImage.bundledResource(
+      name: "fixture",
+      extension: "png",
+      bundle: Bundle(for: FoilShadersTests.self)
+    )
+
+    let data = try JSONEncoder().encode(image)
+    let decoded = try JSONDecoder().decode(ShaderImage.self, from: data)
+
+    XCTAssertEqual(decoded, image)
+  }
+
+  func testShaderImageDecodesLegacyRemoteURLAsURL() throws {
+    let data = """
+      {"type":"remoteURL","url":"https://example.com/source.png"}
+      """.data(using: .utf8)!
+
+    let decoded = try JSONDecoder().decode(ShaderImage.self, from: data)
+    let reencoded = try JSONEncoder().encode(decoded)
+    let payload = try JSONSerialization.jsonObject(with: reencoded) as? [String: Any]
+
+    XCTAssertEqual(decoded, .url(URL(string: "https://example.com/source.png")!))
+    XCTAssertEqual(payload?["type"] as? String, "url")
+  }
+
   func testPaperDefaultPresetValues() {
     XCTAssertEqual(MeshGradientPreset.default.name, "Default")
     XCTAssertEqual(MeshGradientPreset.default.params.colors.count, 4)
@@ -312,11 +362,17 @@ final class FoilShadersTests: XCTestCase {
   }
 
   private static func makeTopDarkBottomLightImage(width: Int, height: Int) throws -> CGImage {
+    try makeTwoToneImage(width: width, height: height, topValue: 0, bottomValue: 255)
+  }
+
+  private static func makeTwoToneImage(
+    width: Int, height: Int, topValue: UInt8, bottomValue: UInt8
+  ) throws -> CGImage {
     var rgba = [UInt8](repeating: 255, count: width * height * 4)
     for y in 0..<height {
       for x in 0..<width {
         let base = (y * width + x) * 4
-        let value: UInt8 = y < height / 2 ? 0 : 255
+        let value = y < height / 2 ? topValue : bottomValue
         rgba[base] = value
         rgba[base + 1] = value
         rgba[base + 2] = value

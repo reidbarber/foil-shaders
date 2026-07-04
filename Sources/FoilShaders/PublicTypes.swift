@@ -1,4 +1,5 @@
 import CoreGraphics
+import CryptoKit
 import Foundation
 import simd
 
@@ -154,39 +155,121 @@ public struct ShaderColor: Equatable, Sendable, Codable, ExpressibleByStringLite
   }
 }
 
-public enum ShaderImage: @unchecked Sendable {
-  case cgImage(CGImage)
-  case url(URL)
-  case bundleResource(name: String, extension: String, bundle: Bundle)
-  case remoteURL(URL)
+/// A source image descriptor for shaders that sample image input.
+///
+/// `CGImage` values compare by a deterministic pixel fingerprint when possible,
+/// with a per-value fallback identity only if fingerprinting fails.
+public struct ShaderImage: Equatable, @unchecked Sendable, Codable {
+  enum Storage: Equatable {
+    case cgImage(CGImage, ImageFingerprint)
+    case url(URL)
+    case bundledResource(BundleResource)
+
+    static func == (lhs: Storage, rhs: Storage) -> Bool {
+      switch (lhs, rhs) {
+      case (.cgImage(_, let a), .cgImage(_, let b)):
+        return a == b
+      case (.url(let a), .url(let b)):
+        return a == b
+      case (.bundledResource(let a), .bundledResource(let b)):
+        return a == b
+      default:
+        return false
+      }
+    }
+  }
+
+  struct BundleResource: Equatable {
+    var name: String
+    var fileExtension: String
+    var bundle: Bundle
+
+    static func == (lhs: BundleResource, rhs: BundleResource) -> Bool {
+      lhs.name == rhs.name
+        && lhs.fileExtension == rhs.fileExtension
+        && lhs.bundle.bundleIdentifier == rhs.bundle.bundleIdentifier
+        && lhs.bundle.bundleURL.standardizedFileURL == rhs.bundle.bundleURL.standardizedFileURL
+    }
+  }
+
+  struct ImageFingerprint: Equatable {
+    var width: Int
+    var height: Int
+    var digest: [UInt8]?
+    var fallbackID: UUID?
+  }
+
+  let storage: Storage
+
+  public static func cgImage(_ image: CGImage) -> ShaderImage {
+    ShaderImage(
+      storage: .cgImage(
+        image,
+        Self.makeFingerprint(for: image)
+          ?? ImageFingerprint(
+            width: image.width,
+            height: image.height,
+            digest: nil,
+            fallbackID: UUID())
+      )
+    )
+  }
+
+  public static func url(_ url: URL) -> ShaderImage {
+    ShaderImage(storage: .url(url))
+  }
 
   public static func bundledResource(
     name: String, extension fileExtension: String, bundle: Bundle = .main
   ) -> ShaderImage {
-    .bundleResource(name: name, extension: fileExtension, bundle: bundle)
+    ShaderImage(
+      storage: .bundledResource(
+        BundleResource(name: name, fileExtension: fileExtension, bundle: bundle)))
   }
-}
 
-extension ShaderImage: Equatable {
-  public static func == (lhs: ShaderImage, rhs: ShaderImage) -> Bool {
-    switch (lhs, rhs) {
-    case (.cgImage(let a), .cgImage(let b)):
-      return a === b
-    case (.url(let a), .url(let b)):
-      return a == b
-    case (.remoteURL(let a), .remoteURL(let b)):
-      return a == b
-    case (.bundleResource(let n1, let e1, let b1), .bundleResource(let n2, let e2, let b2)):
-      return n1 == n2 && e1 == e2 && b1 == b2
-    default:
-      return false
+  private init(storage: Storage) {
+    self.storage = storage
+  }
+
+  private static func makeFingerprint(for image: CGImage) -> ImageFingerprint? {
+    let width = image.width
+    let height = image.height
+    guard width > 0, height > 0 else { return nil }
+
+    let pixelProduct = width.multipliedReportingOverflow(by: height)
+    guard !pixelProduct.overflow, pixelProduct.partialValue <= Int.max / 4 else { return nil }
+    let pixelCount = pixelProduct.partialValue
+    var rgba = [UInt8](repeating: 0, count: pixelCount * 4)
+    let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+      .union(.byteOrder32Big)
+    guard
+      let context = CGContext(
+        data: &rgba,
+        width: width,
+        height: height,
+        bitsPerComponent: 8,
+        bytesPerRow: width * 4,
+        space: CGColorSpaceCreateDeviceRGB(),
+        bitmapInfo: bitmapInfo.rawValue
+      )
+    else {
+      return nil
     }
-  }
-}
 
-/// Persists image descriptors, not pixel data. URL, remote URL, and bundle resource images
-/// round-trip; raw `CGImage` values throw during encoding because they are runtime handles.
-extension ShaderImage: Codable {
+    context.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
+
+    var hasher = SHA256()
+    withUnsafeBytes(of: width.bigEndian) { hasher.update(bufferPointer: $0) }
+    withUnsafeBytes(of: height.bigEndian) { hasher.update(bufferPointer: $0) }
+    hasher.update(data: Data(rgba))
+    return ImageFingerprint(
+      width: width,
+      height: height,
+      digest: Array(hasher.finalize()),
+      fallbackID: nil
+    )
+  }
+
   private enum CodingKeys: String, CodingKey {
     case type
     case url
@@ -206,10 +289,8 @@ extension ShaderImage: Codable {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     let type = try container.decode(ImageType.self, forKey: .type)
     switch type {
-    case .url:
+    case .url, .remoteURL:
       self = .url(try container.decode(URL.self, forKey: .url))
-    case .remoteURL:
-      self = .remoteURL(try container.decode(URL.self, forKey: .url))
     case .bundleResource:
       let bundleIdentifier = try container.decodeIfPresent(String.self, forKey: .bundleIdentifier)
       let bundleURL = try container.decodeIfPresent(URL.self, forKey: .bundleURL)
@@ -217,7 +298,7 @@ extension ShaderImage: Codable {
         bundleIdentifier.flatMap(Bundle.init(identifier:))
         ?? bundleURL.flatMap(Bundle.init(url:))
         ?? .main
-      self = .bundleResource(
+      self = .bundledResource(
         name: try container.decode(String.self, forKey: .name),
         extension: try container.decode(String.self, forKey: .fileExtension),
         bundle: bundle
@@ -227,28 +308,25 @@ extension ShaderImage: Codable {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    switch self {
+    switch storage {
     case .cgImage:
       throw EncodingError.invalidValue(
         self,
         EncodingError.Context(
           codingPath: encoder.codingPath,
           debugDescription:
-            "ShaderImage.cgImage is a runtime image handle and cannot be encoded. Use a URL or bundle resource image descriptor for Codable configurations."
+            "ShaderImage.cgImage is a runtime image handle and cannot be encoded. Use a URL or bundled resource image descriptor for Codable configurations."
         )
       )
     case .url(let url):
       try container.encode(ImageType.url, forKey: .type)
       try container.encode(url, forKey: .url)
-    case .remoteURL(let url):
-      try container.encode(ImageType.remoteURL, forKey: .type)
-      try container.encode(url, forKey: .url)
-    case .bundleResource(let name, let fileExtension, let bundle):
+    case .bundledResource(let resource):
       try container.encode(ImageType.bundleResource, forKey: .type)
-      try container.encode(name, forKey: .name)
-      try container.encode(fileExtension, forKey: .fileExtension)
-      try container.encodeIfPresent(bundle.bundleIdentifier, forKey: .bundleIdentifier)
-      try container.encode(bundle.bundleURL, forKey: .bundleURL)
+      try container.encode(resource.name, forKey: .name)
+      try container.encode(resource.fileExtension, forKey: .fileExtension)
+      try container.encodeIfPresent(resource.bundle.bundleIdentifier, forKey: .bundleIdentifier)
+      try container.encode(resource.bundle.bundleURL, forKey: .bundleURL)
     }
   }
 }

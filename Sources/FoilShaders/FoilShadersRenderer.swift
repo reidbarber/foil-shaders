@@ -424,16 +424,21 @@ import MetalKit
       setImage(nil as CGImage?)
       return
     }
-    switch shaderImage {
-    case .cgImage(let image):
+    switch shaderImage.storage {
+    case .cgImage(let image, _):
       setImage(image)
     case .url(let url):
-      setImage(FoilShadersDefaultImageLoader.loadCGImage(from: url))
-    case .bundleResource(let name, let fileExtension, let bundle):
-      let url = bundle.url(forResource: name, withExtension: fileExtension)
+      if url.isRemoteImageURL {
+        loadRemoteImage(from: url, requestID: imageRequestID)
+      } else {
+        setImage(FoilShadersDefaultImageLoader.loadCGImage(from: url))
+      }
+    case .bundledResource(let resource):
+      let url = resource.bundle.url(
+        forResource: resource.name,
+        withExtension: resource.fileExtension
+      )
       setImage(url.flatMap(FoilShadersDefaultImageLoader.loadCGImage(from:)))
-    case .remoteURL(let url):
-      loadRemoteImage(from: url, requestID: imageRequestID)
     }
   }
 
@@ -1516,6 +1521,13 @@ private final class FoilShadersRendererViewDelegate: NSObject, MTKViewDelegate {
     MainActor.assumeIsolated {
       renderer?.draw(in: view)
     }
+  }
+}
+
+extension URL {
+  fileprivate var isRemoteImageURL: Bool {
+    guard let scheme = scheme?.lowercased() else { return false }
+    return scheme == "http" || scheme == "https"
   }
 }
 
