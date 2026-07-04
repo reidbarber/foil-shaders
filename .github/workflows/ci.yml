@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build & Unit Tests
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: swift --version
+
+      - name: Build
+        run: swift build
+
+      - name: Unit tests
+        run: swift test --filter FoilShadersTests
+
+  parity:
+    name: Visual Parity
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: swift --version
+
+      - name: Parity tests
+        env:
+          PARITY_ARTIFACTS_DIR: ${{ runner.temp }}/parity-artifacts
+        run: swift test --filter FoilShadersParityTests
+
+      - name: Upload failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parity-failure-artifacts
+          path: ${{ runner.temp }}/parity-artifacts
+          if-no-files-found: ignore
