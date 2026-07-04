@@ -53,6 +53,10 @@ configuration="${FOIL_SHADERS_API_CONFIGURATION:-$DEFAULT_CONFIGURATION}"
 module_cache_path="${FOIL_SHADERS_API_MODULE_CACHE:-${TMPDIR:-/tmp}/foil-shaders-api-digester-module-cache}"
 
 xcrun --find swift-api-digester >/dev/null
+if ! command -v jq >/dev/null; then
+  echo "error: jq is required to normalize swift-api-digester output" >&2
+  exit 1
+fi
 mkdir -p "$baseline_dir" "$module_cache_path"
 
 platform_config() {
@@ -80,6 +84,23 @@ module_dir_for_target() {
 fallback_module_dir() {
   find .build -path "*/$configuration/Modules/$TARGET_NAME.swiftmodule" -print -quit |
     xargs -I {} dirname "{}"
+}
+
+normalize_api_dump() {
+  local path="$1"
+  local normalized_path
+
+  normalized_path="$(mktemp "${TMPDIR:-/tmp}/foil-shaders-api-normalized.XXXXXX")"
+  jq '
+    walk(
+      if type == "object" and .kind == "Conformance" and .name == "SendableMetatype" then
+        empty
+      else
+        .
+      end
+    )
+  ' "$path" >"$normalized_path"
+  mv "$normalized_path" "$path"
 }
 
 check_platform() {
@@ -120,6 +141,7 @@ check_platform() {
   if [[ "$mode" == "update" ]]; then
     echo "Updating $baseline_path..."
     xcrun "${digester_args[@]}" -dump-sdk -o "$baseline_path"
+    normalize_api_dump "$baseline_path"
     echo "Updated public API baseline at $baseline_path."
     return
   fi
