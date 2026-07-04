@@ -24,6 +24,10 @@ private func clampedShaderColors(
   return Array(colors.prefix(maxColorCount))
 }
 
+private func clampedShaderColorCount(_ colors: [ShaderColor], maxColorCount: Int) -> Float {
+  Float(min(colors.count, maxColorCount))
+}
+
 // MARK: - Shader Sizing
 
 /// Layout mode for mapping shader pattern or image coordinates into a view.
@@ -136,7 +140,13 @@ public struct AnimatedMeshGradientParams: Equatable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 10
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var distortion: Float
   public var swirl: Float
   public var grainMixer: Float
@@ -171,7 +181,13 @@ public struct StaticMeshGradientParams: Equatable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 10
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var positions: Float
   public var waveX: Float
   public var waveXShift: Float
@@ -219,7 +235,13 @@ public struct StaticRadialGradientParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var radius: Float
   public var focalDistance: Float
   public var focalAngle: Float
@@ -275,7 +297,13 @@ public struct SwirlParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var bandCount: Float
   public var twist: Float
   public var center: Float
@@ -411,7 +439,13 @@ public struct SimplexNoiseParams: Equatable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 10
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var stepsPerColor: Float
   public var softness: Float
 
@@ -576,7 +610,13 @@ public struct ColorPanelsParams: Equatable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 7
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var colorBack: ShaderColor
   public var density: Float
   public var angle1: Float
@@ -630,7 +670,13 @@ public struct DotOrbitParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var stepsPerColor: Float
   public var size: Float
   public var sizeRange: Float
@@ -669,7 +715,13 @@ public struct GodRaysParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorBloom: ShaderColor
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var density: Float
   public var spotty: Float
   public var midSize: Float
@@ -715,7 +767,13 @@ public struct GrainGradientParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 7
   public var colorBack: ShaderColor
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var softness: Float
   public var intensity: Float
   public var noise: Float
@@ -753,7 +811,13 @@ public struct MetaballsParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 8
   public var colorBack: ShaderColor
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var count: Float
   public var size: Float
   public var sizeRange: Float
@@ -787,7 +851,13 @@ public struct WarpParams: Equatable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 10
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var proportion: Float
   public var softness: Float
   public var shape: WarpPattern
@@ -831,7 +901,13 @@ public struct VoronoiParams: Equatable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 5
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var stepsPerColor: Float
   public var colorGap: ShaderColor
   public var colorGlow: ShaderColor
@@ -873,7 +949,13 @@ public struct PulsingBorderParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 5
   public var colorBack: ShaderColor
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var roundness: Float
   public var thickness: Float
   public var marginLeft: Float
@@ -944,7 +1026,13 @@ public struct SmokeRingParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var noiseScale: Float
   public var thickness: Float
   public var radius: Float
@@ -1157,7 +1245,13 @@ public struct HeatmapParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var contour: Float
   public var angle: Float
   public var noise: Float
@@ -1413,7 +1507,13 @@ public struct GemSmokeParams: Equatable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 6
   /// Shader colors after applying `maxColorCount` truncation.
-  public var colors: [ShaderColor]
+  public var colors: [ShaderColor] {
+    didSet {
+      guard colors.count > Self.maxColorCount else { return }
+      colors = clampedShaderColors(
+        colors, maxColorCount: Self.maxColorCount, paramsType: Self.self)
+    }
+  }
   public var colorBack: ShaderColor
   public var colorInner: ShaderColor
   public var innerDistortion: Float
@@ -1540,7 +1640,8 @@ struct MeshGradientUniformsRaw {
     self.u_colors7 = padded[7]
     self.u_colors8 = padded[8]
     self.u_colors9 = padded[9]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: AnimatedMeshGradientParams.maxColorCount)
     self.u_distortion = params.distortion
     self.u_swirl = params.swirl
     self.u_grainMixer = params.grainMixer
@@ -1585,7 +1686,8 @@ struct StaticMeshGradientUniformsRaw {
     self.u_colors7 = padded[7]
     self.u_colors8 = padded[8]
     self.u_colors9 = padded[9]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: StaticMeshGradientParams.maxColorCount)
     self.u_positions = params.positions
     self.u_waveX = params.waveX
     self.u_waveXShift = params.waveXShift
@@ -1638,7 +1740,8 @@ struct StaticRadialGradientUniformsRaw {
     self.u_colors7 = padded[7]
     self.u_colors8 = padded[8]
     self.u_colors9 = padded[9]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: StaticRadialGradientParams.maxColorCount)
     self.u_radius = params.radius
     self.u_focalDistance = params.focalDistance
     self.u_focalAngle = params.focalAngle
@@ -1692,7 +1795,8 @@ struct SwirlUniformsRaw {
     self.u_colors7 = padded[7]
     self.u_colors8 = padded[8]
     self.u_colors9 = padded[9]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: SwirlParams.maxColorCount)
     self.u_bandCount = params.bandCount
     self.u_twist = params.twist
     self.u_center = params.center
@@ -1790,7 +1894,8 @@ struct SimplexNoiseUniformsRaw {
     self.u_colors7 = padded[7]
     self.u_colors8 = padded[8]
     self.u_colors9 = padded[9]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: SimplexNoiseParams.maxColorCount)
     self.u_stepsPerColor = params.stepsPerColor
     self.u_softness = params.softness
   }
@@ -1913,7 +2018,8 @@ struct ColorPanelsUniformsRaw {
     self.u_colors4 = padded[4]
     self.u_colors5 = padded[5]
     self.u_colors6 = padded[6]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: ColorPanelsParams.maxColorCount)
     self.u_colorBack = params.colorBack.rgba
     self.u_density = params.density
     self.u_angle1 = params.angle1
@@ -1964,7 +2070,8 @@ struct DotOrbitUniformsRaw {
     self.u_colors7 = padded[7]
     self.u_colors8 = padded[8]
     self.u_colors9 = padded[9]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: DotOrbitParams.maxColorCount)
     self.u_stepsPerColor = params.stepsPerColor
     self.u_size = params.size
     self.u_sizeRange = params.sizeRange
@@ -2003,7 +2110,8 @@ struct GodRaysUniformsRaw {
     self.u_colors2 = padded[2]
     self.u_colors3 = padded[3]
     self.u_colors4 = padded[4]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: GodRaysParams.maxColorCount)
     self.u_density = params.density
     self.u_spotty = params.spotty
     self.u_midSize = params.midSize
@@ -2044,7 +2152,8 @@ struct GrainGradientUniformsRaw {
     self.u_colors4 = padded[4]
     self.u_colors5 = padded[5]
     self.u_colors6 = padded[6]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: GrainGradientParams.maxColorCount)
     self.u_softness = params.softness
     self.u_intensity = params.intensity
     self.u_noise = params.noise
@@ -2084,7 +2193,8 @@ struct MetaballsUniformsRaw {
     self.u_colors5 = padded[5]
     self.u_colors6 = padded[6]
     self.u_colors7 = padded[7]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: MetaballsParams.maxColorCount)
     self.u_size = params.size
     self.u_sizeRange = params.sizeRange
     self.u_count = params.count
@@ -2131,7 +2241,8 @@ struct WarpUniformsRaw {
     self.u_colors7 = padded[7]
     self.u_colors8 = padded[8]
     self.u_colors9 = padded[9]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: WarpParams.maxColorCount)
     self.u_proportion = params.proportion
     self.u_softness = params.softness
     self.u_shape = params.shape.rawValue
@@ -2171,7 +2282,8 @@ struct VoronoiUniformsRaw {
     self.u_colors2 = padded[2]
     self.u_colors3 = padded[3]
     self.u_colors4 = padded[4]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: VoronoiParams.maxColorCount)
     self.u_stepsPerColor = params.stepsPerColor
     self.u_colorGlow = params.colorGlow.rgba
     self.u_colorGap = params.colorGap.rgba
@@ -2219,7 +2331,8 @@ struct PulsingBorderUniformsRaw {
     self.u_colors2 = padded[2]
     self.u_colors3 = padded[3]
     self.u_colors4 = padded[4]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: PulsingBorderParams.maxColorCount)
     self.u_roundness = params.roundness
     self.u_thickness = params.thickness
     self.u_marginLeft = params.marginLeft
@@ -2276,7 +2389,8 @@ struct SmokeRingUniformsRaw {
     self.u_colors7 = padded[7]
     self.u_colors8 = padded[8]
     self.u_colors9 = padded[9]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: SmokeRingParams.maxColorCount)
     self.u_thickness = params.thickness
     self.u_radius = params.radius
     self.u_innerShape = params.innerShape
@@ -2427,7 +2541,8 @@ struct HeatmapUniformsRaw {
     self.u_colors7 = padded[7]
     self.u_colors8 = padded[8]
     self.u_colors9 = padded[9]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: HeatmapParams.maxColorCount)
     self.u_contour = params.contour
     self.u_angle = params.angle
     self.u_noise = params.noise
@@ -2611,7 +2726,8 @@ struct GemSmokeUniformsRaw {
     self.u_colors3 = padded[3]
     self.u_colors4 = padded[4]
     self.u_colors5 = padded[5]
-    self.u_colorsCount = Float(params.colors.count)
+    self.u_colorsCount = clampedShaderColorCount(
+      params.colors, maxColorCount: GemSmokeParams.maxColorCount)
     self.u_colorBack = params.colorBack.rgba
     self.u_colorInner = params.colorInner.rgba
     self.u_innerDistortion = params.innerDistortion

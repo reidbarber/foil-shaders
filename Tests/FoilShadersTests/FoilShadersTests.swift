@@ -127,6 +127,28 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertEqual(decoded, configuration)
   }
 
+  func testUniformColorCountClampsDecodedOverflowingColorArrays() throws {
+    let colorJSON = (0..<(AnimatedMeshGradientParams.maxColorCount + 2)).map { index in
+      "{\"alpha\":1,\"blue\":0,\"green\":0,\"red\":\(Float(index) / 20)}"
+    }.joined(separator: ",")
+    let paramsJSON = """
+      {
+        "colors": [\(colorJSON)],
+        "distortion": 0.8,
+        "grainMixer": 0,
+        "grainOverlay": 0,
+        "swirl": 0.1
+      }
+      """
+
+    let params = try JSONDecoder().decode(
+      AnimatedMeshGradientParams.self, from: Data(paramsJSON.utf8))
+    let uniforms = MeshGradientUniformsRaw(time: 0, params: params)
+
+    XCTAssertGreaterThan(params.colors.count, AnimatedMeshGradientParams.maxColorCount)
+    XCTAssertEqual(uniforms.u_colorsCount, Float(AnimatedMeshGradientParams.maxColorCount))
+  }
+
   func testShaderParametersCodableFixture() throws {
     let fixtureData = try Self.loadFixture(named: "shader-parameters-dot-grid")
     let expected = Self.fixtureShaderParameters

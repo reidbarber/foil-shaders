@@ -92,6 +92,98 @@ final class PublicAPITests: XCTestCase {
     XCTAssertEqual(params.colors, Array(colors.prefix(AnimatedMeshGradientParams.maxColorCount)))
   }
 
+  func testColorArrayParamsKeepOnlyMaxColorCountColorsAfterMutation() {
+    assertColorMutationClamps(maxColorCount: AnimatedMeshGradientParams.maxColorCount) {
+      initial, overflow in
+      var params = AnimatedMeshGradientParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: StaticMeshGradientParams.maxColorCount) {
+      initial, overflow in
+      var params = StaticMeshGradientParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: StaticRadialGradientParams.maxColorCount) {
+      initial, overflow in
+      var params = StaticRadialGradientParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: SwirlParams.maxColorCount) { initial, overflow in
+      var params = SwirlParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: SimplexNoiseParams.maxColorCount) {
+      initial, overflow in
+      var params = SimplexNoiseParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: ColorPanelsParams.maxColorCount) {
+      initial, overflow in
+      var params = ColorPanelsParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: DotOrbitParams.maxColorCount) { initial, overflow in
+      var params = DotOrbitParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: GodRaysParams.maxColorCount) { initial, overflow in
+      var params = GodRaysParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: GrainGradientParams.maxColorCount) {
+      initial, overflow in
+      var params = GrainGradientParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: MetaballsParams.maxColorCount) {
+      initial, overflow in
+      var params = MetaballsParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: WarpParams.maxColorCount) { initial, overflow in
+      var params = WarpParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: VoronoiParams.maxColorCount) { initial, overflow in
+      var params = VoronoiParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: PulsingBorderParams.maxColorCount) {
+      initial, overflow in
+      var params = PulsingBorderParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: SmokeRingParams.maxColorCount) {
+      initial, overflow in
+      var params = SmokeRingParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: HeatmapParams.maxColorCount) { initial, overflow in
+      var params = HeatmapParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+    assertColorMutationClamps(maxColorCount: GemSmokeParams.maxColorCount) { initial, overflow in
+      var params = GemSmokeParams(colors: initial)
+      params.colors.append(contentsOf: overflow)
+      return params.colors
+    }
+  }
+
   func testFoilShadersErrorIsPublicAndLocalized() {
     let error: any Error = FoilShadersError.shaderError("missing_fragment")
 
@@ -156,5 +248,25 @@ final class PublicAPITests: XCTestCase {
       .foilShadersPausesWhenInactiveOrOffscreen(false)
 
     XCTAssertFalse(String(describing: type(of: view)).isEmpty)
+  }
+
+  private func assertColorMutationClamps(
+    maxColorCount: Int,
+    mutate: ([ShaderColor], [ShaderColor]) -> [ShaderColor],
+    file: StaticString = #filePath,
+    line: UInt = #line
+  ) {
+    let initial = [ShaderColor(red: 0.95, green: 0, blue: 0)]
+    let overflow = (0..<(maxColorCount + 2)).map {
+      ShaderColor(red: Float($0) / 20, green: 0.2, blue: 0.4)
+    }
+    let attemptedColors = initial + overflow
+
+    XCTAssertEqual(
+      mutate(initial, overflow),
+      Array(attemptedColors.prefix(maxColorCount)),
+      file: file,
+      line: line
+    )
   }
 }
