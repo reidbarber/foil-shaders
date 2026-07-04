@@ -56,6 +56,29 @@ FoilShaders.Dithering(
 )
 ```
 
+You can bridge `CGColor`, SwiftUI `Color`, and platform colors (`UIColor` on
+iOS, `NSColor` on macOS) into ``ShaderColor``. On iOS 17, macOS 14, or newer,
+resolve dynamic SwiftUI colors against the current environment so asset-catalog
+light and dark variants update with the view:
+
+```swift
+struct BrandedDithering: View {
+  @Environment(\.self) private var environment
+
+  var body: some View {
+    let accent = ShaderColor(Color("ShaderAccent"), in: environment)
+
+    FoilShaders.Dithering(
+      colorBack: .black,
+      colorFront: accent,
+      shape: .sphere,
+      type: .fourByFour,
+      speed: 0.2
+    )
+  }
+}
+```
+
 ## Motion And Energy
 
 Animated SwiftUI components respect the system Reduce Motion setting by default

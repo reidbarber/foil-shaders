@@ -4,6 +4,15 @@ import Foundation
 import OSLog
 import simd
 
+#if canImport(SwiftUI)
+  import SwiftUI
+#endif
+#if canImport(UIKit)
+  import UIKit
+#elseif canImport(AppKit)
+  import AppKit
+#endif
+
 #if DEBUG
   private let shaderColorDiagnosticsLogger = Logger(
     subsystem: "FoilShaders",
@@ -47,6 +56,30 @@ public struct ShaderColor: Equatable, Sendable, Codable, ExpressibleByStringLite
   /// - Parameter rgba: Components in red, green, blue, alpha order, each using `0...1`.
   public init(_ rgba: SIMD4<Float>) {
     self.init(red: rgba.x, green: rgba.y, blue: rgba.z, alpha: rgba.w)
+  }
+
+  /// Creates a color by converting a Core Graphics color to sRGB RGBA components.
+  ///
+  /// Returns `nil` when Core Graphics cannot convert the color, such as for some
+  /// pattern-backed colors.
+  ///
+  /// - Parameter cgColor: A Core Graphics color to convert to sRGB.
+  public init?(_ cgColor: CGColor) {
+    let srgbColorSpace = CGColorSpace(name: CGColorSpace.sRGB) ?? CGColorSpaceCreateDeviceRGB()
+    guard
+      let color = cgColor.converted(to: srgbColorSpace, intent: .defaultIntent, options: nil),
+      let components = color.components,
+      color.numberOfComponents >= 4
+    else {
+      return nil
+    }
+
+    self.init(
+      red: Float(components[0]).clamped01,
+      green: Float(components[1]).clamped01,
+      blue: Float(components[2]).clamped01,
+      alpha: Float(components[3]).clamped01
+    )
   }
 
   /// Creates a color from a CSS-style color string literal.
@@ -206,6 +239,93 @@ public struct ShaderColor: Equatable, Sendable, Codable, ExpressibleByStringLite
     return p
   }
 }
+
+#if canImport(SwiftUI)
+  extension ShaderColor {
+    /// Creates a color by resolving a SwiftUI color in the supplied environment.
+    ///
+    /// Use this initializer from a SwiftUI view body when the source color may be
+    /// dynamic, such as an asset-catalog color with light and dark variants.
+    ///
+    /// - Parameters:
+    ///   - color: A SwiftUI color to resolve.
+    ///   - environment: The SwiftUI environment used for dynamic color resolution.
+    @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+    public init(_ color: Color, in environment: EnvironmentValues) {
+      let resolved = color.resolve(in: environment)
+      self.init(
+        red: resolved.red.clamped01,
+        green: resolved.green.clamped01,
+        blue: resolved.blue.clamped01,
+        alpha: resolved.opacity.clamped01
+      )
+    }
+
+    /// Creates a color from a SwiftUI color using the platform color bridge.
+    ///
+    /// Returns `nil` when the platform bridge cannot expose sRGB RGBA components.
+    /// Prefer ``init(_:in:)`` inside SwiftUI view bodies on newer OS versions when
+    /// the source color is dynamic.
+    ///
+    /// - Parameter color: A SwiftUI color to convert.
+    public init?(_ color: Color) {
+      #if canImport(UIKit)
+        self.init(UIColor(color))
+      #elseif canImport(AppKit)
+        self.init(NSColor(color))
+      #else
+        guard let cgColor = color.cgColor else { return nil }
+        self.init(cgColor)
+      #endif
+    }
+  }
+#endif
+
+#if canImport(UIKit)
+  extension ShaderColor {
+    /// Creates a color from a UIKit color by reading sRGB RGBA components.
+    ///
+    /// Dynamic colors are resolved with UIKit's current trait collection. Use
+    /// `color.resolvedColor(with:)` first when a specific trait collection is needed.
+    ///
+    /// - Parameter color: A UIKit color to convert.
+    public init?(_ color: UIColor) {
+      let resolved = color.resolvedColor(with: UITraitCollection.current)
+      var red: CGFloat = 0
+      var green: CGFloat = 0
+      var blue: CGFloat = 0
+      var alpha: CGFloat = 0
+      guard resolved.getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
+        return nil
+      }
+      self.init(
+        red: Float(red).clamped01,
+        green: Float(green).clamped01,
+        blue: Float(blue).clamped01,
+        alpha: Float(alpha).clamped01
+      )
+    }
+  }
+#elseif canImport(AppKit)
+  extension ShaderColor {
+    /// Creates a color from an AppKit color by converting it to sRGB RGBA components.
+    ///
+    /// Returns `nil` when AppKit cannot convert the color to the sRGB color space.
+    ///
+    /// - Parameter color: An AppKit color to convert.
+    public init?(_ color: NSColor) {
+      guard let resolved = color.usingColorSpace(.sRGB) else {
+        return nil
+      }
+      self.init(
+        red: Float(resolved.redComponent).clamped01,
+        green: Float(resolved.greenComponent).clamped01,
+        blue: Float(resolved.blueComponent).clamped01,
+        alpha: Float(resolved.alphaComponent).clamped01
+      )
+    }
+  }
+#endif
 
 /// A source image descriptor for shaders that sample image input.
 ///

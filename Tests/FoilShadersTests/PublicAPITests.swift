@@ -1,6 +1,13 @@
+import CoreGraphics
 import FoilShaders
 import SwiftUI
 import XCTest
+
+#if canImport(UIKit)
+  import UIKit
+#elseif canImport(AppKit)
+  import AppKit
+#endif
 
 final class PublicAPITests: XCTestCase {
   func testShaderColorStringLiteralFallsBackToBlackForInvalidInput() {
@@ -9,6 +16,71 @@ final class PublicAPITests: XCTestCase {
 
     XCTAssertEqual(color, .black)
     XCTAssertNil(ShaderColor(input))
+  }
+
+  func testShaderColorInitializesFromCGColor() throws {
+    let colorSpace = try XCTUnwrap(CGColorSpace(name: CGColorSpace.sRGB))
+    let cgColor = try XCTUnwrap(
+      CGColor(colorSpace: colorSpace, components: [0.25, 0.5, 0.75, 0.4]))
+
+    let color = try XCTUnwrap(ShaderColor(cgColor))
+
+    XCTAssertEqual(color.red, 0.25, accuracy: 0.0001)
+    XCTAssertEqual(color.green, 0.5, accuracy: 0.0001)
+    XCTAssertEqual(color.blue, 0.75, accuracy: 0.0001)
+    XCTAssertEqual(color.alpha, 0.4, accuracy: 0.0001)
+  }
+
+  func testShaderColorInitializesFromGrayCGColor() throws {
+    let cgColor = CGColor(gray: 0.35, alpha: 0.6)
+
+    let color = try XCTUnwrap(ShaderColor(cgColor))
+
+    XCTAssertEqual(color.red, color.green, accuracy: 0.0001)
+    XCTAssertEqual(color.green, color.blue, accuracy: 0.0001)
+    XCTAssertEqual(color.alpha, 0.6, accuracy: 0.0001)
+  }
+
+  @MainActor
+  func testShaderColorInitializesFromSwiftUIColorBridge() throws {
+    let color = try XCTUnwrap(
+      ShaderColor(Color(.sRGB, red: 0.2, green: 0.4, blue: 0.6, opacity: 0.8)))
+
+    XCTAssertEqual(color.red, 0.2, accuracy: 0.0001)
+    XCTAssertEqual(color.green, 0.4, accuracy: 0.0001)
+    XCTAssertEqual(color.blue, 0.6, accuracy: 0.0001)
+    XCTAssertEqual(color.alpha, 0.8, accuracy: 0.0001)
+  }
+
+  @MainActor
+  func testShaderColorInitializesFromSwiftUIColorEnvironment() throws {
+    guard #available(iOS 17.0, macOS 14.0, *) else { return }
+
+    let color = ShaderColor(
+      Color(.sRGB, red: 0.15, green: 0.25, blue: 0.35, opacity: 0.45),
+      in: EnvironmentValues()
+    )
+
+    XCTAssertEqual(color.red, 0.15, accuracy: 0.0001)
+    XCTAssertEqual(color.green, 0.25, accuracy: 0.0001)
+    XCTAssertEqual(color.blue, 0.35, accuracy: 0.0001)
+    XCTAssertEqual(color.alpha, 0.45, accuracy: 0.0001)
+  }
+
+  @MainActor
+  func testShaderColorInitializesFromPlatformColor() throws {
+    #if canImport(UIKit)
+      let platformColor = UIColor(red: 0.1, green: 0.3, blue: 0.5, alpha: 0.7)
+    #elseif canImport(AppKit)
+      let platformColor = NSColor(srgbRed: 0.1, green: 0.3, blue: 0.5, alpha: 0.7)
+    #endif
+
+    let color = try XCTUnwrap(ShaderColor(platformColor))
+
+    XCTAssertEqual(color.red, 0.1, accuracy: 0.0001)
+    XCTAssertEqual(color.green, 0.3, accuracy: 0.0001)
+    XCTAssertEqual(color.blue, 0.5, accuracy: 0.0001)
+    XCTAssertEqual(color.alpha, 0.7, accuracy: 0.0001)
   }
 
   func testColorArrayParamsKeepOnlyMaxColorCountColors() {

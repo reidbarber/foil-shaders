@@ -22164,6 +22164,38 @@
           {
             "kind": "Constructor",
             "name": "init",
+            "printedName": "init(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "FoilShaders.ShaderColor?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ShaderColor",
+                    "printedName": "FoilShaders.ShaderColor",
+                    "usr": "s:11FoilShaders11ShaderColorV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGColor",
+                "printedName": "CoreGraphics.CGColor",
+                "usr": "c:@T@CGColorRef"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders11ShaderColorVyACSgSo10CGColorRefacfc",
+            "mangledName": "$s11FoilShaders11ShaderColorVyACSgSo10CGColorRefacfc",
+            "moduleName": "FoilShaders",
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
             "printedName": "init(stringLiteral:)",
             "children": [
               {
@@ -22592,6 +22624,113 @@
             "moduleName": "FoilShaders",
             "implicit": true,
             "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_:in:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ShaderColor",
+                "printedName": "FoilShaders.ShaderColor",
+                "usr": "s:11FoilShaders11ShaderColorV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Color",
+                "printedName": "SwiftUI.Color",
+                "usr": "s:7SwiftUI5ColorV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "EnvironmentValues",
+                "printedName": "SwiftUI.EnvironmentValues",
+                "usr": "s:7SwiftUI17EnvironmentValuesV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders11ShaderColorV_2inAC7SwiftUI0D0V_AE17EnvironmentValuesVtcfc",
+            "mangledName": "$s11FoilShaders11ShaderColorV_2inAC7SwiftUI0D0V_AE17EnvironmentValuesVtcfc",
+            "moduleName": "FoilShaders",
+            "intro_Macosx": "14.0",
+            "intro_iOS": "17.0",
+            "intro_tvOS": "17.0",
+            "intro_watchOS": "10.0",
+            "declAttributes": [
+              "Available",
+              "Available",
+              "Available",
+              "Available"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "FoilShaders.ShaderColor?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ShaderColor",
+                    "printedName": "FoilShaders.ShaderColor",
+                    "usr": "s:11FoilShaders11ShaderColorV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Color",
+                "printedName": "SwiftUI.Color",
+                "usr": "s:7SwiftUI5ColorV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders11ShaderColorVyACSg7SwiftUI0D0Vcfc",
+            "mangledName": "$s11FoilShaders11ShaderColorVyACSg7SwiftUI0D0Vcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "FoilShaders.ShaderColor?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ShaderColor",
+                    "printedName": "FoilShaders.ShaderColor",
+                    "usr": "s:11FoilShaders11ShaderColorV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UIColor",
+                "printedName": "UIKit.UIColor",
+                "usr": "c:objc(cs)UIColor"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders11ShaderColorVyACSgSo7UIColorCcfc",
+            "mangledName": "$s11FoilShaders11ShaderColorVyACSgSo7UIColorCcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
             "init_kind": "Designated"
           }
         ],
