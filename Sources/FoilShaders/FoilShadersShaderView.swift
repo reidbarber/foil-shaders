@@ -4,21 +4,51 @@ import MetalKit
 import SwiftUI
 
 public struct FoilShadersShaderView: SwiftUI.View {
-  public var configuration: ShaderConfiguration
+  /// The color shown by the SwiftUI wrapper when renderer setup fails in release builds.
+  public static let defaultFailureFallbackColor = ShaderColor(red: 1, green: 0, blue: 0.55)
 
-  public init(configuration: ShaderConfiguration) {
+  public var configuration: ShaderConfiguration
+  public var failureFallbackColor: ShaderColor
+
+  @Binding private var rendererError: FoilShadersError?
+  private var onRendererError: ((FoilShadersError) -> Void)?
+
+  /// Creates a SwiftUI shader view.
+  ///
+  /// - Parameters:
+  ///   - configuration: The shader configuration to render.
+  ///   - rendererError: Optional binding updated when renderer setup or reconfiguration fails.
+  ///   - failureFallbackColor: Solid fallback color shown if the renderer cannot be configured.
+  ///   - onRendererError: Optional callback invoked once for each distinct renderer failure.
+  public init(
+    configuration: ShaderConfiguration,
+    rendererError: Binding<FoilShadersError?> = .constant(nil),
+    failureFallbackColor: ShaderColor = FoilShadersShaderView.defaultFailureFallbackColor,
+    onRendererError: ((FoilShadersError) -> Void)? = nil
+  ) {
     self.configuration = configuration
+    self._rendererError = rendererError
+    self.failureFallbackColor = failureFallbackColor
+    self.onRendererError = onRendererError
   }
 
   public var body: some SwiftUI.View {
-    PlatformShaderView(configuration: configuration)
-      .frame(width: configuration.renderOptions.width, height: configuration.renderOptions.height)
+    PlatformShaderView(
+      configuration: configuration,
+      rendererError: $rendererError,
+      failureFallbackColor: failureFallbackColor,
+      onRendererError: onRendererError
+    )
+    .frame(width: configuration.renderOptions.width, height: configuration.renderOptions.height)
   }
 }
 
 #if os(macOS)
   private struct PlatformShaderView: NSViewRepresentable {
     var configuration: ShaderConfiguration
+    @Binding var rendererError: FoilShadersError?
+    var failureFallbackColor: ShaderColor
+    var onRendererError: ((FoilShadersError) -> Void)?
 
     func makeNSView(context: Context) -> MTKView {
       makeView(context: context)
@@ -31,6 +61,9 @@ public struct FoilShadersShaderView: SwiftUI.View {
 #elseif os(iOS)
   private struct PlatformShaderView: UIViewRepresentable {
     var configuration: ShaderConfiguration
+    @Binding var rendererError: FoilShadersError?
+    var failureFallbackColor: ShaderColor
+    var onRendererError: ((FoilShadersError) -> Void)?
 
     func makeUIView(context: Context) -> MTKView {
       makeView(context: context)
@@ -48,25 +81,28 @@ public struct FoilShadersShaderView: SwiftUI.View {
       Coordinator()
     }
 
-    fileprivate func makeView(context: Context) -> MTKView {
+    @MainActor fileprivate func makeView(context: Context) -> MTKView {
       let mtkView = MTKView(frame: .zero, device: MTLCreateSystemDefaultDevice())
-      guard let device = mtkView.device else { return mtkView }
+      guard let device = mtkView.device else {
+        handleFailure(.deviceUnavailable, in: mtkView, context: context)
+        return mtkView
+      }
       do {
         let renderer = try FoilShadersRenderer(device: device)
         let shaderKind = configuration.kind
-        renderer.attach(to: mtkView)
         try renderer.configure(shaderKind)
+        renderer.attach(to: mtkView)
         renderer.apply(configuration)
         context.coordinator.renderer = renderer
         context.coordinator.currentKind = shaderKind
         context.coordinator.currentConfiguration = configuration
       } catch {
-        assertionFailure("FoilShaders renderer setup failed: \(error)")
+        handleFailure(FoilShadersError.wrapping(error), in: mtkView, context: context)
       }
       return mtkView
     }
 
-    fileprivate func update(_ view: MTKView, context: Context) {
+    @MainActor fileprivate func update(_ view: MTKView, context: Context) {
       guard let renderer = context.coordinator.renderer else { return }
       let shaderKind = configuration.kind
       let needsConfigure = context.coordinator.currentKind != shaderKind
@@ -74,9 +110,12 @@ public struct FoilShadersShaderView: SwiftUI.View {
       if needsConfigure {
         do {
           try renderer.configure(shaderKind)
+          renderer.attach(to: view)
+          context.coordinator.clearFailure(on: view, rendererError: $rendererError)
           context.coordinator.currentKind = shaderKind
         } catch {
-          assertionFailure("FoilShaders shader configure failed: \(error)")
+          handleFailure(FoilShadersError.wrapping(error), in: view, context: context)
+          return
         }
       }
       if needsConfigure || needsApply {
@@ -86,10 +125,95 @@ public struct FoilShadersShaderView: SwiftUI.View {
       view.setNeedsDisplay(view.bounds)
     }
 
+    @MainActor fileprivate func handleFailure(
+      _ error: FoilShadersError,
+      in view: MTKView,
+      context: Context
+    ) {
+      context.coordinator.showFailureFallback(on: view, color: failureFallbackColor)
+      context.coordinator.reportFailure(
+        error,
+        rendererError: $rendererError,
+        onRendererError: onRendererError
+      )
+    }
+
     fileprivate final class Coordinator {
       var renderer: FoilShadersRenderer?
       var currentKind: FoilShadersRenderer.ShaderKind?
       var currentConfiguration: ShaderConfiguration?
+      private var lastReportedFailureDescription: String?
+
+      @MainActor func showFailureFallback(on view: MTKView, color: ShaderColor) {
+        view.delegate = nil
+        view.isPaused = true
+        view.enableSetNeedsDisplay = true
+        view.clearColor = MTLClearColorMake(
+          Double(color.red.clamped01),
+          Double(color.green.clamped01),
+          Double(color.blue.clamped01),
+          Double(color.alpha.clamped01)
+        )
+        #if os(iOS)
+          view.isOpaque = color.alpha.clamped01 >= 1
+        #endif
+        setLayerBackground(
+          color.cgColor,
+          isOpaque: color.alpha.clamped01 >= 1,
+          on: view
+        )
+        view.setNeedsDisplay(view.bounds)
+      }
+
+      @MainActor func reportFailure(
+        _ error: FoilShadersError,
+        rendererError: Binding<FoilShadersError?>,
+        onRendererError: ((FoilShadersError) -> Void)?
+      ) {
+        rendererError.wrappedValue = error
+        let description = error.localizedDescription
+        guard lastReportedFailureDescription != description else { return }
+        lastReportedFailureDescription = description
+        onRendererError?(error)
+      }
+
+      @MainActor func clearFailure(on view: MTKView, rendererError: Binding<FoilShadersError?>) {
+        guard lastReportedFailureDescription != nil else { return }
+        lastReportedFailureDescription = nil
+        rendererError.wrappedValue = nil
+        setLayerBackground(nil, isOpaque: false, on: view)
+      }
+
+      @MainActor private func setLayerBackground(
+        _ color: CGColor?,
+        isOpaque: Bool,
+        on view: MTKView
+      ) {
+        #if os(macOS)
+          view.layer?.backgroundColor = color
+          (view.layer as? CAMetalLayer)?.isOpaque = isOpaque
+        #elseif os(iOS)
+          view.layer.backgroundColor = color
+          (view.layer as? CAMetalLayer)?.isOpaque = isOpaque
+        #endif
+      }
     }
   }
 #endif
+
+extension ShaderColor {
+  fileprivate var cgColor: CGColor {
+    CGColor(
+      srgbRed: CGFloat(red.clamped01),
+      green: CGFloat(green.clamped01),
+      blue: CGFloat(blue.clamped01),
+      alpha: CGFloat(alpha.clamped01)
+    )
+  }
+}
+
+extension Float {
+  fileprivate var clamped01: Float {
+    min(1, max(0, self))
+  }
+}

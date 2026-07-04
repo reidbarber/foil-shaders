@@ -129,10 +129,12 @@ import MetalKit
   private lazy var viewDelegate = FoilShadersRendererViewDelegate(renderer: self)
 
   /// Creates a renderer using the supplied Metal device.
+  ///
+  /// - Throws: `FoilShadersError.deviceError` if the device cannot create a command queue.
   public init(device: MTLDevice) throws {
     self.device = device
     guard let commandQueue = device.makeCommandQueue() else {
-      throw RendererError.deviceError
+      throw FoilShadersError.deviceError
     }
     self.commandQueue = commandQueue
     self.textureLoader = MTKTextureLoader(device: device)
@@ -482,10 +484,11 @@ import MetalKit
   }
 
   private func setupPipeline(fragmentFunctionName: String, library: MTLLibrary) throws {
-    guard let vertexFunction = library.makeFunction(name: "vertex_main"),
-      let fragmentFunction = library.makeFunction(name: fragmentFunctionName)
-    else {
-      throw RendererError.shaderError
+    guard let vertexFunction = library.makeFunction(name: "vertex_main") else {
+      throw FoilShadersError.shaderError("vertex_main")
+    }
+    guard let fragmentFunction = library.makeFunction(name: fragmentFunctionName) else {
+      throw FoilShadersError.shaderError(fragmentFunctionName)
     }
 
     let pipelineDescriptor = MTLRenderPipelineDescriptor()
@@ -503,7 +506,7 @@ import MetalKit
     do {
       pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
     } catch {
-      throw RendererError.pipelineError(error)
+      throw FoilShadersError.pipelineError(error)
     }
   }
 
@@ -536,7 +539,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "mesh_gradient_fragment", library: library)
       activeShader = .meshGradient
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -546,7 +549,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "static_mesh_gradient_fragment", library: library)
       activeShader = .staticMeshGradient
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -556,7 +559,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "static_radial_gradient_fragment", library: library)
       activeShader = .staticRadialGradient
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -566,7 +569,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "swirl_fragment", library: library)
       activeShader = .swirl
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -576,7 +579,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "spiral_fragment", library: library)
       activeShader = .spiral
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -586,7 +589,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "dot_grid_fragment", library: library)
       activeShader = .dotGrid
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -596,7 +599,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "simplex_noise_fragment", library: library)
       activeShader = .simplexNoise
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -606,7 +609,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "perlin_noise_fragment", library: library)
       activeShader = .perlinNoise
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -616,7 +619,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "neuro_noise_fragment", library: library)
       activeShader = .neuroNoise
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -626,7 +629,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "waves_fragment", library: library)
       activeShader = .waves
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -636,7 +639,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "dithering_fragment", library: library)
       activeShader = .dithering
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -646,7 +649,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "color_panels_fragment", library: library)
       activeShader = .colorPanels
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -656,7 +659,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "dot_orbit_fragment", library: library)
       activeShader = .dotOrbit
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -666,7 +669,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "god_rays_fragment", library: library)
       activeShader = .godRays
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -676,7 +679,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "grain_gradient_fragment", library: library)
       activeShader = .grainGradient
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -686,7 +689,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "metaballs_fragment", library: library)
       activeShader = .metaballs
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -696,7 +699,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "warp_fragment", library: library)
       activeShader = .warp
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -706,7 +709,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "voronoi_fragment", library: library)
       activeShader = .voronoi
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -716,7 +719,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "pulsing_border_fragment", library: library)
       activeShader = .pulsingBorder
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -726,7 +729,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "smoke_ring_fragment", library: library)
       activeShader = .smokeRing
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -736,7 +739,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "image_dithering_fragment", library: library)
       activeShader = .imageDithering
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -746,7 +749,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "halftone_dots_fragment", library: library)
       activeShader = .halftoneDots
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -756,7 +759,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "halftone_cmyk_fragment", library: library)
       activeShader = .halftoneCmyk
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -766,7 +769,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "heatmap_fragment", library: library)
       activeShader = .heatmap
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -776,7 +779,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "liquid_metal_fragment", library: library)
       activeShader = .liquidMetal
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -786,7 +789,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "paper_texture_fragment", library: library)
       activeShader = .paperTexture
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -796,7 +799,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "water_fragment", library: library)
       activeShader = .water
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -806,7 +809,7 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "fluted_glass_fragment", library: library)
       activeShader = .flutedGlass
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
@@ -816,11 +819,14 @@ import MetalKit
       try setupPipeline(fragmentFunctionName: "gem_smoke_fragment", library: library)
       activeShader = .gemSmoke
     } else {
-      throw RendererError.libraryError
+      throw FoilShadersError.libraryError
     }
   }
 
   /// Selects the shader pipeline used by subsequent live draws or captures.
+  ///
+  /// - Throws: `FoilShadersError` when the shader library, shader functions, or Metal pipeline
+  ///   cannot be loaded or compiled.
   public func configure(_ shaderKind: ShaderKind) throws {
     switch shaderKind {
     case .meshGradient: try configureMeshGradient()
@@ -1531,10 +1537,72 @@ extension URL {
   }
 }
 
-enum RendererError: Error {
+/// Errors thrown by the public FoilShaders renderer API.
+public enum FoilShadersError: Error {
+  /// The platform could not provide a default Metal device for a SwiftUI shader view.
+  case deviceUnavailable
+
+  /// A Metal command queue could not be created for the supplied device.
   case deviceError
-  case shaderError
-  case pipelineError(Error)
+
+  /// A required Metal shader function could not be found in the loaded library.
+  case shaderError(String)
+
+  /// Metal failed to create the render pipeline state.
+  case pipelineError(any Error)
+
+  /// No shader library was available after a library load attempt.
   case libraryError
+
+  /// Shader source resources could not be read while building a runtime Metal library.
+  case librarySourceReadError(any Error)
+
+  /// Runtime compilation of Metal shader source failed.
   case libraryCompileError(String)
+
+  /// An unexpected underlying error escaped the renderer setup path.
+  case unexpectedError(any Error)
+}
+
+extension FoilShadersError: LocalizedError {
+  public var errorDescription: String? {
+    switch self {
+    case .deviceUnavailable:
+      return "FoilShaders could not find a default Metal device."
+    case .deviceError:
+      return "FoilShaders could not create a Metal command queue for the supplied device."
+    case .shaderError(let functionName):
+      return "FoilShaders could not find the required Metal shader function '\(functionName)'."
+    case .pipelineError(let error):
+      return "FoilShaders could not create a Metal render pipeline: \(error.localizedDescription)"
+    case .libraryError:
+      return "FoilShaders could not load a Metal shader library."
+    case .librarySourceReadError(let error):
+      return
+        "FoilShaders could not read Metal shader source resources: \(error.localizedDescription)"
+    case .libraryCompileError(let message):
+      return "FoilShaders could not compile Metal shader source: \(message)"
+    case .unexpectedError(let error):
+      return "FoilShaders renderer setup failed: \(error.localizedDescription)"
+    }
+  }
+
+  public var failureReason: String? {
+    switch self {
+    case .deviceUnavailable, .deviceError:
+      return "Metal is unavailable or the supplied Metal device cannot be used for rendering."
+    case .shaderError, .libraryError, .librarySourceReadError, .libraryCompileError:
+      return "The shader library could not be loaded into a renderable Metal pipeline."
+    case .pipelineError:
+      return "Metal rejected the render pipeline descriptor."
+    case .unexpectedError:
+      return "An unexpected lower-level renderer error occurred."
+    }
+  }
+}
+
+extension FoilShadersError {
+  static func wrapping(_ error: any Error) -> FoilShadersError {
+    error as? FoilShadersError ?? .unexpectedError(error)
+  }
 }

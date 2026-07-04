@@ -39,16 +39,23 @@ enum ShaderLibraryLoader {
       }
     }
     guard let commonURL, let vertexURL, shaderURLs.count == shaderNames.count else {
-      throw RendererError.libraryCompileError(
+      throw FoilShadersError.libraryCompileError(
         "Missing shader source in resources (Shaders/*.metal)")
     }
 
-    let commonSource = try String(contentsOf: commonURL)
-    let vertexSource = try String(contentsOf: vertexURL)
-      .replacingOccurrences(of: "#include \"Common.metal\"", with: "")
-    let shaderSources = try shaderURLs.map { url in
-      try String(contentsOf: url)
+    let commonSource: String
+    let vertexSource: String
+    let shaderSources: [String]
+    do {
+      commonSource = try String(contentsOf: commonURL)
+      vertexSource = try String(contentsOf: vertexURL)
         .replacingOccurrences(of: "#include \"Common.metal\"", with: "")
+      shaderSources = try shaderURLs.map { url in
+        try String(contentsOf: url)
+          .replacingOccurrences(of: "#include \"Common.metal\"", with: "")
+      }
+    } catch {
+      throw FoilShadersError.librarySourceReadError(error)
     }
 
     let merged = ([commonSource, vertexSource] + shaderSources).joined(separator: "\n")
@@ -56,7 +63,7 @@ enum ShaderLibraryLoader {
       return try device.makeLibrary(source: merged, options: nil)
     } catch {
       let message = (error as NSError).localizedDescription
-      throw RendererError.libraryCompileError(message)
+      throw FoilShadersError.libraryCompileError(message)
     }
   }
 }
