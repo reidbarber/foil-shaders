@@ -8,8 +8,8 @@ import UniformTypeIdentifiers
   import AppKit
 #endif
 
-public enum FoilShadersDefaultImageLoader {
-  public static func loadCGImage(from url: URL) -> CGImage? {
+enum FoilShadersDefaultImageLoader {
+  static func loadCGImage(from url: URL) -> CGImage? {
     if let data = try? Data(contentsOf: url),
       let image = loadCGImage(from: data)
     {
@@ -27,7 +27,7 @@ public enum FoilShadersDefaultImageLoader {
     return nil
   }
 
-  public static func loadCGImage(from data: Data) -> CGImage? {
+  static func loadCGImage(from data: Data) -> CGImage? {
     let options: [CFString: Any] = [
       kCGImageSourceShouldCache: true,
       kCGImageSourceTypeIdentifierHint: UTType.svg.identifier,

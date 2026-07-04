@@ -1,5 +1,5 @@
 import AppKit
-import FoilShaders
+@_spi(Studio) import FoilShaders
 import ImageIO
 import Metal
 import SwiftUI

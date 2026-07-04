@@ -1,8 +1,8 @@
 import Foundation
 import Metal
 
-public enum ShaderLibraryLoader {
-  public static func makeLibrary(device: MTLDevice, shaderNames: [String]) throws -> MTLLibrary {
+enum ShaderLibraryLoader {
+  static func makeLibrary(device: MTLDevice, shaderNames: [String]) throws -> MTLLibrary {
     for bundle in FoilShadersResourceBundles.candidates {
       if let defaultLibrary = try? device.makeDefaultLibrary(bundle: bundle) {
         return defaultLibrary

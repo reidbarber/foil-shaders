@@ -1,6 +1,8 @@
 import Foundation
 
+@_spi(Studio)
 public enum FoilShadersCodeGenerator {
+  @_spi(Studio)
   public static func swiftUICode(
     componentName: String,
     presetReference: String,
@@ -26,11 +28,11 @@ public enum FoilShadersCodeGenerator {
     return lines.joined(separator: "\n")
   }
 
-  public static func sizingCode(_ sizing: ShaderSizingParams) -> String {
-    "ShaderSizingParams(fit: .\(sizing.fit), scale: \(number(sizing.scale)), rotation: \(number(sizing.rotation)), originX: \(number(sizing.originX)), originY: \(number(sizing.originY)), offsetX: \(number(sizing.offsetX)), offsetY: \(number(sizing.offsetY)), worldWidth: \(number(sizing.worldWidth)), worldHeight: \(number(sizing.worldHeight)))"
+  private static func sizingCode(_ sizing: ShaderSizingParams) -> String {
+    "ShaderSizingParams(fit: .\(fitCaseName(sizing.fit)), scale: \(number(sizing.scale)), rotation: \(number(sizing.rotation)), originX: \(number(sizing.originX)), originY: \(number(sizing.originY)), offsetX: \(number(sizing.offsetX)), offsetY: \(number(sizing.offsetY)), worldWidth: \(number(sizing.worldWidth)), worldHeight: \(number(sizing.worldHeight)))"
   }
 
-  public static func renderOptionsCode(_ options: ShaderRenderOptions) -> String {
+  private static func renderOptionsCode(_ options: ShaderRenderOptions) -> String {
     var args = [
       "minPixelRatio: \(number(options.minPixelRatio))",
       "maxPixelCount: \(options.maxPixelCount)",
@@ -52,11 +54,9 @@ public enum FoilShadersCodeGenerator {
       .replacingOccurrences(of: #"0+$"#, with: "", options: .regularExpression)
       .replacingOccurrences(of: #"\.$"#, with: "", options: .regularExpression)
   }
-}
 
-extension ShaderFit: CustomStringConvertible {
-  public var description: String {
-    switch self {
+  private static func fitCaseName(_ fit: ShaderFit) -> String {
+    switch fit {
     case .none: "none"
     case .contain: "contain"
     case .cover: "cover"

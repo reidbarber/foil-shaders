@@ -2,7 +2,7 @@ import CoreGraphics
 import Metal
 import XCTest
 
-@testable import FoilShaders
+@_spi(Studio) @testable import FoilShaders
 
 final class FoilShadersTests: XCTestCase {
   func testShaderColorParsesHexRGBAndHSL() {
@@ -212,7 +212,8 @@ final class FoilShadersTests: XCTestCase {
     for y in yRange {
       for x in xRange {
         let base = (y * width + x) * 4
-        total += Double(rgba[base]) * 0.2126
+        total +=
+          Double(rgba[base]) * 0.2126
           + Double(rgba[base + 1]) * 0.7152
           + Double(rgba[base + 2]) * 0.0722
         count += 1

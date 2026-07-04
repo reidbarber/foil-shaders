@@ -1150,21 +1150,24 @@ public struct GemSmokeParams {
 }
 // MARK: - Metal Uniforms
 
-public struct VertexUniforms {
-  public var u_resolution: SIMD2<Float>
-  public var u_pixelRatio: Float
-  public var u_imageAspectRatio: Float
-  public var u_originX: Float
-  public var u_originY: Float
-  public var u_worldWidth: Float
-  public var u_worldHeight: Float
-  public var u_fit: Float
-  public var u_scale: Float
-  public var u_rotation: Float
-  public var u_offsetX: Float
-  public var u_offsetY: Float
+// These raw uniforms mirror the .metal buffer layout. Keep them internal:
+// field order is a renderer-owned shader contract, not public API.
 
-  public init(
+struct VertexUniforms {
+  var u_resolution: SIMD2<Float>
+  var u_pixelRatio: Float
+  var u_imageAspectRatio: Float
+  var u_originX: Float
+  var u_originY: Float
+  var u_worldWidth: Float
+  var u_worldHeight: Float
+  var u_fit: Float
+  var u_scale: Float
+  var u_rotation: Float
+  var u_offsetX: Float
+  var u_offsetY: Float
+
+  init(
     u_resolution: SIMD2<Float>,
     u_pixelRatio: Float,
     u_imageAspectRatio: Float,
@@ -1193,25 +1196,25 @@ public struct VertexUniforms {
   }
 }
 
-public struct MeshGradientUniformsRaw {
-  public var u_time: Float
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colors5: SIMD4<Float>
-  public var u_colors6: SIMD4<Float>
-  public var u_colors7: SIMD4<Float>
-  public var u_colors8: SIMD4<Float>
-  public var u_colors9: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_distortion: Float
-  public var u_swirl: Float
-  public var u_grainMixer: Float
-  public var u_grainOverlay: Float
+struct MeshGradientUniformsRaw {
+  var u_time: Float
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colors5: SIMD4<Float>
+  var u_colors6: SIMD4<Float>
+  var u_colors7: SIMD4<Float>
+  var u_colors8: SIMD4<Float>
+  var u_colors9: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_distortion: Float
+  var u_swirl: Float
+  var u_grainMixer: Float
+  var u_grainOverlay: Float
 
-  public init(time: Float, params: MeshGradientParams) {
+  init(time: Float, params: MeshGradientParams) {
     let padded =
       params.colors
       + Array(
@@ -1236,28 +1239,28 @@ public struct MeshGradientUniformsRaw {
   }
 }
 
-public struct StaticMeshGradientUniformsRaw {
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colors5: SIMD4<Float>
-  public var u_colors6: SIMD4<Float>
-  public var u_colors7: SIMD4<Float>
-  public var u_colors8: SIMD4<Float>
-  public var u_colors9: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_positions: Float
-  public var u_waveX: Float
-  public var u_waveXShift: Float
-  public var u_waveY: Float
-  public var u_waveYShift: Float
-  public var u_mixing: Float
-  public var u_grainMixer: Float
-  public var u_grainOverlay: Float
+struct StaticMeshGradientUniformsRaw {
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colors5: SIMD4<Float>
+  var u_colors6: SIMD4<Float>
+  var u_colors7: SIMD4<Float>
+  var u_colors8: SIMD4<Float>
+  var u_colors9: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_positions: Float
+  var u_waveX: Float
+  var u_waveXShift: Float
+  var u_waveY: Float
+  var u_waveYShift: Float
+  var u_mixing: Float
+  var u_grainMixer: Float
+  var u_grainOverlay: Float
 
-  public init(params: StaticMeshGradientParams) {
+  init(params: StaticMeshGradientParams) {
     let padded =
       params.colors
       + Array(
@@ -1285,31 +1288,31 @@ public struct StaticMeshGradientUniformsRaw {
   }
 }
 
-public struct StaticRadialGradientUniformsRaw {
-  public var u_colorBack: SIMD4<Float>
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colors5: SIMD4<Float>
-  public var u_colors6: SIMD4<Float>
-  public var u_colors7: SIMD4<Float>
-  public var u_colors8: SIMD4<Float>
-  public var u_colors9: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_radius: Float
-  public var u_focalDistance: Float
-  public var u_focalAngle: Float
-  public var u_falloff: Float
-  public var u_mixing: Float
-  public var u_distortion: Float
-  public var u_distortionShift: Float
-  public var u_distortionFreq: Float
-  public var u_grainMixer: Float
-  public var u_grainOverlay: Float
+struct StaticRadialGradientUniformsRaw {
+  var u_colorBack: SIMD4<Float>
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colors5: SIMD4<Float>
+  var u_colors6: SIMD4<Float>
+  var u_colors7: SIMD4<Float>
+  var u_colors8: SIMD4<Float>
+  var u_colors9: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_radius: Float
+  var u_focalDistance: Float
+  var u_focalAngle: Float
+  var u_falloff: Float
+  var u_mixing: Float
+  var u_distortion: Float
+  var u_distortionShift: Float
+  var u_distortionFreq: Float
+  var u_grainMixer: Float
+  var u_grainOverlay: Float
 
-  public init(params: StaticRadialGradientParams) {
+  init(params: StaticRadialGradientParams) {
     let padded =
       params.colors
       + Array(
@@ -1340,29 +1343,29 @@ public struct StaticRadialGradientUniformsRaw {
   }
 }
 
-public struct SwirlUniformsRaw {
-  public var u_time: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colors5: SIMD4<Float>
-  public var u_colors6: SIMD4<Float>
-  public var u_colors7: SIMD4<Float>
-  public var u_colors8: SIMD4<Float>
-  public var u_colors9: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_bandCount: Float
-  public var u_twist: Float
-  public var u_center: Float
-  public var u_proportion: Float
-  public var u_softness: Float
-  public var u_noise: Float
-  public var u_noiseFrequency: Float
+struct SwirlUniformsRaw {
+  var u_time: Float
+  var u_colorBack: SIMD4<Float>
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colors5: SIMD4<Float>
+  var u_colors6: SIMD4<Float>
+  var u_colors7: SIMD4<Float>
+  var u_colors8: SIMD4<Float>
+  var u_colors9: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_bandCount: Float
+  var u_twist: Float
+  var u_center: Float
+  var u_proportion: Float
+  var u_softness: Float
+  var u_noise: Float
+  var u_noiseFrequency: Float
 
-  public init(time: Float, params: SwirlParams) {
+  init(time: Float, params: SwirlParams) {
     let padded =
       params.colors
       + Array(
@@ -1391,20 +1394,20 @@ public struct SwirlUniformsRaw {
   }
 }
 
-public struct SpiralUniformsRaw {
-  public var u_time: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_colorFront: SIMD4<Float>
-  public var u_density: Float
-  public var u_distortion: Float
-  public var u_strokeWidth: Float
-  public var u_strokeCap: Float
-  public var u_strokeTaper: Float
-  public var u_noise: Float
-  public var u_noiseFrequency: Float
-  public var u_softness: Float
+struct SpiralUniformsRaw {
+  var u_time: Float
+  var u_colorBack: SIMD4<Float>
+  var u_colorFront: SIMD4<Float>
+  var u_density: Float
+  var u_distortion: Float
+  var u_strokeWidth: Float
+  var u_strokeCap: Float
+  var u_strokeTaper: Float
+  var u_noise: Float
+  var u_noiseFrequency: Float
+  var u_softness: Float
 
-  public init(time: Float, params: SpiralParams) {
+  init(time: Float, params: SpiralParams) {
     self.u_time = time
     self.u_colorBack = params.colorBack
     self.u_colorFront = params.colorFront
@@ -1419,19 +1422,19 @@ public struct SpiralUniformsRaw {
   }
 }
 
-public struct DotGridUniformsRaw {
-  public var u_colorBack: SIMD4<Float>
-  public var u_colorFill: SIMD4<Float>
-  public var u_colorStroke: SIMD4<Float>
-  public var u_dotSize: Float
-  public var u_gapX: Float
-  public var u_gapY: Float
-  public var u_strokeWidth: Float
-  public var u_sizeRange: Float
-  public var u_opacityRange: Float
-  public var u_shape: Float
+struct DotGridUniformsRaw {
+  var u_colorBack: SIMD4<Float>
+  var u_colorFill: SIMD4<Float>
+  var u_colorStroke: SIMD4<Float>
+  var u_dotSize: Float
+  var u_gapX: Float
+  var u_gapY: Float
+  var u_strokeWidth: Float
+  var u_sizeRange: Float
+  var u_opacityRange: Float
+  var u_shape: Float
 
-  public init(params: DotGridParams) {
+  init(params: DotGridParams) {
     self.u_colorBack = params.colorBack
     self.u_colorFill = params.colorFill
     self.u_colorStroke = params.colorStroke
@@ -1445,23 +1448,23 @@ public struct DotGridUniformsRaw {
   }
 }
 
-public struct SimplexNoiseUniformsRaw {
-  public var u_time: Float
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colors5: SIMD4<Float>
-  public var u_colors6: SIMD4<Float>
-  public var u_colors7: SIMD4<Float>
-  public var u_colors8: SIMD4<Float>
-  public var u_colors9: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_stepsPerColor: Float
-  public var u_softness: Float
+struct SimplexNoiseUniformsRaw {
+  var u_time: Float
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colors5: SIMD4<Float>
+  var u_colors6: SIMD4<Float>
+  var u_colors7: SIMD4<Float>
+  var u_colors8: SIMD4<Float>
+  var u_colors9: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_stepsPerColor: Float
+  var u_softness: Float
 
-  public init(time: Float, params: SimplexNoiseParams) {
+  init(time: Float, params: SimplexNoiseParams) {
     let padded =
       params.colors
       + Array(
@@ -1484,17 +1487,17 @@ public struct SimplexNoiseUniformsRaw {
   }
 }
 
-public struct PerlinNoiseUniformsRaw {
-  public var u_time: Float
-  public var u_colorFront: SIMD4<Float>
-  public var u_colorBack: SIMD4<Float>
-  public var u_proportion: Float
-  public var u_softness: Float
-  public var u_octaveCount: Float
-  public var u_persistence: Float
-  public var u_lacunarity: Float
+struct PerlinNoiseUniformsRaw {
+  var u_time: Float
+  var u_colorFront: SIMD4<Float>
+  var u_colorBack: SIMD4<Float>
+  var u_proportion: Float
+  var u_softness: Float
+  var u_octaveCount: Float
+  var u_persistence: Float
+  var u_lacunarity: Float
 
-  public init(time: Float, params: PerlinNoiseParams) {
+  init(time: Float, params: PerlinNoiseParams) {
     self.u_time = time
     self.u_colorFront = params.colorFront
     self.u_colorBack = params.colorBack
@@ -1506,15 +1509,15 @@ public struct PerlinNoiseUniformsRaw {
   }
 }
 
-public struct NeuroNoiseUniformsRaw {
-  public var u_time: Float
-  public var u_colorFront: SIMD4<Float>
-  public var u_colorMid: SIMD4<Float>
-  public var u_colorBack: SIMD4<Float>
-  public var u_brightness: Float
-  public var u_contrast: Float
+struct NeuroNoiseUniformsRaw {
+  var u_time: Float
+  var u_colorFront: SIMD4<Float>
+  var u_colorMid: SIMD4<Float>
+  var u_colorBack: SIMD4<Float>
+  var u_brightness: Float
+  var u_contrast: Float
 
-  public init(time: Float, params: NeuroNoiseParams) {
+  init(time: Float, params: NeuroNoiseParams) {
     self.u_time = time
     self.u_colorFront = params.colorFront
     self.u_colorMid = params.colorMid
@@ -1524,17 +1527,17 @@ public struct NeuroNoiseUniformsRaw {
   }
 }
 
-public struct WavesUniformsRaw {
-  public var u_colorFront: SIMD4<Float>
-  public var u_colorBack: SIMD4<Float>
-  public var u_shape: Float
-  public var u_frequency: Float
-  public var u_amplitude: Float
-  public var u_spacing: Float
-  public var u_proportion: Float
-  public var u_softness: Float
+struct WavesUniformsRaw {
+  var u_colorFront: SIMD4<Float>
+  var u_colorBack: SIMD4<Float>
+  var u_shape: Float
+  var u_frequency: Float
+  var u_amplitude: Float
+  var u_spacing: Float
+  var u_proportion: Float
+  var u_softness: Float
 
-  public init(params: WavesParams) {
+  init(params: WavesParams) {
     self.u_colorFront = params.colorFront
     self.u_colorBack = params.colorBack
     self.u_shape = params.shape
@@ -1546,15 +1549,15 @@ public struct WavesUniformsRaw {
   }
 }
 
-public struct DitheringUniformsRaw {
-  public var u_time: Float
-  public var u_pxSize: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_colorFront: SIMD4<Float>
-  public var u_shape: Float
-  public var u_type: Float
+struct DitheringUniformsRaw {
+  var u_time: Float
+  var u_pxSize: Float
+  var u_colorBack: SIMD4<Float>
+  var u_colorFront: SIMD4<Float>
+  var u_shape: Float
+  var u_type: Float
 
-  public init(time: Float, params: DitheringParams) {
+  init(time: Float, params: DitheringParams) {
     self.u_time = time
     self.u_pxSize = params.size
     self.u_colorBack = params.colorBack
@@ -1564,29 +1567,29 @@ public struct DitheringUniformsRaw {
   }
 }
 
-public struct ColorPanelsUniformsRaw {
-  public var u_time: Float
-  public var u_scale: Float
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colors5: SIMD4<Float>
-  public var u_colors6: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_density: Float
-  public var u_angle1: Float
-  public var u_angle2: Float
-  public var u_length: Float
-  public var u_edges: Float
-  public var u_blur: Float
-  public var u_fadeIn: Float
-  public var u_fadeOut: Float
-  public var u_gradient: Float
+struct ColorPanelsUniformsRaw {
+  var u_time: Float
+  var u_scale: Float
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colors5: SIMD4<Float>
+  var u_colors6: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_colorBack: SIMD4<Float>
+  var u_density: Float
+  var u_angle1: Float
+  var u_angle2: Float
+  var u_length: Float
+  var u_edges: Float
+  var u_blur: Float
+  var u_fadeIn: Float
+  var u_fadeOut: Float
+  var u_gradient: Float
 
-  public init(time: Float, scale: Float, params: ColorPanelsParams) {
+  init(time: Float, scale: Float, params: ColorPanelsParams) {
     let padded =
       params.colors
       + Array(
@@ -1615,26 +1618,26 @@ public struct ColorPanelsUniformsRaw {
   }
 }
 
-public struct DotOrbitUniformsRaw {
-  public var u_time: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colors5: SIMD4<Float>
-  public var u_colors6: SIMD4<Float>
-  public var u_colors7: SIMD4<Float>
-  public var u_colors8: SIMD4<Float>
-  public var u_colors9: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_stepsPerColor: Float
-  public var u_size: Float
-  public var u_sizeRange: Float
-  public var u_spreading: Float
+struct DotOrbitUniformsRaw {
+  var u_time: Float
+  var u_colorBack: SIMD4<Float>
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colors5: SIMD4<Float>
+  var u_colors6: SIMD4<Float>
+  var u_colors7: SIMD4<Float>
+  var u_colors8: SIMD4<Float>
+  var u_colors9: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_stepsPerColor: Float
+  var u_size: Float
+  var u_sizeRange: Float
+  var u_spreading: Float
 
-  public init(time: Float, params: DotOrbitParams) {
+  init(time: Float, params: DotOrbitParams) {
     let padded =
       params.colors
       + Array(
@@ -1660,24 +1663,24 @@ public struct DotOrbitUniformsRaw {
   }
 }
 
-public struct GodRaysUniformsRaw {
-  public var u_time: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_colorBloom: SIMD4<Float>
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_density: Float
-  public var u_spotty: Float
-  public var u_midSize: Float
-  public var u_midIntensity: Float
-  public var u_intensity: Float
-  public var u_bloom: Float
+struct GodRaysUniformsRaw {
+  var u_time: Float
+  var u_colorBack: SIMD4<Float>
+  var u_colorBloom: SIMD4<Float>
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_density: Float
+  var u_spotty: Float
+  var u_midSize: Float
+  var u_midIntensity: Float
+  var u_intensity: Float
+  var u_bloom: Float
 
-  public init(time: Float, params: GodRaysParams) {
+  init(time: Float, params: GodRaysParams) {
     let padded =
       params.colors
       + Array(
@@ -1701,23 +1704,23 @@ public struct GodRaysUniformsRaw {
   }
 }
 
-public struct GrainGradientUniformsRaw {
-  public var u_time: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colors5: SIMD4<Float>
-  public var u_colors6: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_softness: Float
-  public var u_intensity: Float
-  public var u_noise: Float
-  public var u_shape: Float
+struct GrainGradientUniformsRaw {
+  var u_time: Float
+  var u_colorBack: SIMD4<Float>
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colors5: SIMD4<Float>
+  var u_colors6: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_softness: Float
+  var u_intensity: Float
+  var u_noise: Float
+  var u_shape: Float
 
-  public init(time: Float, params: GrainGradientParams) {
+  init(time: Float, params: GrainGradientParams) {
     let padded =
       params.colors
       + Array(
@@ -1740,23 +1743,23 @@ public struct GrainGradientUniformsRaw {
   }
 }
 
-public struct MetaballsUniformsRaw {
-  public var u_time: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colors5: SIMD4<Float>
-  public var u_colors6: SIMD4<Float>
-  public var u_colors7: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_size: Float
-  public var u_sizeRange: Float
-  public var u_count: Float
+struct MetaballsUniformsRaw {
+  var u_time: Float
+  var u_colorBack: SIMD4<Float>
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colors5: SIMD4<Float>
+  var u_colors6: SIMD4<Float>
+  var u_colors7: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_size: Float
+  var u_sizeRange: Float
+  var u_count: Float
 
-  public init(time: Float, params: MetaballsParams) {
+  init(time: Float, params: MetaballsParams) {
     let padded =
       params.colors
       + Array(
@@ -1779,29 +1782,29 @@ public struct MetaballsUniformsRaw {
   }
 }
 
-public struct WarpUniformsRaw {
-  public var u_time: Float
-  public var u_scale: Float
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colors5: SIMD4<Float>
-  public var u_colors6: SIMD4<Float>
-  public var u_colors7: SIMD4<Float>
-  public var u_colors8: SIMD4<Float>
-  public var u_colors9: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_proportion: Float
-  public var u_softness: Float
-  public var u_shape: Float
-  public var u_shapeScale: Float
-  public var u_distortion: Float
-  public var u_swirl: Float
-  public var u_swirlIterations: Float
+struct WarpUniformsRaw {
+  var u_time: Float
+  var u_scale: Float
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colors5: SIMD4<Float>
+  var u_colors6: SIMD4<Float>
+  var u_colors7: SIMD4<Float>
+  var u_colors8: SIMD4<Float>
+  var u_colors9: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_proportion: Float
+  var u_softness: Float
+  var u_shape: Float
+  var u_shapeScale: Float
+  var u_distortion: Float
+  var u_swirl: Float
+  var u_swirlIterations: Float
 
-  public init(time: Float, scale: Float, params: WarpParams) {
+  init(time: Float, scale: Float, params: WarpParams) {
     let padded =
       params.colors
       + Array(
@@ -1830,23 +1833,23 @@ public struct WarpUniformsRaw {
   }
 }
 
-public struct VoronoiUniformsRaw {
-  public var u_time: Float
-  public var u_scale: Float
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_stepsPerColor: Float
-  public var u_colorGlow: SIMD4<Float>
-  public var u_colorGap: SIMD4<Float>
-  public var u_distortion: Float
-  public var u_gap: Float
-  public var u_glow: Float
+struct VoronoiUniformsRaw {
+  var u_time: Float
+  var u_scale: Float
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_stepsPerColor: Float
+  var u_colorGlow: SIMD4<Float>
+  var u_colorGap: SIMD4<Float>
+  var u_distortion: Float
+  var u_gap: Float
+  var u_glow: Float
 
-  public init(time: Float, scale: Float, params: VoronoiParams) {
+  init(time: Float, scale: Float, params: VoronoiParams) {
     let padded =
       params.colors
       + Array(
@@ -1869,32 +1872,32 @@ public struct VoronoiUniformsRaw {
   }
 }
 
-public struct PulsingBorderUniformsRaw {
-  public var u_time: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_roundness: Float
-  public var u_thickness: Float
-  public var u_marginLeft: Float
-  public var u_marginRight: Float
-  public var u_marginTop: Float
-  public var u_marginBottom: Float
-  public var u_aspectRatio: Float
-  public var u_softness: Float
-  public var u_intensity: Float
-  public var u_bloom: Float
-  public var u_spots: Float
-  public var u_spotSize: Float
-  public var u_pulse: Float
-  public var u_smoke: Float
-  public var u_smokeSize: Float
+struct PulsingBorderUniformsRaw {
+  var u_time: Float
+  var u_colorBack: SIMD4<Float>
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_roundness: Float
+  var u_thickness: Float
+  var u_marginLeft: Float
+  var u_marginRight: Float
+  var u_marginTop: Float
+  var u_marginBottom: Float
+  var u_aspectRatio: Float
+  var u_softness: Float
+  var u_intensity: Float
+  var u_bloom: Float
+  var u_spots: Float
+  var u_spotSize: Float
+  var u_pulse: Float
+  var u_smoke: Float
+  var u_smokeSize: Float
 
-  public init(time: Float, params: PulsingBorderParams) {
+  init(time: Float, params: PulsingBorderParams) {
     let padded =
       params.colors
       + Array(
@@ -1926,27 +1929,27 @@ public struct PulsingBorderUniformsRaw {
   }
 }
 
-public struct SmokeRingUniformsRaw {
-  public var u_time: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colors5: SIMD4<Float>
-  public var u_colors6: SIMD4<Float>
-  public var u_colors7: SIMD4<Float>
-  public var u_colors8: SIMD4<Float>
-  public var u_colors9: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_thickness: Float
-  public var u_radius: Float
-  public var u_innerShape: Float
-  public var u_noiseScale: Float
-  public var u_noiseIterations: Float
+struct SmokeRingUniformsRaw {
+  var u_time: Float
+  var u_colorBack: SIMD4<Float>
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colors5: SIMD4<Float>
+  var u_colors6: SIMD4<Float>
+  var u_colors7: SIMD4<Float>
+  var u_colors8: SIMD4<Float>
+  var u_colors9: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_thickness: Float
+  var u_radius: Float
+  var u_innerShape: Float
+  var u_noiseScale: Float
+  var u_noiseIterations: Float
 
-  public init(time: Float, params: SmokeRingParams) {
+  init(time: Float, params: SmokeRingParams) {
     let padded =
       params.colors
       + Array(
@@ -1973,17 +1976,17 @@ public struct SmokeRingUniformsRaw {
   }
 }
 
-public struct ImageDitheringUniformsRaw {
-  public var u_colorFront: SIMD4<Float>
-  public var u_colorBack: SIMD4<Float>
-  public var u_colorHighlight: SIMD4<Float>
-  public var u_type: Float
-  public var u_pxSize: Float
-  public var u_originalColors: Float
-  public var u_inverted: Float
-  public var u_colorSteps: Float
+struct ImageDitheringUniformsRaw {
+  var u_colorFront: SIMD4<Float>
+  var u_colorBack: SIMD4<Float>
+  var u_colorHighlight: SIMD4<Float>
+  var u_type: Float
+  var u_pxSize: Float
+  var u_originalColors: Float
+  var u_inverted: Float
+  var u_colorSteps: Float
 
-  public init(params: ImageDitheringParams) {
+  init(params: ImageDitheringParams) {
     self.u_colorFront = params.colorFront
     self.u_colorBack = params.colorBack
     self.u_colorHighlight = params.colorHighlight
@@ -1995,22 +1998,22 @@ public struct ImageDitheringUniformsRaw {
   }
 }
 
-public struct HalftoneDotsUniformsRaw {
-  public var u_time: Float
-  public var u_colorFront: SIMD4<Float>
-  public var u_colorBack: SIMD4<Float>
-  public var u_radius: Float
-  public var u_contrast: Float
-  public var u_size: Float
-  public var u_grainMixer: Float
-  public var u_grainOverlay: Float
-  public var u_grainSize: Float
-  public var u_grid: Float
-  public var u_originalColors: Float
-  public var u_inverted: Float
-  public var u_type: Float
+struct HalftoneDotsUniformsRaw {
+  var u_time: Float
+  var u_colorFront: SIMD4<Float>
+  var u_colorBack: SIMD4<Float>
+  var u_radius: Float
+  var u_contrast: Float
+  var u_size: Float
+  var u_grainMixer: Float
+  var u_grainOverlay: Float
+  var u_grainSize: Float
+  var u_grid: Float
+  var u_originalColors: Float
+  var u_inverted: Float
+  var u_type: Float
 
-  public init(time: Float, params: HalftoneDotsParams) {
+  init(time: Float, params: HalftoneDotsParams) {
     self.u_time = time
     self.u_colorFront = params.colorFront
     self.u_colorBack = params.colorBack
@@ -2027,31 +2030,31 @@ public struct HalftoneDotsUniformsRaw {
   }
 }
 
-public struct HalftoneCmykUniformsRaw {
-  public var u_colorBack: SIMD4<Float>
-  public var u_colorC: SIMD4<Float>
-  public var u_colorM: SIMD4<Float>
-  public var u_colorY: SIMD4<Float>
-  public var u_colorK: SIMD4<Float>
-  public var u_size: Float
-  public var u_minDot: Float
-  public var u_contrast: Float
-  public var u_grainSize: Float
-  public var u_grainMixer: Float
-  public var u_grainOverlay: Float
-  public var u_gridNoise: Float
-  public var u_softness: Float
-  public var u_floodC: Float
-  public var u_floodM: Float
-  public var u_floodY: Float
-  public var u_floodK: Float
-  public var u_gainC: Float
-  public var u_gainM: Float
-  public var u_gainY: Float
-  public var u_gainK: Float
-  public var u_type: Float
+struct HalftoneCmykUniformsRaw {
+  var u_colorBack: SIMD4<Float>
+  var u_colorC: SIMD4<Float>
+  var u_colorM: SIMD4<Float>
+  var u_colorY: SIMD4<Float>
+  var u_colorK: SIMD4<Float>
+  var u_size: Float
+  var u_minDot: Float
+  var u_contrast: Float
+  var u_grainSize: Float
+  var u_grainMixer: Float
+  var u_grainOverlay: Float
+  var u_gridNoise: Float
+  var u_softness: Float
+  var u_floodC: Float
+  var u_floodM: Float
+  var u_floodY: Float
+  var u_floodK: Float
+  var u_gainC: Float
+  var u_gainM: Float
+  var u_gainY: Float
+  var u_gainK: Float
+  var u_type: Float
 
-  public init(params: HalftoneCmykParams) {
+  init(params: HalftoneCmykParams) {
     self.u_colorBack = params.colorBack
     self.u_colorC = params.colorC
     self.u_colorM = params.colorM
@@ -2077,27 +2080,27 @@ public struct HalftoneCmykUniformsRaw {
   }
 }
 
-public struct HeatmapUniformsRaw {
-  public var u_time: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colors5: SIMD4<Float>
-  public var u_colors6: SIMD4<Float>
-  public var u_colors7: SIMD4<Float>
-  public var u_colors8: SIMD4<Float>
-  public var u_colors9: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_contour: Float
-  public var u_angle: Float
-  public var u_noise: Float
-  public var u_innerGlow: Float
-  public var u_outerGlow: Float
+struct HeatmapUniformsRaw {
+  var u_time: Float
+  var u_colorBack: SIMD4<Float>
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colors5: SIMD4<Float>
+  var u_colors6: SIMD4<Float>
+  var u_colors7: SIMD4<Float>
+  var u_colors8: SIMD4<Float>
+  var u_colors9: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_contour: Float
+  var u_angle: Float
+  var u_noise: Float
+  var u_innerGlow: Float
+  var u_outerGlow: Float
 
-  public init(time: Float, params: HeatmapParams) {
+  init(time: Float, params: HeatmapParams) {
     let padded =
       params.colors
       + Array(
@@ -2124,21 +2127,21 @@ public struct HeatmapUniformsRaw {
   }
 }
 
-public struct LiquidMetalUniformsRaw {
-  public var u_time: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_colorTint: SIMD4<Float>
-  public var u_repetition: Float
-  public var u_softness: Float
-  public var u_shiftRed: Float
-  public var u_shiftBlue: Float
-  public var u_distortion: Float
-  public var u_contour: Float
-  public var u_angle: Float
-  public var u_shape: Float
-  public var u_isImage: Float
+struct LiquidMetalUniformsRaw {
+  var u_time: Float
+  var u_colorBack: SIMD4<Float>
+  var u_colorTint: SIMD4<Float>
+  var u_repetition: Float
+  var u_softness: Float
+  var u_shiftRed: Float
+  var u_shiftBlue: Float
+  var u_distortion: Float
+  var u_contour: Float
+  var u_angle: Float
+  var u_shape: Float
+  var u_isImage: Float
 
-  public init(time: Float, params: LiquidMetalParams) {
+  init(time: Float, params: LiquidMetalParams) {
     self.u_time = time
     self.u_colorBack = params.colorBack
     self.u_colorTint = params.colorTint
@@ -2155,22 +2158,22 @@ public struct LiquidMetalUniformsRaw {
   }
 }
 
-public struct PaperTextureUniformsRaw {
-  public var u_colorFront: SIMD4<Float>
-  public var u_colorBack: SIMD4<Float>
-  public var u_contrast: Float
-  public var u_roughness: Float
-  public var u_fiber: Float
-  public var u_fiberSize: Float
-  public var u_crumples: Float
-  public var u_crumpleSize: Float
-  public var u_folds: Float
-  public var u_foldCount: Float
-  public var u_drops: Float
-  public var u_seed: Float
-  public var u_fade: Float
+struct PaperTextureUniformsRaw {
+  var u_colorFront: SIMD4<Float>
+  var u_colorBack: SIMD4<Float>
+  var u_contrast: Float
+  var u_roughness: Float
+  var u_fiber: Float
+  var u_fiberSize: Float
+  var u_crumples: Float
+  var u_crumpleSize: Float
+  var u_folds: Float
+  var u_foldCount: Float
+  var u_drops: Float
+  var u_seed: Float
+  var u_fade: Float
 
-  public init(params: PaperTextureParams) {
+  init(params: PaperTextureParams) {
     self.u_colorFront = params.colorFront
     self.u_colorBack = params.colorBack
     self.u_contrast = params.contrast
@@ -2187,18 +2190,18 @@ public struct PaperTextureUniformsRaw {
   }
 }
 
-public struct WaterUniformsRaw {
-  public var u_time: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_colorHighlight: SIMD4<Float>
-  public var u_highlights: Float
-  public var u_layering: Float
-  public var u_edges: Float
-  public var u_caustic: Float
-  public var u_waves: Float
-  public var u_size: Float
+struct WaterUniformsRaw {
+  var u_time: Float
+  var u_colorBack: SIMD4<Float>
+  var u_colorHighlight: SIMD4<Float>
+  var u_highlights: Float
+  var u_layering: Float
+  var u_edges: Float
+  var u_caustic: Float
+  var u_waves: Float
+  var u_size: Float
 
-  public init(time: Float, params: WaterParams) {
+  init(time: Float, params: WaterParams) {
     self.u_time = time
     self.u_colorBack = params.colorBack
     self.u_colorHighlight = params.colorHighlight
@@ -2211,32 +2214,32 @@ public struct WaterUniformsRaw {
   }
 }
 
-public struct FlutedGlassUniformsRaw {
-  public var u_resolution: SIMD2<Float>
-  public var u_pixelRatio: Float
-  public var u_rotation: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_colorShadow: SIMD4<Float>
-  public var u_colorHighlight: SIMD4<Float>
-  public var u_shadows: Float
-  public var u_size: Float
-  public var u_angle: Float
-  public var u_stretch: Float
-  public var u_shape: Float
-  public var u_distortion: Float
-  public var u_highlights: Float
-  public var u_distortionShape: Float
-  public var u_shift: Float
-  public var u_blur: Float
-  public var u_edges: Float
-  public var u_marginLeft: Float
-  public var u_marginRight: Float
-  public var u_marginTop: Float
-  public var u_marginBottom: Float
-  public var u_grainMixer: Float
-  public var u_grainOverlay: Float
+struct FlutedGlassUniformsRaw {
+  var u_resolution: SIMD2<Float>
+  var u_pixelRatio: Float
+  var u_rotation: Float
+  var u_colorBack: SIMD4<Float>
+  var u_colorShadow: SIMD4<Float>
+  var u_colorHighlight: SIMD4<Float>
+  var u_shadows: Float
+  var u_size: Float
+  var u_angle: Float
+  var u_stretch: Float
+  var u_shape: Float
+  var u_distortion: Float
+  var u_highlights: Float
+  var u_distortionShape: Float
+  var u_shift: Float
+  var u_blur: Float
+  var u_edges: Float
+  var u_marginLeft: Float
+  var u_marginRight: Float
+  var u_marginTop: Float
+  var u_marginBottom: Float
+  var u_grainMixer: Float
+  var u_grainOverlay: Float
 
-  public init(
+  init(
     resolution: SIMD2<Float>, pixelRatio: Float, rotation: Float, params: FlutedGlassParams
   ) {
     self.u_resolution = resolution
@@ -2265,28 +2268,28 @@ public struct FlutedGlassUniformsRaw {
   }
 }
 
-public struct GemSmokeUniformsRaw {
-  public var u_time: Float
-  public var u_colors0: SIMD4<Float>
-  public var u_colors1: SIMD4<Float>
-  public var u_colors2: SIMD4<Float>
-  public var u_colors3: SIMD4<Float>
-  public var u_colors4: SIMD4<Float>
-  public var u_colors5: SIMD4<Float>
-  public var u_colorsCount: Float
-  public var u_colorBack: SIMD4<Float>
-  public var u_colorInner: SIMD4<Float>
-  public var u_innerDistortion: Float
-  public var u_outerDistortion: Float
-  public var u_outerGlow: Float
-  public var u_innerGlow: Float
-  public var u_offset: Float
-  public var u_angle: Float
-  public var u_size: Float
-  public var u_shape: Float
-  public var u_isImage: Float
+struct GemSmokeUniformsRaw {
+  var u_time: Float
+  var u_colors0: SIMD4<Float>
+  var u_colors1: SIMD4<Float>
+  var u_colors2: SIMD4<Float>
+  var u_colors3: SIMD4<Float>
+  var u_colors4: SIMD4<Float>
+  var u_colors5: SIMD4<Float>
+  var u_colorsCount: Float
+  var u_colorBack: SIMD4<Float>
+  var u_colorInner: SIMD4<Float>
+  var u_innerDistortion: Float
+  var u_outerDistortion: Float
+  var u_outerGlow: Float
+  var u_innerGlow: Float
+  var u_offset: Float
+  var u_angle: Float
+  var u_size: Float
+  var u_shape: Float
+  var u_isImage: Float
 
-  public init(time: Float, params: GemSmokeParams) {
+  init(time: Float, params: GemSmokeParams) {
     let padded =
       params.colors
       + Array(
