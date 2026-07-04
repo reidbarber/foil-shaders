@@ -22,6 +22,8 @@ private struct StudioView: View {
   @State private var offsetX: Float = 0
   @State private var offsetY: Float = 0
   @State private var selectedImage: ShaderImage?
+  @State private var didCopyCode = false
+  @State private var copyFeedbackID = UUID()
 
   var body: some View {
     NavigationSplitView {
@@ -41,14 +43,6 @@ private struct StudioView: View {
           .frame(minWidth: 280, idealWidth: 380, maxWidth: 520)
       }
       .navigationTitle(selectedShader.displayName)
-      .toolbar {
-        ToolbarItem {
-          Button("Copy Code", systemImage: "doc.on.doc") {
-            NSPasteboard.general.clearContents()
-            NSPasteboard.general.setString(currentCode, forType: .string)
-          }
-        }
-      }
     }
   }
 
@@ -97,19 +91,43 @@ private struct StudioView: View {
           slider("Offset Y", value: $offsetY, range: -1...1)
         }
 
-        GroupBox("Code") {
-          ScrollView(.horizontal) {
-            Text(currentCode)
-              .font(.system(.caption, design: .monospaced))
-              .textSelection(.enabled)
-              .frame(maxWidth: .infinity, alignment: .leading)
-          }
-          .frame(minHeight: 220)
-        }
+        codeSnippetPane
       }
       .padding(18)
     }
     .background(.regularMaterial)
+  }
+
+  private var codeSnippetPane: some View {
+    GroupBox("Code") {
+      ZStack(alignment: .topTrailing) {
+        GeometryReader { proxy in
+          ScrollView([.horizontal, .vertical]) {
+            Text(currentCode)
+              .font(.system(.caption, design: .monospaced))
+              .textSelection(.enabled)
+              .padding(12)
+              .padding(.top, 30)
+              .frame(
+                minWidth: proxy.size.width,
+                minHeight: proxy.size.height,
+                alignment: .topLeading
+              )
+          }
+          .frame(width: proxy.size.width, height: proxy.size.height)
+        }
+
+        Button(
+          didCopyCode ? "Copied" : "Copy",
+          systemImage: didCopyCode ? "checkmark" : "doc.on.doc"
+        ) {
+          copyCurrentCode()
+        }
+        .controlSize(.small)
+        .padding(8)
+      }
+      .frame(maxWidth: .infinity, minHeight: 220)
+    }
   }
 
   private func slider(_ title: String, value: Binding<Float>, range: ClosedRange<Float>)
@@ -188,6 +206,23 @@ private struct StudioView: View {
     panel.canChooseDirectories = false
     if panel.runModal() == .OK, let url = panel.url {
       selectedImage = .url(url)
+    }
+  }
+
+  private func copyCurrentCode() {
+    NSPasteboard.general.clearContents()
+    NSPasteboard.general.setString(currentCode, forType: .string)
+
+    let feedbackID = UUID()
+    copyFeedbackID = feedbackID
+    withAnimation(.easeOut(duration: 0.16)) {
+      didCopyCode = true
+    }
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
+      guard copyFeedbackID == feedbackID else { return }
+      withAnimation(.easeOut(duration: 0.16)) {
+        didCopyCode = false
+      }
     }
   }
 }

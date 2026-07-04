@@ -94,6 +94,19 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertTrue(code.contains("params: meshGradientPresets[0].params"))
   }
 
+  func testCodeGeneratorLeavesPulsingBorderUnqualified() {
+    let code = FoilShadersCodeGenerator.swiftUICode(
+      componentName: "PulsingBorder",
+      presetReference: "pulsingBorderPresets[0]",
+      sizing: .defaultPatternSizing,
+      motion: ShaderMotionParams(speed: 0.2, frame: 0),
+      renderOptions: ShaderRenderOptions(width: 1280, height: 720)
+    )
+    XCTAssertTrue(code.contains("\nPulsingBorder(\n"))
+    XCTAssertFalse(code.contains("FoilShaders.PulsingBorder"))
+    XCTAssertTrue(code.contains("params: pulsingBorderPresets[0].params"))
+  }
+
   func testMetalPipelinesCompile() throws {
     guard let device = MTLCreateSystemDefaultDevice() else {
       throw XCTSkip("Metal is not available")
