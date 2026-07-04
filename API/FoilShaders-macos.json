@@ -20267,41 +20267,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGImage?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGImage",
-                    "printedName": "CoreGraphics.CGImage",
-                    "usr": "c:@T@CGImageRef"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:11FoilShaders0aB8RendererC8setImageyySo10CGImageRefaSgF",
-            "mangledName": "$s11FoilShaders0aB8RendererC8setImageyySo10CGImageRefaSgF",
-            "moduleName": "FoilShaders",
-            "declAttributes": [
-              "Final",
-              "Custom"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "setImage",
-            "printedName": "setImage(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {

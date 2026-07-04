@@ -30,6 +30,15 @@ final class PublicAPITests: XCTestCase {
   }
 
   @MainActor
+  func testRendererSetImageAcceptsBareNilLiteral() {
+    let clearImage: (FoilShadersRenderer) -> Void = { renderer in
+      renderer.setImage(nil)
+    }
+
+    _ = clearImage
+  }
+
+  @MainActor
   func testShaderViewAcceptsPublicRendererErrorReportingHooks() {
     let configuration = AnimatedMeshGradient().configuration
     var reportedError: FoilShadersError?

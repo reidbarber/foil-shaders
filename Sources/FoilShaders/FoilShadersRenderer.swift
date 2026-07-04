@@ -342,8 +342,7 @@ import MetalKit
     return imageTexture ?? fallbackImageTexture
   }
 
-  /// Sets or clears the source image used by image-aware shaders.
-  public func setImage(_ image: CGImage?) {
+  private func installImage(_ image: CGImage?) {
     guard let image else {
       imageTexture = nil
       heatmapImageTexture = nil
@@ -373,24 +372,24 @@ import MetalKit
     // Any new image request supersedes an in-flight remote load.
     imageRequestID &+= 1
     guard let shaderImage else {
-      setImage(nil as CGImage?)
+      installImage(nil)
       return
     }
     switch shaderImage.storage {
     case .cgImage(let image, _):
-      setImage(image)
+      installImage(image)
     case .url(let url):
       if url.isRemoteImageURL {
         loadRemoteImage(from: url, requestID: imageRequestID)
       } else {
-        setImage(FoilShadersDefaultImageLoader.loadCGImage(from: url))
+        installImage(FoilShadersDefaultImageLoader.loadCGImage(from: url))
       }
     case .bundledResource(let resource):
       let url = resource.bundle.url(
         forResource: resource.name,
         withExtension: resource.fileExtension
       )
-      setImage(url.flatMap(FoilShadersDefaultImageLoader.loadCGImage(from:)))
+      installImage(url.flatMap(FoilShadersDefaultImageLoader.loadCGImage(from:)))
     }
   }
 
@@ -402,7 +401,7 @@ import MetalKit
         FoilShadersDefaultImageLoader.loadCGImage(from: url)
       }.value
       guard let self, self.imageRequestID == requestID else { return }
-      self.setImage(image)
+      self.installImage(image)
       // A static shader won't redraw on its own, so nudge it.
       if self.isDemandDriven {
         self.mtkView?.setNeedsDisplay(self.mtkView?.bounds ?? .zero)
