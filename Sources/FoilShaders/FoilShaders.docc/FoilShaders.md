@@ -18,6 +18,7 @@ The documentation includes rendered previews from the parity golden suite, pract
 
 - <doc:GettingStarted>
 - <doc:ParameterRanges>
+- <doc:APIEvolution>
 
 ### Shader Pages
 

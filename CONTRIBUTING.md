@@ -30,6 +30,13 @@ swift test --filter FoilShadersTests
 CI checks the `FoilShaders` public API with `swift-api-digester` against the
 committed macOS and iOS baselines in `API/`.
 
+New cases in public case-bearing enums are compatible minor-version additions
+under the package API evolution policy. The baseline check allows digester's
+`EnumElement ... has been added as a new enum case` diagnostics, while still
+failing removals, renames, raw-value changes, associated-value changes, and
+other public API differences. Regenerate the baseline when adding enum cases so
+the committed snapshots continue to describe the current API.
+
 Run the check locally:
 
 ```sh

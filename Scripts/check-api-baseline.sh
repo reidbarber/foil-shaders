@@ -13,8 +13,8 @@ Usage:
   Scripts/check-api-baseline.sh --update
 
 Checks the FoilShaders public API against the committed swift-api-digester
-baseline. Use --update only when an API break is intentional and the baseline
-should move with the change.
+baseline. Added enum cases are allowed by policy. Use --update when an
+intentional API change should move the baseline.
 
 Environment overrides:
   FOIL_SHADERS_API_BASELINE_DIR   Directory containing baseline JSON files.
@@ -103,6 +103,27 @@ normalize_api_dump() {
   mv "$normalized_path" "$path"
 }
 
+has_allowed_api_diagnostics() {
+  local diagnostics_path="$1"
+
+  awk '
+    /^EnumElement .+ has been added as a new enum case$/ { found = 1 }
+    END { exit found ? 0 : 1 }
+  ' "$diagnostics_path"
+}
+
+has_blocking_api_diagnostics() {
+  local diagnostics_path="$1"
+
+  awk '
+    NF == 0 { next }
+    /^\/\*/ { next }
+    /^EnumElement .+ has been added as a new enum case$/ { next }
+    { found = 1 }
+    END { exit found ? 0 : 1 }
+  ' "$diagnostics_path"
+}
+
 check_platform() {
   local platform="$1"
   local sdk_name target_triple baseline_path sdk_path module_dir module_path diagnostics_path
@@ -161,18 +182,23 @@ check_platform() {
 
   cat "$diagnostics_path"
 
-  if [[ "$digester_status" -ne 0 ]]; then
-    rm -f "$diagnostics_path"
-    echo "error: public API baseline check failed for $platform." >&2
-    echo "If this API break is intentional, run Scripts/check-api-baseline.sh --update and commit the baseline." >&2
-    exit "$digester_status"
-  fi
-
-  if awk 'NF && $0 !~ /^\/\*/ { found = 1 } END { exit found ? 0 : 1 }' "$diagnostics_path"; then
+  if has_blocking_api_diagnostics "$diagnostics_path"; then
     rm -f "$diagnostics_path"
     echo "error: public API differs from the committed $platform baseline." >&2
     echo "If this API break is intentional, run Scripts/check-api-baseline.sh --update and commit the baseline." >&2
     exit 1
+  fi
+
+  if [[ "$digester_status" -ne 0 ]]; then
+    rm -f "$diagnostics_path"
+    echo "error: public API baseline check failed for $platform." >&2
+    exit "$digester_status"
+  fi
+
+  if has_allowed_api_diagnostics "$diagnostics_path"; then
+    echo "Public API differs from $baseline_path only by allowed enum case additions."
+    rm -f "$diagnostics_path"
+    return
   fi
 
   rm -f "$diagnostics_path"
