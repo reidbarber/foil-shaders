@@ -510,7 +510,7 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertEqual(configurations.count, 29)
   }
 
-  func testCodeGeneratorUsesAnimatedMeshGradient() {
+  func testCodeGeneratorUsesFlatInitializerArguments() {
     let code = FoilShadersCodeGenerator.swiftUICode(
       componentName: "AnimatedMeshGradient",
       presetReference: "AnimatedMeshGradientPreset.default",
@@ -519,9 +519,67 @@ final class FoilShadersTests: XCTestCase {
       renderOptions: ShaderRenderOptions(),
       layoutSize: CGSize(width: 1280, height: 720)
     )
-    XCTAssertTrue(code.contains("\nAnimatedMeshGradient(\n"))
-    XCTAssertTrue(code.contains("params: AnimatedMeshGradientPreset.default.params"))
-    XCTAssertTrue(code.contains(".frame(width: 1280, height: 720)"))
+    XCTAssertEqual(
+      code,
+      """
+      import FoilShaders
+
+      AnimatedMeshGradient(fit: .none, speed: 0.2)
+        .frame(width: 1280, height: 720)
+      """
+    )
+    XCTAssertFalse(code.contains("params:"))
+    XCTAssertFalse(code.contains("ShaderSizingParams"))
+    XCTAssertFalse(code.contains("ShaderMotionParams"))
+    XCTAssertFalse(code.contains("ShaderRenderOptions"))
+  }
+
+  func testCodeGeneratorEmitsTerseSmokeRingExport() {
+    let code = FoilShadersCodeGenerator.swiftUICode(
+      componentName: "SmokeRing",
+      presetReference: "SmokeRingPreset.default",
+      sizing: ShaderSizingParams(fit: .contain, scale: 0.8),
+      motion: ShaderMotionParams(speed: 0.25, frame: 0),
+      renderOptions: ShaderRenderOptions(),
+      layoutSize: CGSize(width: 1280, height: 720)
+    )
+    XCTAssertEqual(
+      code,
+      """
+      import FoilShaders
+
+      SmokeRing(scale: 0.8, speed: 0.25)
+        .frame(width: 1280, height: 720)
+      """
+    )
+    XCTAssertEqual(code.components(separatedBy: ".frame(width:").count - 1, 1)
+    XCTAssertFalse(code.contains("params:"))
+    XCTAssertFalse(code.contains("renderOptions:"))
+  }
+
+  func testCodeGeneratorUsesCompactStructuredInitializerForNonDefaultPreset() {
+    let code = FoilShadersCodeGenerator.swiftUICode(
+      componentName: "SmokeRing",
+      presetReference: "SmokeRingPreset.cloud",
+      sizing: ShaderSizingParams(fit: .contain, scale: 2.5),
+      motion: ShaderMotionParams(speed: 0.5, frame: 0),
+      renderOptions: ShaderRenderOptions()
+    )
+    XCTAssertEqual(
+      code,
+      """
+      import FoilShaders
+
+      SmokeRing(
+        params: SmokeRingPreset.cloud.params,
+        sizing: ShaderSizingParams(scale: 2.5),
+        motion: ShaderMotionParams(speed: 0.5),
+        renderOptions: ShaderRenderOptions()
+      )
+      """
+    )
+    XCTAssertFalse(code.contains("originX:"))
+    XCTAssertFalse(code.contains("frame:"))
   }
 
   func testCodeGeneratorLeavesPulsingBorderUnqualified() {
@@ -532,9 +590,9 @@ final class FoilShadersTests: XCTestCase {
       motion: ShaderMotionParams(speed: 0.2, frame: 0),
       renderOptions: ShaderRenderOptions()
     )
-    XCTAssertTrue(code.contains("\nPulsingBorder(\n"))
+    XCTAssertTrue(code.contains("\nPulsingBorder("))
     XCTAssertFalse(code.contains("FoilShaders.PulsingBorder"))
-    XCTAssertTrue(code.contains("params: PulsingBorderPreset.default.params"))
+    XCTAssertFalse(code.contains("params: PulsingBorderPreset.default.params"))
     XCTAssertFalse(code.contains(".frame(width:"))
   }
 
