@@ -197,6 +197,22 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertEqual(ShaderImage.cgImage(imageA), .cgImage(imageB))
   }
 
+  func testShaderImageCGImageFactoryCachesFingerprintForSameInstance() throws {
+    let image = try Self.makeTopDarkBottomLightImage(width: 8, height: 8)
+
+    ShaderImage._resetCGImageFingerprintCacheForTesting()
+
+    _ = ShaderImage.cgImage(image)
+    let afterFirstConstruction = ShaderImage._cgImageFingerprintCacheStatsForTesting
+    XCTAssertEqual(afterFirstConstruction.misses, 1)
+    XCTAssertEqual(afterFirstConstruction.hits, 0)
+
+    _ = ShaderImage.cgImage(image)
+    let afterSecondConstruction = ShaderImage._cgImageFingerprintCacheStatsForTesting
+    XCTAssertEqual(afterSecondConstruction.misses, 1)
+    XCTAssertEqual(afterSecondConstruction.hits, 1)
+  }
+
   func testShaderImageCGImageEqualityDetectsDifferentPixels() throws {
     let imageA = try Self.makeTopDarkBottomLightImage(width: 8, height: 8)
     let imageB = try Self.makeTwoToneImage(width: 8, height: 8, topValue: 255, bottomValue: 0)

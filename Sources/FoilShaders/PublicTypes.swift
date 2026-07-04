@@ -331,6 +331,8 @@ public struct ShaderColor: Equatable, Sendable, Codable, ExpressibleByStringLite
 ///
 /// `CGImage` values compare by a deterministic pixel fingerprint when possible,
 /// with a per-value fallback identity only if fingerprinting fails.
+/// Create runtime `CGImage` descriptors once and reuse them, such as from view
+/// state or a model, instead of constructing them inline in a SwiftUI `body`.
 public struct ShaderImage: Equatable, @unchecked Sendable, Codable {
   enum Storage: Equatable {
     case cgImage(CGImage, ImageFingerprint)
@@ -371,20 +373,94 @@ public struct ShaderImage: Equatable, @unchecked Sendable, Codable {
     var fallbackID: UUID?
   }
 
+  private final class ImageFingerprintBox {
+    let fingerprint: ImageFingerprint
+
+    init(_ fingerprint: ImageFingerprint) {
+      self.fingerprint = fingerprint
+    }
+  }
+
+  private final class ImageFingerprintCache: @unchecked Sendable {
+    private let lock = NSLock()
+    private let fingerprints = NSMapTable<CGImage, ImageFingerprintBox>(
+      keyOptions: [.weakMemory, .objectPointerPersonality],
+      valueOptions: .strongMemory
+    )
+    private var hits = 0
+    private var misses = 0
+
+    func fingerprint(for image: CGImage) -> ImageFingerprint {
+      lock.lock()
+      if let cached = fingerprints.object(forKey: image) {
+        hits += 1
+        lock.unlock()
+        return cached.fingerprint
+      }
+      misses += 1
+      lock.unlock()
+
+      let fingerprint =
+        ShaderImage.makeFingerprint(for: image)
+        ?? ImageFingerprint(
+          width: image.width,
+          height: image.height,
+          digest: nil,
+          fallbackID: UUID()
+        )
+
+      lock.lock()
+      if let cached = fingerprints.object(forKey: image) {
+        hits += 1
+        lock.unlock()
+        return cached.fingerprint
+      }
+      fingerprints.setObject(ImageFingerprintBox(fingerprint), forKey: image)
+      lock.unlock()
+      return fingerprint
+    }
+
+    func resetForTesting() {
+      lock.lock()
+      fingerprints.removeAllObjects()
+      hits = 0
+      misses = 0
+      lock.unlock()
+    }
+
+    var statsForTesting: (hits: Int, misses: Int) {
+      lock.lock()
+      let stats = (hits: hits, misses: misses)
+      lock.unlock()
+      return stats
+    }
+  }
+
+  private static let imageFingerprintCache = ImageFingerprintCache()
+
   let storage: Storage
 
+  /// Creates a runtime image descriptor from a `CGImage`.
+  ///
+  /// The first descriptor for a `CGImage` instance computes a pixel fingerprint
+  /// synchronously. Subsequent descriptors for the same `CGImage` instance reuse
+  /// a cached fingerprint, but callers should still store and reuse the returned
+  /// `ShaderImage` when possible.
   public static func cgImage(_ image: CGImage) -> ShaderImage {
     ShaderImage(
       storage: .cgImage(
         image,
-        Self.makeFingerprint(for: image)
-          ?? ImageFingerprint(
-            width: image.width,
-            height: image.height,
-            digest: nil,
-            fallbackID: UUID())
+        imageFingerprintCache.fingerprint(for: image)
       )
     )
+  }
+
+  static func _resetCGImageFingerprintCacheForTesting() {
+    imageFingerprintCache.resetForTesting()
+  }
+
+  static var _cgImageFingerprintCacheStatsForTesting: (hits: Int, misses: Int) {
+    imageFingerprintCache.statsForTesting
   }
 
   public static func url(_ url: URL) -> ShaderImage {

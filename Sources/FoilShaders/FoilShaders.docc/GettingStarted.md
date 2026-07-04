@@ -79,6 +79,15 @@ struct BrandedDithering: View {
 }
 ```
 
+## Images
+
+Shaders that sample image input accept ``ShaderImage`` descriptors. When
+bridging a runtime `CGImage`, create the descriptor once and store it in view
+state or a model instead of constructing `ShaderImage.cgImage(photo)` inline in
+a SwiftUI `body`. Reusing the descriptor avoids repeated synchronous setup work;
+repeated descriptors for the same `CGImage` instance also reuse a cached pixel
+fingerprint after the first construction.
+
 ## Motion And Energy
 
 Animated SwiftUI components respect the system Reduce Motion setting by default
