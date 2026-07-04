@@ -82,13 +82,11 @@ public struct FoilShadersShaderView: SwiftUI.View {
     }
 
     @MainActor fileprivate func makeView(context: Context) -> MTKView {
-      let mtkView = MTKView(frame: .zero, device: MTLCreateSystemDefaultDevice())
-      guard let device = mtkView.device else {
-        handleFailure(.deviceUnavailable, in: mtkView, context: context)
-        return mtkView
-      }
+      let mtkView = MTKView(frame: .zero, device: nil)
       do {
-        let renderer = try FoilShadersRenderer(device: device)
+        let metalContext = try FoilShadersMetalContext.sharedDefault()
+        mtkView.device = metalContext.device
+        let renderer = FoilShadersRenderer(context: metalContext)
         let shaderKind = configuration.kind
         try renderer.configure(shaderKind)
         renderer.attach(to: mtkView)

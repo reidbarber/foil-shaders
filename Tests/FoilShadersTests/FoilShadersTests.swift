@@ -317,6 +317,31 @@ final class FoilShadersTests: XCTestCase {
   }
 
   @MainActor
+  func testDefaultMetalContextSharesReusableResources() throws {
+    guard MTLCreateSystemDefaultDevice() != nil else {
+      throw XCTSkip("Metal is not available")
+    }
+
+    let first = try FoilShadersMetalContext.sharedDefault()
+    let second = try FoilShadersMetalContext.sharedDefault()
+    XCTAssertTrue(first === second)
+    XCTAssertEqual(
+      ObjectIdentifier(first.device as AnyObject),
+      ObjectIdentifier(second.device as AnyObject)
+    )
+    XCTAssertEqual(
+      ObjectIdentifier(first.commandQueue as AnyObject),
+      ObjectIdentifier(second.commandQueue as AnyObject)
+    )
+    let firstNoiseTexture = try XCTUnwrap(first.noiseTexture)
+    let secondNoiseTexture = try XCTUnwrap(second.noiseTexture)
+    XCTAssertEqual(
+      ObjectIdentifier(firstNoiseTexture as AnyObject),
+      ObjectIdentifier(secondNoiseTexture as AnyObject)
+    )
+  }
+
+  @MainActor
   func testHeatmapImageRenderingPreservesSourceOrientation() throws {
     guard let device = MTLCreateSystemDefaultDevice() else {
       throw XCTSkip("Metal is not available")
