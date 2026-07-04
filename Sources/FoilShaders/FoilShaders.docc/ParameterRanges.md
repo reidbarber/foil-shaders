@@ -18,7 +18,6 @@ The ranges below are mined from the Paper-derived preset metadata used by the pa
 | `frame` | Milliseconds | Fixed timeline position. Parity previews use `0` and `5000`. |
 | `minPixelRatio` | Scale multiplier; default `2` | Minimum backing-store scale. |
 | `maxPixelCount` | Pixel count; default `1920 * 1080 * 4` | Caps drawable pixels before reducing scale. |
-| `width`, `height` | Points or pixels depending on context; optional | Fixed render dimensions. |
 ## Mesh Gradient
 
 Animated mesh gradient with flowing color fields and optional grain.
@@ -490,4 +489,3 @@ Animated gem smoke shape with inner and outer distortion, glow, offset, and colo
 | `angle` | `0` | Angle in degrees. |
 | `size` | `0.8...1` | Shader-specific size control; see the range for practical values. |
 | `shape` | ``GemSmokeShape``: `.none`, `.circle`, `.daisy`, `.diamond`, `.metaballs`. | Shape selector. |
-

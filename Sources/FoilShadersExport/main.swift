@@ -228,8 +228,6 @@ do {
   let renderer = try FoilShadersRenderer(device: device)
   var shaderConfiguration = try configuration(
     for: options.shader, presetName: options.preset, image: fixture)
-  shaderConfiguration.renderOptions = ShaderRenderOptions(
-    width: CGFloat(options.width), height: CGFloat(options.height))
   shaderConfiguration.motion.speed = 0
   shaderConfiguration.motion.frame = options.frame
 

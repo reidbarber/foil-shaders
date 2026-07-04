@@ -111,7 +111,7 @@ final class FoilShadersTests: XCTestCase {
       parameters: .animatedMeshGradient(AnimatedMeshGradientPreset.default.params),
       sizing: AnimatedMeshGradientPreset.default.sizing,
       motion: ShaderMotionParams(speed: 0.25, frame: 12),
-      renderOptions: ShaderRenderOptions(width: 320, height: 180),
+      renderOptions: ShaderRenderOptions(minPixelRatio: 1.5, maxPixelCount: 320 * 180),
       image: .url(URL(fileURLWithPath: "/tmp/source.png"))
     )
 
@@ -448,10 +448,12 @@ final class FoilShadersTests: XCTestCase {
       presetReference: "AnimatedMeshGradientPreset.default",
       sizing: .defaultPatternSizing,
       motion: ShaderMotionParams(speed: 0.2, frame: 0),
-      renderOptions: ShaderRenderOptions(width: 1280, height: 720)
+      renderOptions: ShaderRenderOptions(),
+      layoutSize: CGSize(width: 1280, height: 720)
     )
     XCTAssertTrue(code.contains("\nAnimatedMeshGradient(\n"))
     XCTAssertTrue(code.contains("params: AnimatedMeshGradientPreset.default.params"))
+    XCTAssertTrue(code.contains(".frame(width: 1280, height: 720)"))
   }
 
   func testCodeGeneratorLeavesPulsingBorderUnqualified() {
@@ -460,11 +462,12 @@ final class FoilShadersTests: XCTestCase {
       presetReference: "PulsingBorderPreset.default",
       sizing: .defaultPatternSizing,
       motion: ShaderMotionParams(speed: 0.2, frame: 0),
-      renderOptions: ShaderRenderOptions(width: 1280, height: 720)
+      renderOptions: ShaderRenderOptions()
     )
     XCTAssertTrue(code.contains("\nPulsingBorder(\n"))
     XCTAssertFalse(code.contains("FoilShaders.PulsingBorder"))
     XCTAssertTrue(code.contains("params: PulsingBorderPreset.default.params"))
+    XCTAssertFalse(code.contains(".frame(width:"))
   }
 
   @MainActor

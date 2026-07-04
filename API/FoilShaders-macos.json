@@ -110,7 +110,7 @@
           {
             "kind": "Function",
             "name": "swiftUICode",
-            "printedName": "swiftUICode(componentName:presetReference:sizing:motion:renderOptions:)",
+            "printedName": "swiftUICode(componentName:presetReference:sizing:motion:renderOptions:layoutSize:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -147,11 +147,26 @@
                 "name": "ShaderRenderOptions",
                 "printedName": "FoilShaders.ShaderRenderOptions",
                 "usr": "s:11FoilShaders19ShaderRenderOptionsV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "CoreFoundation.CGSize?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CGSize",
+                    "printedName": "CoreFoundation.CGSize",
+                    "usr": "c:@S@CGSize"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
               }
             ],
             "declKind": "Func",
-            "usr": "s:11FoilShaders0aB13CodeGeneratorO11swiftUICode13componentName15presetReference6sizing6motion13renderOptionsS2S_SSAA18ShaderSizingParamsVAA0o6MotionQ0VAA0o6RenderN0VtFZ",
-            "mangledName": "$s11FoilShaders0aB13CodeGeneratorO11swiftUICode13componentName15presetReference6sizing6motion13renderOptionsS2S_SSAA18ShaderSizingParamsVAA0o6MotionQ0VAA0o6RenderN0VtFZ",
+            "usr": "s:11FoilShaders0aB13CodeGeneratorO11swiftUICode13componentName15presetReference6sizing6motion13renderOptions10layoutSizeS2S_SSAA18ShaderSizingParamsVAA0q6MotionS0VAA0q6RenderN0VSo6CGSizeVSgtFZ",
+            "mangledName": "$s11FoilShaders0aB13CodeGeneratorO11swiftUICode13componentName15presetReference6sizing6motion13renderOptions10layoutSizeS2S_SSAA18ShaderSizingParamsVAA0q6MotionS0VAA0q6RenderN0VSo6CGSizeVSgtFZ",
             "moduleName": "FoilShaders",
             "static": true,
             "declAttributes": [
@@ -557,7 +572,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colors:distortion:swirl:grainMixer:grainOverlay:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colors:distortion:swirl:grainMixer:grainOverlay:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -702,36 +717,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -746,8 +731,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders20AnimatedMeshGradientV6colors10distortion5swirl10grainMixer0I7Overlay3fit5scale8rotation7originX0O1Y7offsetX0P1Y10worldWidth0Q6Height5speed5frame13minPixelRatio03maxW5Count5width6height5imageACSayAA11ShaderColorVG_S4fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA5_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders20AnimatedMeshGradientV6colors10distortion5swirl10grainMixer0I7Overlay3fit5scale8rotation7originX0O1Y7offsetX0P1Y10worldWidth0Q6Height5speed5frame13minPixelRatio03maxW5Count5width6height5imageACSayAA11ShaderColorVG_S4fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA5_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders20AnimatedMeshGradientV6colors10distortion5swirl10grainMixer0I7Overlay3fit5scale8rotation7originX0O1Y7offsetX0P1Y10worldWidth0Q6Height5speed5frame13minPixelRatio03maxW5Count5imageACSayAA11ShaderColorVG_S4fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders20AnimatedMeshGradientV6colors10distortion5swirl10grainMixer0I7Overlay3fit5scale8rotation7originX0O1Y7offsetX0P1Y10worldWidth0Q6Height5speed5frame13minPixelRatio03maxW5Count5imageACSayAA11ShaderColorVG_S4fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -1184,7 +1169,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colors:noiseScale:thickness:radius:innerShape:noiseIterations:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colors:noiseScale:thickness:radius:innerShape:noiseIterations:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -1343,36 +1328,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -1387,8 +1342,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders9SmokeRingV9colorBack6colors10noiseScale9thickness6radius10innerShape0H10Iterations3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5width6height5imageAcA11ShaderColorV_SayA0_GS5fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA7_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders9SmokeRingV9colorBack6colors10noiseScale9thickness6radius10innerShape0H10Iterations3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5width6height5imageAcA11ShaderColorV_SayA0_GS5fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA7_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders9SmokeRingV9colorBack6colors10noiseScale9thickness6radius10innerShape0H10Iterations3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5imageAcA11ShaderColorV_SayAZGS5fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders9SmokeRingV9colorBack6colors10noiseScale9thickness6radius10innerShape0H10Iterations3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5imageAcA11ShaderColorV_SayAZGS5fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -1825,7 +1780,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorFront:colorMid:colorBack:brightness:contrast:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorFront:colorMid:colorBack:brightness:contrast:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -1962,36 +1917,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -2006,8 +1931,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders10NeuroNoiseV10colorFront0E3Mid0E4Back10brightness8contrast3fit5scale8rotation7originX0N1Y7offsetX0O1Y10worldWidth0P6Height5speed5frame13minPixelRatio03maxV5Count5width6height5imageAcA11ShaderColorV_A2ZS2fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA4_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders10NeuroNoiseV10colorFront0E3Mid0E4Back10brightness8contrast3fit5scale8rotation7originX0N1Y7offsetX0O1Y10worldWidth0P6Height5speed5frame13minPixelRatio03maxV5Count5width6height5imageAcA11ShaderColorV_A2ZS2fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA4_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders10NeuroNoiseV10colorFront0E3Mid0E4Back10brightness8contrast3fit5scale8rotation7originX0N1Y7offsetX0O1Y10worldWidth0P6Height5speed5frame13minPixelRatio03maxV5Count5imageAcA11ShaderColorV_A2XS2fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders10NeuroNoiseV10colorFront0E3Mid0E4Back10brightness8contrast3fit5scale8rotation7originX0N1Y7offsetX0O1Y10worldWidth0P6Height5speed5frame13minPixelRatio03maxV5Count5imageAcA11ShaderColorV_A2XS2fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -2444,7 +2369,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colors:stepsPerColor:size:sizeRange:spreading:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colors:stepsPerColor:size:sizeRange:spreading:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -2596,36 +2521,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -2640,8 +2535,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders8DotOrbitV9colorBack6colors13stepsPerColor4size0K5Range9spreading3fit5scale8rotation7originX0Q1Y7offsetX0R1Y10worldWidth0S6Height5speed5frame13minPixelRatio03maxY5Count5width6height5imageAcA06ShaderJ0V_SayA_GS4fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA6_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders8DotOrbitV9colorBack6colors13stepsPerColor4size0K5Range9spreading3fit5scale8rotation7originX0Q1Y7offsetX0R1Y10worldWidth0S6Height5speed5frame13minPixelRatio03maxY5Count5width6height5imageAcA06ShaderJ0V_SayA_GS4fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA6_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders8DotOrbitV9colorBack6colors13stepsPerColor4size0K5Range9spreading3fit5scale8rotation7originX0Q1Y7offsetX0R1Y10worldWidth0S6Height5speed5frame13minPixelRatio03maxY5Count5imageAcA06ShaderJ0V_SayAYGS4fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders8DotOrbitV9colorBack6colors13stepsPerColor4size0K5Range9spreading3fit5scale8rotation7originX0Q1Y7offsetX0R1Y10worldWidth0S6Height5speed5frame13minPixelRatio03maxY5Count5imageAcA06ShaderJ0V_SayAYGS4fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -3078,7 +2973,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colorFill:colorStroke:dotSize:gapX:gapY:strokeWidth:sizeRange:opacityRange:shape:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colorFill:colorStroke:dotSize:gapX:gapY:strokeWidth:sizeRange:opacityRange:shape:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -3250,36 +3145,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -3294,8 +3159,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders7DotGridV9colorBack0E4Fill0E6Stroke7dotSize4gapX0K1Y11strokeWidth9sizeRange07opacityO05shape3fit5scale8rotation7originX0U1Y7offsetX0V1Y05worldM00W6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A3_A3_S6fAA0cD5ShapeOAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA11_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders7DotGridV9colorBack0E4Fill0E6Stroke7dotSize4gapX0K1Y11strokeWidth9sizeRange07opacityO05shape3fit5scale8rotation7originX0U1Y7offsetX0V1Y05worldM00W6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A3_A3_S6fAA0cD5ShapeOAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA11_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders7DotGridV9colorBack0E4Fill0E6Stroke7dotSize4gapX0K1Y11strokeWidth9sizeRange07opacityO05shape3fit5scale8rotation7originX0U1Y7offsetX0V1Y05worldM00W6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A1_A1_S6fAA0cD5ShapeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders7DotGridV9colorBack0E4Fill0E6Stroke7dotSize4gapX0K1Y11strokeWidth9sizeRange07opacityO05shape3fit5scale8rotation7originX0U1Y7offsetX0V1Y05worldM00W6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A1_A1_S6fAA0cD5ShapeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -3732,7 +3597,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colors:stepsPerColor:softness:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colors:stepsPerColor:softness:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -3863,36 +3728,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -3907,8 +3742,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders12SimplexNoiseV6colors13stepsPerColor8softness3fit5scale8rotation7originX0M1Y7offsetX0N1Y10worldWidth0O6Height5speed5frame13minPixelRatio03maxU5Count5width6height5imageACSayAA06ShaderH0VG_S2fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA3_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders12SimplexNoiseV6colors13stepsPerColor8softness3fit5scale8rotation7originX0M1Y7offsetX0N1Y10worldWidth0O6Height5speed5frame13minPixelRatio03maxU5Count5width6height5imageACSayAA06ShaderH0VG_S2fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA3_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders12SimplexNoiseV6colors13stepsPerColor8softness3fit5scale8rotation7originX0M1Y7offsetX0N1Y10worldWidth0O6Height5speed5frame13minPixelRatio03maxU5Count5imageACSayAA06ShaderH0VG_S2fAA0Z3FitOS11fSiAA0Z5ImageVSgtcfc",
+            "mangledName": "$s11FoilShaders12SimplexNoiseV6colors13stepsPerColor8softness3fit5scale8rotation7originX0M1Y7offsetX0N1Y10worldWidth0O6Height5speed5frame13minPixelRatio03maxU5Count5imageACSayAA06ShaderH0VG_S2fAA0Z3FitOS11fSiAA0Z5ImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -4345,7 +4180,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colors:count:size:sizeRange:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colors:count:size:sizeRange:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -4490,36 +4325,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -4534,8 +4339,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders9MetaballsV9colorBack6colors5count4size0H5Range3fit5scale8rotation7originX0M1Y7offsetX0N1Y10worldWidth0O6Height5speed5frame13minPixelRatio03maxU5Count5width6height5imageAcA11ShaderColorV_SayAZGS3fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA5_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders9MetaballsV9colorBack6colors5count4size0H5Range3fit5scale8rotation7originX0M1Y7offsetX0N1Y10worldWidth0O6Height5speed5frame13minPixelRatio03maxU5Count5width6height5imageAcA11ShaderColorV_SayAZGS3fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA5_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders9MetaballsV9colorBack6colors5count4size0H5Range3fit5scale8rotation7originX0M1Y7offsetX0N1Y10worldWidth0O6Height5speed5frame13minPixelRatio03maxU5Count5imageAcA11ShaderColorV_SayAXGS3fAA0Z3FitOS11fSiAA0Z5ImageVSgtcfc",
+            "mangledName": "$s11FoilShaders9MetaballsV9colorBack6colors5count4size0H5Range3fit5scale8rotation7originX0M1Y7offsetX0N1Y10worldWidth0O6Height5speed5frame13minPixelRatio03maxU5Count5imageAcA11ShaderColorV_SayAXGS3fAA0Z3FitOS11fSiAA0Z5ImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -4972,7 +4777,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorFront:colorBack:shape:frequency:amplitude:spacing:proportion:softness:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorFront:colorBack:shape:frequency:amplitude:spacing:proportion:softness:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -5130,36 +4935,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -5174,8 +4949,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders5WavesV10colorFront0D4Back5shape9frequency9amplitude7spacing10proportion8softness3fit5scale8rotation7originX0P1Y7offsetX0Q1Y10worldWidth0R6Height5speed5frame13minPixelRatio03maxX5Count5width6height5imageAcA11ShaderColorV_A1_S6fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA7_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders5WavesV10colorFront0D4Back5shape9frequency9amplitude7spacing10proportion8softness3fit5scale8rotation7originX0P1Y7offsetX0Q1Y10worldWidth0R6Height5speed5frame13minPixelRatio03maxX5Count5width6height5imageAcA11ShaderColorV_A1_S6fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA7_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders5WavesV10colorFront0D4Back5shape9frequency9amplitude7spacing10proportion8softness3fit5scale8rotation7originX0P1Y7offsetX0Q1Y10worldWidth0R6Height5speed5frame13minPixelRatio03maxX5Count5imageAcA11ShaderColorV_A_S6fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders5WavesV10colorFront0D4Back5shape9frequency9amplitude7spacing10proportion8softness3fit5scale8rotation7originX0P1Y7offsetX0Q1Y10worldWidth0R6Height5speed5frame13minPixelRatio03maxX5Count5imageAcA11ShaderColorV_A_S6fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -5612,7 +5387,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorFront:colorBack:proportion:softness:octaveCount:persistence:lacunarity:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorFront:colorBack:proportion:softness:octaveCount:persistence:lacunarity:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -5763,36 +5538,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -5807,8 +5552,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders11PerlinNoiseV10colorFront0E4Back10proportion8softness11octaveCount11persistence10lacunarity3fit5scale8rotation7originX0Q1Y7offsetX0R1Y10worldWidth0S6Height5speed5frame13minPixelRatio03maxyK05width6height5imageAcA11ShaderColorV_A0_S5fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA6_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders11PerlinNoiseV10colorFront0E4Back10proportion8softness11octaveCount11persistence10lacunarity3fit5scale8rotation7originX0Q1Y7offsetX0R1Y10worldWidth0S6Height5speed5frame13minPixelRatio03maxyK05width6height5imageAcA11ShaderColorV_A0_S5fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA6_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders11PerlinNoiseV10colorFront0E4Back10proportion8softness11octaveCount11persistence10lacunarity3fit5scale8rotation7originX0Q1Y7offsetX0R1Y10worldWidth0S6Height5speed5frame13minPixelRatio03maxyK05imageAcA11ShaderColorV_AZS5fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders11PerlinNoiseV10colorFront0E4Back10proportion8softness11octaveCount11persistence10lacunarity3fit5scale8rotation7originX0Q1Y7offsetX0R1Y10worldWidth0S6Height5speed5frame13minPixelRatio03maxyK05imageAcA11ShaderColorV_AZS5fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -6245,7 +5990,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colors:stepsPerColor:colorGap:colorGlow:distortion:gap:glow:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colors:stepsPerColor:colorGap:colorGlow:distortion:gap:glow:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -6404,36 +6149,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -6448,8 +6163,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders7VoronoiV6colors13stepsPerColor8colorGap0H4Glow10distortion3gap4glow3fit5scale8rotation7originX0Q1Y7offsetX0R1Y10worldWidth0S6Height5speed5frame13minPixelRatio03maxY5Count5width6height5imageACSayAA06ShaderG0VG_SfA0_A0_S3fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA7_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders7VoronoiV6colors13stepsPerColor8colorGap0H4Glow10distortion3gap4glow3fit5scale8rotation7originX0Q1Y7offsetX0R1Y10worldWidth0S6Height5speed5frame13minPixelRatio03maxY5Count5width6height5imageACSayAA06ShaderG0VG_SfA0_A0_S3fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA7_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders7VoronoiV6colors13stepsPerColor8colorGap0H4Glow10distortion3gap4glow3fit5scale8rotation7originX0Q1Y7offsetX0R1Y10worldWidth0S6Height5speed5frame13minPixelRatio03maxY5Count5imageACSayAA06ShaderG0VG_SfA2ZS3fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders7VoronoiV6colors13stepsPerColor8colorGap0H4Glow10distortion3gap4glow3fit5scale8rotation7originX0Q1Y7offsetX0R1Y10worldWidth0S6Height5speed5frame13minPixelRatio03maxY5Count5imageACSayAA06ShaderG0VG_SfA2ZS3fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -6886,7 +6601,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colors:proportion:softness:shape:shapeScale:distortion:swirl:swirlIterations:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colors:proportion:softness:shape:shapeScale:distortion:swirl:swirlIterations:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -7052,36 +6767,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -7096,8 +6781,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders4WarpV6colors10proportion8softness5shape0G5Scale10distortion5swirl0J10Iterations3fit5scale8rotation7originX0O1Y7offsetX0P1Y10worldWidth0Q6Height5speed5frame13minPixelRatio03maxW5Count5width6height5imageACSayAA11ShaderColorVG_S2fAA0C7PatternOS4fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA10_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders4WarpV6colors10proportion8softness5shape0G5Scale10distortion5swirl0J10Iterations3fit5scale8rotation7originX0O1Y7offsetX0P1Y10worldWidth0Q6Height5speed5frame13minPixelRatio03maxW5Count5width6height5imageACSayAA11ShaderColorVG_S2fAA0C7PatternOS4fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA10_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders4WarpV6colors10proportion8softness5shape0G5Scale10distortion5swirl0J10Iterations3fit5scale8rotation7originX0O1Y7offsetX0P1Y10worldWidth0Q6Height5speed5frame13minPixelRatio03maxW5Count5imageACSayAA11ShaderColorVG_S2fAA0C7PatternOS4fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders4WarpV6colors10proportion8softness5shape0G5Scale10distortion5swirl0J10Iterations3fit5scale8rotation7originX0O1Y7offsetX0P1Y10worldWidth0Q6Height5speed5frame13minPixelRatio03maxW5Count5imageACSayAA11ShaderColorVG_S2fAA0C7PatternOS4fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -7534,7 +7219,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colorBloom:colors:density:spotty:midSize:midIntensity:intensity:bloom:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colorBloom:colors:density:spotty:midSize:midIntensity:intensity:bloom:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -7707,36 +7392,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -7751,8 +7406,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders7GodRaysV9colorBack0E5Bloom6colors7density6spotty7midSize0K9Intensity9intensity5bloom3fit5scale8rotation7originX0S1Y7offsetX0T1Y10worldWidth0U6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A2_SayA2_GS6fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA9_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders7GodRaysV9colorBack0E5Bloom6colors7density6spotty7midSize0K9Intensity9intensity5bloom3fit5scale8rotation7originX0S1Y7offsetX0T1Y10worldWidth0U6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A2_SayA2_GS6fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA9_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders7GodRaysV9colorBack0E5Bloom6colors7density6spotty7midSize0K9Intensity9intensity5bloom3fit5scale8rotation7originX0S1Y7offsetX0T1Y10worldWidth0U6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A0_SayA0_GS6fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders7GodRaysV9colorBack0E5Bloom6colors7density6spotty7midSize0K9Intensity9intensity5bloom3fit5scale8rotation7originX0S1Y7offsetX0T1Y10worldWidth0U6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A0_SayA0_GS6fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -8189,7 +7844,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colorFront:density:distortion:strokeWidth:strokeTaper:strokeCap:noise:noiseFrequency:softness:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colorFront:density:distortion:strokeWidth:strokeTaper:strokeCap:noise:noiseFrequency:softness:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -8361,36 +8016,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -8405,8 +8030,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders6SpiralV9colorBack0D5Front7density10distortion11strokeWidth0I5Taper0I3Cap5noise0M9Frequency8softness3fit5scale8rotation7originX0S1Y7offsetX0T1Y05worldJ00U6Height5speed5frame13minPixelRatio03maxZ5Count5width6height5imageAcA11ShaderColorV_A3_S8fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA9_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders6SpiralV9colorBack0D5Front7density10distortion11strokeWidth0I5Taper0I3Cap5noise0M9Frequency8softness3fit5scale8rotation7originX0S1Y7offsetX0T1Y05worldJ00U6Height5speed5frame13minPixelRatio03maxZ5Count5width6height5imageAcA11ShaderColorV_A3_S8fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA9_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders6SpiralV9colorBack0D5Front7density10distortion11strokeWidth0I5Taper0I3Cap5noise0M9Frequency8softness3fit5scale8rotation7originX0S1Y7offsetX0T1Y05worldJ00U6Height5speed5frame13minPixelRatio03maxZ5Count5imageAcA11ShaderColorV_A1_S8fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders6SpiralV9colorBack0D5Front7density10distortion11strokeWidth0I5Taper0I3Cap5noise0M9Frequency8softness3fit5scale8rotation7originX0S1Y7offsetX0T1Y05worldJ00U6Height5speed5frame13minPixelRatio03maxZ5Count5imageAcA11ShaderColorV_A1_S8fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -8843,7 +8468,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colors:bandCount:twist:center:proportion:softness:noise:noiseFrequency:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colors:bandCount:twist:center:proportion:softness:noise:noiseFrequency:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -9016,36 +8641,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -9060,8 +8655,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders5SwirlV9colorBack6colors9bandCount5twist6center10proportion8softness5noise0M9Frequency3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxzH05width6height5imageAcA11ShaderColorV_SayA2_GS7fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA9_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders5SwirlV9colorBack6colors9bandCount5twist6center10proportion8softness5noise0M9Frequency3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxzH05width6height5imageAcA11ShaderColorV_SayA2_GS7fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA9_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders5SwirlV9colorBack6colors9bandCount5twist6center10proportion8softness5noise0M9Frequency3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxzH05imageAcA11ShaderColorV_SayA0_GS7fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders5SwirlV9colorBack6colors9bandCount5twist6center10proportion8softness5noise0M9Frequency3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxzH05imageAcA11ShaderColorV_SayA0_GS7fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -9498,7 +9093,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colorFront:shape:type:size:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colorFront:shape:type:size:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -9635,36 +9230,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -9679,8 +9244,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders9DitheringV9colorBack0D5Front5shape4type4size3fit5scale8rotation7originX0M1Y7offsetX0N1Y10worldWidth0O6Height5speed5frame13minPixelRatio03maxU5Count5width6height5imageAcA11ShaderColorV_AzA0C5ShapeOAA0C4TypeOSfAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA8_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders9DitheringV9colorBack0D5Front5shape4type4size3fit5scale8rotation7originX0M1Y7offsetX0N1Y10worldWidth0O6Height5speed5frame13minPixelRatio03maxU5Count5width6height5imageAcA11ShaderColorV_AzA0C5ShapeOAA0C4TypeOSfAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA8_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders9DitheringV9colorBack0D5Front5shape4type4size3fit5scale8rotation7originX0M1Y7offsetX0N1Y10worldWidth0O6Height5speed5frame13minPixelRatio03maxU5Count5imageAcA11ShaderColorV_AxA0C5ShapeOAA0C4TypeOSfAA0Z3FitOS11fSiAA0Z5ImageVSgtcfc",
+            "mangledName": "$s11FoilShaders9DitheringV9colorBack0D5Front5shape4type4size3fit5scale8rotation7originX0M1Y7offsetX0N1Y10worldWidth0O6Height5speed5frame13minPixelRatio03maxU5Count5imageAcA11ShaderColorV_AxA0C5ShapeOAA0C4TypeOSfAA0Z3FitOS11fSiAA0Z5ImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -10117,7 +9682,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colors:softness:intensity:noise:shape:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colors:softness:intensity:noise:shape:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -10269,36 +9834,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -10313,8 +9848,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders13GrainGradientV9colorBack6colors8softness9intensity5noise5shape3fit5scale8rotation7originX0O1Y7offsetX0P1Y10worldWidth0Q6Height5speed5frame13minPixelRatio03maxW5Count5width6height5imageAcA11ShaderColorV_SayA_GS3fAA0cD5ShapeOAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA8_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders13GrainGradientV9colorBack6colors8softness9intensity5noise5shape3fit5scale8rotation7originX0O1Y7offsetX0P1Y10worldWidth0Q6Height5speed5frame13minPixelRatio03maxW5Count5width6height5imageAcA11ShaderColorV_SayA_GS3fAA0cD5ShapeOAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA8_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders13GrainGradientV9colorBack6colors8softness9intensity5noise5shape3fit5scale8rotation7originX0O1Y7offsetX0P1Y10worldWidth0Q6Height5speed5frame13minPixelRatio03maxW5Count5imageAcA11ShaderColorV_SayAYGS3fAA0cD5ShapeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders13GrainGradientV9colorBack6colors8softness9intensity5noise5shape3fit5scale8rotation7originX0O1Y7offsetX0P1Y10worldWidth0Q6Height5speed5frame13minPixelRatio03maxW5Count5imageAcA11ShaderColorV_SayAYGS3fAA0cD5ShapeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -10751,7 +10286,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colors:roundness:thickness:marginLeft:marginRight:marginTop:marginBottom:aspectRatio:softness:intensity:bloom:spots:spotSize:pulse:smoke:smokeSize:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colors:roundness:thickness:marginLeft:marginRight:marginTop:marginBottom:aspectRatio:softness:intensity:bloom:spots:spotSize:pulse:smoke:smokeSize:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -10980,36 +10515,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -11024,8 +10529,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders13PulsingBorderV9colorBack6colors9roundness9thickness10marginLeft0J5Right0J3Top0J6Bottom11aspectRatio8softness9intensity5bloom5spots8spotSize5pulse5smoke0xV03fit5scale8rotation7originX7originY7offsetX7offsetY10worldWidth11worldHeight5speed5frame08minPixelP013maxPixelCount5width6height5imageAcA11ShaderColorV_SayA10_GS6fAA0cd6AspectP0OS8fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA19_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders13PulsingBorderV9colorBack6colors9roundness9thickness10marginLeft0J5Right0J3Top0J6Bottom11aspectRatio8softness9intensity5bloom5spots8spotSize5pulse5smoke0xV03fit5scale8rotation7originX7originY7offsetX7offsetY10worldWidth11worldHeight5speed5frame08minPixelP013maxPixelCount5width6height5imageAcA11ShaderColorV_SayA10_GS6fAA0cd6AspectP0OS8fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA19_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders13PulsingBorderV9colorBack6colors9roundness9thickness10marginLeft0J5Right0J3Top0J6Bottom11aspectRatio8softness9intensity5bloom5spots8spotSize5pulse5smoke0xV03fit5scale8rotation7originX7originY7offsetX7offsetY10worldWidth11worldHeight5speed5frame08minPixelP013maxPixelCount5imageAcA11ShaderColorV_SayA8_GS6fAA0cd6AspectP0OS8fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders13PulsingBorderV9colorBack6colors9roundness9thickness10marginLeft0J5Right0J3Top0J6Bottom11aspectRatio8softness9intensity5bloom5spots8spotSize5pulse5smoke0xV03fit5scale8rotation7originX7originY7offsetX7offsetY10worldWidth11worldHeight5speed5frame08minPixelP013maxPixelCount5imageAcA11ShaderColorV_SayA8_GS6fAA0cd6AspectP0OS8fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -11462,7 +10967,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colors:colorBack:density:angle1:angle2:length:edges:blur:fadeIn:fadeOut:gradient:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colors:colorBack:density:angle1:angle2:length:edges:blur:fadeIn:fadeOut:gradient:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -11649,36 +11154,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -11693,8 +11168,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders11ColorPanelsV6colors9colorBack7density6angle16angle26length5edges4blur6fadeIn0N3Out8gradient3fit5scale8rotation7originX0U1Y7offsetX0V1Y10worldWidth0W6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageACSayAA06ShaderC0VG_A4_S9fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA11_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders11ColorPanelsV6colors9colorBack7density6angle16angle26length5edges4blur6fadeIn0N3Out8gradient3fit5scale8rotation7originX0U1Y7offsetX0V1Y10worldWidth0W6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageACSayAA06ShaderC0VG_A4_S9fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA11_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders11ColorPanelsV6colors9colorBack7density6angle16angle26length5edges4blur6fadeIn0N3Out8gradient3fit5scale8rotation7originX0U1Y7offsetX0V1Y10worldWidth0W6Height5speed5frame13minPixelRatio13maxPixelCount5imageACSayAA06ShaderC0VG_A2_S9fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders11ColorPanelsV6colors9colorBack7density6angle16angle26length5edges4blur6fadeIn0N3Out8gradient3fit5scale8rotation7originX0U1Y7offsetX0V1Y10worldWidth0W6Height5speed5frame13minPixelRatio13maxPixelCount5imageACSayAA06ShaderC0VG_A2_S9fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -12131,7 +11606,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colors:positions:waveX:waveXShift:waveY:waveYShift:mixing:grainMixer:grainOverlay:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colors:positions:waveX:waveXShift:waveY:waveYShift:mixing:grainMixer:grainOverlay:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -12304,36 +11779,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -12348,8 +11793,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders18StaticMeshGradientV6colors9positions5waveX0H6XShift0H1Y0H6YShift6mixing10grainMixer0L7Overlay3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5width6height5imageACSayAA11ShaderColorVG_S8fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA9_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders18StaticMeshGradientV6colors9positions5waveX0H6XShift0H1Y0H6YShift6mixing10grainMixer0L7Overlay3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5width6height5imageACSayAA11ShaderColorVG_S8fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA9_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders18StaticMeshGradientV6colors9positions5waveX0H6XShift0H1Y0H6YShift6mixing10grainMixer0L7Overlay3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5imageACSayAA11ShaderColorVG_S8fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders18StaticMeshGradientV6colors9positions5waveX0H6XShift0H1Y0H6YShift6mixing10grainMixer0L7Overlay3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5imageACSayAA11ShaderColorVG_S8fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -12786,7 +12231,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colors:radius:focalDistance:focalAngle:falloff:mixing:distortion:distortionShift:distortionFreq:grainMixer:grainOverlay:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colors:radius:focalDistance:focalAngle:falloff:mixing:distortion:distortionShift:distortionFreq:grainMixer:grainOverlay:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -12980,36 +12425,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -13024,8 +12439,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders20StaticRadialGradientV9colorBack6colors6radius13focalDistance0J5Angle7falloff6mixing10distortion0O5Shift0O4Freq10grainMixer0R7Overlay3fit5scale8rotation7originX0X1Y7offsetX0Y1Y10worldWidth0Z6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_SayA5_GS10fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA12_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders20StaticRadialGradientV9colorBack6colors6radius13focalDistance0J5Angle7falloff6mixing10distortion0O5Shift0O4Freq10grainMixer0R7Overlay3fit5scale8rotation7originX0X1Y7offsetX0Y1Y10worldWidth0Z6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_SayA5_GS10fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA12_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders20StaticRadialGradientV9colorBack6colors6radius13focalDistance0J5Angle7falloff6mixing10distortion0O5Shift0O4Freq10grainMixer0R7Overlay3fit5scale8rotation7originX0X1Y7offsetX0Y1Y10worldWidth0Z6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_SayA3_GS10fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders20StaticRadialGradientV9colorBack6colors6radius13focalDistance0J5Angle7falloff6mixing10distortion0O5Shift0O4Freq10grainMixer0R7Overlay3fit5scale8rotation7originX0X1Y7offsetX0Y1Y10worldWidth0Z6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_SayA3_GS10fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -13462,7 +12877,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorFront:colorBack:contrast:roughness:fiber:fiberSize:crumples:foldCount:folds:fade:crumpleSize:drops:seed:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorFront:colorBack:contrast:roughness:fiber:fiberSize:crumples:foldCount:folds:fade:crumpleSize:drops:seed:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -13655,36 +13070,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -13699,8 +13084,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders12PaperTextureV10colorFront0E4Back8contrast9roughness5fiber0J4Size8crumples9foldCount5folds4fade07crumpleK05drops4seed3fit5scale8rotation7originX0W1Y7offsetX0X1Y10worldWidth0Y6Height5speed5frame13minPixelRatio08maxPixelN05width6height5imageAcA11ShaderColorV_A6_S11fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA12_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders12PaperTextureV10colorFront0E4Back8contrast9roughness5fiber0J4Size8crumples9foldCount5folds4fade07crumpleK05drops4seed3fit5scale8rotation7originX0W1Y7offsetX0X1Y10worldWidth0Y6Height5speed5frame13minPixelRatio08maxPixelN05width6height5imageAcA11ShaderColorV_A6_S11fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA12_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders12PaperTextureV10colorFront0E4Back8contrast9roughness5fiber0J4Size8crumples9foldCount5folds4fade07crumpleK05drops4seed3fit5scale8rotation7originX0W1Y7offsetX0X1Y10worldWidth0Y6Height5speed5frame13minPixelRatio08maxPixelN05imageAcA11ShaderColorV_A4_S11fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders12PaperTextureV10colorFront0E4Back8contrast9roughness5fiber0J4Size8crumples9foldCount5folds4fade07crumpleK05drops4seed3fit5scale8rotation7originX0W1Y7offsetX0X1Y10worldWidth0Y6Height5speed5frame13minPixelRatio08maxPixelN05imageAcA11ShaderColorV_A4_S11fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -14137,7 +13522,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colorShadow:colorHighlight:shadows:size:angle:distortion:shift:blur:edges:marginLeft:marginRight:marginTop:marginBottom:stretch:distortionShape:highlights:shape:grainMixer:grainOverlay:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colorShadow:colorHighlight:shadows:size:angle:distortion:shift:blur:edges:marginLeft:marginRight:marginTop:marginBottom:stretch:distortionShape:highlights:shape:grainMixer:grainOverlay:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -14379,36 +13764,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -14423,8 +13778,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders11FlutedGlassV9colorBack0E6Shadow0E9Highlight7shadows4size5angle10distortion5shift4blur5edges10marginLeft0P5Right0P3Top0P6Bottom7stretch0L5Shape10highlights5shape10grainMixer0Y7Overlay3fit5scale8rotation7originX7originY7offsetX7offsetY10worldWidth11worldHeight5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A13_A13_S12fAA0d10DistortionV0OSfAA0d4GridV0OS2fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA23_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders11FlutedGlassV9colorBack0E6Shadow0E9Highlight7shadows4size5angle10distortion5shift4blur5edges10marginLeft0P5Right0P3Top0P6Bottom7stretch0L5Shape10highlights5shape10grainMixer0Y7Overlay3fit5scale8rotation7originX7originY7offsetX7offsetY10worldWidth11worldHeight5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A13_A13_S12fAA0d10DistortionV0OSfAA0d4GridV0OS2fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA23_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders11FlutedGlassV9colorBack0E6Shadow0E9Highlight7shadows4size5angle10distortion5shift4blur5edges10marginLeft0P5Right0P3Top0P6Bottom7stretch0L5Shape10highlights5shape10grainMixer0Y7Overlay3fit5scale8rotation7originX7originY7offsetX7offsetY10worldWidth11worldHeight5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A11_A11_S12fAA0d10DistortionV0OSfAA0d4GridV0OS2fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders11FlutedGlassV9colorBack0E6Shadow0E9Highlight7shadows4size5angle10distortion5shift4blur5edges10marginLeft0P5Right0P3Top0P6Bottom7stretch0L5Shape10highlights5shape10grainMixer0Y7Overlay3fit5scale8rotation7originX7originY7offsetX7offsetY10worldWidth11worldHeight5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A11_A11_S12fAA0d10DistortionV0OSfAA0d4GridV0OS2fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -14861,7 +14216,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colorHighlight:highlights:layering:edges:caustic:waves:size:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colorHighlight:highlights:layering:edges:caustic:waves:size:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -15019,36 +14374,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -15063,8 +14388,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders5WaterV9colorBack0D9Highlight10highlights8layering5edges7caustic5waves4size3fit5scale8rotation7originX0P1Y7offsetX0Q1Y10worldWidth0R6Height5speed5frame13minPixelRatio03maxX5Count5width6height5imageAcA11ShaderColorV_A1_S6fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA7_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders5WaterV9colorBack0D9Highlight10highlights8layering5edges7caustic5waves4size3fit5scale8rotation7originX0P1Y7offsetX0Q1Y10worldWidth0R6Height5speed5frame13minPixelRatio03maxX5Count5width6height5imageAcA11ShaderColorV_A1_S6fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA7_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders5WaterV9colorBack0D9Highlight10highlights8layering5edges7caustic5waves4size3fit5scale8rotation7originX0P1Y7offsetX0Q1Y10worldWidth0R6Height5speed5frame13minPixelRatio03maxX5Count5imageAcA11ShaderColorV_A_S6fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders5WaterV9colorBack0D9Highlight10highlights8layering5edges7caustic5waves4size3fit5scale8rotation7originX0P1Y7offsetX0Q1Y10worldWidth0R6Height5speed5frame13minPixelRatio03maxX5Count5imageAcA11ShaderColorV_A_S6fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -15501,7 +14826,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorFront:colorBack:colorHighlight:type:size:colorSteps:originalColors:inverted:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorFront:colorBack:colorHighlight:type:size:colorSteps:originalColors:inverted:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -15659,36 +14984,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -15703,8 +14998,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders14ImageDitheringV10colorFront0E4Back0E9Highlight4type4size0E5Steps14originalColors8inverted3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5width6height5imageAcA11ShaderColorV_A1_A1_AA0D4TypeOS4fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA9_AA06ShaderC0VSgtcfc",
-            "mangledName": "$s11FoilShaders14ImageDitheringV10colorFront0E4Back0E9Highlight4type4size0E5Steps14originalColors8inverted3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5width6height5imageAcA11ShaderColorV_A1_A1_AA0D4TypeOS4fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA9_AA06ShaderC0VSgtcfc",
+            "usr": "s:11FoilShaders14ImageDitheringV10colorFront0E4Back0E9Highlight4type4size0E5Steps14originalColors8inverted3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5imageAcA11ShaderColorV_A_A_AA0D4TypeOS4fAA9ShaderFitOS11fSiAA06ShaderC0VSgtcfc",
+            "mangledName": "$s11FoilShaders14ImageDitheringV10colorFront0E4Back0E9Highlight4type4size0E5Steps14originalColors8inverted3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5imageAcA11ShaderColorV_A_A_AA0D4TypeOS4fAA9ShaderFitOS11fSiAA06ShaderC0VSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -16141,7 +15436,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colors:contour:angle:noise:innerGlow:outerGlow:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colors:contour:angle:noise:innerGlow:outerGlow:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -16300,36 +15595,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -16344,8 +15609,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders7HeatmapV9colorBack6colors7contour5angle5noise9innerGlow05outerK03fit5scale8rotation7originX0P1Y7offsetX0Q1Y10worldWidth0R6Height5speed5frame13minPixelRatio03maxX5Count5width6height5imageAcA11ShaderColorV_SayA0_GS5fAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA7_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders7HeatmapV9colorBack6colors7contour5angle5noise9innerGlow05outerK03fit5scale8rotation7originX0P1Y7offsetX0Q1Y10worldWidth0R6Height5speed5frame13minPixelRatio03maxX5Count5width6height5imageAcA11ShaderColorV_SayA0_GS5fAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA7_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders7HeatmapV9colorBack6colors7contour5angle5noise9innerGlow05outerK03fit5scale8rotation7originX0P1Y7offsetX0Q1Y10worldWidth0R6Height5speed5frame13minPixelRatio03maxX5Count5imageAcA11ShaderColorV_SayAZGS5fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders7HeatmapV9colorBack6colors7contour5angle5noise9innerGlow05outerK03fit5scale8rotation7originX0P1Y7offsetX0Q1Y10worldWidth0R6Height5speed5frame13minPixelRatio03maxX5Count5imageAcA11ShaderColorV_SayAZGS5fAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -16782,7 +16047,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colorTint:repetition:softness:shiftRed:shiftBlue:distortion:contour:angle:shape:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colorTint:repetition:softness:shiftRed:shiftBlue:distortion:contour:angle:shape:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -16954,36 +16219,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -16998,8 +16233,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders11LiquidMetalV9colorBack0E4Tint10repetition8softness8shiftRed0J4Blue10distortion7contour5angle5shape3fit5scale8rotation7originX0T1Y7offsetX0U1Y10worldWidth0V6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A3_S7fAA0cD5ShapeOAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA11_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders11LiquidMetalV9colorBack0E4Tint10repetition8softness8shiftRed0J4Blue10distortion7contour5angle5shape3fit5scale8rotation7originX0T1Y7offsetX0U1Y10worldWidth0V6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A3_S7fAA0cD5ShapeOAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA11_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders11LiquidMetalV9colorBack0E4Tint10repetition8softness8shiftRed0J4Blue10distortion7contour5angle5shape3fit5scale8rotation7originX0T1Y7offsetX0U1Y10worldWidth0V6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A1_S7fAA0cD5ShapeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders11LiquidMetalV9colorBack0E4Tint10repetition8softness8shiftRed0J4Blue10distortion7contour5angle5shape3fit5scale8rotation7originX0T1Y7offsetX0U1Y10worldWidth0V6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A1_S7fAA0cD5ShapeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -17436,7 +16671,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorFront:colorBack:size:grid:radius:contrast:originalColors:inverted:grainMixer:grainOverlay:grainSize:type:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorFront:colorBack:size:grid:radius:contrast:originalColors:inverted:grainMixer:grainOverlay:grainSize:type:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -17622,36 +16857,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -17666,8 +16871,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders12HalftoneDotsV10colorFront0E4Back4size4grid6radius8contrast14originalColors8inverted10grainMixer0O7Overlay0O4Size4type3fit5scale8rotation7originX0W1Y7offsetX0X1Y10worldWidth0Y6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A5_SfAA0cD4GridOS7fAA0cD4TypeOAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA15_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders12HalftoneDotsV10colorFront0E4Back4size4grid6radius8contrast14originalColors8inverted10grainMixer0O7Overlay0O4Size4type3fit5scale8rotation7originX0W1Y7offsetX0X1Y10worldWidth0Y6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A5_SfAA0cD4GridOS7fAA0cD4TypeOAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA15_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders12HalftoneDotsV10colorFront0E4Back4size4grid6radius8contrast14originalColors8inverted10grainMixer0O7Overlay0O4Size4type3fit5scale8rotation7originX0W1Y7offsetX0X1Y10worldWidth0Y6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A3_SfAA0cD4GridOS7fAA0cD4TypeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders12HalftoneDotsV10colorFront0E4Back4size4grid6radius8contrast14originalColors8inverted10grainMixer0O7Overlay0O4Size4type3fit5scale8rotation7originX0W1Y7offsetX0X1Y10worldWidth0Y6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A3_SfAA0cD4GridOS7fAA0cD4TypeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -18104,7 +17309,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colorBack:colorC:colorM:colorY:colorK:size:contrast:softness:grainSize:grainMixer:grainOverlay:gridNoise:floodC:floodM:floodY:floodK:gainC:gainM:gainY:gainK:type:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colorBack:colorC:colorM:colorY:colorK:size:contrast:softness:grainSize:grainMixer:grainOverlay:gridNoise:floodC:floodM:floodY:floodK:gainC:gainM:gainY:gainK:type:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -18353,36 +17558,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -18397,8 +17572,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders12HalftoneCMYKV9colorBack0E1C0E1M0E1Y0E1K4size8contrast8softness9grainSize0J5Mixer0J7Overlay9gridNoise6floodC0P1M0P1Y0P1K5gainC0Q1M0Q1Y0Q1K4type3fit5scale8rotation7originX0V1Y7offsetX0W1Y10worldWidth0X6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A14_A14_A14_A14_S15fAA0C8CMYKTypeOAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA22_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders12HalftoneCMYKV9colorBack0E1C0E1M0E1Y0E1K4size8contrast8softness9grainSize0J5Mixer0J7Overlay9gridNoise6floodC0P1M0P1Y0P1K5gainC0Q1M0Q1Y0Q1K4type3fit5scale8rotation7originX0V1Y7offsetX0W1Y10worldWidth0X6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A14_A14_A14_A14_S15fAA0C8CMYKTypeOAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA22_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders12HalftoneCMYKV9colorBack0E1C0E1M0E1Y0E1K4size8contrast8softness9grainSize0J5Mixer0J7Overlay9gridNoise6floodC0P1M0P1Y0P1K5gainC0Q1M0Q1Y0Q1K4type3fit5scale8rotation7originX0V1Y7offsetX0W1Y10worldWidth0X6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A12_A12_A12_A12_S15fAA0C8CMYKTypeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders12HalftoneCMYKV9colorBack0E1C0E1M0E1Y0E1K4size8contrast8softness9grainSize0J5Mixer0J7Overlay9gridNoise6floodC0P1M0P1Y0P1K5gainC0Q1M0Q1Y0Q1K4type3fit5scale8rotation7originX0V1Y7offsetX0W1Y10worldWidth0X6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A12_A12_A12_A12_S15fAA0C8CMYKTypeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -18835,7 +18010,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(colors:colorBack:colorInner:innerDistortion:outerDistortion:outerGlow:innerGlow:offset:angle:size:shape:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:width:height:image:)",
+            "printedName": "init(colors:colorBack:colorInner:innerDistortion:outerDistortion:outerGlow:innerGlow:offset:angle:size:shape:fit:scale:rotation:originX:originY:offsetX:offsetY:worldWidth:worldHeight:speed:frame:minPixelRatio:maxPixelCount:image:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -19022,36 +18197,6 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
                 "printedName": "FoilShaders.ShaderImage?",
                 "children": [
                   {
@@ -19066,8 +18211,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders8GemSmokeV6colors9colorBack0F5Inner15innerDistortion05outerJ00K4Glow0iL06offset5angle4size5shape3fit5scale8rotation7originX0T1Y0M1X0M1Y10worldWidth0U6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageACSayAA11ShaderColorVG_A4_A4_S7fAA0cD5ShapeOAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA13_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders8GemSmokeV6colors9colorBack0F5Inner15innerDistortion05outerJ00K4Glow0iL06offset5angle4size5shape3fit5scale8rotation7originX0T1Y0M1X0M1Y10worldWidth0U6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageACSayAA11ShaderColorVG_A4_A4_S7fAA0cD5ShapeOAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA13_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders8GemSmokeV6colors9colorBack0F5Inner15innerDistortion05outerJ00K4Glow0iL06offset5angle4size5shape3fit5scale8rotation7originX0T1Y0M1X0M1Y10worldWidth0U6Height5speed5frame13minPixelRatio13maxPixelCount5imageACSayAA11ShaderColorVG_A2_A2_S7fAA0cD5ShapeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders8GemSmokeV6colors9colorBack0F5Inner15innerDistortion05outerJ00K4Glow0iL06offset5angle4size5shape3fit5scale8rotation7originX0T1Y0M1X0M1Y10worldWidth0U6Height5speed5frame13minPixelRatio13maxPixelCount5imageACSayAA11ShaderColorVG_A2_A2_S7fAA0cD5ShapeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -24027,200 +23172,6 @@
           },
           {
             "kind": "Var",
-            "name": "width",
-            "printedName": "width",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:11FoilShaders19ShaderRenderOptionsV5width14CoreFoundation7CGFloatVSgvp",
-            "mangledName": "$s11FoilShaders19ShaderRenderOptionsV5width12CoreGraphics7CGFloatVSgvp",
-            "moduleName": "FoilShaders",
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "CoreGraphics.CGFloat?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "CGFloat",
-                        "printedName": "CoreGraphics.CGFloat",
-                        "usr": "s:14CoreFoundation7CGFloatV"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders19ShaderRenderOptionsV5width14CoreFoundation7CGFloatVSgvg",
-                "mangledName": "$s11FoilShaders19ShaderRenderOptionsV5width12CoreGraphics7CGFloatVSgvg",
-                "moduleName": "FoilShaders",
-                "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "CoreGraphics.CGFloat?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "CGFloat",
-                        "printedName": "CoreGraphics.CGFloat",
-                        "usr": "s:14CoreFoundation7CGFloatV"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders19ShaderRenderOptionsV5width14CoreFoundation7CGFloatVSgvs",
-                "mangledName": "$s11FoilShaders19ShaderRenderOptionsV5width12CoreGraphics7CGFloatVSgvs",
-                "moduleName": "FoilShaders",
-                "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
-                "accessorKind": "set"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "height",
-            "printedName": "height",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:11FoilShaders19ShaderRenderOptionsV6height14CoreFoundation7CGFloatVSgvp",
-            "mangledName": "$s11FoilShaders19ShaderRenderOptionsV6height12CoreGraphics7CGFloatVSgvp",
-            "moduleName": "FoilShaders",
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "CoreGraphics.CGFloat?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "CGFloat",
-                        "printedName": "CoreGraphics.CGFloat",
-                        "usr": "s:14CoreFoundation7CGFloatV"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders19ShaderRenderOptionsV6height14CoreFoundation7CGFloatVSgvg",
-                "mangledName": "$s11FoilShaders19ShaderRenderOptionsV6height12CoreGraphics7CGFloatVSgvg",
-                "moduleName": "FoilShaders",
-                "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "CoreGraphics.CGFloat?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "CGFloat",
-                        "printedName": "CoreGraphics.CGFloat",
-                        "usr": "s:14CoreFoundation7CGFloatV"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders19ShaderRenderOptionsV6height14CoreFoundation7CGFloatVSgvs",
-                "mangledName": "$s11FoilShaders19ShaderRenderOptionsV6height12CoreGraphics7CGFloatVSgvs",
-                "moduleName": "FoilShaders",
-                "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
-                "accessorKind": "set"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
             "name": "default",
             "printedName": "default",
             "children": [
@@ -24271,7 +23222,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(minPixelRatio:maxPixelCount:width:height:)",
+            "printedName": "init(minPixelRatio:maxPixelCount:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -24292,41 +23243,11 @@
                 "printedName": "Swift.Int",
                 "hasDefaultArg": true,
                 "usr": "s:Si"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGFloat?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders19ShaderRenderOptionsV13minPixelRatio03maxG5Count5width6heightACSf_Si14CoreFoundation7CGFloatVSgAKtcfc",
-            "mangledName": "$s11FoilShaders19ShaderRenderOptionsV13minPixelRatio03maxG5Count5width6heightACSf_Si12CoreGraphics7CGFloatVSgAKtcfc",
+            "usr": "s:11FoilShaders19ShaderRenderOptionsV13minPixelRatio03maxG5CountACSf_Sitcfc",
+            "mangledName": "$s11FoilShaders19ShaderRenderOptionsV13minPixelRatio03maxG5CountACSf_Sitcfc",
             "moduleName": "FoilShaders",
             "init_kind": "Designated"
           },

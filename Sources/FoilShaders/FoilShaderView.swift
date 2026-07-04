@@ -102,7 +102,6 @@ public struct FoilShaderView: SwiftUI.View {
       isSceneActive: scenePhase == .active,
       onRendererError: onRendererError
     )
-    .frame(width: configuration.renderOptions.width, height: configuration.renderOptions.height)
   }
 }
 

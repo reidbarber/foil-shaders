@@ -57,7 +57,7 @@ private struct StudioView: View {
       )
       let previewSize = fittedPreviewSize(in: availableSize)
 
-      FoilShaderView(configuration: previewConfiguration(size: previewSize))
+      FoilShaderView(configuration: currentConfiguration)
         .frame(width: previewSize.width, height: previewSize.height)
         .background(.black.opacity(0.08))
         .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -173,7 +173,6 @@ private struct StudioView: View {
     configuration.sizing.offsetY = offsetY
     configuration.motion.speed = speed
     configuration.motion.frame = frame
-    configuration.renderOptions = ShaderRenderOptions(width: 1280, height: 720)
     if selectedShader.usesImage, let selectedImage {
       configuration.image = selectedImage
     }
@@ -187,14 +186,9 @@ private struct StudioView: View {
       presetReference: selectedShader.presetReference(at: index),
       sizing: currentConfiguration.sizing,
       motion: currentConfiguration.motion,
-      renderOptions: currentConfiguration.renderOptions
+      renderOptions: currentConfiguration.renderOptions,
+      layoutSize: CGSize(width: 1280, height: 720)
     )
-  }
-
-  private func previewConfiguration(size: CGSize) -> ShaderConfiguration {
-    var configuration = currentConfiguration
-    configuration.renderOptions = ShaderRenderOptions(width: size.width, height: size.height)
-    return configuration
   }
 
   private func fittedPreviewSize(in availableSize: CGSize) -> CGSize {
@@ -260,7 +254,7 @@ private struct StudioView: View {
       throw PreviewImageError.metalUnavailable
     }
 
-    var configuration = previewConfiguration(size: size)
+    var configuration = currentConfiguration
     configuration.motion.speed = 0
     let captureSize = previewCaptureSize(for: size, renderOptions: configuration.renderOptions)
     let renderer = try FoilShadersRenderer(device: device)

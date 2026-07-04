@@ -385,8 +385,9 @@ public struct ShaderImage: Equatable, @unchecked Sendable, Codable {
 
 /// Resolution controls for the Metal backing texture used by a shader view.
 ///
-/// These options mirror Paper Shaders' render-size controls. Use them to keep
-/// output sharp while preventing extremely large drawable textures.
+/// Use these options to keep output sharp while preventing extremely large
+/// drawable textures. SwiftUI view size comes from caller-owned layout
+/// modifiers, such as `frame(width:height:)`.
 public struct ShaderRenderOptions: Equatable, Sendable, Codable {
   /// Default maximum rendered pixel count, equal to four 1080p frames.
   public static let defaultMaxPixelCount = 1920 * 1080 * 4
@@ -395,10 +396,6 @@ public struct ShaderRenderOptions: Equatable, Sendable, Codable {
   public var minPixelRatio: Float
   /// Maximum rendered pixel count before the renderer lowers the effective pixel ratio.
   public var maxPixelCount: Int
-  /// Optional fixed render width in points or pixels, depending on the caller's sizing context.
-  public var width: CGFloat?
-  /// Optional fixed render height in points or pixels, depending on the caller's sizing context.
-  public var height: CGFloat?
 
   /// Default render options: `minPixelRatio` `2` and ``defaultMaxPixelCount``.
   public static let `default` = ShaderRenderOptions()
@@ -410,20 +407,12 @@ public struct ShaderRenderOptions: Equatable, Sendable, Codable {
   ///     Values in `1...3` are typical; the default is `2`.
   ///   - maxPixelCount: Maximum rendered pixel count before the renderer lowers
   ///     the effective pixel ratio.
-  ///   - width: Optional fixed render width in points or pixels, depending on
-  ///     the caller's sizing context.
-  ///   - height: Optional fixed render height in points or pixels, depending on
-  ///     the caller's sizing context.
   public init(
     minPixelRatio: Float = 2,
-    maxPixelCount: Int = ShaderRenderOptions.defaultMaxPixelCount,
-    width: CGFloat? = nil,
-    height: CGFloat? = nil
+    maxPixelCount: Int = ShaderRenderOptions.defaultMaxPixelCount
   ) {
     self.minPixelRatio = minPixelRatio
     self.maxPixelCount = maxPixelCount
-    self.width = width
-    self.height = height
   }
 }
 

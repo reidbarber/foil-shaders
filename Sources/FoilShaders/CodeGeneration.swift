@@ -1,3 +1,4 @@
+import CoreGraphics
 import Foundation
 
 @_spi(Studio)
@@ -8,7 +9,8 @@ public enum FoilShadersCodeGenerator {
     presetReference: String,
     sizing: ShaderSizingParams,
     motion: ShaderMotionParams,
-    renderOptions: ShaderRenderOptions
+    renderOptions: ShaderRenderOptions,
+    layoutSize: CGSize? = nil
   ) -> String {
     var lines: [String] = [
       "import FoilShaders",
@@ -20,8 +22,10 @@ public enum FoilShadersCodeGenerator {
       "    renderOptions: \(renderOptionsCode(renderOptions))",
       ")",
     ]
-    if let width = renderOptions.width, let height = renderOptions.height {
-      lines.append(".frame(width: \(number(Float(width))), height: \(number(Float(height))))")
+    if let layoutSize {
+      let width = Float(layoutSize.width)
+      let height = Float(layoutSize.height)
+      lines.append(".frame(width: \(number(width)), height: \(number(height)))")
     }
     return lines.joined(separator: "\n")
   }
@@ -31,16 +35,10 @@ public enum FoilShadersCodeGenerator {
   }
 
   private static func renderOptionsCode(_ options: ShaderRenderOptions) -> String {
-    var args = [
+    let args = [
       "minPixelRatio: \(number(options.minPixelRatio))",
       "maxPixelCount: \(options.maxPixelCount)",
     ]
-    if let width = options.width {
-      args.append("width: \(number(Float(width)))")
-    }
-    if let height = options.height {
-      args.append("height: \(number(Float(height)))")
-    }
     return "ShaderRenderOptions(\(args.joined(separator: ", ")))"
   }
 
