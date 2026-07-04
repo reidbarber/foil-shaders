@@ -260,20 +260,20 @@ private struct StudioView: View {
       throw PreviewImageError.metalUnavailable
     }
 
-    let configuration = previewConfiguration(size: size)
+    var configuration = previewConfiguration(size: size)
+    configuration.motion.speed = 0
     let captureSize = previewCaptureSize(for: size, renderOptions: configuration.renderOptions)
     let renderer = try FoilShadersRenderer(device: device)
     try renderer.configure(configuration.kind)
     renderer.apply(configuration)
-    renderer.setSpeed(0)
-    renderer.setFrame(configuration.motion.frame)
-    renderer.setRenderSize(
-      width: captureSize.width,
-      height: captureSize.height,
-      pixelRatio: captureSize.pixelRatio
-    )
 
-    guard let image = renderer.captureCurrentImage() else {
+    guard
+      let image = renderer.captureImage(
+        width: captureSize.width,
+        height: captureSize.height,
+        pixelRatio: captureSize.pixelRatio
+      )
+    else {
       throw PreviewImageError.captureFailed
     }
     return image

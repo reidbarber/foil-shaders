@@ -160,6 +160,7 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertTrue(code.contains("params: pulsingBorderPresets[0].params"))
   }
 
+  @MainActor
   func testMetalPipelinesCompile() throws {
     guard let device = MTLCreateSystemDefaultDevice() else {
       throw XCTSkip("Metal is not available")
@@ -197,9 +198,7 @@ final class FoilShadersTests: XCTestCase {
         image: .cgImage(image)
       )
     )
-    renderer.setRenderSize(width: 96, height: 96, pixelRatio: 1)
-
-    guard let capture = renderer.captureCurrentPixels() else {
+    guard let capture = renderer.capturePixels(width: 96, height: 96, pixelRatio: 1) else {
       return XCTFail("Expected heatmap capture")
     }
 

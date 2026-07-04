@@ -5,11 +5,8 @@ import MetalKit
 
 // MARK: - FoilShadersRenderer
 
-// `@unchecked Sendable`: all mutable state is touched on the main thread (via
-// the MTKView delegate callbacks and SwiftUI update path). The one background
-// hop — remote image decoding in `loadRemoteImage` — marshals its result back
-// to the main thread before mutating any state.
-public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable {
+/// Main-actor renderer for live `MTKView` presentation and offscreen image capture.
+@MainActor public final class FoilShadersRenderer: NSObject {
   public enum ShaderKind: CaseIterable, Sendable {
     case meshGradient
     case staticMeshGradient
@@ -65,47 +62,49 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
   private var pixelRatio: Float = 1.0
 
   // Sizing params
-  public var sizingParams: ShaderSizingParams = meshGradientPresets[0].sizing
-  public var motionParams: ShaderMotionParams = meshGradientPresets[0].motion
+  private var sizingParams: ShaderSizingParams = meshGradientPresets[0].sizing
+  private var motionParams: ShaderMotionParams = meshGradientPresets[0].motion
 
   // Backing-store resolution controls (mirrors the web `minPixelRatio` /
   // `maxPixelCount`): raise the render scale to at least `minPixelRatio` for
   // sharper output, and cap total drawable pixels at `maxPixelCount`.
-  public var renderOptions: ShaderRenderOptions = .default
+  private var renderOptions: ShaderRenderOptions = .default
 
   // Shader params
-  public var meshGradientParams: MeshGradientParams = meshGradientPresets[0].params
-  public var staticMeshGradientParams: StaticMeshGradientParams = staticMeshGradientPresets[0]
+  private var meshGradientParams: MeshGradientParams = meshGradientPresets[0].params
+  private var staticMeshGradientParams: StaticMeshGradientParams = staticMeshGradientPresets[0]
     .params
-  public var staticRadialGradientParams: StaticRadialGradientParams = staticRadialGradientPresets[0]
-    .params
-  public var swirlParams: SwirlParams = swirlPresets[0].params
-  public var spiralParams: SpiralParams = spiralPresets[0].params
-  public var dotGridParams: DotGridParams = dotGridPresets[0].params
-  public var simplexNoiseParams: SimplexNoiseParams = simplexNoisePresets[0].params
-  public var perlinNoiseParams: PerlinNoiseParams = perlinNoisePresets[0].params
-  public var neuroNoiseParams: NeuroNoiseParams = neuroNoisePresets[0].params
-  public var wavesParams: WavesParams = wavesPresets[0].params
-  public var ditheringParams: DitheringParams = ditheringPresets[0].params
-  public var colorPanelsParams: ColorPanelsParams = colorPanelsPresets[0].params
-  public var dotOrbitParams: DotOrbitParams = dotOrbitPresets[0].params
-  public var godRaysParams: GodRaysParams = godRaysPresets[0].params
-  public var grainGradientParams: GrainGradientParams = grainGradientPresets[0].params
-  public var metaballsParams: MetaballsParams = metaballsPresets[0].params
-  public var warpParams: WarpParams = warpPresets[0].params
-  public var voronoiParams: VoronoiParams = voronoiPresets[0].params
-  public var pulsingBorderParams: PulsingBorderParams = pulsingBorderPresets[0].params
-  public var smokeRingParams: SmokeRingParams = smokeRingPresets[0].params
-  public var imageDitheringParams: ImageDitheringParams = imageDitheringPresets[0].params
-  public var halftoneDotsParams: HalftoneDotsParams = halftoneDotsPresets[0].params
-  public var halftoneCmykParams: HalftoneCmykParams = halftoneCmykPresets[0].params
-  public var heatmapParams: HeatmapParams = heatmapPresets[0].params
-  public var liquidMetalParams: LiquidMetalParams = liquidMetalPresets[0].params
-  public var paperTextureParams: PaperTextureParams = paperTexturePresets[0].params
-  public var waterParams: WaterParams = waterPresets[0].params
-  public var flutedGlassParams: FlutedGlassParams = flutedGlassPresets[0].params
-  public var gemSmokeParams: GemSmokeParams = gemSmokePresets[0].params
-  public var activeShader: ShaderKind = .meshGradient
+  private var staticRadialGradientParams: StaticRadialGradientParams = staticRadialGradientPresets[
+    0
+  ]
+  .params
+  private var swirlParams: SwirlParams = swirlPresets[0].params
+  private var spiralParams: SpiralParams = spiralPresets[0].params
+  private var dotGridParams: DotGridParams = dotGridPresets[0].params
+  private var simplexNoiseParams: SimplexNoiseParams = simplexNoisePresets[0].params
+  private var perlinNoiseParams: PerlinNoiseParams = perlinNoisePresets[0].params
+  private var neuroNoiseParams: NeuroNoiseParams = neuroNoisePresets[0].params
+  private var wavesParams: WavesParams = wavesPresets[0].params
+  private var ditheringParams: DitheringParams = ditheringPresets[0].params
+  private var colorPanelsParams: ColorPanelsParams = colorPanelsPresets[0].params
+  private var dotOrbitParams: DotOrbitParams = dotOrbitPresets[0].params
+  private var godRaysParams: GodRaysParams = godRaysPresets[0].params
+  private var grainGradientParams: GrainGradientParams = grainGradientPresets[0].params
+  private var metaballsParams: MetaballsParams = metaballsPresets[0].params
+  private var warpParams: WarpParams = warpPresets[0].params
+  private var voronoiParams: VoronoiParams = voronoiPresets[0].params
+  private var pulsingBorderParams: PulsingBorderParams = pulsingBorderPresets[0].params
+  private var smokeRingParams: SmokeRingParams = smokeRingPresets[0].params
+  private var imageDitheringParams: ImageDitheringParams = imageDitheringPresets[0].params
+  private var halftoneDotsParams: HalftoneDotsParams = halftoneDotsPresets[0].params
+  private var halftoneCmykParams: HalftoneCmykParams = halftoneCmykPresets[0].params
+  private var heatmapParams: HeatmapParams = heatmapPresets[0].params
+  private var liquidMetalParams: LiquidMetalParams = liquidMetalPresets[0].params
+  private var paperTextureParams: PaperTextureParams = paperTexturePresets[0].params
+  private var waterParams: WaterParams = waterPresets[0].params
+  private var flutedGlassParams: FlutedGlassParams = flutedGlassPresets[0].params
+  private var gemSmokeParams: GemSmokeParams = gemSmokePresets[0].params
+  private var activeShader: ShaderKind = .meshGradient
 
   private var library: MTLLibrary?
   private var libraryShaderName: String?
@@ -129,7 +128,9 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
 
   // Weak reference to the view to control animation
   private weak var mtkView: MTKView?
+  private lazy var viewDelegate = FoilShadersRendererViewDelegate(renderer: self)
 
+  /// Creates a renderer using the supplied Metal device.
   public init(device: MTLDevice) throws {
     self.device = device
     guard let commandQueue = device.makeCommandQueue() else {
@@ -391,6 +392,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     return imageTexture ?? fallbackImageTexture
   }
 
+  /// Sets or clears the source image used by image-aware shaders.
   public func setImage(_ image: CGImage?) {
     guard let image else {
       imageTexture = nil
@@ -416,6 +418,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
+  /// Sets or clears the source image from a `ShaderImage` descriptor.
   public func setImage(_ shaderImage: ShaderImage?) {
     // Any new image request supersedes an in-flight remote load.
     imageRequestID &+= 1
@@ -439,15 +442,15 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
   /// Loads a remote image off the main thread and installs it once ready. If a
   /// newer image has been requested in the meantime, the stale result is dropped.
   private func loadRemoteImage(from url: URL, requestID: UInt64) {
-    DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-      let image = FoilShadersDefaultImageLoader.loadCGImage(from: url)
-      DispatchQueue.main.async {
-        guard let self, self.imageRequestID == requestID else { return }
-        self.setImage(image)
-        // A static shader won't redraw on its own, so nudge it.
-        if self.speed == 0.0 {
-          self.mtkView?.setNeedsDisplay(self.mtkView?.bounds ?? .zero)
-        }
+    Task { [weak self] in
+      let image = await Task.detached(priority: .userInitiated) {
+        FoilShadersDefaultImageLoader.loadCGImage(from: url)
+      }.value
+      guard let self, self.imageRequestID == requestID else { return }
+      self.setImage(image)
+      // A static shader won't redraw on its own, so nudge it.
+      if self.speed == 0.0 {
+        self.mtkView?.setNeedsDisplay(self.mtkView?.bounds ?? .zero)
       }
     }
   }
@@ -475,7 +478,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
       bytes: vertices, length: vertices.count * MemoryLayout<Float>.stride, options: [])
   }
 
-  public func setupPipeline(fragmentFunctionName: String, library: MTLLibrary) throws {
+  private func setupPipeline(fragmentFunctionName: String, library: MTLLibrary) throws {
     guard let vertexFunction = library.makeFunction(name: "vertex_main"),
       let fragmentFunction = library.makeFunction(name: fragmentFunctionName)
     else {
@@ -501,31 +504,30 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
+  /// Attaches the renderer to a live Metal view and starts delegate-driven drawing.
   public func attach(to view: MTKView) {
-    MainActor.assumeIsolated {
-      self.mtkView = view
-      view.delegate = self
-      view.device = device
-      view.colorPixelFormat = .bgra8Unorm
-      view.enableSetNeedsDisplay = false
-      view.isPaused = false
-      view.framebufferOnly = true
-      view.preferredFramesPerSecond = 60
-      // Transparency: match the web version, where the canvas composites its
-      // (premultiplied-alpha) output over the page. The shaders emit meaningful
-      // alpha (e.g. FlutedGlass's transparent colorBack, mesh-gradient fractional
-      // opacity), so clear to transparent and make the layer non-opaque; otherwise
-      // those regions composite onto opaque black. CAMetalLayer composites using
-      // premultiplied alpha, which is exactly what the shaders output.
-      view.clearColor = MTLClearColorMake(0, 0, 0, 0)
-      #if os(iOS)
-        view.isOpaque = false
-      #endif
-      (view.layer as? CAMetalLayer)?.isOpaque = false
-    }
+    self.mtkView = view
+    view.delegate = viewDelegate
+    view.device = device
+    view.colorPixelFormat = .bgra8Unorm
+    view.enableSetNeedsDisplay = false
+    view.isPaused = false
+    view.framebufferOnly = true
+    view.preferredFramesPerSecond = 60
+    // Transparency: match the web version, where the canvas composites its
+    // (premultiplied-alpha) output over the page. The shaders emit meaningful
+    // alpha (e.g. FlutedGlass's transparent colorBack, mesh-gradient fractional
+    // opacity), so clear to transparent and make the layer non-opaque; otherwise
+    // those regions composite onto opaque black. CAMetalLayer composites using
+    // premultiplied alpha, which is exactly what the shaders output.
+    view.clearColor = MTLClearColorMake(0, 0, 0, 0)
+    #if os(iOS)
+      view.isOpaque = false
+    #endif
+    (view.layer as? CAMetalLayer)?.isOpaque = false
   }
 
-  public func configureMeshGradient() throws {
+  private func configureMeshGradient() throws {
     try ensureLibrary(shaderName: "MeshGradient")
     if let library {
       try setupPipeline(fragmentFunctionName: "mesh_gradient_fragment", library: library)
@@ -535,7 +537,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureStaticMeshGradient() throws {
+  private func configureStaticMeshGradient() throws {
     try ensureLibrary(shaderName: "StaticMeshGradient")
     if let library {
       try setupPipeline(fragmentFunctionName: "static_mesh_gradient_fragment", library: library)
@@ -545,7 +547,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureStaticRadialGradient() throws {
+  private func configureStaticRadialGradient() throws {
     try ensureLibrary(shaderName: "StaticRadialGradient")
     if let library {
       try setupPipeline(fragmentFunctionName: "static_radial_gradient_fragment", library: library)
@@ -555,7 +557,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureSwirl() throws {
+  private func configureSwirl() throws {
     try ensureLibrary(shaderName: "Swirl")
     if let library {
       try setupPipeline(fragmentFunctionName: "swirl_fragment", library: library)
@@ -565,7 +567,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureSpiral() throws {
+  private func configureSpiral() throws {
     try ensureLibrary(shaderName: "Spiral")
     if let library {
       try setupPipeline(fragmentFunctionName: "spiral_fragment", library: library)
@@ -575,7 +577,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureDotGrid() throws {
+  private func configureDotGrid() throws {
     try ensureLibrary(shaderName: "DotGrid")
     if let library {
       try setupPipeline(fragmentFunctionName: "dot_grid_fragment", library: library)
@@ -585,7 +587,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureSimplexNoise() throws {
+  private func configureSimplexNoise() throws {
     try ensureLibrary(shaderName: "SimplexNoise")
     if let library {
       try setupPipeline(fragmentFunctionName: "simplex_noise_fragment", library: library)
@@ -595,7 +597,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configurePerlinNoise() throws {
+  private func configurePerlinNoise() throws {
     try ensureLibrary(shaderName: "PerlinNoise")
     if let library {
       try setupPipeline(fragmentFunctionName: "perlin_noise_fragment", library: library)
@@ -605,7 +607,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureNeuroNoise() throws {
+  private func configureNeuroNoise() throws {
     try ensureLibrary(shaderName: "NeuroNoise")
     if let library {
       try setupPipeline(fragmentFunctionName: "neuro_noise_fragment", library: library)
@@ -615,7 +617,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureWaves() throws {
+  private func configureWaves() throws {
     try ensureLibrary(shaderName: "Waves")
     if let library {
       try setupPipeline(fragmentFunctionName: "waves_fragment", library: library)
@@ -625,7 +627,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureDithering() throws {
+  private func configureDithering() throws {
     try ensureLibrary(shaderName: "Dithering")
     if let library {
       try setupPipeline(fragmentFunctionName: "dithering_fragment", library: library)
@@ -635,7 +637,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureColorPanels() throws {
+  private func configureColorPanels() throws {
     try ensureLibrary(shaderName: "ColorPanels")
     if let library {
       try setupPipeline(fragmentFunctionName: "color_panels_fragment", library: library)
@@ -645,7 +647,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureDotOrbit() throws {
+  private func configureDotOrbit() throws {
     try ensureLibrary(shaderName: "DotOrbit")
     if let library {
       try setupPipeline(fragmentFunctionName: "dot_orbit_fragment", library: library)
@@ -655,7 +657,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureGodRays() throws {
+  private func configureGodRays() throws {
     try ensureLibrary(shaderName: "GodRays")
     if let library {
       try setupPipeline(fragmentFunctionName: "god_rays_fragment", library: library)
@@ -665,7 +667,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureGrainGradient() throws {
+  private func configureGrainGradient() throws {
     try ensureLibrary(shaderName: "GrainGradient")
     if let library {
       try setupPipeline(fragmentFunctionName: "grain_gradient_fragment", library: library)
@@ -675,7 +677,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureMetaballs() throws {
+  private func configureMetaballs() throws {
     try ensureLibrary(shaderName: "Metaballs")
     if let library {
       try setupPipeline(fragmentFunctionName: "metaballs_fragment", library: library)
@@ -685,7 +687,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureWarp() throws {
+  private func configureWarp() throws {
     try ensureLibrary(shaderName: "Warp")
     if let library {
       try setupPipeline(fragmentFunctionName: "warp_fragment", library: library)
@@ -695,7 +697,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureVoronoi() throws {
+  private func configureVoronoi() throws {
     try ensureLibrary(shaderName: "Voronoi")
     if let library {
       try setupPipeline(fragmentFunctionName: "voronoi_fragment", library: library)
@@ -705,7 +707,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configurePulsingBorder() throws {
+  private func configurePulsingBorder() throws {
     try ensureLibrary(shaderName: "PulsingBorder")
     if let library {
       try setupPipeline(fragmentFunctionName: "pulsing_border_fragment", library: library)
@@ -715,7 +717,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureSmokeRing() throws {
+  private func configureSmokeRing() throws {
     try ensureLibrary(shaderName: "SmokeRing")
     if let library {
       try setupPipeline(fragmentFunctionName: "smoke_ring_fragment", library: library)
@@ -725,7 +727,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureImageDithering() throws {
+  private func configureImageDithering() throws {
     try ensureLibrary(shaderName: "ImageDithering")
     if let library {
       try setupPipeline(fragmentFunctionName: "image_dithering_fragment", library: library)
@@ -735,7 +737,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureHalftoneDots() throws {
+  private func configureHalftoneDots() throws {
     try ensureLibrary(shaderName: "HalftoneDots")
     if let library {
       try setupPipeline(fragmentFunctionName: "halftone_dots_fragment", library: library)
@@ -745,7 +747,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureHalftoneCmyk() throws {
+  private func configureHalftoneCmyk() throws {
     try ensureLibrary(shaderName: "HalftoneCmyk")
     if let library {
       try setupPipeline(fragmentFunctionName: "halftone_cmyk_fragment", library: library)
@@ -755,7 +757,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureHeatmap() throws {
+  private func configureHeatmap() throws {
     try ensureLibrary(shaderName: "Heatmap")
     if let library {
       try setupPipeline(fragmentFunctionName: "heatmap_fragment", library: library)
@@ -765,7 +767,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureLiquidMetal() throws {
+  private func configureLiquidMetal() throws {
     try ensureLibrary(shaderName: "LiquidMetal")
     if let library {
       try setupPipeline(fragmentFunctionName: "liquid_metal_fragment", library: library)
@@ -775,7 +777,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configurePaperTexture() throws {
+  private func configurePaperTexture() throws {
     try ensureLibrary(shaderName: "PaperTexture")
     if let library {
       try setupPipeline(fragmentFunctionName: "paper_texture_fragment", library: library)
@@ -785,7 +787,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureWater() throws {
+  private func configureWater() throws {
     try ensureLibrary(shaderName: "Water")
     if let library {
       try setupPipeline(fragmentFunctionName: "water_fragment", library: library)
@@ -795,7 +797,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureFlutedGlass() throws {
+  private func configureFlutedGlass() throws {
     try ensureLibrary(shaderName: "FlutedGlass")
     if let library {
       try setupPipeline(fragmentFunctionName: "fluted_glass_fragment", library: library)
@@ -805,7 +807,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func configureGemSmoke() throws {
+  private func configureGemSmoke() throws {
     try ensureLibrary(shaderName: "GemSmoke")
     if let library {
       try setupPipeline(fragmentFunctionName: "gem_smoke_fragment", library: library)
@@ -815,6 +817,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
+  /// Selects the shader pipeline used by subsequent live draws or captures.
   public func configure(_ shaderKind: ShaderKind) throws {
     switch shaderKind {
     case .meshGradient: try configureMeshGradient()
@@ -849,6 +852,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
+  /// Applies shader parameters, sizing, motion, render options, and image input.
   public func apply(_ configuration: ShaderConfiguration) {
     sizingParams = configuration.sizing
     motionParams = configuration.motion
@@ -913,32 +917,28 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
   }
 
-  public func setSpeed(_ speed: Float) {
+  private func setSpeed(_ speed: Float) {
     let wasStatic = self.speed == 0.0
     self.speed = speed
     let isStatic = speed == 0.0
     if let mtkView {
-      MainActor.assumeIsolated {
-        mtkView.enableSetNeedsDisplay = isStatic
-        mtkView.isPaused = isStatic
-      }
+      mtkView.enableSetNeedsDisplay = isStatic
+      mtkView.isPaused = isStatic
     }
     if wasStatic && !isStatic {
       lastRenderTime = CACurrentMediaTime()
     }
     if isStatic, let mtkView {
-      MainActor.assumeIsolated {
-        mtkView.setNeedsDisplay(mtkView.bounds)
-      }
+      mtkView.setNeedsDisplay(mtkView.bounds)
     }
   }
 
-  public func setFrame(_ frame: Float) {
+  private func setFrame(_ frame: Float) {
     self.currentFrame = frame
     self.lastRenderTime = CACurrentMediaTime()
   }
 
-  public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+  fileprivate func drawableSizeWillChange(in view: MTKView) {
     updateDrawableSizing(for: view)
   }
 
@@ -948,31 +948,29 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
   /// the view's bounds or backing scale change and overrides MTKView's default
   /// native-scale drawable.
   private func updateDrawableSizing(for view: MTKView) {
-    MainActor.assumeIsolated {
-      // Ignore the delegate callback triggered by our own `drawableSize` write.
-      if isUpdatingDrawableSize { return }
+    // Ignore the delegate callback triggered by our own `drawableSize` write.
+    if isUpdatingDrawableSize { return }
 
-      let pointSize = view.bounds.size
-      guard pointSize.width > 0, pointSize.height > 0 else {
-        // Bounds not laid out yet; fall back to whatever MTKView computed.
-        let fallback = view.drawableSize
-        resolution = SIMD2<Float>(Float(fallback.width), Float(fallback.height))
-        pixelRatio = Float(view.layer?.contentsScale ?? 1.0)
-        return
-      }
-      let nativeScale = view.layer?.contentsScale ?? 1.0
-      let (clamped, renderScale) = clampedDrawableSize(
-        pointSize: pointSize, nativeScale: nativeScale)
-      if view.drawableSize != clamped {
-        isUpdatingDrawableSize = true
-        view.drawableSize = clamped
-        isUpdatingDrawableSize = false
-      }
-      resolution = SIMD2<Float>(Float(clamped.width), Float(clamped.height))
-      pixelRatio = renderScale
-      if speed == 0.0 {
-        view.setNeedsDisplay(view.bounds)
-      }
+    let pointSize = view.bounds.size
+    guard pointSize.width > 0, pointSize.height > 0 else {
+      // Bounds not laid out yet; fall back to whatever MTKView computed.
+      let fallback = view.drawableSize
+      resolution = SIMD2<Float>(Float(fallback.width), Float(fallback.height))
+      pixelRatio = Float(view.layer?.contentsScale ?? 1.0)
+      return
+    }
+    let nativeScale = view.layer?.contentsScale ?? 1.0
+    let (clamped, renderScale) = clampedDrawableSize(
+      pointSize: pointSize, nativeScale: nativeScale)
+    if view.drawableSize != clamped {
+      isUpdatingDrawableSize = true
+      view.drawableSize = clamped
+      isUpdatingDrawableSize = false
+    }
+    resolution = SIMD2<Float>(Float(clamped.width), Float(clamped.height))
+    pixelRatio = renderScale
+    if speed == 0.0 {
+      view.setNeedsDisplay(view.bounds)
     }
   }
 
@@ -1000,12 +998,12 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     return (CGSize(width: width, height: height), Float(width / pointWidth))
   }
 
-  public func setRenderSize(width: Int, height: Int, pixelRatio: Float = 1) {
+  private func setRenderSize(width: Int, height: Int, pixelRatio: Float = 1) {
     resolution = SIMD2<Float>(Float(width), Float(height))
     self.pixelRatio = pixelRatio
   }
 
-  public func draw(in view: MTKView) {
+  fileprivate func draw(in view: MTKView) {
     guard let drawable = view.currentDrawable,
       let renderPassDescriptor = view.currentRenderPassDescriptor,
       let pipelineState = pipelineState,
@@ -1253,8 +1251,22 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     commandBuffer.commit()
   }
 
-  public func captureCurrentImage() -> CGImage? {
-    guard let capture = captureCurrentPixels() else { return nil }
+  /// Renders the current shader configuration offscreen at the requested pixel size.
+  public func captureImage(width: Int, height: Int, pixelRatio: Float = 1) -> CGImage? {
+    guard let capture = capturePixels(width: width, height: height, pixelRatio: pixelRatio) else {
+      return nil
+    }
+    return makeImage(from: capture)
+  }
+
+  func capturePixels(width: Int, height: Int, pixelRatio: Float = 1) -> (
+    rgba: [UInt8], width: Int, height: Int
+  )? {
+    setRenderSize(width: width, height: height, pixelRatio: pixelRatio)
+    return captureCurrentPixels()
+  }
+
+  private func makeImage(from capture: (rgba: [UInt8], width: Int, height: Int)) -> CGImage? {
     let bytesPerRow = capture.width * 4
     guard let provider = CGDataProvider(data: Data(capture.rgba) as CFData) else { return nil }
     let colorSpace = CGColorSpaceCreateDeviceRGB()
@@ -1280,7 +1292,7 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
   /// Renders the current shader offscreen and returns the raw RGBA8 bytes
   /// (premultiplied alpha, top-down row order), exactly as produced by the
   /// fragment shader with no color management applied.
-  func captureCurrentPixels() -> (rgba: [UInt8], width: Int, height: Int)? {
+  private func captureCurrentPixels() -> (rgba: [UInt8], width: Int, height: Int)? {
     guard let pipelineState = pipelineState,
       let vertexBuffer = vertexBuffer
     else {
@@ -1486,6 +1498,26 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
 
     return (rgba: raw, width: width, height: height)
+  }
+}
+
+private final class FoilShadersRendererViewDelegate: NSObject, MTKViewDelegate {
+  weak var renderer: FoilShadersRenderer?
+
+  init(renderer: FoilShadersRenderer) {
+    self.renderer = renderer
+  }
+
+  func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+    MainActor.assumeIsolated {
+      renderer?.drawableSizeWillChange(in: view)
+    }
+  }
+
+  func draw(in view: MTKView) {
+    MainActor.assumeIsolated {
+      renderer?.draw(in: view)
+    }
   }
 }
 

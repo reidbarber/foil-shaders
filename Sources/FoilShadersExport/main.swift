@@ -230,14 +230,13 @@ do {
     for: options.shader, presetName: options.preset, image: fixture)
   shaderConfiguration.renderOptions = ShaderRenderOptions(
     width: CGFloat(options.width), height: CGFloat(options.height))
+  shaderConfiguration.motion.speed = 0
+  shaderConfiguration.motion.frame = options.frame
 
   try renderer.configure(shaderConfiguration.kind)
   renderer.apply(shaderConfiguration)
-  renderer.setSpeed(0)
-  renderer.setFrame(options.frame)
-  renderer.setRenderSize(width: options.width, height: options.height, pixelRatio: 1)
 
-  guard let image = renderer.captureCurrentImage() else {
+  guard let image = renderer.captureImage(width: options.width, height: options.height) else {
     fputs("Could not capture shader image.\n", stderr)
     exit(1)
   }
