@@ -1,6 +1,9 @@
 import AppKit
 import FoilShaders
+import ImageIO
+import Metal
 import SwiftUI
+import UniformTypeIdentifiers
 
 @main
 struct FoilShadersStudioApp: App {
@@ -58,6 +61,14 @@ private struct StudioView: View {
         .frame(width: previewSize.width, height: previewSize.height)
         .background(.black.opacity(0.08))
         .clipShape(RoundedRectangle(cornerRadius: 8))
+        .contextMenu {
+          Button("Copy Image", systemImage: "doc.on.clipboard") {
+            copyPreviewImage(size: previewSize)
+          }
+          Button("Save Image...", systemImage: "square.and.arrow.down") {
+            savePreviewImage(size: previewSize)
+          }
+        }
         .frame(width: proxy.size.width, height: proxy.size.height)
     }
     .frame(minWidth: 300, minHeight: 240)
@@ -209,6 +220,123 @@ private struct StudioView: View {
     }
   }
 
+  private func copyPreviewImage(size: CGSize) {
+    do {
+      let image = try capturePreviewImage(size: size)
+      let nsImage = NSImage(
+        cgImage: image,
+        size: NSSize(width: image.width, height: image.height)
+      )
+      guard let pngData = pngData(for: image), let tiffData = nsImage.tiffRepresentation else {
+        throw PreviewImageError.pngEncodingFailed
+      }
+
+      let pasteboard = NSPasteboard.general
+      pasteboard.declareTypes([.png, .tiff], owner: nil)
+      pasteboard.setData(pngData, forType: .png)
+      pasteboard.setData(tiffData, forType: .tiff)
+    } catch {
+      presentPreviewImageError(error)
+    }
+  }
+
+  private func savePreviewImage(size: CGSize) {
+    do {
+      let image = try capturePreviewImage(size: size)
+      let panel = NSSavePanel()
+      panel.allowedContentTypes = [.png]
+      panel.canCreateDirectories = true
+      panel.nameFieldStringValue = "foil-shader-preview.png"
+
+      guard panel.runModal() == .OK, let url = panel.url else { return }
+      try writePNG(image, to: url)
+    } catch {
+      presentPreviewImageError(error)
+    }
+  }
+
+  private func capturePreviewImage(size: CGSize) throws -> CGImage {
+    guard let device = MTLCreateSystemDefaultDevice() else {
+      throw PreviewImageError.metalUnavailable
+    }
+
+    let configuration = previewConfiguration(size: size)
+    let captureSize = previewCaptureSize(for: size, renderOptions: configuration.renderOptions)
+    let renderer = try FoilShadersRenderer(device: device)
+    try renderer.configure(configuration.kind)
+    renderer.apply(configuration)
+    renderer.setSpeed(0)
+    renderer.setFrame(configuration.motion.frame)
+    renderer.setRenderSize(
+      width: captureSize.width,
+      height: captureSize.height,
+      pixelRatio: captureSize.pixelRatio
+    )
+
+    guard let image = renderer.captureCurrentImage() else {
+      throw PreviewImageError.captureFailed
+    }
+    return image
+  }
+
+  private func previewCaptureSize(
+    for pointSize: CGSize,
+    renderOptions: ShaderRenderOptions
+  ) -> (width: Int, height: Int, pixelRatio: Float) {
+    let pointWidth = max(1.0, Double(pointSize.width))
+    let pointHeight = max(1.0, Double(pointSize.height))
+    let backingScale = Double(
+      NSApp.keyWindow?.screen?.backingScaleFactor
+        ?? NSScreen.main?.backingScaleFactor
+        ?? 1.0
+    )
+    let targetScale = max(backingScale, Double(renderOptions.minPixelRatio))
+    var pixelWidth = pointWidth * targetScale
+    var pixelHeight = pointHeight * targetScale
+
+    let maxPixels = Double(renderOptions.maxPixelCount)
+    let targetPixels = pixelWidth * pixelHeight
+    if maxPixels > 0, targetPixels > maxPixels {
+      let downscale = (maxPixels / targetPixels).squareRoot()
+      pixelWidth *= downscale
+      pixelHeight *= downscale
+    }
+
+    let width = max(1, Int(pixelWidth.rounded()))
+    let height = max(1, Int(pixelHeight.rounded()))
+    return (width, height, Float(Double(width) / pointWidth))
+  }
+
+  private func pngData(for image: CGImage) -> Data? {
+    let data = NSMutableData()
+    guard
+      let destination = CGImageDestinationCreateWithData(
+        data, UTType.png.identifier as CFString, 1, nil)
+    else {
+      return nil
+    }
+    CGImageDestinationAddImage(destination, image, nil)
+    guard CGImageDestinationFinalize(destination) else { return nil }
+    return data as Data
+  }
+
+  private func writePNG(_ image: CGImage, to url: URL) throws {
+    guard
+      let destination = CGImageDestinationCreateWithURL(
+        url as CFURL, UTType.png.identifier as CFString, 1, nil)
+    else {
+      throw PreviewImageError.cannotCreatePNGDestination(url)
+    }
+    CGImageDestinationAddImage(destination, image, nil)
+    guard CGImageDestinationFinalize(destination) else {
+      throw PreviewImageError.cannotWritePNG(url)
+    }
+  }
+
+  private func presentPreviewImageError(_ error: Error) {
+    NSAlert(error: error).runModal()
+  }
+
   private func copyCurrentCode() {
     NSPasteboard.general.clearContents()
     NSPasteboard.general.setString(currentCode, forType: .string)
@@ -223,6 +351,29 @@ private struct StudioView: View {
       withAnimation(.easeOut(duration: 0.16)) {
         didCopyCode = false
       }
+    }
+  }
+}
+
+private enum PreviewImageError: LocalizedError {
+  case metalUnavailable
+  case captureFailed
+  case pngEncodingFailed
+  case cannotCreatePNGDestination(URL)
+  case cannotWritePNG(URL)
+
+  var errorDescription: String? {
+    switch self {
+    case .metalUnavailable:
+      "Metal is not available on this Mac."
+    case .captureFailed:
+      "Could not capture the current preview image."
+    case .pngEncodingFailed:
+      "Could not encode the preview image."
+    case .cannotCreatePNGDestination(let url):
+      "Could not create a PNG at \(url.path)."
+    case .cannotWritePNG(let url):
+      "Could not write the PNG at \(url.path)."
     }
   }
 }
