@@ -2,6 +2,10 @@
 
 All notable changes to Foil Shaders will be documented in this file.
 
+## 0.3.0 - 2026-07-04
+
+- Refresh the Foil Shader Studio app icon across all app icon asset sizes.
+
 ## 0.2.0 - 2026-07-03
 
 - Add a context menu to Foil Shader Studio with Copy Image and Save Image… actions.
