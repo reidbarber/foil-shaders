@@ -8,17 +8,32 @@ BUNDLE_VERSION="1"
 BUNDLE_SHORT_VERSION="0.1.0"
 MINIMUM_SYSTEM_VERSION="13.0"
 CONFIGURATION="release"
+ARCH_MODE="universal"
 CREATE_DMG=0
+SIGN_IDENTITY="-"
+NOTARIZE_PROFILE=""
 
 usage() {
   cat <<EOF
-Usage: Scripts/package-macos-app.sh [--dmg] [--configuration release|debug]
+Usage: Scripts/package-macos-app.sh [options]
 
 Builds dist/${APP_NAME}.app from the SwiftPM ${PRODUCT_NAME} executable.
 
 Options:
   --dmg                         Also create dist/FoilShadersStudio.dmg.
   --configuration <config>      SwiftPM configuration to build. Defaults to release.
+  --arch <universal|host>       Build a universal (arm64 + x86_64) or host-only
+                                binary. Defaults to universal. Universal builds
+                                must run on an Apple Silicon host.
+  --sign <identity>             codesign identity, e.g.
+                                "Developer ID Application: RB Labs LLC (XXXXXXXXXX)".
+                                Enables hardened runtime and a secure timestamp.
+                                Defaults to ad-hoc signing ("-").
+  --notarize <keychain-profile> Submit the DMG to Apple notarization and staple
+                                the ticket. Implies --dmg and requires --sign
+                                with a Developer ID identity. Set up the profile
+                                once with: xcrun notarytool store-credentials.
+  --version <x.y.z>             CFBundleShortVersionString. Defaults to ${BUNDLE_SHORT_VERSION}.
   -h, --help                    Show this help message.
 EOF
 }
@@ -30,11 +45,29 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     --configuration)
-      if [[ $# -lt 2 ]]; then
-        echo "error: --configuration requires a value" >&2
-        exit 1
-      fi
+      [[ $# -ge 2 ]] || { echo "error: --configuration requires a value" >&2; exit 1; }
       CONFIGURATION="$2"
+      shift 2
+      ;;
+    --arch)
+      [[ $# -ge 2 ]] || { echo "error: --arch requires a value" >&2; exit 1; }
+      ARCH_MODE="$2"
+      shift 2
+      ;;
+    --sign)
+      [[ $# -ge 2 ]] || { echo "error: --sign requires a value" >&2; exit 1; }
+      SIGN_IDENTITY="$2"
+      shift 2
+      ;;
+    --notarize)
+      [[ $# -ge 2 ]] || { echo "error: --notarize requires a value" >&2; exit 1; }
+      NOTARIZE_PROFILE="$2"
+      CREATE_DMG=1
+      shift 2
+      ;;
+    --version)
+      [[ $# -ge 2 ]] || { echo "error: --version requires a value" >&2; exit 1; }
+      BUNDLE_SHORT_VERSION="$2"
       shift 2
       ;;
     -h | --help)
@@ -54,6 +87,25 @@ if [[ "$CONFIGURATION" != "release" && "$CONFIGURATION" != "debug" ]]; then
   exit 1
 fi
 
+if [[ "$ARCH_MODE" != "universal" && "$ARCH_MODE" != "host" ]]; then
+  echo "error: --arch must be universal or host" >&2
+  exit 1
+fi
+
+HOST_ARCH="$(uname -m)"
+
+if [[ "$ARCH_MODE" == "universal" && "$HOST_ARCH" != "arm64" ]]; then
+  echo "error: universal builds require an Apple Silicon (arm64) host." >&2
+  echo "Use --arch host on this machine, or build the release on an arm64 Mac." >&2
+  exit 1
+fi
+
+if [[ -n "$NOTARIZE_PROFILE" && "$SIGN_IDENTITY" == "-" ]]; then
+  echo "error: --notarize requires --sign with a Developer ID identity." >&2
+  echo "Ad-hoc signed apps cannot be notarized." >&2
+  exit 1
+fi
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 DIST_DIR="${REPO_ROOT}/dist"
@@ -69,35 +121,58 @@ ICON_SOURCE_DIR="${REPO_ROOT}/Icons/Assets.xcassets/AppIcon.appiconset"
 BUILD_ROOT="${REPO_ROOT}/.build"
 MODULE_CACHE_DIR="${BUILD_ROOT}/ModuleCache"
 SWIFTPM_MODULE_CACHE_DIR="${BUILD_ROOT}/SwiftPMModuleCache"
-PLATFORM_DIR="$(uname -m)-apple-macosx"
-BUILD_DIR="${BUILD_ROOT}/${PLATFORM_DIR}/${CONFIGURATION}"
-BUILD_MODULE_CACHE_DIR="${BUILD_DIR}/ModuleCache"
-MODULE_CACHE_ROOT_MARKER="${BUILD_DIR}/.package-macos-app-module-cache-root"
-MODULE_CACHE_ROOT_MARKER_VALUE="v3:${REPO_ROOT}"
-EXECUTABLE_PATH="${BUILD_DIR}/${PRODUCT_NAME}"
+MODULE_CACHE_ROOT_MARKER="${BUILD_ROOT}/.package-macos-app-module-cache-root"
+MODULE_CACHE_ROOT_MARKER_VALUE="v4:${REPO_ROOT}"
+HOST_BUILD_DIR="${BUILD_ROOT}/${HOST_ARCH}-apple-macosx/${CONFIGURATION}"
 RESOURCE_BUNDLE_NAME="FoilShaders_FoilShaders.bundle"
-RESOURCE_BUNDLE_PATH="${BUILD_DIR}/${RESOURCE_BUNDLE_NAME}"
+RESOURCE_BUNDLE_PATH="${HOST_BUILD_DIR}/${RESOURCE_BUNDLE_NAME}"
 
 if [[ ! -d "$ICON_SOURCE_DIR" ]]; then
   echo "error: missing icon source directory: ${ICON_SOURCE_DIR}" >&2
   exit 1
 fi
 
-echo "Building ${PRODUCT_NAME} (${CONFIGURATION})..."
+# The .metal shaders ship as raw source and are compiled at runtime, so every
+# slice must be built with the default SwiftPM build system (which copies them
+# verbatim). A `swift build --arch a --arch b` universal build routes through
+# XCBuild, which instead compiles the shaders and drops the source the app
+# needs. We therefore build each slice separately and lipo them together.
+mkdir -p "$MODULE_CACHE_DIR" "$SWIFTPM_MODULE_CACHE_DIR"
 if [[ ! -f "$MODULE_CACHE_ROOT_MARKER" ]] || [[ "$(cat "$MODULE_CACHE_ROOT_MARKER")" != "$MODULE_CACHE_ROOT_MARKER_VALUE" ]]; then
   echo "Refreshing Swift module caches for ${REPO_ROOT}..."
-  rm -rf "$MODULE_CACHE_DIR" "$SWIFTPM_MODULE_CACHE_DIR" "$BUILD_MODULE_CACHE_DIR"
+  rm -rf "$MODULE_CACHE_DIR" "$SWIFTPM_MODULE_CACHE_DIR"
+  mkdir -p "$MODULE_CACHE_DIR" "$SWIFTPM_MODULE_CACHE_DIR"
 fi
-mkdir -p "$MODULE_CACHE_DIR" "$SWIFTPM_MODULE_CACHE_DIR" "$BUILD_DIR"
 printf "%s\n" "$MODULE_CACHE_ROOT_MARKER_VALUE" > "$MODULE_CACHE_ROOT_MARKER"
-env \
-  CLANG_MODULE_CACHE_PATH="$MODULE_CACHE_DIR" \
-  SWIFTPM_MODULECACHE_OVERRIDE="$SWIFTPM_MODULE_CACHE_DIR" \
-  swift build -c "$CONFIGURATION" --product "$PRODUCT_NAME"
 
-if [[ ! -x "$EXECUTABLE_PATH" ]]; then
-  echo "error: missing built executable: ${EXECUTABLE_PATH}" >&2
+build_slice() {
+  # $1: optional arch wrapper (e.g. "arch -x86_64"); empty for native.
+  local wrapper="$1"
+  ${wrapper} env \
+    CLANG_MODULE_CACHE_PATH="$MODULE_CACHE_DIR" \
+    SWIFTPM_MODULECACHE_OVERRIDE="$SWIFTPM_MODULE_CACHE_DIR" \
+    swift build -c "$CONFIGURATION" --product "$PRODUCT_NAME"
+}
+
+echo "Building ${PRODUCT_NAME} (${CONFIGURATION}, ${ARCH_MODE})..."
+echo "  native (${HOST_ARCH}) slice..."
+build_slice ""
+NATIVE_EXECUTABLE="${HOST_BUILD_DIR}/${PRODUCT_NAME}"
+if [[ ! -x "$NATIVE_EXECUTABLE" ]]; then
+  echo "error: missing built executable: ${NATIVE_EXECUTABLE}" >&2
   exit 1
+fi
+
+LIPO_INPUTS=("$NATIVE_EXECUTABLE")
+if [[ "$ARCH_MODE" == "universal" ]]; then
+  echo "  x86_64 slice (via Rosetta)..."
+  build_slice "arch -x86_64"
+  X86_EXECUTABLE="${BUILD_ROOT}/x86_64-apple-macosx/${CONFIGURATION}/${PRODUCT_NAME}"
+  if [[ ! -x "$X86_EXECUTABLE" ]]; then
+    echo "error: missing built executable: ${X86_EXECUTABLE}" >&2
+    exit 1
+  fi
+  LIPO_INPUTS+=("$X86_EXECUTABLE")
 fi
 
 if [[ ! -d "$RESOURCE_BUNDLE_PATH" ]]; then
@@ -109,7 +184,8 @@ echo "Creating ${APP_BUNDLE}..."
 rm -rf "$APP_BUNDLE" "$APP_ICONSET"
 mkdir -p "$MACOS_DIR" "$RESOURCES_DIR" "$APP_ICONSET"
 
-cp "$EXECUTABLE_PATH" "${MACOS_DIR}/${PRODUCT_NAME}"
+lipo -create "${LIPO_INPUTS[@]}" -output "${MACOS_DIR}/${PRODUCT_NAME}"
+lipo -info "${MACOS_DIR}/${PRODUCT_NAME}"
 cp -R "$RESOURCE_BUNDLE_PATH" "${RESOURCES_DIR}/${RESOURCE_BUNDLE_NAME}"
 
 cp "${ICON_SOURCE_DIR}/16.png" "${APP_ICONSET}/icon_16x16.png"
@@ -157,7 +233,16 @@ cat > "${CONTENTS_DIR}/Info.plist" <<EOF
 EOF
 
 plutil -lint "${CONTENTS_DIR}/Info.plist"
-codesign --force --deep --sign - "$APP_BUNDLE"
+
+if [[ "$SIGN_IDENTITY" == "-" ]]; then
+  echo "Ad-hoc signing ${APP_BUNDLE} (not distributable to other Macs)..."
+  codesign --force --sign - "$APP_BUNDLE"
+else
+  echo "Signing ${APP_BUNDLE} with: ${SIGN_IDENTITY}"
+  codesign --force --options runtime --timestamp \
+    --sign "$SIGN_IDENTITY" "$APP_BUNDLE"
+  codesign --verify --strict --verbose=2 "$APP_BUNDLE"
+fi
 
 echo "Created ${APP_BUNDLE}"
 
@@ -174,4 +259,18 @@ if [[ "$CREATE_DMG" -eq 1 ]]; then
     "$DMG_PATH"
   rm -rf "$DMG_STAGING_DIR"
   echo "Created ${DMG_PATH}"
+
+  if [[ -n "$NOTARIZE_PROFILE" ]]; then
+    echo "Submitting ${DMG_PATH} for notarization (profile: ${NOTARIZE_PROFILE})..."
+    xcrun notarytool submit "$DMG_PATH" \
+      --keychain-profile "$NOTARIZE_PROFILE" \
+      --wait
+    echo "Stapling notarization ticket..."
+    xcrun stapler staple "$DMG_PATH"
+    xcrun stapler validate "$DMG_PATH"
+    spctl --assess --type open --context context:primary-signature -v "$DMG_PATH" || true
+  fi
+
+  echo "SHA-256:"
+  shasum -a 256 "$DMG_PATH"
 fi
