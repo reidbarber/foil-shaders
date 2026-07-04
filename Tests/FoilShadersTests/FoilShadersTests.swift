@@ -1,4 +1,5 @@
 import CoreGraphics
+import Foundation
 import Metal
 import XCTest
 
@@ -54,15 +55,20 @@ final class FoilShadersTests: XCTestCase {
       ])
   }
 
-  func testPaperEnumRawValueParity() {
-    XCTAssertEqual(DotGridShape.diamond.rawValue, 1)
-    XCTAssertEqual(DitheringShape.sphere.rawValue, 7)
-    XCTAssertEqual(DitheringType.eightByEight.rawValue, 4)
-    XCTAssertEqual(GrainGradientShape.corners.rawValue, 4)
-    XCTAssertEqual(HalftoneDotsGrid.hex.rawValue, 1)
-    XCTAssertEqual(HalftoneCMYKType.ink.rawValue, 1)
-    XCTAssertEqual(GlassGridShape.lines.rawValue, 1)
-    XCTAssertEqual(GlassDistortionShape.prism.rawValue, 1)
+  func testShaderEnumRawValuesRemainStablePersistedValues() {
+    XCTAssertEqual(DotGridShape.allCases.map(\.rawValue), [0, 1, 2, 3])
+    XCTAssertEqual(DitheringShape.allCases.map(\.rawValue), [1, 2, 3, 4, 5, 6, 7])
+    XCTAssertEqual(DitheringType.allCases.map(\.rawValue), [1, 2, 3, 4])
+    XCTAssertEqual(WarpPattern.allCases.map(\.rawValue), [0, 1, 2])
+    XCTAssertEqual(GrainGradientShape.allCases.map(\.rawValue), [1, 2, 3, 4, 5, 6, 7])
+    XCTAssertEqual(PulsingBorderAspectRatio.allCases.map(\.rawValue), [0, 1])
+    XCTAssertEqual(HalftoneDotsType.allCases.map(\.rawValue), [0, 1, 2, 3])
+    XCTAssertEqual(HalftoneDotsGrid.allCases.map(\.rawValue), [0, 1])
+    XCTAssertEqual(HalftoneCMYKType.allCases.map(\.rawValue), [0, 1, 2])
+    XCTAssertEqual(LiquidMetalShape.allCases.map(\.rawValue), [0, 1, 2, 3, 4])
+    XCTAssertEqual(GlassGridShape.allCases.map(\.rawValue), [1, 2, 3, 4, 5])
+    XCTAssertEqual(GlassDistortionShape.allCases.map(\.rawValue), [1, 2, 3, 4, 5])
+    XCTAssertEqual(GemSmokeShape.allCases.map(\.rawValue), [0, 1, 2, 3, 4])
   }
 
   func testConfigurationGraphConformancesCompile() {
@@ -119,6 +125,30 @@ final class FoilShadersTests: XCTestCase {
     let decoded = try JSONDecoder().decode(ShaderConfiguration.self, from: data)
 
     XCTAssertEqual(decoded, configuration)
+  }
+
+  func testShaderParametersCodableFixture() throws {
+    let fixtureData = try Self.loadFixture(named: "shader-parameters-dot-grid")
+    let expected = Self.fixtureShaderParameters
+
+    let decoded = try JSONDecoder().decode(ShaderParameters.self, from: fixtureData)
+    let encoded = try Self.fixtureJSONEncoder.encode(expected)
+
+    XCTAssertEqual(decoded, expected)
+    XCTAssertEqual(try Self.canonicalJSONString(encoded), try Self.canonicalJSONString(fixtureData))
+    XCTAssertFalse(String(decoding: encoded, as: UTF8.self).contains(#""_0""#))
+  }
+
+  func testShaderConfigurationCodableFixture() throws {
+    let fixtureData = try Self.loadFixture(named: "shader-configuration-dot-grid")
+    let expected = Self.fixtureShaderConfiguration
+
+    let decoded = try JSONDecoder().decode(ShaderConfiguration.self, from: fixtureData)
+    let encoded = try Self.fixtureJSONEncoder.encode(expected)
+
+    XCTAssertEqual(decoded, expected)
+    XCTAssertEqual(try Self.canonicalJSONString(encoded), try Self.canonicalJSONString(fixtureData))
+    XCTAssertFalse(String(decoding: encoded, as: UTF8.self).contains(#""_0""#))
   }
 
   func testShaderConfigurationRejectsRawCGImageEncoding() throws {
@@ -618,6 +648,67 @@ final class FoilShadersTests: XCTestCase {
     file: StaticString = #filePath,
     line: UInt = #line
   ) {}
+
+  private static var fixtureShaderParameters: ShaderParameters {
+    .dotGrid(fixtureDotGridParams)
+  }
+
+  private static var fixtureDotGridParams: DotGridParams {
+    DotGridParams(
+      colorBack: .black,
+      colorFill: .white,
+      colorStroke: ShaderColor(red: 1, green: 0.5, blue: 0, alpha: 1),
+      dotSize: 2,
+      gapX: 4,
+      gapY: 5,
+      strokeWidth: 0.5,
+      sizeRange: 0.7,
+      opacityRange: 0.4,
+      shape: .diamond
+    )
+  }
+
+  private static var fixtureShaderConfiguration: ShaderConfiguration {
+    ShaderConfiguration(
+      parameters: fixtureShaderParameters,
+      sizing: ShaderSizingParams(
+        fit: .contain,
+        scale: 1.25,
+        rotation: 15,
+        originX: 0.4,
+        originY: 0.6,
+        offsetX: 0.1,
+        offsetY: -0.2,
+        worldWidth: 640,
+        worldHeight: 360
+      ),
+      motion: ShaderMotionParams(speed: 0.25, frame: 12),
+      renderOptions: ShaderRenderOptions(minPixelRatio: 1.5, maxPixelCount: 57_600),
+      image: .url(URL(fileURLWithPath: "/tmp/source.png"))
+    )
+  }
+
+  private static var fixtureJSONEncoder: JSONEncoder {
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
+    return encoder
+  }
+
+  private static func loadFixture(named name: String) throws -> Data {
+    let url = try XCTUnwrap(
+      Bundle.module.url(forResource: name, withExtension: "json", subdirectory: "Fixtures")
+    )
+    return try Data(contentsOf: url)
+  }
+
+  private static func canonicalJSONString(_ data: Data) throws -> String {
+    let object = try JSONSerialization.jsonObject(with: data)
+    let canonicalData = try JSONSerialization.data(
+      withJSONObject: object,
+      options: [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
+    )
+    return String(decoding: canonicalData, as: UTF8.self)
+  }
 
   private enum TestImageError: Error {
     case providerCreationFailed

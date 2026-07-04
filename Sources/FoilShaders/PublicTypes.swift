@@ -689,6 +689,112 @@ public enum ShaderParameters: Equatable, Sendable, Codable {
   case flutedGlass(FlutedGlassParams)
   case gemSmoke(GemSmokeParams)
 
+  private enum CodingKeys: String, CodingKey {
+    case type
+    case params
+  }
+
+  private enum ParameterType: String, Codable {
+    case animatedMeshGradient
+    case staticMeshGradient
+    case staticRadialGradient
+    case swirl
+    case spiral
+    case dotGrid
+    case simplexNoise
+    case perlinNoise
+    case neuroNoise
+    case waves
+    case dithering
+    case colorPanels
+    case dotOrbit
+    case godRays
+    case grainGradient
+    case metaballs
+    case warp
+    case voronoi
+    case pulsingBorder
+    case smokeRing
+    case imageDithering
+    case halftoneDots
+    case halftoneCMYK
+    case heatmap
+    case liquidMetal
+    case paperTexture
+    case water
+    case flutedGlass
+    case gemSmoke
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self = try Self.decodeStable(from: container)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    switch self {
+    case .animatedMeshGradient(let params):
+      try encode(.animatedMeshGradient, params, to: &container)
+    case .staticMeshGradient(let params):
+      try encode(.staticMeshGradient, params, to: &container)
+    case .staticRadialGradient(let params):
+      try encode(.staticRadialGradient, params, to: &container)
+    case .swirl(let params):
+      try encode(.swirl, params, to: &container)
+    case .spiral(let params):
+      try encode(.spiral, params, to: &container)
+    case .dotGrid(let params):
+      try encode(.dotGrid, params, to: &container)
+    case .simplexNoise(let params):
+      try encode(.simplexNoise, params, to: &container)
+    case .perlinNoise(let params):
+      try encode(.perlinNoise, params, to: &container)
+    case .neuroNoise(let params):
+      try encode(.neuroNoise, params, to: &container)
+    case .waves(let params):
+      try encode(.waves, params, to: &container)
+    case .dithering(let params):
+      try encode(.dithering, params, to: &container)
+    case .colorPanels(let params):
+      try encode(.colorPanels, params, to: &container)
+    case .dotOrbit(let params):
+      try encode(.dotOrbit, params, to: &container)
+    case .godRays(let params):
+      try encode(.godRays, params, to: &container)
+    case .grainGradient(let params):
+      try encode(.grainGradient, params, to: &container)
+    case .metaballs(let params):
+      try encode(.metaballs, params, to: &container)
+    case .warp(let params):
+      try encode(.warp, params, to: &container)
+    case .voronoi(let params):
+      try encode(.voronoi, params, to: &container)
+    case .pulsingBorder(let params):
+      try encode(.pulsingBorder, params, to: &container)
+    case .smokeRing(let params):
+      try encode(.smokeRing, params, to: &container)
+    case .imageDithering(let params):
+      try encode(.imageDithering, params, to: &container)
+    case .halftoneDots(let params):
+      try encode(.halftoneDots, params, to: &container)
+    case .halftoneCMYK(let params):
+      try encode(.halftoneCMYK, params, to: &container)
+    case .heatmap(let params):
+      try encode(.heatmap, params, to: &container)
+    case .liquidMetal(let params):
+      try encode(.liquidMetal, params, to: &container)
+    case .paperTexture(let params):
+      try encode(.paperTexture, params, to: &container)
+    case .water(let params):
+      try encode(.water, params, to: &container)
+    case .flutedGlass(let params):
+      try encode(.flutedGlass, params, to: &container)
+    case .gemSmoke(let params):
+      try encode(.gemSmoke, params, to: &container)
+    }
+  }
+
   public var kind: FoilShadersRenderer.ShaderKind {
     switch self {
     case .animatedMeshGradient: .animatedMeshGradient
@@ -721,6 +827,109 @@ public enum ShaderParameters: Equatable, Sendable, Codable {
     case .flutedGlass: .flutedGlass
     case .gemSmoke: .gemSmoke
     }
+  }
+
+  private func encode<Params: Encodable>(
+    _ type: ParameterType,
+    _ params: Params,
+    to container: inout KeyedEncodingContainer<CodingKeys>
+  ) throws {
+    try container.encode(type, forKey: .type)
+    try container.encode(params, forKey: .params)
+  }
+
+  private static func decodeStable(
+    from container: KeyedDecodingContainer<CodingKeys>
+  ) throws -> ShaderParameters {
+    let type = try container.decode(ParameterType.self, forKey: .type)
+    switch type {
+    case .animatedMeshGradient:
+      return try decodeStable(
+        AnimatedMeshGradientParams.self, from: container,
+        wrap: ShaderParameters.animatedMeshGradient)
+    case .staticMeshGradient:
+      return try decodeStable(
+        StaticMeshGradientParams.self, from: container, wrap: ShaderParameters.staticMeshGradient)
+    case .staticRadialGradient:
+      return try decodeStable(
+        StaticRadialGradientParams.self, from: container,
+        wrap: ShaderParameters.staticRadialGradient)
+    case .swirl:
+      return try decodeStable(SwirlParams.self, from: container, wrap: ShaderParameters.swirl)
+    case .spiral:
+      return try decodeStable(SpiralParams.self, from: container, wrap: ShaderParameters.spiral)
+    case .dotGrid:
+      return try decodeStable(DotGridParams.self, from: container, wrap: ShaderParameters.dotGrid)
+    case .simplexNoise:
+      return try decodeStable(
+        SimplexNoiseParams.self, from: container, wrap: ShaderParameters.simplexNoise)
+    case .perlinNoise:
+      return try decodeStable(
+        PerlinNoiseParams.self, from: container, wrap: ShaderParameters.perlinNoise)
+    case .neuroNoise:
+      return try decodeStable(
+        NeuroNoiseParams.self, from: container, wrap: ShaderParameters.neuroNoise)
+    case .waves:
+      return try decodeStable(WavesParams.self, from: container, wrap: ShaderParameters.waves)
+    case .dithering:
+      return try decodeStable(
+        DitheringParams.self, from: container, wrap: ShaderParameters.dithering)
+    case .colorPanels:
+      return try decodeStable(
+        ColorPanelsParams.self, from: container, wrap: ShaderParameters.colorPanels)
+    case .dotOrbit:
+      return try decodeStable(DotOrbitParams.self, from: container, wrap: ShaderParameters.dotOrbit)
+    case .godRays:
+      return try decodeStable(GodRaysParams.self, from: container, wrap: ShaderParameters.godRays)
+    case .grainGradient:
+      return try decodeStable(
+        GrainGradientParams.self, from: container, wrap: ShaderParameters.grainGradient)
+    case .metaballs:
+      return try decodeStable(
+        MetaballsParams.self, from: container, wrap: ShaderParameters.metaballs)
+    case .warp:
+      return try decodeStable(WarpParams.self, from: container, wrap: ShaderParameters.warp)
+    case .voronoi:
+      return try decodeStable(VoronoiParams.self, from: container, wrap: ShaderParameters.voronoi)
+    case .pulsingBorder:
+      return try decodeStable(
+        PulsingBorderParams.self, from: container, wrap: ShaderParameters.pulsingBorder)
+    case .smokeRing:
+      return try decodeStable(
+        SmokeRingParams.self, from: container, wrap: ShaderParameters.smokeRing)
+    case .imageDithering:
+      return try decodeStable(
+        ImageDitheringParams.self, from: container, wrap: ShaderParameters.imageDithering)
+    case .halftoneDots:
+      return try decodeStable(
+        HalftoneDotsParams.self, from: container, wrap: ShaderParameters.halftoneDots)
+    case .halftoneCMYK:
+      return try decodeStable(
+        HalftoneCMYKParams.self, from: container, wrap: ShaderParameters.halftoneCMYK)
+    case .heatmap:
+      return try decodeStable(HeatmapParams.self, from: container, wrap: ShaderParameters.heatmap)
+    case .liquidMetal:
+      return try decodeStable(
+        LiquidMetalParams.self, from: container, wrap: ShaderParameters.liquidMetal)
+    case .paperTexture:
+      return try decodeStable(
+        PaperTextureParams.self, from: container, wrap: ShaderParameters.paperTexture)
+    case .water:
+      return try decodeStable(WaterParams.self, from: container, wrap: ShaderParameters.water)
+    case .flutedGlass:
+      return try decodeStable(
+        FlutedGlassParams.self, from: container, wrap: ShaderParameters.flutedGlass)
+    case .gemSmoke:
+      return try decodeStable(GemSmokeParams.self, from: container, wrap: ShaderParameters.gemSmoke)
+    }
+  }
+
+  private static func decodeStable<Params: Decodable>(
+    _: Params.Type,
+    from container: KeyedDecodingContainer<CodingKeys>,
+    wrap: (Params) -> ShaderParameters
+  ) throws -> ShaderParameters {
+    try wrap(container.decode(Params.self, forKey: .params))
   }
 }
 

@@ -42,7 +42,10 @@ let package = Package(
     ),
     .testTarget(
       name: "FoilShadersTests",
-      dependencies: ["FoilShaders"]
+      dependencies: ["FoilShaders"],
+      resources: [
+        .copy("Fixtures")
+      ]
     ),
     .testTarget(
       name: "FoilShadersParityTests",

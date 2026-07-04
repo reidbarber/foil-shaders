@@ -1,0 +1,30 @@
+{
+  "params" : {
+    "colorBack" : {
+      "alpha" : 1,
+      "blue" : 0,
+      "green" : 0,
+      "red" : 0
+    },
+    "colorFill" : {
+      "alpha" : 1,
+      "blue" : 1,
+      "green" : 1,
+      "red" : 1
+    },
+    "colorStroke" : {
+      "alpha" : 1,
+      "blue" : 0,
+      "green" : 0.5,
+      "red" : 1
+    },
+    "dotSize" : 2,
+    "gapX" : 4,
+    "gapY" : 5,
+    "opacityRange" : 0.4,
+    "shape" : 1,
+    "sizeRange" : 0.7,
+    "strokeWidth" : 0.5
+  },
+  "type" : "dotGrid"
+}

@@ -1,0 +1,55 @@
+{
+  "image" : {
+    "type" : "url",
+    "url" : "file:///tmp/source.png"
+  },
+  "motion" : {
+    "frame" : 12,
+    "speed" : 0.25
+  },
+  "parameters" : {
+    "params" : {
+      "colorBack" : {
+        "alpha" : 1,
+        "blue" : 0,
+        "green" : 0,
+        "red" : 0
+      },
+      "colorFill" : {
+        "alpha" : 1,
+        "blue" : 1,
+        "green" : 1,
+        "red" : 1
+      },
+      "colorStroke" : {
+        "alpha" : 1,
+        "blue" : 0,
+        "green" : 0.5,
+        "red" : 1
+      },
+      "dotSize" : 2,
+      "gapX" : 4,
+      "gapY" : 5,
+      "opacityRange" : 0.4,
+      "shape" : 1,
+      "sizeRange" : 0.7,
+      "strokeWidth" : 0.5
+    },
+    "type" : "dotGrid"
+  },
+  "renderOptions" : {
+    "maxPixelCount" : 57600,
+    "minPixelRatio" : 1.5
+  },
+  "sizing" : {
+    "fit" : 1,
+    "offsetX" : 0.1,
+    "offsetY" : -0.2,
+    "originX" : 0.4,
+    "originY" : 0.6,
+    "rotation" : 15,
+    "scale" : 1.25,
+    "worldHeight" : 360,
+    "worldWidth" : 640
+  }
+}
