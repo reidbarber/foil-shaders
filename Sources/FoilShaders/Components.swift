@@ -22,9 +22,11 @@ public struct AnimatedMeshGradient: SwiftUI.View {
   }
 
   public init(
-    params: MeshGradientParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: MeshGradientParams,
+    sizing: ShaderSizingParams = MeshGradientPreset.default.sizing,
+    motion: ShaderMotionParams = MeshGradientPreset.default.motion,
+    renderOptions: ShaderRenderOptions = MeshGradientPreset.default.renderOptions,
+    image: ShaderImage? = MeshGradientPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .meshGradient(params), sizing: sizing, motion: motion,
@@ -46,9 +48,11 @@ public struct SmokeRing: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: SmokeRingParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: SmokeRingParams,
+    sizing: ShaderSizingParams = SmokeRingPreset.default.sizing,
+    motion: ShaderMotionParams = SmokeRingPreset.default.motion,
+    renderOptions: ShaderRenderOptions = SmokeRingPreset.default.renderOptions,
+    image: ShaderImage? = SmokeRingPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .smokeRing(params), sizing: sizing, motion: motion,
@@ -69,9 +73,11 @@ public struct NeuroNoise: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: NeuroNoiseParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: NeuroNoiseParams,
+    sizing: ShaderSizingParams = NeuroNoisePreset.default.sizing,
+    motion: ShaderMotionParams = NeuroNoisePreset.default.motion,
+    renderOptions: ShaderRenderOptions = NeuroNoisePreset.default.renderOptions,
+    image: ShaderImage? = NeuroNoisePreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .neuroNoise(params), sizing: sizing, motion: motion,
@@ -92,9 +98,11 @@ public struct DotOrbit: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: DotOrbitParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: DotOrbitParams,
+    sizing: ShaderSizingParams = DotOrbitPreset.default.sizing,
+    motion: ShaderMotionParams = DotOrbitPreset.default.motion,
+    renderOptions: ShaderRenderOptions = DotOrbitPreset.default.renderOptions,
+    image: ShaderImage? = DotOrbitPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .dotOrbit(params), sizing: sizing, motion: motion,
@@ -115,9 +123,11 @@ public struct DotGrid: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: DotGridParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: DotGridParams,
+    sizing: ShaderSizingParams = DotGridPreset.default.sizing,
+    motion: ShaderMotionParams = DotGridPreset.default.motion,
+    renderOptions: ShaderRenderOptions = DotGridPreset.default.renderOptions,
+    image: ShaderImage? = DotGridPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .dotGrid(params), sizing: sizing, motion: motion,
@@ -138,9 +148,11 @@ public struct SimplexNoise: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: SimplexNoiseParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: SimplexNoiseParams,
+    sizing: ShaderSizingParams = SimplexNoisePreset.default.sizing,
+    motion: ShaderMotionParams = SimplexNoisePreset.default.motion,
+    renderOptions: ShaderRenderOptions = SimplexNoisePreset.default.renderOptions,
+    image: ShaderImage? = SimplexNoisePreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .simplexNoise(params), sizing: sizing, motion: motion,
@@ -161,9 +173,11 @@ public struct Metaballs: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: MetaballsParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: MetaballsParams,
+    sizing: ShaderSizingParams = MetaballsPreset.default.sizing,
+    motion: ShaderMotionParams = MetaballsPreset.default.motion,
+    renderOptions: ShaderRenderOptions = MetaballsPreset.default.renderOptions,
+    image: ShaderImage? = MetaballsPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .metaballs(params), sizing: sizing, motion: motion,
@@ -184,9 +198,11 @@ public struct Waves: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: WavesParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: WavesParams,
+    sizing: ShaderSizingParams = WavesPreset.default.sizing,
+    motion: ShaderMotionParams = WavesPreset.default.motion,
+    renderOptions: ShaderRenderOptions = WavesPreset.default.renderOptions,
+    image: ShaderImage? = WavesPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .waves(params), sizing: sizing, motion: motion,
@@ -207,9 +223,11 @@ public struct PerlinNoise: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: PerlinNoiseParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: PerlinNoiseParams,
+    sizing: ShaderSizingParams = PerlinNoisePreset.default.sizing,
+    motion: ShaderMotionParams = PerlinNoisePreset.default.motion,
+    renderOptions: ShaderRenderOptions = PerlinNoisePreset.default.renderOptions,
+    image: ShaderImage? = PerlinNoisePreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .perlinNoise(params), sizing: sizing, motion: motion,
@@ -230,9 +248,11 @@ public struct Voronoi: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: VoronoiParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: VoronoiParams,
+    sizing: ShaderSizingParams = VoronoiPreset.default.sizing,
+    motion: ShaderMotionParams = VoronoiPreset.default.motion,
+    renderOptions: ShaderRenderOptions = VoronoiPreset.default.renderOptions,
+    image: ShaderImage? = VoronoiPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .voronoi(params), sizing: sizing, motion: motion,
@@ -253,9 +273,11 @@ public struct Warp: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: WarpParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: WarpParams,
+    sizing: ShaderSizingParams = WarpPreset.default.sizing,
+    motion: ShaderMotionParams = WarpPreset.default.motion,
+    renderOptions: ShaderRenderOptions = WarpPreset.default.renderOptions,
+    image: ShaderImage? = WarpPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .warp(params), sizing: sizing, motion: motion,
@@ -276,9 +298,11 @@ public struct GodRays: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: GodRaysParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: GodRaysParams,
+    sizing: ShaderSizingParams = GodRaysPreset.default.sizing,
+    motion: ShaderMotionParams = GodRaysPreset.default.motion,
+    renderOptions: ShaderRenderOptions = GodRaysPreset.default.renderOptions,
+    image: ShaderImage? = GodRaysPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .godRays(params), sizing: sizing, motion: motion,
@@ -299,9 +323,11 @@ public struct Spiral: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: SpiralParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: SpiralParams,
+    sizing: ShaderSizingParams = SpiralPreset.default.sizing,
+    motion: ShaderMotionParams = SpiralPreset.default.motion,
+    renderOptions: ShaderRenderOptions = SpiralPreset.default.renderOptions,
+    image: ShaderImage? = SpiralPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .spiral(params), sizing: sizing, motion: motion,
@@ -322,9 +348,11 @@ public struct Swirl: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: SwirlParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: SwirlParams,
+    sizing: ShaderSizingParams = SwirlPreset.default.sizing,
+    motion: ShaderMotionParams = SwirlPreset.default.motion,
+    renderOptions: ShaderRenderOptions = SwirlPreset.default.renderOptions,
+    image: ShaderImage? = SwirlPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .swirl(params), sizing: sizing, motion: motion,
@@ -345,9 +373,11 @@ public struct Dithering: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: DitheringParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: DitheringParams,
+    sizing: ShaderSizingParams = DitheringPreset.default.sizing,
+    motion: ShaderMotionParams = DitheringPreset.default.motion,
+    renderOptions: ShaderRenderOptions = DitheringPreset.default.renderOptions,
+    image: ShaderImage? = DitheringPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .dithering(params), sizing: sizing, motion: motion,
@@ -368,9 +398,11 @@ public struct GrainGradient: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: GrainGradientParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: GrainGradientParams,
+    sizing: ShaderSizingParams = GrainGradientPreset.default.sizing,
+    motion: ShaderMotionParams = GrainGradientPreset.default.motion,
+    renderOptions: ShaderRenderOptions = GrainGradientPreset.default.renderOptions,
+    image: ShaderImage? = GrainGradientPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .grainGradient(params), sizing: sizing, motion: motion,
@@ -391,9 +423,11 @@ public struct PulsingBorder: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: PulsingBorderParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: PulsingBorderParams,
+    sizing: ShaderSizingParams = PulsingBorderPreset.default.sizing,
+    motion: ShaderMotionParams = PulsingBorderPreset.default.motion,
+    renderOptions: ShaderRenderOptions = PulsingBorderPreset.default.renderOptions,
+    image: ShaderImage? = PulsingBorderPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .pulsingBorder(params), sizing: sizing, motion: motion,
@@ -414,9 +448,11 @@ public struct ColorPanels: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: ColorPanelsParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: ColorPanelsParams,
+    sizing: ShaderSizingParams = ColorPanelsPreset.default.sizing,
+    motion: ShaderMotionParams = ColorPanelsPreset.default.motion,
+    renderOptions: ShaderRenderOptions = ColorPanelsPreset.default.renderOptions,
+    image: ShaderImage? = ColorPanelsPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .colorPanels(params), sizing: sizing, motion: motion,
@@ -437,9 +473,11 @@ public struct StaticMeshGradient: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: StaticMeshGradientParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: StaticMeshGradientParams,
+    sizing: ShaderSizingParams = StaticMeshGradientPreset.default.sizing,
+    motion: ShaderMotionParams = StaticMeshGradientPreset.default.motion,
+    renderOptions: ShaderRenderOptions = StaticMeshGradientPreset.default.renderOptions,
+    image: ShaderImage? = StaticMeshGradientPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .staticMeshGradient(params), sizing: sizing,
@@ -460,9 +498,11 @@ public struct StaticRadialGradient: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: StaticRadialGradientParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: StaticRadialGradientParams,
+    sizing: ShaderSizingParams = StaticRadialGradientPreset.default.sizing,
+    motion: ShaderMotionParams = StaticRadialGradientPreset.default.motion,
+    renderOptions: ShaderRenderOptions = StaticRadialGradientPreset.default.renderOptions,
+    image: ShaderImage? = StaticRadialGradientPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .staticRadialGradient(params), sizing: sizing,
@@ -483,9 +523,11 @@ public struct PaperTexture: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: PaperTextureParams, sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: PaperTextureParams,
+    sizing: ShaderSizingParams = PaperTexturePreset.default.sizing,
+    motion: ShaderMotionParams = PaperTexturePreset.default.motion,
+    renderOptions: ShaderRenderOptions = PaperTexturePreset.default.renderOptions,
+    image: ShaderImage? = PaperTexturePreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .paperTexture(params), sizing: sizing, motion: motion,
@@ -506,9 +548,11 @@ public struct FlutedGlass: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: FlutedGlassParams, sizing: ShaderSizingParams = .defaultObjectSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: FlutedGlassParams,
+    sizing: ShaderSizingParams = FlutedGlassPreset.default.sizing,
+    motion: ShaderMotionParams = FlutedGlassPreset.default.motion,
+    renderOptions: ShaderRenderOptions = FlutedGlassPreset.default.renderOptions,
+    image: ShaderImage? = FlutedGlassPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .flutedGlass(params), sizing: sizing, motion: motion,
@@ -529,9 +573,11 @@ public struct Water: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: WaterParams, sizing: ShaderSizingParams = .defaultObjectSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: WaterParams,
+    sizing: ShaderSizingParams = WaterPreset.default.sizing,
+    motion: ShaderMotionParams = WaterPreset.default.motion,
+    renderOptions: ShaderRenderOptions = WaterPreset.default.renderOptions,
+    image: ShaderImage? = WaterPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .water(params), sizing: sizing, motion: motion,
@@ -552,9 +598,11 @@ public struct ImageDithering: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: ImageDitheringParams, sizing: ShaderSizingParams = .defaultObjectSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: ImageDitheringParams,
+    sizing: ShaderSizingParams = ImageDitheringPreset.default.sizing,
+    motion: ShaderMotionParams = ImageDitheringPreset.default.motion,
+    renderOptions: ShaderRenderOptions = ImageDitheringPreset.default.renderOptions,
+    image: ShaderImage? = ImageDitheringPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .imageDithering(params), sizing: sizing, motion: motion,
@@ -575,9 +623,11 @@ public struct Heatmap: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: HeatmapParams, sizing: ShaderSizingParams = .defaultObjectSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: HeatmapParams,
+    sizing: ShaderSizingParams = HeatmapPreset.default.sizing,
+    motion: ShaderMotionParams = HeatmapPreset.default.motion,
+    renderOptions: ShaderRenderOptions = HeatmapPreset.default.renderOptions,
+    image: ShaderImage? = HeatmapPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .heatmap(params), sizing: sizing, motion: motion,
@@ -598,9 +648,11 @@ public struct LiquidMetal: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: LiquidMetalParams, sizing: ShaderSizingParams = .defaultObjectSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: LiquidMetalParams,
+    sizing: ShaderSizingParams = LiquidMetalPreset.default.sizing,
+    motion: ShaderMotionParams = LiquidMetalPreset.default.motion,
+    renderOptions: ShaderRenderOptions = LiquidMetalPreset.default.renderOptions,
+    image: ShaderImage? = LiquidMetalPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .liquidMetal(params), sizing: sizing, motion: motion,
@@ -621,9 +673,11 @@ public struct HalftoneDots: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: HalftoneDotsParams, sizing: ShaderSizingParams = .defaultObjectSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: HalftoneDotsParams,
+    sizing: ShaderSizingParams = HalftoneDotsPreset.default.sizing,
+    motion: ShaderMotionParams = HalftoneDotsPreset.default.motion,
+    renderOptions: ShaderRenderOptions = HalftoneDotsPreset.default.renderOptions,
+    image: ShaderImage? = HalftoneDotsPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .halftoneDots(params), sizing: sizing, motion: motion,
@@ -644,9 +698,11 @@ public struct HalftoneCmyk: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: HalftoneCmykParams, sizing: ShaderSizingParams = .defaultObjectSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: HalftoneCmykParams,
+    sizing: ShaderSizingParams = HalftoneCmykPreset.default.sizing,
+    motion: ShaderMotionParams = HalftoneCmykPreset.default.motion,
+    renderOptions: ShaderRenderOptions = HalftoneCmykPreset.default.renderOptions,
+    image: ShaderImage? = HalftoneCmykPreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .halftoneCmyk(params), sizing: sizing, motion: motion,
@@ -667,9 +723,11 @@ public struct GemSmoke: SwiftUI.View {
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: GemSmokeParams, sizing: ShaderSizingParams = .defaultObjectSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
+    params: GemSmokeParams,
+    sizing: ShaderSizingParams = GemSmokePreset.default.sizing,
+    motion: ShaderMotionParams = GemSmokePreset.default.motion,
+    renderOptions: ShaderRenderOptions = GemSmokePreset.default.renderOptions,
+    image: ShaderImage? = GemSmokePreset.default.image
   ) {
     configuration = ShaderConfiguration(
       parameters: .gemSmoke(params), sizing: sizing, motion: motion,

@@ -205,6 +205,168 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertEqual(GemSmokePreset.default.params.shape, .diamond)
   }
 
+  @MainActor
+  func testParamsInitializersDefaultToComponentPresetConfiguration() {
+    let meshColors: [ShaderColor] = ["#5100ff", "#00ff80", "#ffcc00", "#ea00ff"]
+    XCTAssertEqual(
+      AnimatedMeshGradient(params: MeshGradientParams(colors: meshColors)).configuration,
+      AnimatedMeshGradient(colors: meshColors).configuration
+    )
+
+    let configurations: [(String, ShaderConfiguration, ShaderConfiguration)] = [
+      (
+        "AnimatedMeshGradient",
+        AnimatedMeshGradient(params: MeshGradientPreset.default.params).configuration,
+        AnimatedMeshGradient(MeshGradientPreset.default).configuration
+      ),
+      (
+        "SmokeRing",
+        SmokeRing(params: SmokeRingPreset.default.params).configuration,
+        SmokeRing(SmokeRingPreset.default).configuration
+      ),
+      (
+        "NeuroNoise",
+        NeuroNoise(params: NeuroNoisePreset.default.params).configuration,
+        NeuroNoise(NeuroNoisePreset.default).configuration
+      ),
+      (
+        "DotOrbit",
+        DotOrbit(params: DotOrbitPreset.default.params).configuration,
+        DotOrbit(DotOrbitPreset.default).configuration
+      ),
+      (
+        "DotGrid",
+        DotGrid(params: DotGridPreset.default.params).configuration,
+        DotGrid(DotGridPreset.default).configuration
+      ),
+      (
+        "SimplexNoise",
+        SimplexNoise(params: SimplexNoisePreset.default.params).configuration,
+        SimplexNoise(SimplexNoisePreset.default).configuration
+      ),
+      (
+        "Metaballs",
+        Metaballs(params: MetaballsPreset.default.params).configuration,
+        Metaballs(MetaballsPreset.default).configuration
+      ),
+      (
+        "Waves",
+        Waves(params: WavesPreset.default.params).configuration,
+        Waves(WavesPreset.default).configuration
+      ),
+      (
+        "PerlinNoise",
+        PerlinNoise(params: PerlinNoisePreset.default.params).configuration,
+        PerlinNoise(PerlinNoisePreset.default).configuration
+      ),
+      (
+        "Voronoi",
+        Voronoi(params: VoronoiPreset.default.params).configuration,
+        Voronoi(VoronoiPreset.default).configuration
+      ),
+      (
+        "Warp",
+        Warp(params: WarpPreset.default.params).configuration,
+        Warp(WarpPreset.default).configuration
+      ),
+      (
+        "GodRays",
+        GodRays(params: GodRaysPreset.default.params).configuration,
+        GodRays(GodRaysPreset.default).configuration
+      ),
+      (
+        "Spiral",
+        Spiral(params: SpiralPreset.default.params).configuration,
+        Spiral(SpiralPreset.default).configuration
+      ),
+      (
+        "Swirl",
+        Swirl(params: SwirlPreset.default.params).configuration,
+        Swirl(SwirlPreset.default).configuration
+      ),
+      (
+        "Dithering",
+        Dithering(params: DitheringPreset.default.params).configuration,
+        Dithering(DitheringPreset.default).configuration
+      ),
+      (
+        "GrainGradient",
+        GrainGradient(params: GrainGradientPreset.default.params).configuration,
+        GrainGradient(GrainGradientPreset.default).configuration
+      ),
+      (
+        "PulsingBorder",
+        PulsingBorder(params: PulsingBorderPreset.default.params).configuration,
+        PulsingBorder(PulsingBorderPreset.default).configuration
+      ),
+      (
+        "ColorPanels",
+        ColorPanels(params: ColorPanelsPreset.default.params).configuration,
+        ColorPanels(ColorPanelsPreset.default).configuration
+      ),
+      (
+        "StaticMeshGradient",
+        StaticMeshGradient(params: StaticMeshGradientPreset.default.params).configuration,
+        StaticMeshGradient(StaticMeshGradientPreset.default).configuration
+      ),
+      (
+        "StaticRadialGradient",
+        StaticRadialGradient(params: StaticRadialGradientPreset.default.params).configuration,
+        StaticRadialGradient(StaticRadialGradientPreset.default).configuration
+      ),
+      (
+        "PaperTexture",
+        PaperTexture(params: PaperTexturePreset.default.params).configuration,
+        PaperTexture(PaperTexturePreset.default).configuration
+      ),
+      (
+        "FlutedGlass",
+        FlutedGlass(params: FlutedGlassPreset.default.params).configuration,
+        FlutedGlass(FlutedGlassPreset.default).configuration
+      ),
+      (
+        "Water",
+        Water(params: WaterPreset.default.params).configuration,
+        Water(WaterPreset.default).configuration
+      ),
+      (
+        "ImageDithering",
+        ImageDithering(params: ImageDitheringPreset.default.params).configuration,
+        ImageDithering(ImageDitheringPreset.default).configuration
+      ),
+      (
+        "Heatmap",
+        Heatmap(params: HeatmapPreset.default.params).configuration,
+        Heatmap(HeatmapPreset.default).configuration
+      ),
+      (
+        "LiquidMetal",
+        LiquidMetal(params: LiquidMetalPreset.default.params).configuration,
+        LiquidMetal(LiquidMetalPreset.default).configuration
+      ),
+      (
+        "HalftoneDots",
+        HalftoneDots(params: HalftoneDotsPreset.default.params).configuration,
+        HalftoneDots(HalftoneDotsPreset.default).configuration
+      ),
+      (
+        "HalftoneCmyk",
+        HalftoneCmyk(params: HalftoneCmykPreset.default.params).configuration,
+        HalftoneCmyk(HalftoneCmykPreset.default).configuration
+      ),
+      (
+        "GemSmoke",
+        GemSmoke(params: GemSmokePreset.default.params).configuration,
+        GemSmoke(GemSmokePreset.default).configuration
+      ),
+    ]
+
+    XCTAssertEqual(configurations.count, 29)
+    for (name, paramsConfiguration, presetConfiguration) in configurations {
+      XCTAssertEqual(paramsConfiguration, presetConfiguration, name)
+    }
+  }
+
   func testNamedPresetMembersPreserveComponentPresetOrder() {
     XCTAssertEqual(SwirlPreset.candy.name, "Candy")
     XCTAssertEqual(SwirlPreset.preset007.name, "007")
