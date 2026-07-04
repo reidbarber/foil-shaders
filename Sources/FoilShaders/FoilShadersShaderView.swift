@@ -14,11 +14,21 @@ private struct FoilShadersRespectsReduceMotionKey: EnvironmentKey {
   static let defaultValue = true
 }
 
+private struct FoilShadersPausesWhenInactiveOrOffscreenKey: EnvironmentKey {
+  static let defaultValue = true
+}
+
 extension EnvironmentValues {
   /// Controls whether Foil Shaders SwiftUI components pause animation when Reduce Motion is enabled.
   public var foilShadersRespectsReduceMotion: Bool {
     get { self[FoilShadersRespectsReduceMotionKey.self] }
     set { self[FoilShadersRespectsReduceMotionKey.self] = newValue }
+  }
+
+  /// Controls whether Foil Shaders SwiftUI components pause rendering while inactive or offscreen.
+  public var foilShadersPausesWhenInactiveOrOffscreen: Bool {
+    get { self[FoilShadersPausesWhenInactiveOrOffscreenKey.self] }
+    set { self[FoilShadersPausesWhenInactiveOrOffscreenKey.self] = newValue }
   }
 }
 
@@ -26,6 +36,13 @@ extension SwiftUI.View {
   /// Sets whether Foil Shaders descendants pause animation when Reduce Motion is enabled.
   public func foilShadersRespectsReduceMotion(_ respectsReduceMotion: Bool) -> some SwiftUI.View {
     environment(\.foilShadersRespectsReduceMotion, respectsReduceMotion)
+  }
+
+  /// Sets whether Foil Shaders descendants pause rendering while inactive or offscreen.
+  public func foilShadersPausesWhenInactiveOrOffscreen(
+    _ pausesWhenInactiveOrOffscreen: Bool
+  ) -> some SwiftUI.View {
+    environment(\.foilShadersPausesWhenInactiveOrOffscreen, pausesWhenInactiveOrOffscreen)
   }
 }
 
@@ -36,9 +53,12 @@ public struct FoilShadersShaderView: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public var failureFallbackColor: ShaderColor
   public var respectsReduceMotion: Bool
+  public var pausesWhenInactiveOrOffscreen: Bool
 
   @Environment(\.accessibilityReduceMotion) private var accessibilityReduceMotion
   @Environment(\.foilShadersRespectsReduceMotion) private var environmentRespectsReduceMotion
+  @Environment(\.foilShadersPausesWhenInactiveOrOffscreen)
+  private var environmentPausesWhenInactiveOrOffscreen
   @Environment(\.scenePhase) private var scenePhase
   @Binding private var rendererError: FoilShadersError?
   private var onRendererError: ((FoilShadersError) -> Void)?
@@ -50,29 +70,35 @@ public struct FoilShadersShaderView: SwiftUI.View {
   ///   - rendererError: Optional binding updated when renderer setup or reconfiguration fails.
   ///   - failureFallbackColor: Solid fallback color shown if the renderer cannot be configured.
   ///   - respectsReduceMotion: Whether animation pauses when the system Reduce Motion setting is enabled.
+  ///   - pausesWhenInactiveOrOffscreen: Whether rendering pauses while inactive or offscreen.
   ///   - onRendererError: Optional callback invoked once for each distinct renderer failure.
   public init(
     configuration: ShaderConfiguration,
     rendererError: Binding<FoilShadersError?> = .constant(nil),
     failureFallbackColor: ShaderColor = FoilShadersShaderView.defaultFailureFallbackColor,
     respectsReduceMotion: Bool = true,
+    pausesWhenInactiveOrOffscreen: Bool = true,
     onRendererError: ((FoilShadersError) -> Void)? = nil
   ) {
     self.configuration = configuration
     self._rendererError = rendererError
     self.failureFallbackColor = failureFallbackColor
     self.respectsReduceMotion = respectsReduceMotion
+    self.pausesWhenInactiveOrOffscreen = pausesWhenInactiveOrOffscreen
     self.onRendererError = onRendererError
   }
 
   public var body: some SwiftUI.View {
     let pausesForReduceMotion =
       respectsReduceMotion && environmentRespectsReduceMotion && accessibilityReduceMotion
+    let pausesForLifecycle =
+      pausesWhenInactiveOrOffscreen && environmentPausesWhenInactiveOrOffscreen
     PlatformShaderView(
       configuration: configuration,
       rendererError: $rendererError,
       failureFallbackColor: failureFallbackColor,
       pausesForReduceMotion: pausesForReduceMotion,
+      pausesForLifecycle: pausesForLifecycle,
       isSceneActive: scenePhase == .active,
       onRendererError: onRendererError
     )
@@ -86,6 +112,7 @@ public struct FoilShadersShaderView: SwiftUI.View {
     @Binding var rendererError: FoilShadersError?
     var failureFallbackColor: ShaderColor
     var pausesForReduceMotion: Bool
+    var pausesForLifecycle: Bool
     var isSceneActive: Bool
     var onRendererError: ((FoilShadersError) -> Void)?
 
@@ -103,6 +130,7 @@ public struct FoilShadersShaderView: SwiftUI.View {
     @Binding var rendererError: FoilShadersError?
     var failureFallbackColor: ShaderColor
     var pausesForReduceMotion: Bool
+    var pausesForLifecycle: Bool
     var isSceneActive: Bool
     var onRendererError: ((FoilShadersError) -> Void)?
 
@@ -139,6 +167,7 @@ public struct FoilShadersShaderView: SwiftUI.View {
         context.coordinator.updateRenderingPolicy(
           on: mtkView,
           pausesForReduceMotion: pausesForReduceMotion,
+          pausesForLifecycle: pausesForLifecycle,
           isSceneActive: isSceneActive
         )
       } catch {
@@ -170,6 +199,7 @@ public struct FoilShadersShaderView: SwiftUI.View {
       context.coordinator.updateRenderingPolicy(
         on: view,
         pausesForReduceMotion: pausesForReduceMotion,
+        pausesForLifecycle: pausesForLifecycle,
         isSceneActive: isSceneActive
       )
       view.setNeedsDisplay(view.bounds)
@@ -193,6 +223,7 @@ public struct FoilShadersShaderView: SwiftUI.View {
       var currentKind: FoilShadersRenderer.ShaderKind?
       var currentConfiguration: ShaderConfiguration?
       private var pausesForReduceMotion = false
+      private var pausesForLifecycle = true
       private var isSceneActive = true
       private var isViewVisible = true
       private var lastReportedFailureDescription: String?
@@ -207,9 +238,11 @@ public struct FoilShadersShaderView: SwiftUI.View {
       @MainActor func updateRenderingPolicy(
         on view: MTKView,
         pausesForReduceMotion: Bool,
+        pausesForLifecycle: Bool,
         isSceneActive: Bool
       ) {
         self.pausesForReduceMotion = pausesForReduceMotion
+        self.pausesForLifecycle = pausesForLifecycle
         self.isSceneActive = isSceneActive
         if let view = view as? VisibilityTrackingMTKView {
           isViewVisible = view.isVisibleForRendering
@@ -223,7 +256,8 @@ public struct FoilShadersShaderView: SwiftUI.View {
       }
 
       @MainActor private func applyRenderingPause() {
-        renderer?.setRenderingPaused(pausesForReduceMotion || !isSceneActive || !isViewVisible)
+        let pausesForVisibility = pausesForLifecycle && (!isSceneActive || !isViewVisible)
+        renderer?.setRenderingPaused(pausesForReduceMotion || pausesForVisibility)
       }
 
       @MainActor func showFailureFallback(on view: MTKView, color: ShaderColor) {

@@ -76,9 +76,14 @@ FoilShaders.Dithering(
 ```
 
 Animated SwiftUI components respect the system Reduce Motion setting by default
-and pause rendering while inactive or offscreen. Use
-`.foilShadersRespectsReduceMotion(false)` when a subtree should keep animating
-despite Reduce Motion.
+and pause rendering while inactive or offscreen. Use separate opt-outs when a
+subtree should ignore Reduce Motion or continue rendering while hidden:
+
+```swift
+FoilShaders.MeshGradient()
+  .foilShadersRespectsReduceMotion(false)
+  .foilShadersPausesWhenInactiveOrOffscreen(false)
+```
 
 ## Visual Parity
 

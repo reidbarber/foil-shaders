@@ -49,25 +49,30 @@ final class PublicAPITests: XCTestCase {
     XCTAssertEqual(view.configuration, configuration)
     XCTAssertEqual(view.failureFallbackColor, .white)
     XCTAssertTrue(view.respectsReduceMotion)
+    XCTAssertTrue(view.pausesWhenInactiveOrOffscreen)
     XCTAssertNil(reportedError)
   }
 
   @MainActor
-  func testShaderViewAcceptsReduceMotionOptOut() {
+  func testShaderViewAcceptsEnergyAndAccessibilityOptOuts() {
     let configuration = MeshGradient().configuration
 
     let view = FoilShadersShaderView(
       configuration: configuration,
-      respectsReduceMotion: false
+      respectsReduceMotion: false,
+      pausesWhenInactiveOrOffscreen: false
     )
 
     XCTAssertEqual(view.configuration, configuration)
     XCTAssertFalse(view.respectsReduceMotion)
+    XCTAssertFalse(view.pausesWhenInactiveOrOffscreen)
   }
 
   @MainActor
-  func testShaderComponentsAcceptReduceMotionEnvironmentOptOut() {
-    let view = MeshGradient().foilShadersRespectsReduceMotion(false)
+  func testShaderComponentsAcceptEnergyAndAccessibilityEnvironmentOptOuts() {
+    let view = MeshGradient()
+      .foilShadersRespectsReduceMotion(false)
+      .foilShadersPausesWhenInactiveOrOffscreen(false)
 
     XCTAssertFalse(String(describing: type(of: view)).isEmpty)
   }
