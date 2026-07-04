@@ -184,7 +184,7 @@ private struct StudioView: View {
     let index = presetIndexByShader[selectedShader, default: 0]
     return FoilShadersCodeGenerator.swiftUICode(
       componentName: selectedShader.componentName,
-      presetReference: "\(selectedShader.presetArrayName)[\(index)]",
+      presetReference: selectedShader.presetReference(at: index),
       sizing: currentConfiguration.sizing,
       motion: currentConfiguration.motion,
       renderOptions: currentConfiguration.renderOptions
@@ -450,71 +450,37 @@ private enum StudioShader: String, CaseIterable, Identifiable {
       .replacingOccurrences(of: "CMYK", with: "Cmyk")
   }
 
-  var presetArrayName: String {
-    switch self {
-    case .meshGradient: "meshGradientPresets"
-    case .smokeRing: "smokeRingPresets"
-    case .neuroNoise: "neuroNoisePresets"
-    case .dotOrbit: "dotOrbitPresets"
-    case .dotGrid: "dotGridPresets"
-    case .simplexNoise: "simplexNoisePresets"
-    case .metaballs: "metaballsPresets"
-    case .waves: "wavesPresets"
-    case .perlinNoise: "perlinNoisePresets"
-    case .voronoi: "voronoiPresets"
-    case .warp: "warpPresets"
-    case .godRays: "godRaysPresets"
-    case .spiral: "spiralPresets"
-    case .swirl: "swirlPresets"
-    case .dithering: "ditheringPresets"
-    case .grainGradient: "grainGradientPresets"
-    case .pulsingBorder: "pulsingBorderPresets"
-    case .colorPanels: "colorPanelsPresets"
-    case .staticMeshGradient: "staticMeshGradientPresets"
-    case .staticRadialGradient: "staticRadialGradientPresets"
-    case .paperTexture: "paperTexturePresets"
-    case .flutedGlass: "flutedGlassPresets"
-    case .water: "waterPresets"
-    case .imageDithering: "imageDitheringPresets"
-    case .heatmap: "heatmapPresets"
-    case .liquidMetal: "liquidMetalPresets"
-    case .halftoneDots: "halftoneDotsPresets"
-    case .halftoneCmyk: "halftoneCmykPresets"
-    case .gemSmoke: "gemSmokePresets"
-    }
-  }
-
   var presetCount: Int {
     switch self {
-    case .meshGradient: meshGradientPresets.count
-    case .smokeRing: smokeRingPresets.count
-    case .neuroNoise: neuroNoisePresets.count
-    case .dotOrbit: dotOrbitPresets.count
-    case .dotGrid: dotGridPresets.count
-    case .simplexNoise: simplexNoisePresets.count
-    case .metaballs: metaballsPresets.count
-    case .waves: wavesPresets.count
-    case .perlinNoise: perlinNoisePresets.count
-    case .voronoi: voronoiPresets.count
-    case .warp: warpPresets.count
-    case .godRays: godRaysPresets.count
-    case .spiral: spiralPresets.count
-    case .swirl: swirlPresets.count
-    case .dithering: ditheringPresets.count
-    case .grainGradient: grainGradientPresets.count
-    case .pulsingBorder: pulsingBorderPresets.count
-    case .colorPanels: colorPanelsPresets.count
-    case .staticMeshGradient: staticMeshGradientPresets.count
-    case .staticRadialGradient: staticRadialGradientPresets.count
-    case .paperTexture: paperTexturePresets.count
-    case .flutedGlass: flutedGlassPresets.count
-    case .water: waterPresets.count
-    case .imageDithering: imageDitheringPresets.count
-    case .heatmap: heatmapPresets.count
-    case .liquidMetal: liquidMetalPresets.count
-    case .halftoneDots: halftoneDotsPresets.count
-    case .halftoneCmyk: halftoneCmykPresets.count
-    case .gemSmoke: gemSmokePresets.count
+    case .meshGradient: MeshGradient.presets.count
+    case .smokeRing: SmokeRing.presets.count
+    case .neuroNoise: NeuroNoise.presets.count
+    case .dotOrbit: DotOrbit.presets.count
+    case .dotGrid: DotGrid.presets.count
+    case .simplexNoise: SimplexNoise.presets.count
+    case .metaballs: Metaballs.presets.count
+    case .waves: Waves.presets.count
+    case .perlinNoise: PerlinNoise.presets.count
+    case .voronoi: Voronoi.presets.count
+    case .warp: Warp.presets.count
+    case .godRays: GodRays.presets.count
+    case .spiral: Spiral.presets.count
+    case .swirl: Swirl.presets.count
+    case .dithering: Dithering.presets.count
+    case .grainGradient: GrainGradient.presets.count
+    case .pulsingBorder: PulsingBorder.presets.count
+    case .colorPanels: ColorPanels.presets.count
+    case .staticMeshGradient: StaticMeshGradient.presets.count
+    case .staticRadialGradient: StaticRadialGradient.presets.count
+    case .paperTexture: PaperTexture.presets.count
+    case .flutedGlass: FlutedGlass.presets.count
+    case .water: Water.presets.count
+    case .imageDithering: ImageDithering.presets.count
+    case .heatmap: Heatmap.presets.count
+    case .liquidMetal: LiquidMetal.presets.count
+    case .halftoneDots: HalftoneDots.presets.count
+    case .halftoneCmyk: HalftoneCmyk.presets.count
+    case .gemSmoke: GemSmoke.presets.count
     }
   }
 
@@ -530,71 +496,97 @@ private enum StudioShader: String, CaseIterable, Identifiable {
 
   func presetName(at index: Int) -> String {
     switch self {
-    case .meshGradient: meshGradientPresets[index].name
-    case .smokeRing: smokeRingPresets[index].name
-    case .neuroNoise: neuroNoisePresets[index].name
-    case .dotOrbit: dotOrbitPresets[index].name
-    case .dotGrid: dotGridPresets[index].name
-    case .simplexNoise: simplexNoisePresets[index].name
-    case .metaballs: metaballsPresets[index].name
-    case .waves: wavesPresets[index].name
-    case .perlinNoise: perlinNoisePresets[index].name
-    case .voronoi: voronoiPresets[index].name
-    case .warp: warpPresets[index].name
-    case .godRays: godRaysPresets[index].name
-    case .spiral: spiralPresets[index].name
-    case .swirl: swirlPresets[index].name
-    case .dithering: ditheringPresets[index].name
-    case .grainGradient: grainGradientPresets[index].name
-    case .pulsingBorder: pulsingBorderPresets[index].name
-    case .colorPanels: colorPanelsPresets[index].name
-    case .staticMeshGradient: staticMeshGradientPresets[index].name
-    case .staticRadialGradient: staticRadialGradientPresets[index].name
-    case .paperTexture: paperTexturePresets[index].name
-    case .flutedGlass: flutedGlassPresets[index].name
-    case .water: waterPresets[index].name
-    case .imageDithering: imageDitheringPresets[index].name
-    case .heatmap: heatmapPresets[index].name
-    case .liquidMetal: liquidMetalPresets[index].name
-    case .halftoneDots: halftoneDotsPresets[index].name
-    case .halftoneCmyk: halftoneCmykPresets[index].name
-    case .gemSmoke: gemSmokePresets[index].name
+    case .meshGradient: MeshGradient.presets[index].name
+    case .smokeRing: SmokeRing.presets[index].name
+    case .neuroNoise: NeuroNoise.presets[index].name
+    case .dotOrbit: DotOrbit.presets[index].name
+    case .dotGrid: DotGrid.presets[index].name
+    case .simplexNoise: SimplexNoise.presets[index].name
+    case .metaballs: Metaballs.presets[index].name
+    case .waves: Waves.presets[index].name
+    case .perlinNoise: PerlinNoise.presets[index].name
+    case .voronoi: Voronoi.presets[index].name
+    case .warp: Warp.presets[index].name
+    case .godRays: GodRays.presets[index].name
+    case .spiral: Spiral.presets[index].name
+    case .swirl: Swirl.presets[index].name
+    case .dithering: Dithering.presets[index].name
+    case .grainGradient: GrainGradient.presets[index].name
+    case .pulsingBorder: PulsingBorder.presets[index].name
+    case .colorPanels: ColorPanels.presets[index].name
+    case .staticMeshGradient: StaticMeshGradient.presets[index].name
+    case .staticRadialGradient: StaticRadialGradient.presets[index].name
+    case .paperTexture: PaperTexture.presets[index].name
+    case .flutedGlass: FlutedGlass.presets[index].name
+    case .water: Water.presets[index].name
+    case .imageDithering: ImageDithering.presets[index].name
+    case .heatmap: Heatmap.presets[index].name
+    case .liquidMetal: LiquidMetal.presets[index].name
+    case .halftoneDots: HalftoneDots.presets[index].name
+    case .halftoneCmyk: HalftoneCmyk.presets[index].name
+    case .gemSmoke: GemSmoke.presets[index].name
     }
+  }
+
+  func presetReference(at index: Int) -> String {
+    "\(componentName)Preset.\(Self.presetIdentifier(presetName(at: index)))"
   }
 
   @MainActor
   func configuration(at index: Int) -> ShaderConfiguration {
     switch self {
-    case .meshGradient: MeshGradient(meshGradientPresets[index]).configuration
-    case .smokeRing: SmokeRing(smokeRingPresets[index]).configuration
-    case .neuroNoise: NeuroNoise(neuroNoisePresets[index]).configuration
-    case .dotOrbit: DotOrbit(dotOrbitPresets[index]).configuration
-    case .dotGrid: DotGrid(dotGridPresets[index]).configuration
-    case .simplexNoise: SimplexNoise(simplexNoisePresets[index]).configuration
-    case .metaballs: Metaballs(metaballsPresets[index]).configuration
-    case .waves: Waves(wavesPresets[index]).configuration
-    case .perlinNoise: PerlinNoise(perlinNoisePresets[index]).configuration
-    case .voronoi: Voronoi(voronoiPresets[index]).configuration
-    case .warp: Warp(warpPresets[index]).configuration
-    case .godRays: GodRays(godRaysPresets[index]).configuration
-    case .spiral: Spiral(spiralPresets[index]).configuration
-    case .swirl: Swirl(swirlPresets[index]).configuration
-    case .dithering: Dithering(ditheringPresets[index]).configuration
-    case .grainGradient: GrainGradient(grainGradientPresets[index]).configuration
-    case .pulsingBorder: PulsingBorder(pulsingBorderPresets[index]).configuration
-    case .colorPanels: ColorPanels(colorPanelsPresets[index]).configuration
-    case .staticMeshGradient: StaticMeshGradient(staticMeshGradientPresets[index]).configuration
+    case .meshGradient: MeshGradient(MeshGradient.presets[index]).configuration
+    case .smokeRing: SmokeRing(SmokeRing.presets[index]).configuration
+    case .neuroNoise: NeuroNoise(NeuroNoise.presets[index]).configuration
+    case .dotOrbit: DotOrbit(DotOrbit.presets[index]).configuration
+    case .dotGrid: DotGrid(DotGrid.presets[index]).configuration
+    case .simplexNoise: SimplexNoise(SimplexNoise.presets[index]).configuration
+    case .metaballs: Metaballs(Metaballs.presets[index]).configuration
+    case .waves: Waves(Waves.presets[index]).configuration
+    case .perlinNoise: PerlinNoise(PerlinNoise.presets[index]).configuration
+    case .voronoi: Voronoi(Voronoi.presets[index]).configuration
+    case .warp: Warp(Warp.presets[index]).configuration
+    case .godRays: GodRays(GodRays.presets[index]).configuration
+    case .spiral: Spiral(Spiral.presets[index]).configuration
+    case .swirl: Swirl(Swirl.presets[index]).configuration
+    case .dithering: Dithering(Dithering.presets[index]).configuration
+    case .grainGradient: GrainGradient(GrainGradient.presets[index]).configuration
+    case .pulsingBorder: PulsingBorder(PulsingBorder.presets[index]).configuration
+    case .colorPanels: ColorPanels(ColorPanels.presets[index]).configuration
+    case .staticMeshGradient: StaticMeshGradient(StaticMeshGradient.presets[index]).configuration
     case .staticRadialGradient:
-      StaticRadialGradient(staticRadialGradientPresets[index]).configuration
-    case .paperTexture: PaperTexture(paperTexturePresets[index]).configuration
-    case .flutedGlass: FlutedGlass(flutedGlassPresets[index]).configuration
-    case .water: Water(waterPresets[index]).configuration
-    case .imageDithering: ImageDithering(imageDitheringPresets[index]).configuration
-    case .heatmap: Heatmap(heatmapPresets[index]).configuration
-    case .liquidMetal: LiquidMetal(liquidMetalPresets[index]).configuration
-    case .halftoneDots: HalftoneDots(halftoneDotsPresets[index]).configuration
-    case .halftoneCmyk: HalftoneCmyk(halftoneCmykPresets[index]).configuration
-    case .gemSmoke: GemSmoke(gemSmokePresets[index]).configuration
+      StaticRadialGradient(StaticRadialGradient.presets[index]).configuration
+    case .paperTexture: PaperTexture(PaperTexture.presets[index]).configuration
+    case .flutedGlass: FlutedGlass(FlutedGlass.presets[index]).configuration
+    case .water: Water(Water.presets[index]).configuration
+    case .imageDithering: ImageDithering(ImageDithering.presets[index]).configuration
+    case .heatmap: Heatmap(Heatmap.presets[index]).configuration
+    case .liquidMetal: LiquidMetal(LiquidMetal.presets[index]).configuration
+    case .halftoneDots: HalftoneDots(HalftoneDots.presets[index]).configuration
+    case .halftoneCmyk: HalftoneCmyk(HalftoneCmyk.presets[index]).configuration
+    case .gemSmoke: GemSmoke(GemSmoke.presets[index]).configuration
     }
+  }
+
+  private static func presetIdentifier(_ name: String) -> String {
+    let words = name.split { !$0.isLetter && !$0.isNumber }
+    var identifier = words.enumerated().map { index, word in
+      let text = String(word)
+      let normalized =
+        text.allSatisfy { $0.isNumber || $0.isUppercase }
+        ? text.lowercased()
+        : text.prefix(1).lowercased() + String(text.dropFirst())
+      if index == 0 {
+        return normalized
+      }
+      return normalized.prefix(1).uppercased() + String(normalized.dropFirst())
+    }.joined()
+    if identifier.isEmpty {
+      identifier = "preset"
+    }
+    if identifier.first?.isNumber == true {
+      identifier = "preset" + identifier.prefix(1).uppercased() + String(identifier.dropFirst())
+    }
+    return identifier
   }
 }

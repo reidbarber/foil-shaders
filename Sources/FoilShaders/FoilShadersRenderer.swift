@@ -62,8 +62,8 @@ import MetalKit
   private var pixelRatio: Float = 1.0
 
   // Sizing params
-  private var sizingParams: ShaderSizingParams = meshGradientPresets[0].sizing
-  private var motionParams: ShaderMotionParams = meshGradientPresets[0].motion
+  private var sizingParams: ShaderSizingParams = MeshGradientPreset.default.sizing
+  private var motionParams: ShaderMotionParams = MeshGradientPreset.default.motion
 
   // Backing-store resolution controls (mirrors the web `minPixelRatio` /
   // `maxPixelCount`): raise the render scale to at least `minPixelRatio` for
@@ -71,39 +71,37 @@ import MetalKit
   private var renderOptions: ShaderRenderOptions = .default
 
   // Shader params
-  private var meshGradientParams: MeshGradientParams = meshGradientPresets[0].params
-  private var staticMeshGradientParams: StaticMeshGradientParams = staticMeshGradientPresets[0]
-    .params
-  private var staticRadialGradientParams: StaticRadialGradientParams = staticRadialGradientPresets[
-    0
-  ]
-  .params
-  private var swirlParams: SwirlParams = swirlPresets[0].params
-  private var spiralParams: SpiralParams = spiralPresets[0].params
-  private var dotGridParams: DotGridParams = dotGridPresets[0].params
-  private var simplexNoiseParams: SimplexNoiseParams = simplexNoisePresets[0].params
-  private var perlinNoiseParams: PerlinNoiseParams = perlinNoisePresets[0].params
-  private var neuroNoiseParams: NeuroNoiseParams = neuroNoisePresets[0].params
-  private var wavesParams: WavesParams = wavesPresets[0].params
-  private var ditheringParams: DitheringParams = ditheringPresets[0].params
-  private var colorPanelsParams: ColorPanelsParams = colorPanelsPresets[0].params
-  private var dotOrbitParams: DotOrbitParams = dotOrbitPresets[0].params
-  private var godRaysParams: GodRaysParams = godRaysPresets[0].params
-  private var grainGradientParams: GrainGradientParams = grainGradientPresets[0].params
-  private var metaballsParams: MetaballsParams = metaballsPresets[0].params
-  private var warpParams: WarpParams = warpPresets[0].params
-  private var voronoiParams: VoronoiParams = voronoiPresets[0].params
-  private var pulsingBorderParams: PulsingBorderParams = pulsingBorderPresets[0].params
-  private var smokeRingParams: SmokeRingParams = smokeRingPresets[0].params
-  private var imageDitheringParams: ImageDitheringParams = imageDitheringPresets[0].params
-  private var halftoneDotsParams: HalftoneDotsParams = halftoneDotsPresets[0].params
-  private var halftoneCmykParams: HalftoneCmykParams = halftoneCmykPresets[0].params
-  private var heatmapParams: HeatmapParams = heatmapPresets[0].params
-  private var liquidMetalParams: LiquidMetalParams = liquidMetalPresets[0].params
-  private var paperTextureParams: PaperTextureParams = paperTexturePresets[0].params
-  private var waterParams: WaterParams = waterPresets[0].params
-  private var flutedGlassParams: FlutedGlassParams = flutedGlassPresets[0].params
-  private var gemSmokeParams: GemSmokeParams = gemSmokePresets[0].params
+  private var meshGradientParams: MeshGradientParams = MeshGradientPreset.default.params
+  private var staticMeshGradientParams: StaticMeshGradientParams =
+    StaticMeshGradientPreset.default.params
+  private var staticRadialGradientParams: StaticRadialGradientParams =
+    StaticRadialGradientPreset.default.params
+  private var swirlParams: SwirlParams = SwirlPreset.default.params
+  private var spiralParams: SpiralParams = SpiralPreset.default.params
+  private var dotGridParams: DotGridParams = DotGridPreset.default.params
+  private var simplexNoiseParams: SimplexNoiseParams = SimplexNoisePreset.default.params
+  private var perlinNoiseParams: PerlinNoiseParams = PerlinNoisePreset.default.params
+  private var neuroNoiseParams: NeuroNoiseParams = NeuroNoisePreset.default.params
+  private var wavesParams: WavesParams = WavesPreset.default.params
+  private var ditheringParams: DitheringParams = DitheringPreset.default.params
+  private var colorPanelsParams: ColorPanelsParams = ColorPanelsPreset.default.params
+  private var dotOrbitParams: DotOrbitParams = DotOrbitPreset.default.params
+  private var godRaysParams: GodRaysParams = GodRaysPreset.default.params
+  private var grainGradientParams: GrainGradientParams = GrainGradientPreset.default.params
+  private var metaballsParams: MetaballsParams = MetaballsPreset.default.params
+  private var warpParams: WarpParams = WarpPreset.default.params
+  private var voronoiParams: VoronoiParams = VoronoiPreset.default.params
+  private var pulsingBorderParams: PulsingBorderParams = PulsingBorderPreset.default.params
+  private var smokeRingParams: SmokeRingParams = SmokeRingPreset.default.params
+  private var imageDitheringParams: ImageDitheringParams = ImageDitheringPreset.default.params
+  private var halftoneDotsParams: HalftoneDotsParams = HalftoneDotsPreset.default.params
+  private var halftoneCmykParams: HalftoneCmykParams = HalftoneCmykPreset.default.params
+  private var heatmapParams: HeatmapParams = HeatmapPreset.default.params
+  private var liquidMetalParams: LiquidMetalParams = LiquidMetalPreset.default.params
+  private var paperTextureParams: PaperTextureParams = PaperTexturePreset.default.params
+  private var waterParams: WaterParams = WaterPreset.default.params
+  private var flutedGlassParams: FlutedGlassParams = FlutedGlassPreset.default.params
+  private var gemSmokeParams: GemSmokeParams = GemSmokePreset.default.params
   private var activeShader: ShaderKind = .meshGradient
 
   private var library: MTLLibrary?

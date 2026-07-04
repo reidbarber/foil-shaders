@@ -57,7 +57,7 @@ struct ContentView: View {
 Most shader components also include the presets from Paper Shaders documentation:
 
 ```swift
-FoilShaders.Swirl(FoilShaders.Swirl.presets[1])
+FoilShaders.Swirl(.candy)
   .frame(width: 240, height: 240)
 ```
 

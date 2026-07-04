@@ -47,8 +47,9 @@ function splitTopLevelCommas(text) {
 }
 
 function structBlock(name) {
-  const token = `public struct ${name} {`;
-  const start = shaderTypes.indexOf(token);
+  const re = new RegExp(`public\\s+struct\\s+${name}(?:\\s*:[^{]+)?\\s*\\{`);
+  const match = shaderTypes.match(re);
+  const start = match?.index ?? -1;
   if (start < 0) throw new Error(`Missing ${name}`);
   return shaderTypes.slice(start, matchingBraceEnd(shaderTypes, shaderTypes.indexOf("{", start)));
 }
@@ -92,26 +93,27 @@ const renderOptionParams = [
   ["height", "CGFloat?"],
 ];
 
-function parameterLine(componentName, param) {
-  return `    ${param.name}: ${param.type} = ${componentName}.presets[0].params.${param.name},`;
+function parameterLine(defaultPreset, param) {
+  return `    ${param.name}: ${param.type} = ${defaultPreset}.params.${param.name},`;
 }
 
 function generatedInitializer(spec) {
   const params = paramsFor(spec.paramsType);
+  const defaultPreset = `${spec.presetType}.default`;
   const lines = [
     `extension ${spec.componentName} {`,
     "  public init(",
-    ...params.map((param) => parameterLine(spec.componentName, param)),
+    ...params.map((param) => parameterLine(defaultPreset, param)),
     ...sizingParams.map(
-      ([name, type]) => `    ${name}: ${type} = ${spec.componentName}.presets[0].sizing.${name},`
+      ([name, type]) => `    ${name}: ${type} = ${defaultPreset}.sizing.${name},`
     ),
     ...motionParams.map(
-      ([name, type]) => `    ${name}: ${type} = ${spec.componentName}.presets[0].motion.${name},`
+      ([name, type]) => `    ${name}: ${type} = ${defaultPreset}.motion.${name},`
     ),
     ...renderOptionParams.map(
-      ([name, type]) => `    ${name}: ${type} = ${spec.componentName}.presets[0].renderOptions.${name},`
+      ([name, type]) => `    ${name}: ${type} = ${defaultPreset}.renderOptions.${name},`
     ),
-    `    image: ShaderImage? = ${spec.componentName}.presets[0].image`,
+    `    image: ShaderImage? = ${defaultPreset}.image`,
     "  ) {",
     "    self.init(",
     `      params: ${spec.paramsType}(`,

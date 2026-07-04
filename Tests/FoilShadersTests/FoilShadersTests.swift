@@ -16,35 +16,35 @@ final class FoilShadersTests: XCTestCase {
 
   func testAllReactExportedShaderComponentsHavePresets() {
     var counts: [Int] = []
-    counts.append(meshGradientPresets.count)
-    counts.append(smokeRingPresets.count)
-    counts.append(neuroNoisePresets.count)
-    counts.append(dotOrbitPresets.count)
-    counts.append(dotGridPresets.count)
-    counts.append(simplexNoisePresets.count)
-    counts.append(metaballsPresets.count)
-    counts.append(wavesPresets.count)
-    counts.append(perlinNoisePresets.count)
-    counts.append(voronoiPresets.count)
-    counts.append(warpPresets.count)
-    counts.append(godRaysPresets.count)
-    counts.append(spiralPresets.count)
-    counts.append(swirlPresets.count)
-    counts.append(ditheringPresets.count)
-    counts.append(grainGradientPresets.count)
-    counts.append(pulsingBorderPresets.count)
-    counts.append(colorPanelsPresets.count)
-    counts.append(staticMeshGradientPresets.count)
-    counts.append(staticRadialGradientPresets.count)
-    counts.append(paperTexturePresets.count)
-    counts.append(flutedGlassPresets.count)
-    counts.append(waterPresets.count)
-    counts.append(imageDitheringPresets.count)
-    counts.append(heatmapPresets.count)
-    counts.append(liquidMetalPresets.count)
-    counts.append(halftoneDotsPresets.count)
-    counts.append(halftoneCmykPresets.count)
-    counts.append(gemSmokePresets.count)
+    counts.append(MeshGradient.presets.count)
+    counts.append(SmokeRing.presets.count)
+    counts.append(NeuroNoise.presets.count)
+    counts.append(DotOrbit.presets.count)
+    counts.append(DotGrid.presets.count)
+    counts.append(SimplexNoise.presets.count)
+    counts.append(Metaballs.presets.count)
+    counts.append(Waves.presets.count)
+    counts.append(PerlinNoise.presets.count)
+    counts.append(Voronoi.presets.count)
+    counts.append(Warp.presets.count)
+    counts.append(GodRays.presets.count)
+    counts.append(Spiral.presets.count)
+    counts.append(Swirl.presets.count)
+    counts.append(Dithering.presets.count)
+    counts.append(GrainGradient.presets.count)
+    counts.append(PulsingBorder.presets.count)
+    counts.append(ColorPanels.presets.count)
+    counts.append(StaticMeshGradient.presets.count)
+    counts.append(StaticRadialGradient.presets.count)
+    counts.append(PaperTexture.presets.count)
+    counts.append(FlutedGlass.presets.count)
+    counts.append(Water.presets.count)
+    counts.append(ImageDithering.presets.count)
+    counts.append(Heatmap.presets.count)
+    counts.append(LiquidMetal.presets.count)
+    counts.append(HalftoneDots.presets.count)
+    counts.append(HalftoneCmyk.presets.count)
+    counts.append(GemSmoke.presets.count)
     XCTAssertEqual(
       counts,
       [
@@ -108,8 +108,8 @@ final class FoilShadersTests: XCTestCase {
 
   func testShaderConfigurationCodableRoundTrip() throws {
     let configuration = ShaderConfiguration(
-      parameters: .meshGradient(meshGradientPresets[0].params),
-      sizing: meshGradientPresets[0].sizing,
+      parameters: .meshGradient(MeshGradientPreset.default.params),
+      sizing: MeshGradientPreset.default.sizing,
       motion: ShaderMotionParams(speed: 0.25, frame: 12),
       renderOptions: ShaderRenderOptions(width: 320, height: 180),
       image: .url(URL(fileURLWithPath: "/tmp/source.png"))
@@ -138,21 +138,44 @@ final class FoilShadersTests: XCTestCase {
   }
 
   func testPaperDefaultPresetValues() {
-    XCTAssertEqual(meshGradientPresets[0].name, "Default")
-    XCTAssertEqual(meshGradientPresets[0].params.colors.count, 4)
-    XCTAssertEqual(meshGradientPresets[0].params.distortion, 0.8, accuracy: 0.0001)
-    XCTAssertEqual(meshGradientPresets[0].params.swirl, 0.1, accuracy: 0.0001)
-    XCTAssertEqual(meshGradientPresets[0].motion.speed, 1, accuracy: 0.0001)
-    XCTAssertEqual(meshGradientPresets[0].sizing.fit, .contain)
+    XCTAssertEqual(MeshGradientPreset.default.name, "Default")
+    XCTAssertEqual(MeshGradientPreset.default.params.colors.count, 4)
+    XCTAssertEqual(MeshGradientPreset.default.params.distortion, 0.8, accuracy: 0.0001)
+    XCTAssertEqual(MeshGradientPreset.default.params.swirl, 0.1, accuracy: 0.0001)
+    XCTAssertEqual(MeshGradientPreset.default.motion.speed, 1, accuracy: 0.0001)
+    XCTAssertEqual(MeshGradientPreset.default.sizing.fit, .contain)
 
-    XCTAssertEqual(dotGridPresets[0].params.dotSize, 2, accuracy: 0.0001)
-    XCTAssertEqual(dotGridPresets[0].params.shape, .circle)
-    XCTAssertEqual(dotGridPresets[0].renderOptions.maxPixelCount, 6016 * 3384)
+    XCTAssertEqual(DotGridPreset.default.params.dotSize, 2, accuracy: 0.0001)
+    XCTAssertEqual(DotGridPreset.default.params.shape, .circle)
+    XCTAssertEqual(DotGridPreset.default.renderOptions.maxPixelCount, 6016 * 3384)
 
-    XCTAssertEqual(imageDitheringPresets[0].params.type, .eightByEight)
-    XCTAssertEqual(imageDitheringPresets[0].params.inverted, 0)
-    XCTAssertEqual(liquidMetalPresets[0].params.shape, .diamond)
-    XCTAssertEqual(gemSmokePresets[0].params.shape, .diamond)
+    XCTAssertEqual(ImageDitheringPreset.default.params.type, .eightByEight)
+    XCTAssertEqual(ImageDitheringPreset.default.params.inverted, 0)
+    XCTAssertEqual(LiquidMetalPreset.default.params.shape, .diamond)
+    XCTAssertEqual(GemSmokePreset.default.params.shape, .diamond)
+  }
+
+  func testNamedPresetMembersPreserveComponentPresetOrder() {
+    XCTAssertEqual(SwirlPreset.candy.name, "Candy")
+    XCTAssertEqual(SwirlPreset.preset007.name, "007")
+    XCTAssertEqual(StaticMeshGradientPreset.preset1960s.name, "1960s")
+    XCTAssertEqual(HalftoneDotsPreset.ledScreen.name, "LED screen")
+
+    XCTAssertEqual(
+      Swirl.presets,
+      [SwirlPreset.default, SwirlPreset.preset007, SwirlPreset.opening, SwirlPreset.candy])
+    XCTAssertEqual(
+      StaticMeshGradient.presets,
+      [
+        StaticMeshGradientPreset.default, StaticMeshGradientPreset.preset1960s,
+        StaticMeshGradientPreset.sunset, StaticMeshGradientPreset.sea,
+      ])
+    XCTAssertEqual(
+      HalftoneDots.presets,
+      [
+        HalftoneDotsPreset.default, HalftoneDotsPreset.ledScreen, HalftoneDotsPreset.mosaic,
+        HalftoneDotsPreset.roundAndSquare,
+      ])
   }
 
   @MainActor
@@ -210,26 +233,26 @@ final class FoilShadersTests: XCTestCase {
   func testCodeGeneratorQualifiesMeshGradient() {
     let code = FoilShadersCodeGenerator.swiftUICode(
       componentName: "MeshGradient",
-      presetReference: "meshGradientPresets[0]",
+      presetReference: "MeshGradientPreset.default",
       sizing: .defaultPatternSizing,
       motion: ShaderMotionParams(speed: 0.2, frame: 0),
       renderOptions: ShaderRenderOptions(width: 1280, height: 720)
     )
     XCTAssertTrue(code.contains("FoilShaders.MeshGradient"))
-    XCTAssertTrue(code.contains("params: meshGradientPresets[0].params"))
+    XCTAssertTrue(code.contains("params: MeshGradientPreset.default.params"))
   }
 
   func testCodeGeneratorLeavesPulsingBorderUnqualified() {
     let code = FoilShadersCodeGenerator.swiftUICode(
       componentName: "PulsingBorder",
-      presetReference: "pulsingBorderPresets[0]",
+      presetReference: "PulsingBorderPreset.default",
       sizing: .defaultPatternSizing,
       motion: ShaderMotionParams(speed: 0.2, frame: 0),
       renderOptions: ShaderRenderOptions(width: 1280, height: 720)
     )
     XCTAssertTrue(code.contains("\nPulsingBorder(\n"))
     XCTAssertFalse(code.contains("FoilShaders.PulsingBorder"))
-    XCTAssertTrue(code.contains("params: pulsingBorderPresets[0].params"))
+    XCTAssertTrue(code.contains("params: PulsingBorderPreset.default.params"))
   }
 
   @MainActor

@@ -4,8 +4,8 @@ import simd
 @testable import FoilShaders
 
 /// Builds a `ShaderConfiguration` for a manifest case by looking up the preset
-/// BY NAME in the generated `Presets.swift` arrays (the same data the golden
-/// generator read from the paper repo), and cross-checks the resolved Swift
+/// BY NAME in each component's generated `presets` array (the same data the
+/// golden generator read from the paper repo), and cross-checks the resolved Swift
 /// param values against the manifest so silent drift between the two repos
 /// fails loudly instead of producing confusing pixel diffs.
 enum ParityConfigurationFactory {
@@ -36,93 +36,93 @@ enum ParityConfigurationFactory {
 
     switch parityCase.shader {
     case "mesh-gradient":
-      (parameters, sizing, motion, renderOptions) = try unpack(meshGradientPresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(MeshGradient.presets) {
         .meshGradient($0)
       }
     case "smoke-ring":
-      (parameters, sizing, motion, renderOptions) = try unpack(smokeRingPresets) { .smokeRing($0) }
+      (parameters, sizing, motion, renderOptions) = try unpack(SmokeRing.presets) { .smokeRing($0) }
     case "neuro-noise":
-      (parameters, sizing, motion, renderOptions) = try unpack(neuroNoisePresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(NeuroNoise.presets) {
         .neuroNoise($0)
       }
     case "dot-orbit":
-      (parameters, sizing, motion, renderOptions) = try unpack(dotOrbitPresets) { .dotOrbit($0) }
+      (parameters, sizing, motion, renderOptions) = try unpack(DotOrbit.presets) { .dotOrbit($0) }
     case "dot-grid":
-      (parameters, sizing, motion, renderOptions) = try unpack(dotGridPresets) { .dotGrid($0) }
+      (parameters, sizing, motion, renderOptions) = try unpack(DotGrid.presets) { .dotGrid($0) }
     case "simplex-noise":
-      (parameters, sizing, motion, renderOptions) = try unpack(simplexNoisePresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(SimplexNoise.presets) {
         .simplexNoise($0)
       }
     case "metaballs":
-      (parameters, sizing, motion, renderOptions) = try unpack(metaballsPresets) { .metaballs($0) }
+      (parameters, sizing, motion, renderOptions) = try unpack(Metaballs.presets) { .metaballs($0) }
     case "waves":
-      (parameters, sizing, motion, renderOptions) = try unpack(wavesPresets) { .waves($0) }
+      (parameters, sizing, motion, renderOptions) = try unpack(Waves.presets) { .waves($0) }
     case "perlin-noise":
-      (parameters, sizing, motion, renderOptions) = try unpack(perlinNoisePresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(PerlinNoise.presets) {
         .perlinNoise($0)
       }
     case "voronoi":
-      (parameters, sizing, motion, renderOptions) = try unpack(voronoiPresets) { .voronoi($0) }
+      (parameters, sizing, motion, renderOptions) = try unpack(Voronoi.presets) { .voronoi($0) }
     case "warp":
-      (parameters, sizing, motion, renderOptions) = try unpack(warpPresets) { .warp($0) }
+      (parameters, sizing, motion, renderOptions) = try unpack(Warp.presets) { .warp($0) }
     case "god-rays":
-      (parameters, sizing, motion, renderOptions) = try unpack(godRaysPresets) { .godRays($0) }
+      (parameters, sizing, motion, renderOptions) = try unpack(GodRays.presets) { .godRays($0) }
     case "spiral":
-      (parameters, sizing, motion, renderOptions) = try unpack(spiralPresets) { .spiral($0) }
+      (parameters, sizing, motion, renderOptions) = try unpack(Spiral.presets) { .spiral($0) }
     case "swirl":
-      (parameters, sizing, motion, renderOptions) = try unpack(swirlPresets) { .swirl($0) }
+      (parameters, sizing, motion, renderOptions) = try unpack(Swirl.presets) { .swirl($0) }
     case "dithering":
-      (parameters, sizing, motion, renderOptions) = try unpack(ditheringPresets) { .dithering($0) }
+      (parameters, sizing, motion, renderOptions) = try unpack(Dithering.presets) { .dithering($0) }
     case "grain-gradient":
-      (parameters, sizing, motion, renderOptions) = try unpack(grainGradientPresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(GrainGradient.presets) {
         .grainGradient($0)
       }
     case "pulsing-border":
-      (parameters, sizing, motion, renderOptions) = try unpack(pulsingBorderPresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(PulsingBorder.presets) {
         .pulsingBorder($0)
       }
     case "color-panels":
-      (parameters, sizing, motion, renderOptions) = try unpack(colorPanelsPresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(ColorPanels.presets) {
         .colorPanels($0)
       }
     case "static-mesh-gradient":
-      (parameters, sizing, motion, renderOptions) = try unpack(staticMeshGradientPresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(StaticMeshGradient.presets) {
         .staticMeshGradient($0)
       }
     case "static-radial-gradient":
-      (parameters, sizing, motion, renderOptions) = try unpack(staticRadialGradientPresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(StaticRadialGradient.presets) {
         .staticRadialGradient($0)
       }
     case "paper-texture":
-      (parameters, sizing, motion, renderOptions) = try unpack(paperTexturePresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(PaperTexture.presets) {
         .paperTexture($0)
       }
     case "fluted-glass":
-      (parameters, sizing, motion, renderOptions) = try unpack(flutedGlassPresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(FlutedGlass.presets) {
         .flutedGlass($0)
       }
     case "water":
-      (parameters, sizing, motion, renderOptions) = try unpack(waterPresets) { .water($0) }
+      (parameters, sizing, motion, renderOptions) = try unpack(Water.presets) { .water($0) }
     case "image-dithering":
-      (parameters, sizing, motion, renderOptions) = try unpack(imageDitheringPresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(ImageDithering.presets) {
         .imageDithering($0)
       }
     case "heatmap":
-      (parameters, sizing, motion, renderOptions) = try unpack(heatmapPresets) { .heatmap($0) }
+      (parameters, sizing, motion, renderOptions) = try unpack(Heatmap.presets) { .heatmap($0) }
     case "liquid-metal":
-      (parameters, sizing, motion, renderOptions) = try unpack(liquidMetalPresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(LiquidMetal.presets) {
         .liquidMetal($0)
       }
     case "halftone-dots":
-      (parameters, sizing, motion, renderOptions) = try unpack(halftoneDotsPresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(HalftoneDots.presets) {
         .halftoneDots($0)
       }
     case "halftone-cmyk":
-      (parameters, sizing, motion, renderOptions) = try unpack(halftoneCmykPresets) {
+      (parameters, sizing, motion, renderOptions) = try unpack(HalftoneCmyk.presets) {
         .halftoneCmyk($0)
       }
     case "gem-smoke":
-      (parameters, sizing, motion, renderOptions) = try unpack(gemSmokePresets) { .gemSmoke($0) }
+      (parameters, sizing, motion, renderOptions) = try unpack(GemSmoke.presets) { .gemSmoke($0) }
     default:
       throw ParityError.unknownShader(parityCase.shader)
     }

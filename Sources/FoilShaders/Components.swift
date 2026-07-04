@@ -7,9 +7,9 @@ private func shaderBody(_ configuration: ShaderConfiguration) -> some SwiftUI.Vi
 
 public struct MeshGradient: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = meshGradientPresets
+  public nonisolated static let presets = meshGradientPresets
 
-  public init(_ preset: MeshGradientPreset = meshGradientPresets[0]) {
+  public init(_ preset: MeshGradientPreset = MeshGradientPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -30,8 +30,8 @@ public struct MeshGradient: SwiftUI.View {
 
 public struct SmokeRing: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = smokeRingPresets
-  public init(_ preset: SmokeRingPreset = smokeRingPresets[0]) {
+  public nonisolated static let presets = smokeRingPresets
+  public init(_ preset: SmokeRingPreset = SmokeRingPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -50,8 +50,8 @@ public struct SmokeRing: SwiftUI.View {
 
 public struct NeuroNoise: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = neuroNoisePresets
-  public init(_ preset: NeuroNoisePreset = neuroNoisePresets[0]) {
+  public nonisolated static let presets = neuroNoisePresets
+  public init(_ preset: NeuroNoisePreset = NeuroNoisePreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -70,8 +70,8 @@ public struct NeuroNoise: SwiftUI.View {
 
 public struct DotOrbit: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = dotOrbitPresets
-  public init(_ preset: DotOrbitPreset = dotOrbitPresets[0]) {
+  public nonisolated static let presets = dotOrbitPresets
+  public init(_ preset: DotOrbitPreset = DotOrbitPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -90,8 +90,8 @@ public struct DotOrbit: SwiftUI.View {
 
 public struct DotGrid: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = dotGridPresets
-  public init(_ preset: DotGridPreset = dotGridPresets[0]) {
+  public nonisolated static let presets = dotGridPresets
+  public init(_ preset: DotGridPreset = DotGridPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -110,8 +110,8 @@ public struct DotGrid: SwiftUI.View {
 
 public struct SimplexNoise: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = simplexNoisePresets
-  public init(_ preset: SimplexNoisePreset = simplexNoisePresets[0]) {
+  public nonisolated static let presets = simplexNoisePresets
+  public init(_ preset: SimplexNoisePreset = SimplexNoisePreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -130,8 +130,8 @@ public struct SimplexNoise: SwiftUI.View {
 
 public struct Metaballs: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = metaballsPresets
-  public init(_ preset: MetaballsPreset = metaballsPresets[0]) {
+  public nonisolated static let presets = metaballsPresets
+  public init(_ preset: MetaballsPreset = MetaballsPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -150,8 +150,8 @@ public struct Metaballs: SwiftUI.View {
 
 public struct Waves: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = wavesPresets
-  public init(_ preset: WavesPreset = wavesPresets[0]) {
+  public nonisolated static let presets = wavesPresets
+  public init(_ preset: WavesPreset = WavesPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -170,8 +170,8 @@ public struct Waves: SwiftUI.View {
 
 public struct PerlinNoise: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = perlinNoisePresets
-  public init(_ preset: PerlinNoisePreset = perlinNoisePresets[0]) {
+  public nonisolated static let presets = perlinNoisePresets
+  public init(_ preset: PerlinNoisePreset = PerlinNoisePreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -190,8 +190,8 @@ public struct PerlinNoise: SwiftUI.View {
 
 public struct Voronoi: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = voronoiPresets
-  public init(_ preset: VoronoiPreset = voronoiPresets[0]) {
+  public nonisolated static let presets = voronoiPresets
+  public init(_ preset: VoronoiPreset = VoronoiPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -210,8 +210,8 @@ public struct Voronoi: SwiftUI.View {
 
 public struct Warp: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = warpPresets
-  public init(_ preset: WarpPreset = warpPresets[0]) {
+  public nonisolated static let presets = warpPresets
+  public init(_ preset: WarpPreset = WarpPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -230,8 +230,8 @@ public struct Warp: SwiftUI.View {
 
 public struct GodRays: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = godRaysPresets
-  public init(_ preset: GodRaysPreset = godRaysPresets[0]) {
+  public nonisolated static let presets = godRaysPresets
+  public init(_ preset: GodRaysPreset = GodRaysPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -250,8 +250,8 @@ public struct GodRays: SwiftUI.View {
 
 public struct Spiral: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = spiralPresets
-  public init(_ preset: SpiralPreset = spiralPresets[0]) {
+  public nonisolated static let presets = spiralPresets
+  public init(_ preset: SpiralPreset = SpiralPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -270,8 +270,8 @@ public struct Spiral: SwiftUI.View {
 
 public struct Swirl: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = swirlPresets
-  public init(_ preset: SwirlPreset = swirlPresets[0]) {
+  public nonisolated static let presets = swirlPresets
+  public init(_ preset: SwirlPreset = SwirlPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -290,8 +290,8 @@ public struct Swirl: SwiftUI.View {
 
 public struct Dithering: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = ditheringPresets
-  public init(_ preset: DitheringPreset = ditheringPresets[0]) {
+  public nonisolated static let presets = ditheringPresets
+  public init(_ preset: DitheringPreset = DitheringPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -310,8 +310,8 @@ public struct Dithering: SwiftUI.View {
 
 public struct GrainGradient: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = grainGradientPresets
-  public init(_ preset: GrainGradientPreset = grainGradientPresets[0]) {
+  public nonisolated static let presets = grainGradientPresets
+  public init(_ preset: GrainGradientPreset = GrainGradientPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -330,8 +330,8 @@ public struct GrainGradient: SwiftUI.View {
 
 public struct PulsingBorder: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = pulsingBorderPresets
-  public init(_ preset: PulsingBorderPreset = pulsingBorderPresets[0]) {
+  public nonisolated static let presets = pulsingBorderPresets
+  public init(_ preset: PulsingBorderPreset = PulsingBorderPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -350,8 +350,8 @@ public struct PulsingBorder: SwiftUI.View {
 
 public struct ColorPanels: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = colorPanelsPresets
-  public init(_ preset: ColorPanelsPreset = colorPanelsPresets[0]) {
+  public nonisolated static let presets = colorPanelsPresets
+  public init(_ preset: ColorPanelsPreset = ColorPanelsPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -370,8 +370,8 @@ public struct ColorPanels: SwiftUI.View {
 
 public struct StaticMeshGradient: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = staticMeshGradientPresets
-  public init(_ preset: StaticMeshGradientPreset = staticMeshGradientPresets[0]) {
+  public nonisolated static let presets = staticMeshGradientPresets
+  public init(_ preset: StaticMeshGradientPreset = StaticMeshGradientPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -390,8 +390,8 @@ public struct StaticMeshGradient: SwiftUI.View {
 
 public struct StaticRadialGradient: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = staticRadialGradientPresets
-  public init(_ preset: StaticRadialGradientPreset = staticRadialGradientPresets[0]) {
+  public nonisolated static let presets = staticRadialGradientPresets
+  public init(_ preset: StaticRadialGradientPreset = StaticRadialGradientPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -410,8 +410,8 @@ public struct StaticRadialGradient: SwiftUI.View {
 
 public struct PaperTexture: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = paperTexturePresets
-  public init(_ preset: PaperTexturePreset = paperTexturePresets[0]) {
+  public nonisolated static let presets = paperTexturePresets
+  public init(_ preset: PaperTexturePreset = PaperTexturePreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -430,8 +430,8 @@ public struct PaperTexture: SwiftUI.View {
 
 public struct FlutedGlass: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = flutedGlassPresets
-  public init(_ preset: FlutedGlassPreset = flutedGlassPresets[0]) {
+  public nonisolated static let presets = flutedGlassPresets
+  public init(_ preset: FlutedGlassPreset = FlutedGlassPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -450,8 +450,8 @@ public struct FlutedGlass: SwiftUI.View {
 
 public struct Water: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = waterPresets
-  public init(_ preset: WaterPreset = waterPresets[0]) {
+  public nonisolated static let presets = waterPresets
+  public init(_ preset: WaterPreset = WaterPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -470,8 +470,8 @@ public struct Water: SwiftUI.View {
 
 public struct ImageDithering: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = imageDitheringPresets
-  public init(_ preset: ImageDitheringPreset = imageDitheringPresets[0]) {
+  public nonisolated static let presets = imageDitheringPresets
+  public init(_ preset: ImageDitheringPreset = ImageDitheringPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -490,8 +490,8 @@ public struct ImageDithering: SwiftUI.View {
 
 public struct Heatmap: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = heatmapPresets
-  public init(_ preset: HeatmapPreset = heatmapPresets[0]) {
+  public nonisolated static let presets = heatmapPresets
+  public init(_ preset: HeatmapPreset = HeatmapPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -510,8 +510,8 @@ public struct Heatmap: SwiftUI.View {
 
 public struct LiquidMetal: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = liquidMetalPresets
-  public init(_ preset: LiquidMetalPreset = liquidMetalPresets[0]) {
+  public nonisolated static let presets = liquidMetalPresets
+  public init(_ preset: LiquidMetalPreset = LiquidMetalPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -530,8 +530,8 @@ public struct LiquidMetal: SwiftUI.View {
 
 public struct HalftoneDots: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = halftoneDotsPresets
-  public init(_ preset: HalftoneDotsPreset = halftoneDotsPresets[0]) {
+  public nonisolated static let presets = halftoneDotsPresets
+  public init(_ preset: HalftoneDotsPreset = HalftoneDotsPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -550,8 +550,8 @@ public struct HalftoneDots: SwiftUI.View {
 
 public struct HalftoneCmyk: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = halftoneCmykPresets
-  public init(_ preset: HalftoneCmykPreset = halftoneCmykPresets[0]) {
+  public nonisolated static let presets = halftoneCmykPresets
+  public init(_ preset: HalftoneCmykPreset = HalftoneCmykPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
@@ -570,8 +570,8 @@ public struct HalftoneCmyk: SwiftUI.View {
 
 public struct GemSmoke: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public static let presets = gemSmokePresets
-  public init(_ preset: GemSmokePreset = gemSmokePresets[0]) {
+  public nonisolated static let presets = gemSmokePresets
+  public init(_ preset: GemSmokePreset = GemSmokePreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)

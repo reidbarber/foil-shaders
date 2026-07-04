@@ -110,6 +110,31 @@ function swiftString(value) {
   return JSON.stringify(value).replace(/\//g, "\\/");
 }
 
+function presetIdentifier(name) {
+  const words = name.match(/[A-Za-z0-9]+/g) ?? [];
+  let identifier = words
+    .map((word, index) => {
+      const normalized = /^[A-Z0-9]+$/.test(word)
+        ? word.toLowerCase()
+        : word[0].toLowerCase() + word.slice(1);
+      return index === 0 ? normalized : normalized[0].toUpperCase() + normalized.slice(1);
+    })
+    .join("");
+  if (!identifier) identifier = "preset";
+  if (/^[0-9]/.test(identifier)) {
+    identifier = `preset${identifier[0].toUpperCase()}${identifier.slice(1)}`;
+  }
+  return identifier;
+}
+
+function swiftIdentifier(identifier) {
+  return identifier === "default" ? "`default`" : identifier;
+}
+
+function memberAccess(identifier) {
+  return identifier === "default" ? ".default" : `.${identifier}`;
+}
+
 function number(value) {
   if (!Number.isFinite(value)) throw new Error(`Invalid number ${value}`);
   return Number.isInteger(value) ? String(value) : String(value);
@@ -206,11 +231,31 @@ function presetCode(spec, preset) {
   return lines.join("\n");
 }
 
+function presetMemberCode(spec, preset) {
+  const identifier = presetIdentifier(preset.name);
+  return [
+    `  static let ${swiftIdentifier(identifier)}: ${spec.presetType} =`,
+    presetCode(spec, preset)
+      .split("\n")
+      .map((line) => `  ${line}`)
+      .join("\n"),
+  ].join("\n");
+}
+
 function presetArrayCode(spec) {
   const presets = arrayFor(spec);
+  const identifiers = presets.map((preset) => presetIdentifier(preset.name));
+  const duplicates = identifiers.filter((identifier, index) => identifiers.indexOf(identifier) !== index);
+  if (duplicates.length > 0) {
+    throw new Error(`${spec.arrayName} has duplicate preset identifiers: ${duplicates.join(", ")}`);
+  }
   return [
-    `public let ${spec.arrayName}: [${spec.presetType}] = [`,
-    presets.map((preset) => `${presetCode(spec, preset)},`).join("\n"),
+    `public extension ${spec.presetType} {`,
+    presets.map((preset) => presetMemberCode(spec, preset)).join("\n\n"),
+    "}",
+    "",
+    `let ${spec.arrayName}: [${spec.presetType}] = [`,
+    `  ${identifiers.map(memberAccess).join(", ")}`,
     "]",
   ].join("\n");
 }

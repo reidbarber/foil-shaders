@@ -163,23 +163,23 @@ func configuration(for shader: String, presetName: String, image: ShaderImage?) 
 
   switch shader {
   case "mesh-gradient":
-    configuration = try makeConfiguration(presets: meshGradientPresets) {
+    configuration = try makeConfiguration(presets: MeshGradient.presets) {
       .meshGradient($0)
     }
   case "swirl":
-    configuration = try makeConfiguration(presets: swirlPresets) { .swirl($0) }
+    configuration = try makeConfiguration(presets: Swirl.presets) { .swirl($0) }
   case "dithering":
-    configuration = try makeConfiguration(presets: ditheringPresets) {
+    configuration = try makeConfiguration(presets: Dithering.presets) {
       .dithering($0)
     }
   case "voronoi":
-    configuration = try makeConfiguration(presets: voronoiPresets) { .voronoi($0) }
+    configuration = try makeConfiguration(presets: Voronoi.presets) { .voronoi($0) }
   case "paper-texture":
-    configuration = try makeConfiguration(presets: paperTexturePresets) {
+    configuration = try makeConfiguration(presets: PaperTexture.presets) {
       .paperTexture($0)
     }
   case "liquid-metal":
-    configuration = try makeConfiguration(presets: liquidMetalPresets) {
+    configuration = try makeConfiguration(presets: LiquidMetal.presets) {
       .liquidMetal($0)
     }
   default:
