@@ -10,8 +10,11 @@ public enum FoilShadersCodeGenerator {
     motion: ShaderMotionParams,
     renderOptions: ShaderRenderOptions
   ) -> String {
+    // The mesh gradient view is exported as `AnimatedMeshGradient` to avoid
+    // colliding with `SwiftUI.MeshGradient`, while its preset/params types keep
+    // the `MeshGradient` prefix (see `componentName` in Scripts/preset-specs.mjs).
     let qualifiedName =
-      componentName == "MeshGradient" ? "FoilShaders.MeshGradient" : componentName
+      componentName == "MeshGradient" ? "AnimatedMeshGradient" : componentName
     var lines: [String] = [
       "import FoilShaders",
       "",

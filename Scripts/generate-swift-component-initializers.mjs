@@ -101,7 +101,7 @@ function generatedInitializer(spec) {
   const params = paramsFor(spec.paramsType);
   const defaultPreset = `${spec.presetType}.default`;
   const lines = [
-    `extension ${spec.componentName} {`,
+    `extension ${spec.viewName ?? spec.componentName} {`,
     "  public init(",
     ...params.map((param) => parameterLine(defaultPreset, param)),
     ...sizingParams.map(

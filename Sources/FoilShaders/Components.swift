@@ -7,8 +7,11 @@ private func shaderBody(_ configuration: ShaderConfiguration) -> some SwiftUI.Vi
 
 /// A SwiftUI view that renders the animated Mesh Gradient shader.
 ///
+/// Named `AnimatedMeshGradient` to avoid colliding with SwiftUI's `MeshGradient`.
+/// It pairs with ``StaticMeshGradient``.
+///
 /// See <doc:MeshGradientShader> for usage examples, previews, and parameter ranges.
-public struct MeshGradient: SwiftUI.View {
+public struct AnimatedMeshGradient: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = meshGradientPresets
 

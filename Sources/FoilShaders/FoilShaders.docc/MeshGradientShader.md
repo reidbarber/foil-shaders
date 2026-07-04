@@ -4,7 +4,7 @@ Animated mesh gradient with flowing color fields and optional grain.
 
 ![Mesh Gradient default preset preview](preview-mesh-gradient.png)
 
-Use ``MeshGradient`` as a SwiftUI view, ``MeshGradientParams`` for typed parameters, and ``MeshGradientPreset`` for Paper-derived presets. This implementation tracks the Paper Shaders behavior and preset metadata where the Metal port has a matching shader.
+Use ``AnimatedMeshGradient`` as a SwiftUI view, ``MeshGradientParams`` for typed parameters, and ``MeshGradientPreset`` for Paper-derived presets. The view is named `AnimatedMeshGradient` to avoid colliding with SwiftUI's own `MeshGradient`. This implementation tracks the Paper Shaders behavior and preset metadata where the Metal port has a matching shader.
 
 [Paper Shaders reference](https://github.com/paper-design/shaders)
 
@@ -14,7 +14,7 @@ Use ``MeshGradient`` as a SwiftUI view, ``MeshGradientParams`` for typed paramet
 import SwiftUI
 import FoilShaders
 
-MeshGradient(.default)
+AnimatedMeshGradient(.default)
   .frame(width: 240, height: 240)
 ```
 
@@ -32,6 +32,6 @@ See <doc:ParameterRanges#Mesh-Gradient> for the full shared context around sizin
 
 ## Related Symbols
 
-- ``MeshGradient``
+- ``AnimatedMeshGradient``
 - ``MeshGradientParams``
 - ``MeshGradientPreset``

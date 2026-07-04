@@ -53,7 +53,7 @@ The documentation includes rendered previews from the parity golden suite, pract
 
 ### Shader Views
 
-- ``MeshGradient``
+- ``AnimatedMeshGradient``
 - ``SmokeRing``
 - ``NeuroNoise``
 - ``DotOrbit``

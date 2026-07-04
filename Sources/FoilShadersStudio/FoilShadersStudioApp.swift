@@ -452,7 +452,7 @@ private enum StudioShader: String, CaseIterable, Identifiable {
 
   var presetCount: Int {
     switch self {
-    case .meshGradient: MeshGradient.presets.count
+    case .meshGradient: AnimatedMeshGradient.presets.count
     case .smokeRing: SmokeRing.presets.count
     case .neuroNoise: NeuroNoise.presets.count
     case .dotOrbit: DotOrbit.presets.count
@@ -496,7 +496,7 @@ private enum StudioShader: String, CaseIterable, Identifiable {
 
   func presetName(at index: Int) -> String {
     switch self {
-    case .meshGradient: MeshGradient.presets[index].name
+    case .meshGradient: AnimatedMeshGradient.presets[index].name
     case .smokeRing: SmokeRing.presets[index].name
     case .neuroNoise: NeuroNoise.presets[index].name
     case .dotOrbit: DotOrbit.presets[index].name
@@ -535,7 +535,7 @@ private enum StudioShader: String, CaseIterable, Identifiable {
   @MainActor
   func configuration(at index: Int) -> ShaderConfiguration {
     switch self {
-    case .meshGradient: MeshGradient(MeshGradient.presets[index]).configuration
+    case .meshGradient: AnimatedMeshGradient(AnimatedMeshGradient.presets[index]).configuration
     case .smokeRing: SmokeRing(SmokeRing.presets[index]).configuration
     case .neuroNoise: NeuroNoise(NeuroNoise.presets[index]).configuration
     case .dotOrbit: DotOrbit(DotOrbit.presets[index]).configuration

@@ -43,7 +43,7 @@ import FoilShaders
 
 struct ContentView: View {
   var body: some View {
-    FoilShaders.MeshGradient(
+    AnimatedMeshGradient(
       colors: ["#5100ff", "#00ff80", "#ffcc00", "#ea00ff"],
       distortion: 1,
       swirl: 0.8,
@@ -80,7 +80,7 @@ and pause rendering while inactive or offscreen. Use separate opt-outs when a
 subtree should ignore Reduce Motion or continue rendering while hidden:
 
 ```swift
-FoilShaders.MeshGradient()
+AnimatedMeshGradient()
   .foilShadersRespectsReduceMotion(false)
   .foilShadersPausesWhenInactiveOrOffscreen(false)
 ```

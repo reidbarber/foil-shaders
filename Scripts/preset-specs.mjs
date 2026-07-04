@@ -5,7 +5,10 @@
 // Per-spec fields:
 //   key           kebab-case shader key (matches paper repo file/preset namespace)
 //   componentName PascalCase name — the @paper-design/shaders-react export AND the
-//                 Swift component/typealias name
+//                 Swift typealias/params/preset name prefix
+//   viewName      optional override for the Swift SwiftUI view struct name when it
+//                 must differ from componentName (e.g. to avoid colliding with a
+//                 SwiftUI type). Defaults to componentName.
 //   arrayName     preset array name (same in shaders-react and Presets.swift)
 //   presetType / paramsType   Swift type names for codegen
 //   fields        param fields in Swift declaration order; string when Swift and
@@ -57,6 +60,7 @@ export const specs = [
   {
     key: "mesh-gradient",
     componentName: "MeshGradient",
+    viewName: "AnimatedMeshGradient",
     arrayName: "meshGradientPresets",
     presetType: "MeshGradientPreset",
     paramsType: "MeshGradientParams",

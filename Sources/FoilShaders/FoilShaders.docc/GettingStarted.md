@@ -14,7 +14,7 @@ dependencies: [
 
 ## Basic Usage
 
-This matches the README example and uses the flat initializer for ``MeshGradient``:
+This matches the README example and uses the flat initializer for ``AnimatedMeshGradient``:
 
 ```swift
 import SwiftUI
@@ -22,7 +22,7 @@ import FoilShaders
 
 struct ContentView: View {
   var body: some View {
-    FoilShaders.MeshGradient(
+    AnimatedMeshGradient(
       colors: ["#5100ff", "#00ff80", "#ffcc00", "#ea00ff"],
       distortion: 1,
       swirl: 0.8,
