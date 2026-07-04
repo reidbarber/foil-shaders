@@ -5,6 +5,9 @@ private func shaderBody(_ configuration: ShaderConfiguration) -> some SwiftUI.Vi
   FoilShadersShaderView(configuration: configuration)
 }
 
+/// A SwiftUI view that renders the animated Mesh Gradient shader.
+///
+/// See <doc:MeshGradientShader> for usage examples, previews, and parameter ranges.
 public struct MeshGradient: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = meshGradientPresets
@@ -28,6 +31,9 @@ public struct MeshGradient: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Smoke Ring shader.
+///
+/// See <doc:SmokeRingShader> for usage examples, previews, and parameter ranges.
 public struct SmokeRing: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = smokeRingPresets
@@ -48,6 +54,9 @@ public struct SmokeRing: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Neuro Noise shader.
+///
+/// See <doc:NeuroNoiseShader> for usage examples, previews, and parameter ranges.
 public struct NeuroNoise: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = neuroNoisePresets
@@ -68,6 +77,9 @@ public struct NeuroNoise: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Dot Orbit shader.
+///
+/// See <doc:DotOrbitShader> for usage examples, previews, and parameter ranges.
 public struct DotOrbit: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = dotOrbitPresets
@@ -88,6 +100,9 @@ public struct DotOrbit: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Dot Grid shader.
+///
+/// See <doc:DotGridShader> for usage examples, previews, and parameter ranges.
 public struct DotGrid: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = dotGridPresets
@@ -108,6 +123,9 @@ public struct DotGrid: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Simplex Noise shader.
+///
+/// See <doc:SimplexNoiseShader> for usage examples, previews, and parameter ranges.
 public struct SimplexNoise: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = simplexNoisePresets
@@ -128,6 +146,9 @@ public struct SimplexNoise: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Metaballs shader.
+///
+/// See <doc:MetaballsShader> for usage examples, previews, and parameter ranges.
 public struct Metaballs: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = metaballsPresets
@@ -148,6 +169,9 @@ public struct Metaballs: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Waves shader.
+///
+/// See <doc:WavesShader> for usage examples, previews, and parameter ranges.
 public struct Waves: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = wavesPresets
@@ -168,6 +192,9 @@ public struct Waves: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Perlin Noise shader.
+///
+/// See <doc:PerlinNoiseShader> for usage examples, previews, and parameter ranges.
 public struct PerlinNoise: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = perlinNoisePresets
@@ -188,6 +215,9 @@ public struct PerlinNoise: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Voronoi shader.
+///
+/// See <doc:VoronoiShader> for usage examples, previews, and parameter ranges.
 public struct Voronoi: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = voronoiPresets
@@ -208,6 +238,9 @@ public struct Voronoi: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Warp shader.
+///
+/// See <doc:WarpShader> for usage examples, previews, and parameter ranges.
 public struct Warp: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = warpPresets
@@ -228,6 +261,9 @@ public struct Warp: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the God Rays shader.
+///
+/// See <doc:GodRaysShader> for usage examples, previews, and parameter ranges.
 public struct GodRays: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = godRaysPresets
@@ -248,6 +284,9 @@ public struct GodRays: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Spiral shader.
+///
+/// See <doc:SpiralShader> for usage examples, previews, and parameter ranges.
 public struct Spiral: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = spiralPresets
@@ -268,6 +307,9 @@ public struct Spiral: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Swirl shader.
+///
+/// See <doc:SwirlShader> for usage examples, previews, and parameter ranges.
 public struct Swirl: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = swirlPresets
@@ -288,6 +330,9 @@ public struct Swirl: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the procedural Dithering shader.
+///
+/// See <doc:DitheringShader> for usage examples, previews, and parameter ranges.
 public struct Dithering: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = ditheringPresets
@@ -308,6 +353,9 @@ public struct Dithering: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Grain Gradient shader.
+///
+/// See <doc:GrainGradientShader> for usage examples, previews, and parameter ranges.
 public struct GrainGradient: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = grainGradientPresets
@@ -328,6 +376,9 @@ public struct GrainGradient: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Pulsing Border shader.
+///
+/// See <doc:PulsingBorderShader> for usage examples, previews, and parameter ranges.
 public struct PulsingBorder: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = pulsingBorderPresets
@@ -348,6 +399,9 @@ public struct PulsingBorder: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Color Panels shader.
+///
+/// See <doc:ColorPanelsShader> for usage examples, previews, and parameter ranges.
 public struct ColorPanels: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = colorPanelsPresets
@@ -368,6 +422,9 @@ public struct ColorPanels: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the static Mesh Gradient shader.
+///
+/// See <doc:StaticMeshGradientShader> for usage examples, previews, and parameter ranges.
 public struct StaticMeshGradient: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = staticMeshGradientPresets
@@ -388,6 +445,9 @@ public struct StaticMeshGradient: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Static Radial Gradient shader.
+///
+/// See <doc:StaticRadialGradientShader> for usage examples, previews, and parameter ranges.
 public struct StaticRadialGradient: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = staticRadialGradientPresets
@@ -408,6 +468,9 @@ public struct StaticRadialGradient: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Paper Texture shader.
+///
+/// See <doc:PaperTextureShader> for usage examples, previews, and parameter ranges.
 public struct PaperTexture: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = paperTexturePresets
@@ -428,6 +491,9 @@ public struct PaperTexture: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Fluted Glass shader.
+///
+/// See <doc:FlutedGlassShader> for usage examples, previews, and parameter ranges.
 public struct FlutedGlass: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = flutedGlassPresets
@@ -448,6 +514,9 @@ public struct FlutedGlass: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Water shader.
+///
+/// See <doc:WaterShader> for usage examples, previews, and parameter ranges.
 public struct Water: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = waterPresets
@@ -468,6 +537,9 @@ public struct Water: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the image-based Dithering shader.
+///
+/// See <doc:ImageDitheringShader> for usage examples, previews, and parameter ranges.
 public struct ImageDithering: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = imageDitheringPresets
@@ -488,6 +560,9 @@ public struct ImageDithering: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Heatmap shader.
+///
+/// See <doc:HeatmapShader> for usage examples, previews, and parameter ranges.
 public struct Heatmap: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = heatmapPresets
@@ -508,6 +583,9 @@ public struct Heatmap: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Liquid Metal shader.
+///
+/// See <doc:LiquidMetalShader> for usage examples, previews, and parameter ranges.
 public struct LiquidMetal: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = liquidMetalPresets
@@ -528,6 +606,9 @@ public struct LiquidMetal: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Halftone Dots shader.
+///
+/// See <doc:HalftoneDotsShader> for usage examples, previews, and parameter ranges.
 public struct HalftoneDots: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = halftoneDotsPresets
@@ -548,6 +629,9 @@ public struct HalftoneDots: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Halftone CMYK shader.
+///
+/// See <doc:HalftoneCmykShader> for usage examples, previews, and parameter ranges.
 public struct HalftoneCmyk: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = halftoneCmykPresets
@@ -568,6 +652,9 @@ public struct HalftoneCmyk: SwiftUI.View {
   public var body: some SwiftUI.View { shaderBody(configuration) }
 }
 
+/// A SwiftUI view that renders the Gem Smoke shader.
+///
+/// See <doc:GemSmokeShader> for usage examples, previews, and parameter ranges.
 public struct GemSmoke: SwiftUI.View {
   public var configuration: ShaderConfiguration
   public nonisolated static let presets = gemSmokePresets

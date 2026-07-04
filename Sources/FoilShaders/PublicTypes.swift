@@ -3,12 +3,28 @@ import CryptoKit
 import Foundation
 import simd
 
+/// A normalized RGBA color passed to Metal shader uniforms.
+///
+/// Component values use the `0...1` range. String literals and string parsing accept
+/// CSS-style hex, `rgb()`/`rgba()`, and `hsl()`/`hsla()` values and normalize them to
+/// the same component range.
 public struct ShaderColor: Equatable, Sendable, Codable, ExpressibleByStringLiteral {
+  /// Red channel in the `0...1` range.
   public var red: Float
+  /// Green channel in the `0...1` range.
   public var green: Float
+  /// Blue channel in the `0...1` range.
   public var blue: Float
+  /// Alpha channel in the `0...1` range, where `0` is transparent and `1` is opaque.
   public var alpha: Float
 
+  /// Creates a color from normalized RGBA components.
+  ///
+  /// - Parameters:
+  ///   - red: Red channel in the `0...1` range.
+  ///   - green: Green channel in the `0...1` range.
+  ///   - blue: Blue channel in the `0...1` range.
+  ///   - alpha: Alpha channel in the `0...1` range.
   public init(red: Float, green: Float, blue: Float, alpha: Float = 1) {
     self.red = red
     self.green = green
@@ -16,14 +32,24 @@ public struct ShaderColor: Equatable, Sendable, Codable, ExpressibleByStringLite
     self.alpha = alpha
   }
 
+  /// Creates a color from a normalized RGBA vector.
+  ///
+  /// - Parameter rgba: Components in red, green, blue, alpha order, each using `0...1`.
   public init(_ rgba: SIMD4<Float>) {
     self.init(red: rgba.x, green: rgba.y, blue: rgba.z, alpha: rgba.w)
   }
 
+  /// Creates a color from a CSS-style color string literal.
+  ///
+  /// Invalid strings fall back to ``black``.
   public init(stringLiteral value: String) {
     self = ShaderColor(value) ?? .black
   }
 
+  /// Creates a color from a CSS-style color string.
+  ///
+  /// Supported formats include `#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`, `rgb()`,
+  /// `rgba()`, `hsl()`, and `hsla()`.
   public init?(_ value: String) {
     let text = value.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
     if let color = Self.parseHex(text) ?? Self.parseRGB(text) ?? Self.parseHSL(text) {
@@ -33,10 +59,12 @@ public struct ShaderColor: Equatable, Sendable, Codable, ExpressibleByStringLite
     }
   }
 
+  /// The normalized RGBA components as a SIMD vector.
   public var rgba: SIMD4<Float> {
     SIMD4(red, green, blue, alpha)
   }
 
+  /// A lowercased hex string representation in `#rrggbb` or `#rrggbbaa` form.
   public var hexString: String {
     let r = Int((red.clamped01 * 255).rounded())
     let g = Int((green.clamped01 * 255).rounded())
@@ -48,8 +76,11 @@ public struct ShaderColor: Equatable, Sendable, Codable, ExpressibleByStringLite
     return String(format: "#%02x%02x%02x%02x", r, g, b, a)
   }
 
+  /// Fully transparent black.
   public static let clear = ShaderColor(red: 0, green: 0, blue: 0, alpha: 0)
+  /// Opaque black.
   public static let black = ShaderColor(red: 0, green: 0, blue: 0, alpha: 1)
+  /// Opaque white.
   public static let white = ShaderColor(red: 1, green: 1, blue: 1, alpha: 1)
 
   private static func parseHex(_ text: String) -> ShaderColor? {
@@ -331,16 +362,37 @@ public struct ShaderImage: Equatable, @unchecked Sendable, Codable {
   }
 }
 
+/// Resolution controls for the Metal backing texture used by a shader view.
+///
+/// These options mirror Paper Shaders' render-size controls. Use them to keep
+/// output sharp while preventing extremely large drawable textures.
 public struct ShaderRenderOptions: Equatable, Sendable, Codable {
+  /// Default maximum rendered pixel count, equal to four 1080p frames.
   public static let defaultMaxPixelCount = 1920 * 1080 * 4
 
+  /// Minimum backing-store scale relative to the view size. Typical values are `1...3`.
   public var minPixelRatio: Float
+  /// Maximum rendered pixel count before the renderer lowers the effective pixel ratio.
   public var maxPixelCount: Int
+  /// Optional fixed render width in points or pixels, depending on the caller's sizing context.
   public var width: CGFloat?
+  /// Optional fixed render height in points or pixels, depending on the caller's sizing context.
   public var height: CGFloat?
 
+  /// Default render options: `minPixelRatio` `2` and ``defaultMaxPixelCount``.
   public static let `default` = ShaderRenderOptions()
 
+  /// Creates render resolution controls.
+  ///
+  /// - Parameters:
+  ///   - minPixelRatio: Minimum backing-store scale relative to the view size.
+  ///     Values in `1...3` are typical; the default is `2`.
+  ///   - maxPixelCount: Maximum rendered pixel count before the renderer lowers
+  ///     the effective pixel ratio.
+  ///   - width: Optional fixed render width in points or pixels, depending on
+  ///     the caller's sizing context.
+  ///   - height: Optional fixed render height in points or pixels, depending on
+  ///     the caller's sizing context.
   public init(
     minPixelRatio: Float = 2,
     maxPixelCount: Int = ShaderRenderOptions.defaultMaxPixelCount,

@@ -3,23 +3,40 @@ import simd
 
 // MARK: - Shader Sizing
 
+/// Layout mode for mapping shader pattern or image coordinates into a view.
 public enum ShaderFit: Float, Equatable, Sendable, Codable {
+  /// Use shader-native coordinates without contain or cover scaling.
   case none = 0.0
+  /// Scale the shader coordinate box to fit inside the view while preserving aspect ratio.
   case contain = 1.0
+  /// Scale the shader coordinate box to cover the view while preserving aspect ratio.
   case cover = 2.0
 }
 
+/// Shared spatial controls applied before shader-specific parameters.
+///
+/// Origins and offsets are normalized against the rendered view. Rotation uses degrees.
 public struct ShaderSizingParams: Equatable, Sendable, Codable {
+  /// Coordinate fitting behavior.
   public var fit: ShaderFit
+  /// Pattern or image scale multiplier. Values above `1` zoom in; values below `1` zoom out.
   public var scale: Float
+  /// Clockwise rotation in degrees.
   public var rotation: Float
+  /// Horizontal origin as a normalized fraction of the view; `0.5` is centered.
   public var originX: Float
+  /// Vertical origin as a normalized fraction of the view; `0.5` is centered.
   public var originY: Float
+  /// Horizontal offset in normalized shader coordinates.
   public var offsetX: Float
+  /// Vertical offset in normalized shader coordinates.
   public var offsetY: Float
+  /// Optional explicit content width. `0` means use the rendered view width.
   public var worldWidth: Float
+  /// Optional explicit content height. `0` means use the rendered view height.
   public var worldHeight: Float
 
+  /// Default sizing for object-like image shaders.
   public static let `default` = ShaderSizingParams(
     fit: .contain,
     scale: 1.0,
@@ -32,6 +49,19 @@ public struct ShaderSizingParams: Equatable, Sendable, Codable {
     worldHeight: 0.0
   )
 
+  /// Creates shared shader sizing controls.
+  ///
+  /// - Parameters:
+  ///   - fit: Coordinate fitting behavior.
+  ///   - scale: Pattern or image scale multiplier. Values above `1` zoom in;
+  ///     values below `1` zoom out.
+  ///   - rotation: Clockwise rotation in degrees.
+  ///   - originX: Horizontal origin as a normalized fraction of the view.
+  ///   - originY: Vertical origin as a normalized fraction of the view.
+  ///   - offsetX: Horizontal offset in normalized shader coordinates.
+  ///   - offsetY: Vertical offset in normalized shader coordinates.
+  ///   - worldWidth: Optional explicit content width. `0` uses the rendered view width.
+  ///   - worldHeight: Optional explicit content height. `0` uses the rendered view height.
   public init(
     fit: ShaderFit = .contain,
     scale: Float = 1.0,
@@ -55,10 +85,18 @@ public struct ShaderSizingParams: Equatable, Sendable, Codable {
   }
 }
 
+/// Animation controls shared by shaders that use time.
 public struct ShaderMotionParams: Equatable, Sendable, Codable {
+  /// Animation speed multiplier. `0` freezes automatic time progression.
   public var speed: Float
+  /// Fixed timeline position in milliseconds. Presets and parity tests commonly use `0` and `5000`.
   public var frame: Float
 
+  /// Creates shared animation controls.
+  ///
+  /// - Parameters:
+  ///   - speed: Animation speed multiplier. `0` freezes automatic time progression.
+  ///   - frame: Fixed timeline position in milliseconds.
   public init(speed: Float = 0.0, frame: Float = 0.0) {
     self.speed = speed
     self.frame = frame
@@ -67,6 +105,9 @@ public struct ShaderMotionParams: Equatable, Sendable, Codable {
 
 // MARK: - Mesh Gradient
 
+/// Parameters for the animated mesh gradient shader.
+///
+/// See <doc:ParameterRanges#Mesh-Gradient> for value ranges and units.
 public struct MeshGradientParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colors: [ShaderColor]
@@ -75,6 +116,9 @@ public struct MeshGradientParams: Equatable, Sendable, Codable {
   public var grainMixer: Float
   public var grainOverlay: Float
 
+  /// Creates mesh gradient shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Mesh-Gradient> for each parameter's value range and unit.
   public init(
     colors: [ShaderColor],
     distortion: Float = 0.8,
@@ -92,6 +136,9 @@ public struct MeshGradientParams: Equatable, Sendable, Codable {
 
 // MARK: - Static Mesh Gradient
 
+/// Parameters for the static mesh gradient shader.
+///
+/// See <doc:ParameterRanges#Static-Mesh-Gradient> for value ranges and units.
 public struct StaticMeshGradientParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colors: [ShaderColor]
@@ -104,6 +151,9 @@ public struct StaticMeshGradientParams: Equatable, Sendable, Codable {
   public var grainMixer: Float
   public var grainOverlay: Float
 
+  /// Creates static mesh gradient shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Static-Mesh-Gradient> for each parameter's value range and unit.
   public init(
     colors: [ShaderColor],
     positions: Float = 2.0,
@@ -129,6 +179,9 @@ public struct StaticMeshGradientParams: Equatable, Sendable, Codable {
 
 // MARK: - Static Radial Gradient
 
+/// Parameters for the static radial gradient shader.
+///
+/// See <doc:ParameterRanges#Static-Radial-Gradient> for value ranges and units.
 public struct StaticRadialGradientParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
@@ -144,6 +197,9 @@ public struct StaticRadialGradientParams: Equatable, Sendable, Codable {
   public var grainMixer: Float
   public var grainOverlay: Float
 
+  /// Creates static radial gradient shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Static-Radial-Gradient> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0, blue: 0, alpha: 1),
     colors: [ShaderColor],
@@ -175,6 +231,9 @@ public struct StaticRadialGradientParams: Equatable, Sendable, Codable {
 
 // MARK: - Swirl
 
+/// Parameters for the swirl shader.
+///
+/// See <doc:ParameterRanges#Swirl> for value ranges and units.
 public struct SwirlParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
@@ -187,6 +246,9 @@ public struct SwirlParams: Equatable, Sendable, Codable {
   public var noise: Float
   public var noiseFrequency: Float
 
+  /// Creates swirl shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Swirl> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(red: 0.2, green: 0, blue: 0, alpha: 1),
     colors: [ShaderColor],
@@ -212,6 +274,9 @@ public struct SwirlParams: Equatable, Sendable, Codable {
 
 // MARK: - Spiral
 
+/// Parameters for the spiral shader.
+///
+/// See <doc:ParameterRanges#Spiral> for value ranges and units.
 public struct SpiralParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorFront: ShaderColor
@@ -224,6 +289,9 @@ public struct SpiralParams: Equatable, Sendable, Codable {
   public var noiseFrequency: Float
   public var softness: Float
 
+  /// Creates spiral shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Spiral> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0.078431375, blue: 0.16078432, alpha: 1),
     colorFront: ShaderColor,
@@ -251,6 +319,9 @@ public struct SpiralParams: Equatable, Sendable, Codable {
 
 // MARK: - Dot Grid
 
+/// Parameters for the dot grid shader.
+///
+/// See <doc:ParameterRanges#Dot-Grid> for value ranges and units.
 public struct DotGridParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorFill: ShaderColor
@@ -263,6 +334,9 @@ public struct DotGridParams: Equatable, Sendable, Codable {
   public var opacityRange: Float
   public var shape: DotGridShape
 
+  /// Creates dot grid shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Dot-Grid> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0, blue: 0, alpha: 1),
     colorFill: ShaderColor,
@@ -290,12 +364,18 @@ public struct DotGridParams: Equatable, Sendable, Codable {
 
 // MARK: - Simplex Noise
 
+/// Parameters for the simplex noise shader.
+///
+/// See <doc:ParameterRanges#Simplex-Noise> for value ranges and units.
 public struct SimplexNoiseParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colors: [ShaderColor]
   public var stepsPerColor: Float
   public var softness: Float
 
+  /// Creates simplex noise shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Simplex-Noise> for each parameter's value range and unit.
   public init(
     colors: [ShaderColor],
     stepsPerColor: Float = 2.0,
@@ -309,6 +389,9 @@ public struct SimplexNoiseParams: Equatable, Sendable, Codable {
 
 // MARK: - Perlin Noise
 
+/// Parameters for the Perlin noise shader.
+///
+/// See <doc:ParameterRanges#Perlin-Noise> for value ranges and units.
 public struct PerlinNoiseParams: Equatable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
@@ -318,6 +401,9 @@ public struct PerlinNoiseParams: Equatable, Sendable, Codable {
   public var persistence: Float
   public var lacunarity: Float
 
+  /// Creates Perlin noise shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Perlin-Noise> for each parameter's value range and unit.
   public init(
     colorFront: ShaderColor,
     colorBack: ShaderColor = ShaderColor(
@@ -340,6 +426,9 @@ public struct PerlinNoiseParams: Equatable, Sendable, Codable {
 
 // MARK: - Neuro Noise
 
+/// Parameters for the neuro noise shader.
+///
+/// See <doc:ParameterRanges#Neuro-Noise> for value ranges and units.
 public struct NeuroNoiseParams: Equatable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorMid: ShaderColor
@@ -347,6 +436,9 @@ public struct NeuroNoiseParams: Equatable, Sendable, Codable {
   public var brightness: Float
   public var contrast: Float
 
+  /// Creates neuro noise shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Neuro-Noise> for each parameter's value range and unit.
   public init(
     colorFront: ShaderColor,
     colorMid: ShaderColor,
@@ -364,6 +456,9 @@ public struct NeuroNoiseParams: Equatable, Sendable, Codable {
 
 // MARK: - Waves
 
+/// Parameters for the waves shader.
+///
+/// See <doc:ParameterRanges#Waves> for value ranges and units.
 public struct WavesParams: Equatable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
@@ -374,6 +469,9 @@ public struct WavesParams: Equatable, Sendable, Codable {
   public var proportion: Float
   public var softness: Float
 
+  /// Creates waves shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Waves> for each parameter's value range and unit.
   public init(
     colorFront: ShaderColor,
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0, blue: 0, alpha: 1),
@@ -397,6 +495,9 @@ public struct WavesParams: Equatable, Sendable, Codable {
 
 // MARK: - Dithering
 
+/// Parameters for the procedural dithering shader.
+///
+/// See <doc:ParameterRanges#Dithering> for value ranges and units.
 public struct DitheringParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorFront: ShaderColor
@@ -404,6 +505,9 @@ public struct DitheringParams: Equatable, Sendable, Codable {
   public var type: DitheringType
   public var size: Float
 
+  /// Creates dithering shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Dithering> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0, blue: 0, alpha: 1),
     colorFront: ShaderColor,
@@ -421,6 +525,9 @@ public struct DitheringParams: Equatable, Sendable, Codable {
 
 // MARK: - Color Panels
 
+/// Parameters for the color panels shader.
+///
+/// See <doc:ParameterRanges#Color-Panels> for value ranges and units.
 public struct ColorPanelsParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 7
   public var colors: [ShaderColor]
@@ -435,6 +542,9 @@ public struct ColorPanelsParams: Equatable, Sendable, Codable {
   public var fadeOut: Float
   public var gradient: Float
 
+  /// Creates color panels shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Color-Panels> for each parameter's value range and unit.
   public init(
     colors: [ShaderColor],
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0, blue: 0, alpha: 1),
@@ -464,6 +574,9 @@ public struct ColorPanelsParams: Equatable, Sendable, Codable {
 
 // MARK: - Dot Orbit
 
+/// Parameters for the dot orbit shader.
+///
+/// See <doc:ParameterRanges#Dot-Orbit> for value ranges and units.
 public struct DotOrbitParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
@@ -473,6 +586,9 @@ public struct DotOrbitParams: Equatable, Sendable, Codable {
   public var sizeRange: Float
   public var spreading: Float
 
+  /// Creates dot orbit shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Dot-Orbit> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0, blue: 0, alpha: 1),
     colors: [ShaderColor],
@@ -492,6 +608,9 @@ public struct DotOrbitParams: Equatable, Sendable, Codable {
 
 // MARK: - God Rays
 
+/// Parameters for the god rays shader.
+///
+/// See <doc:ParameterRanges#God-Rays> for value ranges and units.
 public struct GodRaysParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 5
   public var colorBack: ShaderColor
@@ -504,6 +623,9 @@ public struct GodRaysParams: Equatable, Sendable, Codable {
   public var intensity: Float
   public var bloom: Float
 
+  /// Creates god rays shader parameters.
+  ///
+  /// See <doc:ParameterRanges#God-Rays> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0, blue: 0, alpha: 1),
     colorBloom: ShaderColor = ShaderColor(red: 0, green: 0, blue: 1, alpha: 1),
@@ -529,6 +651,9 @@ public struct GodRaysParams: Equatable, Sendable, Codable {
 
 // MARK: - Grain Gradient
 
+/// Parameters for the grain gradient shader.
+///
+/// See <doc:ParameterRanges#Grain-Gradient> for value ranges and units.
 public struct GrainGradientParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 7
   public var colorBack: ShaderColor
@@ -538,6 +663,9 @@ public struct GrainGradientParams: Equatable, Sendable, Codable {
   public var noise: Float
   public var shape: GrainGradientShape
 
+  /// Creates grain gradient shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Grain-Gradient> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0, blue: 0, alpha: 1),
     colors: [ShaderColor],
@@ -557,6 +685,9 @@ public struct GrainGradientParams: Equatable, Sendable, Codable {
 
 // MARK: - Metaballs
 
+/// Parameters for the metaballs shader.
+///
+/// See <doc:ParameterRanges#Metaballs> for value ranges and units.
 public struct MetaballsParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 8
   public var colorBack: ShaderColor
@@ -565,6 +696,9 @@ public struct MetaballsParams: Equatable, Sendable, Codable {
   public var size: Float
   public var sizeRange: Float
 
+  /// Creates metaballs shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Metaballs> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0, blue: 0, alpha: 1),
     colors: [ShaderColor],
@@ -582,6 +716,9 @@ public struct MetaballsParams: Equatable, Sendable, Codable {
 
 // MARK: - Warp
 
+/// Parameters for the warp shader.
+///
+/// See <doc:ParameterRanges#Warp> for value ranges and units.
 public struct WarpParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colors: [ShaderColor]
@@ -593,6 +730,9 @@ public struct WarpParams: Equatable, Sendable, Codable {
   public var swirl: Float
   public var swirlIterations: Float
 
+  /// Creates warp shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Warp> for each parameter's value range and unit.
   public init(
     colors: [ShaderColor],
     proportion: Float = 0.45,
@@ -616,6 +756,9 @@ public struct WarpParams: Equatable, Sendable, Codable {
 
 // MARK: - Voronoi
 
+/// Parameters for the Voronoi shader.
+///
+/// See <doc:ParameterRanges#Voronoi> for value ranges and units.
 public struct VoronoiParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 5
   public var colors: [ShaderColor]
@@ -626,6 +769,9 @@ public struct VoronoiParams: Equatable, Sendable, Codable {
   public var gap: Float
   public var glow: Float
 
+  /// Creates Voronoi shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Voronoi> for each parameter's value range and unit.
   public init(
     colors: [ShaderColor],
     stepsPerColor: Float = 3.0,
@@ -647,6 +793,9 @@ public struct VoronoiParams: Equatable, Sendable, Codable {
 
 // MARK: - Pulsing Border
 
+/// Parameters for the pulsing border shader.
+///
+/// See <doc:ParameterRanges#Pulsing-Border> for value ranges and units.
 public struct PulsingBorderParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 5
   public var colorBack: ShaderColor
@@ -667,6 +816,9 @@ public struct PulsingBorderParams: Equatable, Sendable, Codable {
   public var smoke: Float
   public var smokeSize: Float
 
+  /// Creates pulsing border shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Pulsing-Border> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0, blue: 0, alpha: 1),
     colors: [ShaderColor],
@@ -708,6 +860,9 @@ public struct PulsingBorderParams: Equatable, Sendable, Codable {
 
 // MARK: - Smoke Ring
 
+/// Parameters for the smoke ring shader.
+///
+/// See <doc:ParameterRanges#Smoke-Ring> for value ranges and units.
 public struct SmokeRingParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
@@ -718,6 +873,9 @@ public struct SmokeRingParams: Equatable, Sendable, Codable {
   public var innerShape: Float
   public var noiseIterations: Float
 
+  /// Creates smoke ring shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Smoke-Ring> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0, blue: 0, alpha: 1),
     colors: [ShaderColor],
@@ -739,6 +897,9 @@ public struct SmokeRingParams: Equatable, Sendable, Codable {
 
 // MARK: - Image Dithering
 
+/// Parameters for the image dithering shader.
+///
+/// See <doc:ParameterRanges#Image-Dithering> for value ranges and units.
 public struct ImageDitheringParams: Equatable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
@@ -749,6 +910,9 @@ public struct ImageDitheringParams: Equatable, Sendable, Codable {
   public var originalColors: Float
   public var inverted: Float
 
+  /// Creates image dithering shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Image-Dithering> for each parameter's value range and unit.
   public init(
     colorFront: ShaderColor,
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0.047058824, blue: 0.21960784, alpha: 1),
@@ -772,6 +936,9 @@ public struct ImageDitheringParams: Equatable, Sendable, Codable {
 
 // MARK: - Halftone Dots
 
+/// Parameters for the halftone dots shader.
+///
+/// See <doc:ParameterRanges#Halftone-Dots> for value ranges and units.
 public struct HalftoneDotsParams: Equatable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
@@ -786,6 +953,9 @@ public struct HalftoneDotsParams: Equatable, Sendable, Codable {
   public var grainSize: Float
   public var type: HalftoneDotsType
 
+  /// Creates halftone dots shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Halftone-Dots> for each parameter's value range and unit.
   public init(
     colorFront: ShaderColor,
     colorBack: ShaderColor = ShaderColor(
@@ -818,6 +988,9 @@ public struct HalftoneDotsParams: Equatable, Sendable, Codable {
 
 // MARK: - Halftone CMYK
 
+/// Parameters for the halftone CMYK shader.
+///
+/// See <doc:ParameterRanges#Halftone-CMYK> for value ranges and units.
 public struct HalftoneCmykParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorC: ShaderColor
@@ -841,6 +1014,9 @@ public struct HalftoneCmykParams: Equatable, Sendable, Codable {
   public var gainK: Float
   public var type: HalftoneCmykType
 
+  /// Creates halftone CMYK shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Halftone-CMYK> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(
       red: 0.9843137, green: 0.98039216, blue: 0.9607843, alpha: 1),
@@ -893,6 +1069,9 @@ public struct HalftoneCmykParams: Equatable, Sendable, Codable {
 
 // MARK: - Heatmap
 
+/// Parameters for the heatmap shader.
+///
+/// See <doc:ParameterRanges#Heatmap> for value ranges and units.
 public struct HeatmapParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
@@ -903,6 +1082,9 @@ public struct HeatmapParams: Equatable, Sendable, Codable {
   public var innerGlow: Float
   public var outerGlow: Float
 
+  /// Creates heatmap shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Heatmap> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0, blue: 0, alpha: 1),
     colors: [ShaderColor],
@@ -924,6 +1106,9 @@ public struct HeatmapParams: Equatable, Sendable, Codable {
 
 // MARK: - Liquid Metal
 
+/// Parameters for the liquid metal shader.
+///
+/// See <doc:ParameterRanges#Liquid-Metal> for value ranges and units.
 public struct LiquidMetalParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorTint: ShaderColor
@@ -936,6 +1121,9 @@ public struct LiquidMetalParams: Equatable, Sendable, Codable {
   public var angle: Float
   public var shape: LiquidMetalShape
 
+  /// Creates liquid metal shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Liquid-Metal> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(
       red: 0.6666667, green: 0.6666667, blue: 0.6745098, alpha: 1),
@@ -964,6 +1152,9 @@ public struct LiquidMetalParams: Equatable, Sendable, Codable {
 
 // MARK: - Paper Texture
 
+/// Parameters for the paper texture shader.
+///
+/// See <doc:ParameterRanges#Paper-Texture> for value ranges and units.
 public struct PaperTextureParams: Equatable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
@@ -979,6 +1170,9 @@ public struct PaperTextureParams: Equatable, Sendable, Codable {
   public var drops: Float
   public var seed: Float
 
+  /// Creates paper texture shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Paper-Texture> for each parameter's value range and unit.
   public init(
     colorFront: ShaderColor = ShaderColor(
       red: 0.62352943, green: 0.6784314, blue: 0.7372549, alpha: 1),
@@ -1013,6 +1207,9 @@ public struct PaperTextureParams: Equatable, Sendable, Codable {
 
 // MARK: - Water
 
+/// Parameters for the water shader.
+///
+/// See <doc:ParameterRanges#Water> for value ranges and units.
 public struct WaterParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorHighlight: ShaderColor
@@ -1023,6 +1220,9 @@ public struct WaterParams: Equatable, Sendable, Codable {
   public var waves: Float
   public var size: Float
 
+  /// Creates water shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Water> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(
       red: 0.5647059, green: 0.5647059, blue: 0.5647059, alpha: 1),
@@ -1047,6 +1247,9 @@ public struct WaterParams: Equatable, Sendable, Codable {
 
 // MARK: - Fluted Glass
 
+/// Parameters for the fluted glass shader.
+///
+/// See <doc:ParameterRanges#Fluted-Glass> for value ranges and units.
 public struct FlutedGlassParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorShadow: ShaderColor
@@ -1069,6 +1272,9 @@ public struct FlutedGlassParams: Equatable, Sendable, Codable {
   public var grainMixer: Float
   public var grainOverlay: Float
 
+  /// Creates fluted glass shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Fluted-Glass> for each parameter's value range and unit.
   public init(
     colorBack: ShaderColor = ShaderColor(red: 0, green: 0, blue: 0, alpha: 0),
     colorShadow: ShaderColor = ShaderColor(red: 0, green: 0, blue: 0, alpha: 1),
@@ -1116,6 +1322,9 @@ public struct FlutedGlassParams: Equatable, Sendable, Codable {
 
 // MARK: - Gem Smoke
 
+/// Parameters for the gem smoke shader.
+///
+/// See <doc:ParameterRanges#Gem-Smoke> for value ranges and units.
 public struct GemSmokeParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 6
   public var colors: [ShaderColor]
@@ -1130,6 +1339,9 @@ public struct GemSmokeParams: Equatable, Sendable, Codable {
   public var size: Float
   public var shape: GemSmokeShape
 
+  /// Creates gem smoke shader parameters.
+  ///
+  /// See <doc:ParameterRanges#Gem-Smoke> for each parameter's value range and unit.
   public init(
     colors: [ShaderColor],
     colorBack: ShaderColor = ShaderColor(
