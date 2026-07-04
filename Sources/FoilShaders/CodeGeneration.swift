@@ -65,10 +65,14 @@ public enum FoilShadersCodeGenerator {
     appendFloatArgument("scale", sizing.scale, default: defaultSizing.scale, to: &sizingArguments)
     appendFloatArgument(
       "rotation", sizing.rotation, default: defaultSizing.rotation, to: &sizingArguments)
-    appendFloatArgument("originX", sizing.originX, default: defaultSizing.originX, to: &sizingArguments)
-    appendFloatArgument("originY", sizing.originY, default: defaultSizing.originY, to: &sizingArguments)
-    appendFloatArgument("offsetX", sizing.offsetX, default: defaultSizing.offsetX, to: &sizingArguments)
-    appendFloatArgument("offsetY", sizing.offsetY, default: defaultSizing.offsetY, to: &sizingArguments)
+    appendFloatArgument(
+      "originX", sizing.originX, default: defaultSizing.originX, to: &sizingArguments)
+    appendFloatArgument(
+      "originY", sizing.originY, default: defaultSizing.originY, to: &sizingArguments)
+    appendFloatArgument(
+      "offsetX", sizing.offsetX, default: defaultSizing.offsetX, to: &sizingArguments)
+    appendFloatArgument(
+      "offsetY", sizing.offsetY, default: defaultSizing.offsetY, to: &sizingArguments)
     appendFloatArgument(
       "worldWidth", sizing.worldWidth, default: defaultSizing.worldWidth, to: &sizingArguments)
     appendFloatArgument(
@@ -120,12 +124,13 @@ public enum FoilShadersCodeGenerator {
 
     return [
       "\(componentName)("
-    ] + arguments.enumerated().map { index, argument in
-      let comma = index == arguments.count - 1 ? "" : ","
-      return "  \(argument)\(comma)"
-    } + [
-      ")"
     ]
+      + arguments.enumerated().map { index, argument in
+        let comma = index == arguments.count - 1 ? "" : ","
+        return "  \(argument)\(comma)"
+      } + [
+        ")"
+      ]
   }
 
   private static func presetInitializerCallLines(

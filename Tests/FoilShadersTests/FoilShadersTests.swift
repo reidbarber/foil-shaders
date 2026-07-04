@@ -242,6 +242,51 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertEqual(decoded, image)
   }
 
+  func testShaderImageBundledResourceDecodeUsesBundleURLWhenIdentifierCannotResolve() throws {
+    let bundle = Bundle(for: FoilShadersTests.self)
+    let data = try JSONSerialization.data(
+      withJSONObject: [
+        "type": "bundleResource",
+        "name": "fixture",
+        "fileExtension": "png",
+        "bundleIdentifier": "com.example.definitely-missing",
+        "bundleURL": bundle.bundleURL.absoluteString,
+      ])
+
+    let decoded = try JSONDecoder().decode(ShaderImage.self, from: data)
+
+    XCTAssertEqual(
+      decoded,
+      .bundledResource(name: "fixture", extension: "png", bundle: bundle)
+    )
+  }
+
+  func testShaderImageBundledResourceDecodeThrowsWhenBundleCannotResolve() throws {
+    let missingBundleURL = FileManager.default.temporaryDirectory
+      .appendingPathComponent("foil-shaders-missing-\(UUID().uuidString)")
+      .appendingPathExtension("bundle")
+    let data = try JSONSerialization.data(
+      withJSONObject: [
+        "type": "bundleResource",
+        "name": "fixture",
+        "fileExtension": "png",
+        "bundleIdentifier": "com.example.definitely-missing",
+        "bundleURL": missingBundleURL.absoluteString,
+      ])
+
+    XCTAssertThrowsError(try JSONDecoder().decode(ShaderImage.self, from: data)) { error in
+      guard case DecodingError.dataCorrupted(let context) = error else {
+        return XCTFail("Expected DecodingError.dataCorrupted, got \(error)")
+      }
+
+      XCTAssertTrue(
+        context.debugDescription.contains("Unable to resolve ShaderImage bundled resource bundle")
+      )
+      XCTAssertTrue(context.debugDescription.contains("com.example.definitely-missing"))
+      XCTAssertTrue(context.debugDescription.contains(missingBundleURL.absoluteString))
+    }
+  }
+
   func testShaderImageDecodesLegacyRemoteURLAsURL() throws {
     let data = """
       {"type":"remoteURL","url":"https://example.com/source.png"}

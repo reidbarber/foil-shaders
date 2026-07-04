@@ -542,10 +542,18 @@ public struct ShaderImage: Equatable, @unchecked Sendable, Codable {
     case .bundleResource:
       let bundleIdentifier = try container.decodeIfPresent(String.self, forKey: .bundleIdentifier)
       let bundleURL = try container.decodeIfPresent(URL.self, forKey: .bundleURL)
-      let bundle =
+      guard let bundle =
         bundleIdentifier.flatMap(Bundle.init(identifier:))
-        ?? bundleURL.flatMap(Bundle.init(url:))
-        ?? .main
+          ?? bundleURL.flatMap(Bundle.init(url:))
+      else {
+        throw DecodingError.dataCorrupted(
+          DecodingError.Context(
+            codingPath: container.codingPath,
+            debugDescription:
+              "Unable to resolve ShaderImage bundled resource bundle from encoded bundleIdentifier \(bundleIdentifier ?? "nil") or bundleURL \(bundleURL?.absoluteString ?? "nil")."
+          )
+        )
+      }
       self = .bundledResource(
         name: try container.decode(String.self, forKey: .name),
         extension: try container.decode(String.self, forKey: .fileExtension),
