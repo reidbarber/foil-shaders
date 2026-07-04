@@ -96,6 +96,9 @@ and pause rendering while inactive or offscreen. Use
 ``foilShadersPausesWhenInactiveOrOffscreen(_:)`` as separate opt-outs for a
 subtree.
 
+Use ``foilShadersRendererError(_:)`` to observe renderer setup or
+reconfiguration failures from any Foil Shaders SwiftUI component in a subtree.
+
 ## Ranges
 
 See <doc:ParameterRanges> for shader-specific ranges, units, and enum cases.

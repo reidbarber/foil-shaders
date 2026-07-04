@@ -18,6 +18,19 @@ private struct FoilShadersPausesWhenInactiveOrOffscreenKey: EnvironmentKey {
   static let defaultValue = true
 }
 
+// SwiftUI requires EnvironmentKey defaults to be Sendable; this callback is invoked on MainActor.
+private struct FoilShadersRendererErrorHandler: @unchecked Sendable {
+  let handler: (FoilShadersError) -> Void
+
+  init(_ handler: @escaping (FoilShadersError) -> Void) {
+    self.handler = handler
+  }
+}
+
+private struct FoilShadersRendererErrorKey: EnvironmentKey {
+  static let defaultValue: FoilShadersRendererErrorHandler? = nil
+}
+
 extension EnvironmentValues {
   /// Controls whether Foil Shaders SwiftUI components pause animation when Reduce Motion is enabled.
   public var foilShadersRespectsReduceMotion: Bool {
@@ -29,6 +42,14 @@ extension EnvironmentValues {
   public var foilShadersPausesWhenInactiveOrOffscreen: Bool {
     get { self[FoilShadersPausesWhenInactiveOrOffscreenKey.self] }
     set { self[FoilShadersPausesWhenInactiveOrOffscreenKey.self] = newValue }
+  }
+
+  /// Receives renderer setup or reconfiguration failures from Foil Shaders SwiftUI components.
+  public var foilShadersRendererError: ((FoilShadersError) -> Void)? {
+    get { self[FoilShadersRendererErrorKey.self]?.handler }
+    set {
+      self[FoilShadersRendererErrorKey.self] = newValue.map(FoilShadersRendererErrorHandler.init)
+    }
   }
 }
 
@@ -43,6 +64,13 @@ extension SwiftUI.View {
     _ pausesWhenInactiveOrOffscreen: Bool
   ) -> some SwiftUI.View {
     environment(\.foilShadersPausesWhenInactiveOrOffscreen, pausesWhenInactiveOrOffscreen)
+  }
+
+  /// Sets a callback for renderer setup or reconfiguration failures from Foil Shaders descendants.
+  public func foilShadersRendererError(
+    _ onRendererError: @escaping (FoilShadersError) -> Void
+  ) -> some SwiftUI.View {
+    environment(\.foilShadersRendererError, onRendererError)
   }
 }
 
@@ -59,6 +87,7 @@ public struct FoilShaderView: SwiftUI.View {
   @Environment(\.foilShadersRespectsReduceMotion) private var environmentRespectsReduceMotion
   @Environment(\.foilShadersPausesWhenInactiveOrOffscreen)
   private var environmentPausesWhenInactiveOrOffscreen
+  @Environment(\.foilShadersRendererError) private var environmentOnRendererError
   @Environment(\.scenePhase) private var scenePhase
   @Binding private var rendererError: FoilShadersError?
   private var onRendererError: ((FoilShadersError) -> Void)?
@@ -100,8 +129,24 @@ public struct FoilShaderView: SwiftUI.View {
       pausesForReduceMotion: pausesForReduceMotion,
       pausesForLifecycle: pausesForLifecycle,
       isSceneActive: scenePhase == .active,
-      onRendererError: onRendererError
+      onRendererError: combinedOnRendererError
     )
+  }
+
+  private var combinedOnRendererError: ((FoilShadersError) -> Void)? {
+    switch (onRendererError, environmentOnRendererError) {
+    case (nil, nil):
+      nil
+    case (let onRendererError?, nil):
+      onRendererError
+    case (nil, let environmentOnRendererError?):
+      environmentOnRendererError
+    case (let onRendererError?, let environmentOnRendererError?):
+      { error in
+        onRendererError(error)
+        environmentOnRendererError(error)
+      }
+    }
   }
 }
 

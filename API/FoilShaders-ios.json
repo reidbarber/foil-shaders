@@ -41440,6 +41440,55 @@
             "moduleName": "FoilShaders"
           },
           {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ShaderParameters",
+                "printedName": "FoilShaders.ShaderParameters",
+                "usr": "s:11FoilShaders16ShaderParametersO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders16ShaderParametersO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders16ShaderParametersO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders16ShaderParametersO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders16ShaderParametersO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
             "kind": "Var",
             "name": "kind",
             "printedName": "kind",
@@ -41511,57 +41560,6 @@
               "Semantics"
             ],
             "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "encode",
-            "printedName": "encode(to:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Encoder",
-                "printedName": "any Swift.Encoder",
-                "usr": "s:s7EncoderP"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:11FoilShaders16ShaderParametersO6encode2toys7Encoder_p_tKF",
-            "mangledName": "$s11FoilShaders16ShaderParametersO6encode2toys7Encoder_p_tKF",
-            "moduleName": "FoilShaders",
-            "implicit": true,
-            "throwing": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Constructor",
-            "name": "init",
-            "printedName": "init(from:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "ShaderParameters",
-                "printedName": "FoilShaders.ShaderParameters",
-                "usr": "s:11FoilShaders16ShaderParametersO"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Decoder",
-                "printedName": "any Swift.Decoder",
-                "usr": "s:s7DecoderP"
-              }
-            ],
-            "declKind": "Constructor",
-            "usr": "s:11FoilShaders16ShaderParametersO4fromACs7Decoder_p_tKcfc",
-            "mangledName": "$s11FoilShaders16ShaderParametersO4fromACs7Decoder_p_tKcfc",
-            "moduleName": "FoilShaders",
-            "implicit": true,
-            "throwing": true,
-            "init_kind": "Designated"
           }
         ],
         "declKind": "Enum",
@@ -43976,9 +43974,6 @@
                 "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -44011,9 +44006,6 @@
                 "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -44610,9 +44602,6 @@
                 "mangledName": "$s11FoilShaders24StaticMeshGradientParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -44645,9 +44634,6 @@
                 "mangledName": "$s11FoilShaders24StaticMeshGradientParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -45632,9 +45618,6 @@
                 "mangledName": "$s11FoilShaders26StaticRadialGradientParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -45667,9 +45650,6 @@
                 "mangledName": "$s11FoilShaders26StaticRadialGradientParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -46819,9 +46799,6 @@
                 "mangledName": "$s11FoilShaders11SwirlParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -46854,9 +46831,6 @@
                 "mangledName": "$s11FoilShaders11SwirlParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -49592,9 +49566,6 @@
                 "mangledName": "$s11FoilShaders18SimplexNoiseParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -49627,9 +49598,6 @@
                 "mangledName": "$s11FoilShaders18SimplexNoiseParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -52674,9 +52642,6 @@
                 "mangledName": "$s11FoilShaders17ColorPanelsParamsV6colorsSayAA06ShaderC0VGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -52709,9 +52674,6 @@
                 "mangledName": "$s11FoilShaders17ColorPanelsParamsV6colorsSayAA06ShaderC0VGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -53854,9 +53816,6 @@
                 "mangledName": "$s11FoilShaders14DotOrbitParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -53889,9 +53848,6 @@
                 "mangledName": "$s11FoilShaders14DotOrbitParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -54639,9 +54595,6 @@
                 "mangledName": "$s11FoilShaders13GodRaysParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -54674,9 +54627,6 @@
                 "mangledName": "$s11FoilShaders13GodRaysParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -55517,9 +55467,6 @@
                 "mangledName": "$s11FoilShaders19GrainGradientParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -55552,9 +55499,6 @@
                 "mangledName": "$s11FoilShaders19GrainGradientParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -56230,9 +56174,6 @@
                 "mangledName": "$s11FoilShaders15MetaballsParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -56265,9 +56206,6 @@
                 "mangledName": "$s11FoilShaders15MetaballsParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -56792,9 +56730,6 @@
                 "mangledName": "$s11FoilShaders10WarpParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -56827,9 +56762,6 @@
                 "mangledName": "$s11FoilShaders10WarpParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -57663,9 +57595,6 @@
                 "mangledName": "$s11FoilShaders13VoronoiParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -57698,9 +57627,6 @@
                 "mangledName": "$s11FoilShaders13VoronoiParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -58527,9 +58453,6 @@
                 "mangledName": "$s11FoilShaders19PulsingBorderParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -58562,9 +58485,6 @@
                 "mangledName": "$s11FoilShaders19PulsingBorderParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -60109,9 +60029,6 @@
                 "mangledName": "$s11FoilShaders15SmokeRingParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -60144,9 +60061,6 @@
                 "mangledName": "$s11FoilShaders15SmokeRingParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -64615,9 +64529,6 @@
                 "mangledName": "$s11FoilShaders13HeatmapParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -64650,9 +64561,6 @@
                 "mangledName": "$s11FoilShaders13HeatmapParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -70000,9 +69908,6 @@
                 "mangledName": "$s11FoilShaders14GemSmokeParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "get"
               },
               {
@@ -70035,9 +69940,6 @@
                 "mangledName": "$s11FoilShaders14GemSmokeParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
                 "accessorKind": "set"
               }
             ]
@@ -71130,6 +71032,150 @@
                 "accessorKind": "set"
               }
             ]
+          },
+          {
+            "kind": "Var",
+            "name": "foilShadersRendererError",
+            "printedName": "foilShadersRendererError",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((FoilShaders.FoilShadersError) -> Swift.Void)?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(FoilShaders.FoilShadersError) -> Swift.Void",
+                    "children": [
+                      {
+                        "kind": "TypeNameAlias",
+                        "name": "Void",
+                        "printedName": "Swift.Void",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FoilShadersError",
+                        "printedName": "FoilShaders.FoilShadersError",
+                        "usr": "s:11FoilShaders0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:7SwiftUI17EnvironmentValuesV11FoilShadersE04foilF13RendererErroryAD0efI0OcSgvp",
+            "mangledName": "$s7SwiftUI17EnvironmentValuesV11FoilShadersE04foilF13RendererErroryAD0efI0OcSgvp",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((FoilShaders.FoilShadersError) -> Swift.Void)?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(FoilShaders.FoilShadersError) -> Swift.Void",
+                        "children": [
+                          {
+                            "kind": "TypeNameAlias",
+                            "name": "Void",
+                            "printedName": "Swift.Void",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Void",
+                                "printedName": "()"
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "FoilShadersError",
+                            "printedName": "FoilShaders.FoilShadersError",
+                            "usr": "s:11FoilShaders0aB5ErrorO"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7SwiftUI17EnvironmentValuesV11FoilShadersE04foilF13RendererErroryAD0efI0OcSgvg",
+                "mangledName": "$s7SwiftUI17EnvironmentValuesV11FoilShadersE04foilF13RendererErroryAD0efI0OcSgvg",
+                "moduleName": "FoilShaders",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((FoilShaders.FoilShadersError) -> Swift.Void)?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(FoilShaders.FoilShadersError) -> Swift.Void",
+                        "children": [
+                          {
+                            "kind": "TypeNameAlias",
+                            "name": "Void",
+                            "printedName": "Swift.Void",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Void",
+                                "printedName": "()"
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "FoilShadersError",
+                            "printedName": "FoilShaders.FoilShadersError",
+                            "usr": "s:11FoilShaders0aB5ErrorO"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:7SwiftUI17EnvironmentValuesV11FoilShadersE04foilF13RendererErroryAD0efI0OcSgvs",
+                "mangledName": "$s7SwiftUI17EnvironmentValuesV11FoilShadersE04foilF13RendererErroryAD0efI0OcSgvs",
+                "moduleName": "FoilShaders",
+                "isFromExtension": true,
+                "accessorKind": "set"
+              }
+            ]
           }
         ],
         "declKind": "Struct",
@@ -71252,6 +71298,62 @@
             "declKind": "Func",
             "usr": "s:7SwiftUI4ViewP11FoilShadersE04foilE29PausesWhenInactiveOrOffscreenyQrSbF",
             "mangledName": "$s7SwiftUI4ViewP11FoilShadersE04foilE29PausesWhenInactiveOrOffscreenyQrSbF",
+            "moduleName": "FoilShaders",
+            "genericSig": "<Self where Self : SwiftUI.View>",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "foilShadersRendererError",
+            "printedName": "foilShadersRendererError(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpaqueTypeArchetype",
+                "printedName": "some SwiftUI.View",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "View",
+                    "printedName": "SwiftUI.View",
+                    "usr": "s:7SwiftUI4ViewP"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FoilShaders.FoilShadersError) -> Swift.Void",
+                "children": [
+                  {
+                    "kind": "TypeNameAlias",
+                    "name": "Void",
+                    "printedName": "Swift.Void",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FoilShadersError",
+                    "printedName": "FoilShaders.FoilShadersError",
+                    "usr": "s:11FoilShaders0aB5ErrorO"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:7SwiftUI4ViewP11FoilShadersE04foilE13RendererErroryQryAD0deH0OcF",
+            "mangledName": "$s7SwiftUI4ViewP11FoilShadersE04foilE13RendererErroryQryAD0deH0OcF",
             "moduleName": "FoilShaders",
             "genericSig": "<Self where Self : SwiftUI.View>",
             "declAttributes": [

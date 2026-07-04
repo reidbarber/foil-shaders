@@ -250,6 +250,19 @@ final class PublicAPITests: XCTestCase {
     XCTAssertFalse(String(describing: type(of: view)).isEmpty)
   }
 
+  @MainActor
+  func testShaderComponentsAcceptRendererErrorEnvironmentHandler() {
+    var reportedError: FoilShadersError?
+
+    let view = Swirl(.candy)
+      .foilShadersRendererError { error in
+        reportedError = error
+      }
+
+    XCTAssertFalse(String(describing: type(of: view)).isEmpty)
+    XCTAssertNil(reportedError)
+  }
+
   private func assertColorMutationClamps(
     maxColorCount: Int,
     mutate: ([ShaderColor], [ShaderColor]) -> [ShaderColor],
