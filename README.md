@@ -70,12 +70,12 @@ WebGL implementation.
 
 These examples use the same preset, frame, and 320x240 canvas on both sides.
 
-| Shader | Paper Shaders | Foil Shaders |
-| --- | --- | --- |
-| Mesh Gradient / Default | <img src="Docs/Media/parity/paper-mesh-gradient-default.png" alt="Paper Shaders Mesh Gradient Default" width="220"> | <img src="Docs/Media/parity/foil-mesh-gradient-default.png" alt="Foil Shaders Mesh Gradient Default" width="220"> |
-| Swirl / Candy | <img src="Docs/Media/parity/paper-swirl-candy.png" alt="Paper Shaders Swirl Candy" width="220"> | <img src="Docs/Media/parity/foil-swirl-candy.png" alt="Foil Shaders Swirl Candy" width="220"> |
-| Dithering / Ripple | <img src="Docs/Media/parity/paper-dithering-ripple.png" alt="Paper Shaders Dithering Ripple" width="220"> | <img src="Docs/Media/parity/foil-dithering-ripple.png" alt="Foil Shaders Dithering Ripple" width="220"> |
-| Voronoi / Default | <img src="Docs/Media/parity/paper-voronoi-default.png" alt="Paper Shaders Voronoi Default" width="220"> | <img src="Docs/Media/parity/foil-voronoi-default.png" alt="Foil Shaders Voronoi Default" width="220"> |
+| Shader                    | Paper Shaders                                                                                                           | Foil Shaders                                                                                                          |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Mesh Gradient / Default   | <img src="Docs/Media/parity/paper-mesh-gradient-default.png" alt="Paper Shaders Mesh Gradient Default" width="220">     | <img src="Docs/Media/parity/foil-mesh-gradient-default.png" alt="Foil Shaders Mesh Gradient Default" width="220">     |
+| Swirl / Candy             | <img src="Docs/Media/parity/paper-swirl-candy.png" alt="Paper Shaders Swirl Candy" width="220">                         | <img src="Docs/Media/parity/foil-swirl-candy.png" alt="Foil Shaders Swirl Candy" width="220">                         |
+| Dithering / Ripple        | <img src="Docs/Media/parity/paper-dithering-ripple.png" alt="Paper Shaders Dithering Ripple" width="220">               | <img src="Docs/Media/parity/foil-dithering-ripple.png" alt="Foil Shaders Dithering Ripple" width="220">               |
+| Voronoi / Default         | <img src="Docs/Media/parity/paper-voronoi-default.png" alt="Paper Shaders Voronoi Default" width="220">                 | <img src="Docs/Media/parity/foil-voronoi-default.png" alt="Foil Shaders Voronoi Default" width="220">                 |
 | Paper Texture / Cardboard | <img src="Docs/Media/parity/paper-paper-texture-cardboard.png" alt="Paper Shaders Paper Texture Cardboard" width="220"> | <img src="Docs/Media/parity/foil-paper-texture-cardboard.png" alt="Foil Shaders Paper Texture Cardboard" width="220"> |
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the local parity test and golden
