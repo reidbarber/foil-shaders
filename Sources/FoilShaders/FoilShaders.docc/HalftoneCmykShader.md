@@ -4,7 +4,7 @@ Image-based CMYK halftone separation with flood, gain, grain, and style controls
 
 ![Halftone CMYK default preset preview](preview-halftone-cmyk.png)
 
-Use ``HalftoneCmyk`` as a SwiftUI view, ``HalftoneCmykParams`` for typed parameters, and ``HalftoneCmykPreset`` for Paper-derived presets. This implementation tracks the Paper Shaders behavior and preset metadata where the Metal port has a matching shader.
+Use ``HalftoneCMYK`` as a SwiftUI view, ``HalftoneCMYKParams`` for typed parameters, and ``HalftoneCMYKPreset`` for Paper-derived presets. This implementation tracks the Paper Shaders behavior and preset metadata where the Metal port has a matching shader.
 
 [Paper Shaders reference](https://github.com/paper-design/shaders)
 
@@ -14,7 +14,7 @@ Use ``HalftoneCmyk`` as a SwiftUI view, ``HalftoneCmykParams`` for typed paramet
 import SwiftUI
 import FoilShaders
 
-HalftoneCmyk(.default)
+HalftoneCMYK(.default)
   .frame(width: 240, height: 240)
 ```
 
@@ -42,12 +42,12 @@ HalftoneCmyk(.default)
 | `gainM` | `-0.45...0.44` | Magenta channel gain adjustment. |
 | `gainY` | `-1...0.2` | Yellow channel gain adjustment. |
 | `gainK` | `0` | Black channel gain adjustment. |
-| `type` | ``HalftoneCmykType``: `.dots`, `.ink`, `.sharp`. | Style or matrix selector. |
+| `type` | ``HalftoneCMYKType``: `.dots`, `.ink`, `.sharp`. | Style or matrix selector. |
 
 See <doc:ParameterRanges#Halftone-CMYK> for the full shared context around sizing, motion, and render options.
 
 ## Related Symbols
 
-- ``HalftoneCmyk``
-- ``HalftoneCmykParams``
-- ``HalftoneCmykPreset``
+- ``HalftoneCMYK``
+- ``HalftoneCMYKParams``
+- ``HalftoneCMYKPreset``

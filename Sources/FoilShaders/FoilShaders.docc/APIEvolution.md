@@ -18,7 +18,7 @@ shader shape/type enums may ship in minor releases after 1.0.
 This policy covers shader-selection and parameter enums, including
 ``DotGridShape``, ``DitheringShape``, ``DitheringType``, ``WarpPattern``,
 ``GrainGradientShape``, ``PulsingBorderAspectRatio``, ``HalftoneDotsType``,
-``HalftoneDotsGrid``, ``HalftoneCmykType``, ``LiquidMetalShape``,
+``HalftoneDotsGrid``, ``HalftoneCMYKType``, ``LiquidMetalShape``,
 ``GlassGridShape``, ``GlassDistortionShape``, and ``GemSmokeShape``.
 
 Client code that switches over these enums should include a `default:` branch.

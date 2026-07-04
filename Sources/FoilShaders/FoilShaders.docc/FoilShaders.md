@@ -22,7 +22,7 @@ The documentation includes rendered previews from the parity golden suite, pract
 
 ### Shader Pages
 
-- <doc:MeshGradientShader>
+- <doc:AnimatedMeshGradientShader>
 - <doc:SmokeRingShader>
 - <doc:NeuroNoiseShader>
 - <doc:DotOrbitShader>
@@ -81,12 +81,12 @@ The documentation includes rendered previews from the parity golden suite, pract
 - ``Heatmap``
 - ``LiquidMetal``
 - ``HalftoneDots``
-- ``HalftoneCmyk``
+- ``HalftoneCMYK``
 - ``GemSmoke``
 
 ### Parameter Types
 
-- ``MeshGradientParams``
+- ``AnimatedMeshGradientParams``
 - ``SmokeRingParams``
 - ``NeuroNoiseParams``
 - ``DotOrbitParams``
@@ -113,7 +113,7 @@ The documentation includes rendered previews from the parity golden suite, pract
 - ``HeatmapParams``
 - ``LiquidMetalParams``
 - ``HalftoneDotsParams``
-- ``HalftoneCmykParams``
+- ``HalftoneCMYKParams``
 - ``GemSmokeParams``
 
 ### Shared Configuration

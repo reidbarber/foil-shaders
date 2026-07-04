@@ -132,7 +132,7 @@ public struct ShaderMotionParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Mesh-Gradient> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct MeshGradientParams: Equatable, Sendable, Codable {
+public struct AnimatedMeshGradientParams: Equatable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 10
   /// Shader colors after applying `maxColorCount` truncation.
@@ -1070,7 +1070,7 @@ public struct HalftoneDotsParams: Equatable, Sendable, Codable {
 /// Parameters for the halftone CMYK shader.
 ///
 /// See <doc:ParameterRanges#Halftone-CMYK> for value ranges and units.
-public struct HalftoneCmykParams: Equatable, Sendable, Codable {
+public struct HalftoneCMYKParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorC: ShaderColor
   public var colorM: ShaderColor
@@ -1091,7 +1091,7 @@ public struct HalftoneCmykParams: Equatable, Sendable, Codable {
   public var gainM: Float
   public var gainY: Float
   public var gainK: Float
-  public var type: HalftoneCmykType
+  public var type: HalftoneCMYKType
 
   /// Creates halftone CMYK shader parameters.
   ///
@@ -1120,7 +1120,7 @@ public struct HalftoneCmykParams: Equatable, Sendable, Codable {
     gainM: Float = 0.0,
     gainY: Float = 0.2,
     gainK: Float = 0.0,
-    type: HalftoneCmykType = .ink
+    type: HalftoneCMYKType = .ink
   ) {
     self.colorBack = colorBack
     self.colorC = colorC
@@ -1523,12 +1523,12 @@ struct MeshGradientUniformsRaw {
   var u_grainMixer: Float
   var u_grainOverlay: Float
 
-  init(time: Float, params: MeshGradientParams) {
+  init(time: Float, params: AnimatedMeshGradientParams) {
     let padded =
       params.colors.map(\.rgba)
       + Array(
         repeating: SIMD4<Float>(0, 0, 0, 0),
-        count: max(0, MeshGradientParams.maxColorCount - params.colors.count))
+        count: max(0, AnimatedMeshGradientParams.maxColorCount - params.colors.count))
     self.u_time = time
     self.u_colors0 = padded[0]
     self.u_colors1 = padded[1]
@@ -2339,7 +2339,7 @@ struct HalftoneDotsUniformsRaw {
   }
 }
 
-struct HalftoneCmykUniformsRaw {
+struct HalftoneCMYKUniformsRaw {
   var u_colorBack: SIMD4<Float>
   var u_colorC: SIMD4<Float>
   var u_colorM: SIMD4<Float>
@@ -2363,7 +2363,7 @@ struct HalftoneCmykUniformsRaw {
   var u_gainK: Float
   var u_type: Float
 
-  init(params: HalftoneCmykParams) {
+  init(params: HalftoneCMYKParams) {
     self.u_colorBack = params.colorBack.rgba
     self.u_colorC = params.colorC.rgba
     self.u_colorM = params.colorM.rgba

@@ -471,7 +471,7 @@ Image-based CMYK halftone separation with flood, gain, grain, and style controls
 | `gainM` | `-0.45...0.44` | Magenta channel gain adjustment. |
 | `gainY` | `-1...0.2` | Yellow channel gain adjustment. |
 | `gainK` | `0` | Black channel gain adjustment. |
-| `type` | ``HalftoneCmykType``: `.dots`, `.ink`, `.sharp`. | Style or matrix selector. |
+| `type` | ``HalftoneCMYKType``: `.dots`, `.ink`, `.sharp`. | Style or matrix selector. |
 
 ## Gem Smoke
 

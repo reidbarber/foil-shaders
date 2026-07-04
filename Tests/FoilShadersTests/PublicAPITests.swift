@@ -12,12 +12,12 @@ final class PublicAPITests: XCTestCase {
   }
 
   func testColorArrayParamsKeepOnlyMaxColorCountColors() {
-    let colors = (0..<(MeshGradientParams.maxColorCount + 2)).map {
+    let colors = (0..<(AnimatedMeshGradientParams.maxColorCount + 2)).map {
       ShaderColor(red: Float($0) / 20, green: 0, blue: 0)
     }
-    let params = MeshGradientParams(colors: colors)
+    let params = AnimatedMeshGradientParams(colors: colors)
 
-    XCTAssertEqual(params.colors, Array(colors.prefix(MeshGradientParams.maxColorCount)))
+    XCTAssertEqual(params.colors, Array(colors.prefix(AnimatedMeshGradientParams.maxColorCount)))
   }
 
   func testFoilShadersErrorIsPublicAndLocalized() {
@@ -38,7 +38,7 @@ final class PublicAPITests: XCTestCase {
       set: { reportedError = $0 }
     )
 
-    let view = FoilShadersShaderView(
+    let view = FoilShaderView(
       configuration: configuration,
       rendererError: rendererError,
       failureFallbackColor: .white
@@ -57,7 +57,7 @@ final class PublicAPITests: XCTestCase {
   func testShaderViewAcceptsEnergyAndAccessibilityOptOuts() {
     let configuration = AnimatedMeshGradient().configuration
 
-    let view = FoilShadersShaderView(
+    let view = FoilShaderView(
       configuration: configuration,
       respectsReduceMotion: false,
       pausesWhenInactiveOrOffscreen: false

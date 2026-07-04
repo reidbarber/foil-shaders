@@ -37,7 +37,7 @@ enum ParityConfigurationFactory {
     switch parityCase.shader {
     case "mesh-gradient":
       (parameters, sizing, motion, renderOptions) = try unpack(AnimatedMeshGradient.presets) {
-        .meshGradient($0)
+        .animatedMeshGradient($0)
       }
     case "smoke-ring":
       (parameters, sizing, motion, renderOptions) = try unpack(SmokeRing.presets) { .smokeRing($0) }
@@ -118,8 +118,8 @@ enum ParityConfigurationFactory {
         .halftoneDots($0)
       }
     case "halftone-cmyk":
-      (parameters, sizing, motion, renderOptions) = try unpack(HalftoneCmyk.presets) {
-        .halftoneCmyk($0)
+      (parameters, sizing, motion, renderOptions) = try unpack(HalftoneCMYK.presets) {
+        .halftoneCMYK($0)
       }
     case "gem-smoke":
       (parameters, sizing, motion, renderOptions) = try unpack(GemSmoke.presets) { .gemSmoke($0) }

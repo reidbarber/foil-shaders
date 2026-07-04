@@ -11,7 +11,7 @@ const snapshot = JSON.parse(fs.readFileSync(snapshotPath, "utf8"));
 
 const enumMaps = snapshot.enums;
 
-const typealiases = specs.map((spec) => spec.componentName);
+const typealiases = specs.map((spec) => [spec.presetType, spec.paramsType]);
 
 const swiftEnumCases = {
   DotGridShapes: {
@@ -244,6 +244,7 @@ function presetMemberCode(spec, preset) {
 
 function presetArrayCode(spec) {
   const presets = arrayFor(spec);
+  const swiftArrayName = spec.swiftArrayName ?? spec.arrayName;
   const identifiers = presets.map((preset) => presetIdentifier(preset.name));
   const duplicates = identifiers.filter((identifier, index) => identifiers.indexOf(identifier) !== index);
   if (duplicates.length > 0) {
@@ -254,7 +255,7 @@ function presetArrayCode(spec) {
     presets.map((preset) => presetMemberCode(spec, preset)).join("\n\n"),
     "}",
     "",
-    `let ${spec.arrayName}: [${spec.presetType}] = [`,
+    `let ${swiftArrayName}: [${spec.presetType}] = [`,
     `  ${identifiers.map(memberAccess).join(", ")}`,
     "]",
   ].join("\n");
@@ -269,8 +270,8 @@ out.push("  ShaderColor(value) ?? .black");
 out.push("}");
 out.push("");
 
-for (const name of typealiases) {
-  out.push(`public typealias ${name}Preset = ShaderPreset<${name}Params>`);
+for (const [presetType, paramsType] of typealiases) {
+  out.push(`public typealias ${presetType} = ShaderPreset<${paramsType}>`);
 }
 
 out.push("");

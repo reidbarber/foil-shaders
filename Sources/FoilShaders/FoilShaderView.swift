@@ -46,7 +46,7 @@ extension SwiftUI.View {
   }
 }
 
-public struct FoilShadersShaderView: SwiftUI.View {
+public struct FoilShaderView: SwiftUI.View {
   /// The color shown by the SwiftUI wrapper when renderer setup fails in release builds.
   public static let defaultFailureFallbackColor = ShaderColor(red: 1, green: 0, blue: 0.55)
 
@@ -75,7 +75,7 @@ public struct FoilShadersShaderView: SwiftUI.View {
   public init(
     configuration: ShaderConfiguration,
     rendererError: Binding<FoilShadersError?> = .constant(nil),
-    failureFallbackColor: ShaderColor = FoilShadersShaderView.defaultFailureFallbackColor,
+    failureFallbackColor: ShaderColor = FoilShaderView.defaultFailureFallbackColor,
     respectsReduceMotion: Bool = true,
     pausesWhenInactiveOrOffscreen: Bool = true,
     onRendererError: ((FoilShadersError) -> Void)? = nil

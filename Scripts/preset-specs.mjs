@@ -4,12 +4,13 @@
 //
 // Per-spec fields:
 //   key           kebab-case shader key (matches paper repo file/preset namespace)
-//   componentName PascalCase name — the @paper-design/shaders-react export AND the
-//                 Swift typealias/params/preset name prefix
-//   viewName      optional override for the Swift SwiftUI view struct name when it
-//                 must differ from componentName (e.g. to avoid colliding with a
-//                 SwiftUI type). Defaults to componentName.
-//   arrayName     preset array name (same in shaders-react and Presets.swift)
+//   componentName PascalCase name — the @paper-design/shaders-react export used
+//                 by the parity harness
+//   viewName      optional override for the SwiftUI view struct name when it
+//                 differs from the Paper export. Defaults to componentName.
+//   arrayName     preset array name in the Paper snapshot
+//   swiftArrayName optional generated preset array name in Presets.swift.
+//                 Defaults to arrayName.
 //   presetType / paramsType   Swift type names for codegen
 //   fields        param fields in Swift declaration order; string when Swift and
 //                 paper names match, else { swift, paper?, enum?, defaultValue? }
@@ -62,8 +63,9 @@ export const specs = [
     componentName: "MeshGradient",
     viewName: "AnimatedMeshGradient",
     arrayName: "meshGradientPresets",
-    presetType: "MeshGradientPreset",
-    paramsType: "MeshGradientParams",
+    swiftArrayName: "animatedMeshGradientPresets",
+    presetType: "AnimatedMeshGradientPreset",
+    paramsType: "AnimatedMeshGradientParams",
     fields: ["colors", "distortion", "swirl", "grainMixer", "grainOverlay"],
   },
   {
@@ -432,9 +434,11 @@ export const specs = [
   {
     key: "halftone-cmyk",
     componentName: "HalftoneCmyk",
+    viewName: "HalftoneCMYK",
     arrayName: "halftoneCmykPresets",
-    presetType: "HalftoneCmykPreset",
-    paramsType: "HalftoneCmykParams",
+    swiftArrayName: "halftoneCMYKPresets",
+    presetType: "HalftoneCMYKPreset",
+    paramsType: "HalftoneCMYKParams",
     isStatic: true,
     usesImage: true,
     fields: [

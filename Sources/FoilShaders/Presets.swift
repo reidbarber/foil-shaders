@@ -5,7 +5,7 @@ private func color(_ value: String) -> ShaderColor {
   ShaderColor(value) ?? .black
 }
 
-public typealias MeshGradientPreset = ShaderPreset<MeshGradientParams>
+public typealias AnimatedMeshGradientPreset = ShaderPreset<AnimatedMeshGradientParams>
 public typealias SmokeRingPreset = ShaderPreset<SmokeRingParams>
 public typealias NeuroNoisePreset = ShaderPreset<NeuroNoiseParams>
 public typealias DotOrbitPreset = ShaderPreset<DotOrbitParams>
@@ -32,14 +32,14 @@ public typealias ImageDitheringPreset = ShaderPreset<ImageDitheringParams>
 public typealias HeatmapPreset = ShaderPreset<HeatmapParams>
 public typealias LiquidMetalPreset = ShaderPreset<LiquidMetalParams>
 public typealias HalftoneDotsPreset = ShaderPreset<HalftoneDotsParams>
-public typealias HalftoneCmykPreset = ShaderPreset<HalftoneCmykParams>
+public typealias HalftoneCMYKPreset = ShaderPreset<HalftoneCMYKParams>
 public typealias GemSmokePreset = ShaderPreset<GemSmokeParams>
 
-extension MeshGradientPreset {
-  public static let `default`: MeshGradientPreset =
+extension AnimatedMeshGradientPreset {
+  public static let `default`: AnimatedMeshGradientPreset =
     ShaderPreset(
       name: "Default",
-      params: MeshGradientParams(
+      params: AnimatedMeshGradientParams(
         colors: [color("#e0eaff"), color("#241d9a"), color("#f75092"), color("#9f50d3")],
         distortion: 0.8,
         swirl: 0.1,
@@ -52,10 +52,10 @@ extension MeshGradientPreset {
       motion: ShaderMotionParams(speed: 1, frame: 0)
     )
 
-  public static let ink: MeshGradientPreset =
+  public static let ink: AnimatedMeshGradientPreset =
     ShaderPreset(
       name: "Ink",
-      params: MeshGradientParams(
+      params: AnimatedMeshGradientParams(
         colors: [color("#ffffff"), color("#000000")],
         distortion: 1,
         swirl: 0.2,
@@ -68,10 +68,10 @@ extension MeshGradientPreset {
       motion: ShaderMotionParams(speed: 1, frame: 0)
     )
 
-  public static let purple: MeshGradientPreset =
+  public static let purple: AnimatedMeshGradientPreset =
     ShaderPreset(
       name: "Purple",
-      params: MeshGradientParams(
+      params: AnimatedMeshGradientParams(
         colors: [color("#aaa7d7"), color("#3c2b8e")],
         distortion: 1,
         swirl: 1,
@@ -84,10 +84,10 @@ extension MeshGradientPreset {
       motion: ShaderMotionParams(speed: 0.6, frame: 0)
     )
 
-  public static let beach: MeshGradientPreset =
+  public static let beach: AnimatedMeshGradientPreset =
     ShaderPreset(
       name: "Beach",
-      params: MeshGradientParams(
+      params: AnimatedMeshGradientParams(
         colors: [color("#bcecf6"), color("#00aaff"), color("#00f7ff"), color("#ffd447")],
         distortion: 0.8,
         swirl: 0.35,
@@ -101,7 +101,7 @@ extension MeshGradientPreset {
     )
 }
 
-let meshGradientPresets: [MeshGradientPreset] = [
+let animatedMeshGradientPresets: [AnimatedMeshGradientPreset] = [
   .default, .ink, .purple, .beach,
 ]
 
@@ -2430,11 +2430,11 @@ let halftoneDotsPresets: [HalftoneDotsPreset] = [
   .default, .ledScreen, .mosaic, .roundAndSquare,
 ]
 
-extension HalftoneCmykPreset {
-  public static let `default`: HalftoneCmykPreset =
+extension HalftoneCMYKPreset {
+  public static let `default`: HalftoneCMYKPreset =
     ShaderPreset(
       name: "Default",
-      params: HalftoneCmykParams(
+      params: HalftoneCMYKParams(
         colorBack: color("#fbfaf5"),
         colorC: color("#00b4ff"),
         colorM: color("#fc519f"),
@@ -2463,10 +2463,10 @@ extension HalftoneCmykPreset {
       motion: ShaderMotionParams(speed: 0, frame: 0)
     )
 
-  public static let drops: HalftoneCmykPreset =
+  public static let drops: HalftoneCMYKPreset =
     ShaderPreset(
       name: "Drops",
-      params: HalftoneCmykParams(
+      params: HalftoneCMYKParams(
         colorBack: color("#eeefd7"),
         colorC: color("#00b2ff"),
         colorM: color("#fc4f4f"),
@@ -2495,10 +2495,10 @@ extension HalftoneCmykPreset {
       motion: ShaderMotionParams(speed: 0, frame: 0)
     )
 
-  public static let newspaper: HalftoneCmykPreset =
+  public static let newspaper: HalftoneCMYKPreset =
     ShaderPreset(
       name: "Newspaper",
-      params: HalftoneCmykParams(
+      params: HalftoneCMYKParams(
         colorBack: color("#f2f1e8"),
         colorC: color("#7a7a75"),
         colorM: color("#7a7a75"),
@@ -2527,10 +2527,10 @@ extension HalftoneCmykPreset {
       motion: ShaderMotionParams(speed: 0, frame: 0)
     )
 
-  public static let vintage: HalftoneCmykPreset =
+  public static let vintage: HalftoneCMYKPreset =
     ShaderPreset(
       name: "Vintage",
-      params: HalftoneCmykParams(
+      params: HalftoneCMYKParams(
         colorBack: color("#fffaf0"),
         colorC: color("#59afc5"),
         colorM: color("#d8697c"),
@@ -2560,7 +2560,7 @@ extension HalftoneCmykPreset {
     )
 }
 
-let halftoneCmykPresets: [HalftoneCmykPreset] = [
+let halftoneCMYKPresets: [HalftoneCMYKPreset] = [
   .default, .drops, .newspaper, .vintage,
 ]
 

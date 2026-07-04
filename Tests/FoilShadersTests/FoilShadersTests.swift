@@ -43,7 +43,7 @@ final class FoilShadersTests: XCTestCase {
     counts.append(Heatmap.presets.count)
     counts.append(LiquidMetal.presets.count)
     counts.append(HalftoneDots.presets.count)
-    counts.append(HalftoneCmyk.presets.count)
+    counts.append(HalftoneCMYK.presets.count)
     counts.append(GemSmoke.presets.count)
     XCTAssertEqual(
       counts,
@@ -60,7 +60,7 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertEqual(DitheringType.eightByEight.rawValue, 4)
     XCTAssertEqual(GrainGradientShape.corners.rawValue, 4)
     XCTAssertEqual(HalftoneDotsGrid.hex.rawValue, 1)
-    XCTAssertEqual(HalftoneCmykType.ink.rawValue, 1)
+    XCTAssertEqual(HalftoneCMYKType.ink.rawValue, 1)
     XCTAssertEqual(GlassGridShape.lines.rawValue, 1)
     XCTAssertEqual(GlassDistortionShape.prism.rawValue, 1)
   }
@@ -73,9 +73,9 @@ final class FoilShadersTests: XCTestCase {
     assertEquatableSendableCodable(ShaderMotionParams.self)
     assertEquatableSendableCodable(ShaderParameters.self)
     assertEquatableSendableCodable(ShaderConfiguration.self)
-    assertEquatableSendableCodable(ShaderPreset<MeshGradientParams>.self)
+    assertEquatableSendableCodable(ShaderPreset<AnimatedMeshGradientParams>.self)
 
-    assertEquatableSendableCodable(MeshGradientParams.self)
+    assertEquatableSendableCodable(AnimatedMeshGradientParams.self)
     assertEquatableSendableCodable(StaticMeshGradientParams.self)
     assertEquatableSendableCodable(StaticRadialGradientParams.self)
     assertEquatableSendableCodable(SwirlParams.self)
@@ -97,7 +97,7 @@ final class FoilShadersTests: XCTestCase {
     assertEquatableSendableCodable(SmokeRingParams.self)
     assertEquatableSendableCodable(ImageDitheringParams.self)
     assertEquatableSendableCodable(HalftoneDotsParams.self)
-    assertEquatableSendableCodable(HalftoneCmykParams.self)
+    assertEquatableSendableCodable(HalftoneCMYKParams.self)
     assertEquatableSendableCodable(HeatmapParams.self)
     assertEquatableSendableCodable(LiquidMetalParams.self)
     assertEquatableSendableCodable(PaperTextureParams.self)
@@ -108,8 +108,8 @@ final class FoilShadersTests: XCTestCase {
 
   func testShaderConfigurationCodableRoundTrip() throws {
     let configuration = ShaderConfiguration(
-      parameters: .meshGradient(MeshGradientPreset.default.params),
-      sizing: MeshGradientPreset.default.sizing,
+      parameters: .animatedMeshGradient(AnimatedMeshGradientPreset.default.params),
+      sizing: AnimatedMeshGradientPreset.default.sizing,
       motion: ShaderMotionParams(speed: 0.25, frame: 12),
       renderOptions: ShaderRenderOptions(width: 320, height: 180),
       image: .url(URL(fileURLWithPath: "/tmp/source.png"))
@@ -188,12 +188,12 @@ final class FoilShadersTests: XCTestCase {
   }
 
   func testPaperDefaultPresetValues() {
-    XCTAssertEqual(MeshGradientPreset.default.name, "Default")
-    XCTAssertEqual(MeshGradientPreset.default.params.colors.count, 4)
-    XCTAssertEqual(MeshGradientPreset.default.params.distortion, 0.8, accuracy: 0.0001)
-    XCTAssertEqual(MeshGradientPreset.default.params.swirl, 0.1, accuracy: 0.0001)
-    XCTAssertEqual(MeshGradientPreset.default.motion.speed, 1, accuracy: 0.0001)
-    XCTAssertEqual(MeshGradientPreset.default.sizing.fit, .contain)
+    XCTAssertEqual(AnimatedMeshGradientPreset.default.name, "Default")
+    XCTAssertEqual(AnimatedMeshGradientPreset.default.params.colors.count, 4)
+    XCTAssertEqual(AnimatedMeshGradientPreset.default.params.distortion, 0.8, accuracy: 0.0001)
+    XCTAssertEqual(AnimatedMeshGradientPreset.default.params.swirl, 0.1, accuracy: 0.0001)
+    XCTAssertEqual(AnimatedMeshGradientPreset.default.motion.speed, 1, accuracy: 0.0001)
+    XCTAssertEqual(AnimatedMeshGradientPreset.default.sizing.fit, .contain)
 
     XCTAssertEqual(DotGridPreset.default.params.dotSize, 2, accuracy: 0.0001)
     XCTAssertEqual(DotGridPreset.default.params.shape, .circle)
@@ -209,15 +209,15 @@ final class FoilShadersTests: XCTestCase {
   func testParamsInitializersDefaultToComponentPresetConfiguration() {
     let meshColors: [ShaderColor] = ["#5100ff", "#00ff80", "#ffcc00", "#ea00ff"]
     XCTAssertEqual(
-      AnimatedMeshGradient(params: MeshGradientParams(colors: meshColors)).configuration,
+      AnimatedMeshGradient(params: AnimatedMeshGradientParams(colors: meshColors)).configuration,
       AnimatedMeshGradient(colors: meshColors).configuration
     )
 
     let configurations: [(String, ShaderConfiguration, ShaderConfiguration)] = [
       (
         "AnimatedMeshGradient",
-        AnimatedMeshGradient(params: MeshGradientPreset.default.params).configuration,
-        AnimatedMeshGradient(MeshGradientPreset.default).configuration
+        AnimatedMeshGradient(params: AnimatedMeshGradientPreset.default.params).configuration,
+        AnimatedMeshGradient(AnimatedMeshGradientPreset.default).configuration
       ),
       (
         "SmokeRing",
@@ -350,9 +350,9 @@ final class FoilShadersTests: XCTestCase {
         HalftoneDots(HalftoneDotsPreset.default).configuration
       ),
       (
-        "HalftoneCmyk",
-        HalftoneCmyk(params: HalftoneCmykPreset.default.params).configuration,
-        HalftoneCmyk(HalftoneCmykPreset.default).configuration
+        "HalftoneCMYK",
+        HalftoneCMYK(params: HalftoneCMYKPreset.default.params).configuration,
+        HalftoneCMYK(HalftoneCMYKPreset.default).configuration
       ),
       (
         "GemSmoke",
@@ -431,7 +431,7 @@ final class FoilShadersTests: XCTestCase {
       LiquidMetal(colorBack: "#aaaaac", colorTint: "#ffffff", shape: .diamond).configuration,
       HalftoneDots(colorFront: "#2b2b2b", colorBack: "#f2f1e8", grid: .hex, type: .gooey)
         .configuration,
-      HalftoneCmyk(
+      HalftoneCMYK(
         colorBack: "#fbfaf5", colorC: "#00b4ff", colorM: "#fc519f", colorY: "#ffd800",
         colorK: "#231f20", type: .ink
       ).configuration,
@@ -444,14 +444,14 @@ final class FoilShadersTests: XCTestCase {
 
   func testCodeGeneratorUsesAnimatedMeshGradient() {
     let code = FoilShadersCodeGenerator.swiftUICode(
-      componentName: "MeshGradient",
-      presetReference: "MeshGradientPreset.default",
+      componentName: "AnimatedMeshGradient",
+      presetReference: "AnimatedMeshGradientPreset.default",
       sizing: .defaultPatternSizing,
       motion: ShaderMotionParams(speed: 0.2, frame: 0),
       renderOptions: ShaderRenderOptions(width: 1280, height: 720)
     )
     XCTAssertTrue(code.contains("\nAnimatedMeshGradient(\n"))
-    XCTAssertTrue(code.contains("params: MeshGradientPreset.default.params"))
+    XCTAssertTrue(code.contains("params: AnimatedMeshGradientPreset.default.params"))
   }
 
   func testCodeGeneratorLeavesPulsingBorderUnqualified() {

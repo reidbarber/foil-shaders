@@ -8,7 +8,7 @@ import MetalKit
 /// Main-actor renderer for live `MTKView` presentation and offscreen image capture.
 @MainActor public final class FoilShadersRenderer: NSObject {
   public enum ShaderKind: CaseIterable, Sendable {
-    case meshGradient
+    case animatedMeshGradient
     case staticMeshGradient
     case staticRadialGradient
     case swirl
@@ -30,7 +30,7 @@ import MetalKit
     case smokeRing
     case imageDithering
     case halftoneDots
-    case halftoneCmyk
+    case halftoneCMYK
     case heatmap
     case liquidMetal
     case paperTexture
@@ -64,8 +64,8 @@ import MetalKit
   private var pixelRatio: Float = 1.0
 
   // Sizing params
-  private var sizingParams: ShaderSizingParams = MeshGradientPreset.default.sizing
-  private var motionParams: ShaderMotionParams = MeshGradientPreset.default.motion
+  private var sizingParams: ShaderSizingParams = AnimatedMeshGradientPreset.default.sizing
+  private var motionParams: ShaderMotionParams = AnimatedMeshGradientPreset.default.motion
 
   // Backing-store resolution controls (mirrors the web `minPixelRatio` /
   // `maxPixelCount`): raise the render scale to at least `minPixelRatio` for
@@ -73,7 +73,8 @@ import MetalKit
   private var renderOptions: ShaderRenderOptions = .default
 
   // Shader params
-  private var meshGradientParams: MeshGradientParams = MeshGradientPreset.default.params
+  private var meshGradientParams: AnimatedMeshGradientParams = AnimatedMeshGradientPreset.default
+    .params
   private var staticMeshGradientParams: StaticMeshGradientParams =
     StaticMeshGradientPreset.default.params
   private var staticRadialGradientParams: StaticRadialGradientParams =
@@ -97,14 +98,14 @@ import MetalKit
   private var smokeRingParams: SmokeRingParams = SmokeRingPreset.default.params
   private var imageDitheringParams: ImageDitheringParams = ImageDitheringPreset.default.params
   private var halftoneDotsParams: HalftoneDotsParams = HalftoneDotsPreset.default.params
-  private var halftoneCmykParams: HalftoneCmykParams = HalftoneCmykPreset.default.params
+  private var halftoneCMYKParams: HalftoneCMYKParams = HalftoneCMYKPreset.default.params
   private var heatmapParams: HeatmapParams = HeatmapPreset.default.params
   private var liquidMetalParams: LiquidMetalParams = LiquidMetalPreset.default.params
   private var paperTextureParams: PaperTextureParams = PaperTexturePreset.default.params
   private var waterParams: WaterParams = WaterPreset.default.params
   private var flutedGlassParams: FlutedGlassParams = FlutedGlassPreset.default.params
   private var gemSmokeParams: GemSmokeParams = GemSmokePreset.default.params
-  private var activeShader: ShaderKind = .meshGradient
+  private var activeShader: ShaderKind = .animatedMeshGradient
 
   private var library: MTLLibrary?
   private var libraryShaderName: String?
@@ -465,7 +466,7 @@ import MetalKit
     try ensureLibrary(shaderName: "MeshGradient")
     if let library {
       try setupPipeline(fragmentFunctionName: "mesh_gradient_fragment", library: library)
-      activeShader = .meshGradient
+      activeShader = .animatedMeshGradient
     } else {
       throw FoilShadersError.libraryError
     }
@@ -681,11 +682,11 @@ import MetalKit
     }
   }
 
-  private func configureHalftoneCmyk() throws {
+  private func configureHalftoneCMYK() throws {
     try ensureLibrary(shaderName: "HalftoneCmyk")
     if let library {
       try setupPipeline(fragmentFunctionName: "halftone_cmyk_fragment", library: library)
-      activeShader = .halftoneCmyk
+      activeShader = .halftoneCMYK
     } else {
       throw FoilShadersError.libraryError
     }
@@ -757,7 +758,7 @@ import MetalKit
   ///   cannot be loaded or compiled.
   public func configure(_ shaderKind: ShaderKind) throws {
     switch shaderKind {
-    case .meshGradient: try configureMeshGradient()
+    case .animatedMeshGradient: try configureMeshGradient()
     case .staticMeshGradient: try configureStaticMeshGradient()
     case .staticRadialGradient: try configureStaticRadialGradient()
     case .swirl: try configureSwirl()
@@ -779,7 +780,7 @@ import MetalKit
     case .smokeRing: try configureSmokeRing()
     case .imageDithering: try configureImageDithering()
     case .halftoneDots: try configureHalftoneDots()
-    case .halftoneCmyk: try configureHalftoneCmyk()
+    case .halftoneCMYK: try configureHalftoneCMYK()
     case .heatmap: try configureHeatmap()
     case .liquidMetal: try configureLiquidMetal()
     case .paperTexture: try configurePaperTexture()
@@ -794,7 +795,7 @@ import MetalKit
     sizingParams = configuration.sizing
     motionParams = configuration.motion
     switch configuration.parameters {
-    case .meshGradient(let params): meshGradientParams = params
+    case .animatedMeshGradient(let params): meshGradientParams = params
     case .staticMeshGradient(let params): staticMeshGradientParams = params
     case .staticRadialGradient(let params): staticRadialGradientParams = params
     case .swirl(let params): swirlParams = params
@@ -816,7 +817,7 @@ import MetalKit
     case .smokeRing(let params): smokeRingParams = params
     case .imageDithering(let params): imageDitheringParams = params
     case .halftoneDots(let params): halftoneDotsParams = params
-    case .halftoneCmyk(let params): halftoneCmykParams = params
+    case .halftoneCMYK(let params): halftoneCMYKParams = params
     case .heatmap(let params): heatmapParams = params
     case .liquidMetal(let params): liquidMetalParams = params
     case .paperTexture(let params): paperTextureParams = params
@@ -1024,7 +1025,7 @@ import MetalKit
     renderEncoder.setFragmentTexture(noiseTexture ?? fallbackNoiseTexture, index: 1)
 
     switch activeShader {
-    case .meshGradient:
+    case .animatedMeshGradient:
       var meshUniforms = MeshGradientUniformsRaw(time: time, params: meshGradientParams)
       renderEncoder.setFragmentBytes(
         &meshUniforms,
@@ -1158,11 +1159,11 @@ import MetalKit
         &halftoneDotsUniforms,
         length: MemoryLayout<HalftoneDotsUniformsRaw>.stride,
         index: 0)
-    case .halftoneCmyk:
-      var halftoneCmykUniforms = HalftoneCmykUniformsRaw(params: halftoneCmykParams)
+    case .halftoneCMYK:
+      var halftoneCMYKUniforms = HalftoneCMYKUniformsRaw(params: halftoneCMYKParams)
       renderEncoder.setFragmentBytes(
-        &halftoneCmykUniforms,
-        length: MemoryLayout<HalftoneCmykUniformsRaw>.stride,
+        &halftoneCMYKUniforms,
+        length: MemoryLayout<HalftoneCMYKUniformsRaw>.stride,
         index: 0)
     case .heatmap:
       var heatmapUniforms = HeatmapUniformsRaw(time: time, params: heatmapParams)
@@ -1314,7 +1315,7 @@ import MetalKit
     encoder.setFragmentTexture(activeImageTexture, index: 0)
     encoder.setFragmentTexture(noiseTexture ?? fallbackNoiseTexture, index: 1)
     switch activeShader {
-    case .meshGradient:
+    case .animatedMeshGradient:
       var meshUniforms = MeshGradientUniformsRaw(time: time, params: meshGradientParams)
       encoder.setFragmentBytes(
         &meshUniforms, length: MemoryLayout<MeshGradientUniformsRaw>.stride, index: 0)
@@ -1405,10 +1406,10 @@ import MetalKit
       var halftoneDotsUniforms = HalftoneDotsUniformsRaw(time: time, params: halftoneDotsParams)
       encoder.setFragmentBytes(
         &halftoneDotsUniforms, length: MemoryLayout<HalftoneDotsUniformsRaw>.stride, index: 0)
-    case .halftoneCmyk:
-      var halftoneCmykUniforms = HalftoneCmykUniformsRaw(params: halftoneCmykParams)
+    case .halftoneCMYK:
+      var halftoneCMYKUniforms = HalftoneCMYKUniformsRaw(params: halftoneCMYKParams)
       encoder.setFragmentBytes(
-        &halftoneCmykUniforms, length: MemoryLayout<HalftoneCmykUniformsRaw>.stride, index: 0)
+        &halftoneCMYKUniforms, length: MemoryLayout<HalftoneCMYKUniformsRaw>.stride, index: 0)
     case .heatmap:
       var heatmapUniforms = HeatmapUniformsRaw(time: time, params: heatmapParams)
       encoder.setFragmentBytes(

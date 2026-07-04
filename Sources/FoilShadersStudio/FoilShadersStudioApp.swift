@@ -16,7 +16,7 @@ struct FoilShadersStudioApp: App {
 }
 
 private struct StudioView: View {
-  @State private var selectedShader: StudioShader = .meshGradient
+  @State private var selectedShader: StudioShader = .animatedMeshGradient
   @State private var presetIndexByShader: [StudioShader: Int] = [:]
   @State private var speed: Float = 0.25
   @State private var frame: Float = 0
@@ -57,7 +57,7 @@ private struct StudioView: View {
       )
       let previewSize = fittedPreviewSize(in: availableSize)
 
-      FoilShadersShaderView(configuration: previewConfiguration(size: previewSize))
+      FoilShaderView(configuration: previewConfiguration(size: previewSize))
         .frame(width: previewSize.width, height: previewSize.height)
         .background(.black.opacity(0.08))
         .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -379,7 +379,7 @@ private enum PreviewImageError: LocalizedError {
 }
 
 private enum StudioShader: String, CaseIterable, Identifiable {
-  case meshGradient
+  case animatedMeshGradient
   case smokeRing
   case neuroNoise
   case dotOrbit
@@ -406,14 +406,14 @@ private enum StudioShader: String, CaseIterable, Identifiable {
   case heatmap
   case liquidMetal
   case halftoneDots
-  case halftoneCmyk
+  case halftoneCMYK
   case gemSmoke
 
   var id: String { rawValue }
 
   var displayName: String {
     switch self {
-    case .meshGradient: "Mesh Gradient"
+    case .animatedMeshGradient: "Mesh Gradient"
     case .smokeRing: "Smoke Ring"
     case .neuroNoise: "Neuro Noise"
     case .dotOrbit: "Dot Orbit"
@@ -440,19 +440,22 @@ private enum StudioShader: String, CaseIterable, Identifiable {
     case .heatmap: "Heatmap"
     case .liquidMetal: "Liquid Metal"
     case .halftoneDots: "Halftone Dots"
-    case .halftoneCmyk: "Halftone CMYK"
+    case .halftoneCMYK: "Halftone CMYK"
     case .gemSmoke: "Gem Smoke"
     }
   }
 
   var componentName: String {
-    displayName.replacingOccurrences(of: " ", with: "")
-      .replacingOccurrences(of: "CMYK", with: "Cmyk")
+    switch self {
+    case .animatedMeshGradient: "AnimatedMeshGradient"
+    case .halftoneCMYK: "HalftoneCMYK"
+    default: displayName.replacingOccurrences(of: " ", with: "")
+    }
   }
 
   var presetCount: Int {
     switch self {
-    case .meshGradient: AnimatedMeshGradient.presets.count
+    case .animatedMeshGradient: AnimatedMeshGradient.presets.count
     case .smokeRing: SmokeRing.presets.count
     case .neuroNoise: NeuroNoise.presets.count
     case .dotOrbit: DotOrbit.presets.count
@@ -479,7 +482,7 @@ private enum StudioShader: String, CaseIterable, Identifiable {
     case .heatmap: Heatmap.presets.count
     case .liquidMetal: LiquidMetal.presets.count
     case .halftoneDots: HalftoneDots.presets.count
-    case .halftoneCmyk: HalftoneCmyk.presets.count
+    case .halftoneCMYK: HalftoneCMYK.presets.count
     case .gemSmoke: GemSmoke.presets.count
     }
   }
@@ -487,7 +490,7 @@ private enum StudioShader: String, CaseIterable, Identifiable {
   var usesImage: Bool {
     switch self {
     case .flutedGlass, .water, .imageDithering, .heatmap, .liquidMetal, .halftoneDots,
-      .halftoneCmyk, .gemSmoke:
+      .halftoneCMYK, .gemSmoke:
       true
     default:
       false
@@ -496,7 +499,7 @@ private enum StudioShader: String, CaseIterable, Identifiable {
 
   func presetName(at index: Int) -> String {
     switch self {
-    case .meshGradient: AnimatedMeshGradient.presets[index].name
+    case .animatedMeshGradient: AnimatedMeshGradient.presets[index].name
     case .smokeRing: SmokeRing.presets[index].name
     case .neuroNoise: NeuroNoise.presets[index].name
     case .dotOrbit: DotOrbit.presets[index].name
@@ -523,7 +526,7 @@ private enum StudioShader: String, CaseIterable, Identifiable {
     case .heatmap: Heatmap.presets[index].name
     case .liquidMetal: LiquidMetal.presets[index].name
     case .halftoneDots: HalftoneDots.presets[index].name
-    case .halftoneCmyk: HalftoneCmyk.presets[index].name
+    case .halftoneCMYK: HalftoneCMYK.presets[index].name
     case .gemSmoke: GemSmoke.presets[index].name
     }
   }
@@ -535,7 +538,8 @@ private enum StudioShader: String, CaseIterable, Identifiable {
   @MainActor
   func configuration(at index: Int) -> ShaderConfiguration {
     switch self {
-    case .meshGradient: AnimatedMeshGradient(AnimatedMeshGradient.presets[index]).configuration
+    case .animatedMeshGradient:
+      AnimatedMeshGradient(AnimatedMeshGradient.presets[index]).configuration
     case .smokeRing: SmokeRing(SmokeRing.presets[index]).configuration
     case .neuroNoise: NeuroNoise(NeuroNoise.presets[index]).configuration
     case .dotOrbit: DotOrbit(DotOrbit.presets[index]).configuration
@@ -563,7 +567,7 @@ private enum StudioShader: String, CaseIterable, Identifiable {
     case .heatmap: Heatmap(Heatmap.presets[index]).configuration
     case .liquidMetal: LiquidMetal(LiquidMetal.presets[index]).configuration
     case .halftoneDots: HalftoneDots(HalftoneDots.presets[index]).configuration
-    case .halftoneCmyk: HalftoneCmyk(HalftoneCmyk.presets[index]).configuration
+    case .halftoneCMYK: HalftoneCMYK(HalftoneCMYK.presets[index]).configuration
     case .gemSmoke: GemSmoke(GemSmoke.presets[index]).configuration
     }
   }

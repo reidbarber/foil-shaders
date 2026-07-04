@@ -278,23 +278,23 @@
               {
                 "kind": "TypeNominal",
                 "name": "Array",
-                "printedName": "[FoilShaders.MeshGradientPreset]",
+                "printedName": "[FoilShaders.AnimatedMeshGradientPreset]",
                 "children": [
                   {
                     "kind": "TypeNameAlias",
-                    "name": "MeshGradientPreset",
-                    "printedName": "FoilShaders.MeshGradientPreset",
+                    "name": "AnimatedMeshGradientPreset",
+                    "printedName": "FoilShaders.AnimatedMeshGradientPreset",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ShaderPreset",
-                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.MeshGradientParams>",
+                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.AnimatedMeshGradientParams>",
                         "children": [
                           {
                             "kind": "TypeNominal",
-                            "name": "MeshGradientParams",
-                            "printedName": "FoilShaders.MeshGradientParams",
-                            "usr": "s:11FoilShaders18MeshGradientParamsV"
+                            "name": "AnimatedMeshGradientParams",
+                            "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
                           }
                         ],
                         "usr": "s:11FoilShaders12ShaderPresetV"
@@ -306,8 +306,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders20AnimatedMeshGradientV7presetsSayAA12ShaderPresetVyAA0dE6ParamsVGGvpZ",
-            "mangledName": "$s11FoilShaders20AnimatedMeshGradientV7presetsSayAA12ShaderPresetVyAA0dE6ParamsVGGvpZ",
+            "usr": "s:11FoilShaders20AnimatedMeshGradientV7presetsSayAA12ShaderPresetVyAA0cdE6ParamsVGGvpZ",
+            "mangledName": "$s11FoilShaders20AnimatedMeshGradientV7presetsSayAA12ShaderPresetVyAA0cdE6ParamsVGGvpZ",
             "moduleName": "FoilShaders",
             "static": true,
             "declAttributes": [
@@ -326,23 +326,23 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Array",
-                    "printedName": "[FoilShaders.MeshGradientPreset]",
+                    "printedName": "[FoilShaders.AnimatedMeshGradientPreset]",
                     "children": [
                       {
                         "kind": "TypeNameAlias",
-                        "name": "MeshGradientPreset",
-                        "printedName": "FoilShaders.MeshGradientPreset",
+                        "name": "AnimatedMeshGradientPreset",
+                        "printedName": "FoilShaders.AnimatedMeshGradientPreset",
                         "children": [
                           {
                             "kind": "TypeNominal",
                             "name": "ShaderPreset",
-                            "printedName": "FoilShaders.ShaderPreset<FoilShaders.MeshGradientParams>",
+                            "printedName": "FoilShaders.ShaderPreset<FoilShaders.AnimatedMeshGradientParams>",
                             "children": [
                               {
                                 "kind": "TypeNominal",
-                                "name": "MeshGradientParams",
-                                "printedName": "FoilShaders.MeshGradientParams",
-                                "usr": "s:11FoilShaders18MeshGradientParamsV"
+                                "name": "AnimatedMeshGradientParams",
+                                "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
                               }
                             ],
                             "usr": "s:11FoilShaders12ShaderPresetV"
@@ -354,8 +354,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders20AnimatedMeshGradientV7presetsSayAA12ShaderPresetVyAA0dE6ParamsVGGvgZ",
-                "mangledName": "$s11FoilShaders20AnimatedMeshGradientV7presetsSayAA12ShaderPresetVyAA0dE6ParamsVGGvgZ",
+                "usr": "s:11FoilShaders20AnimatedMeshGradientV7presetsSayAA12ShaderPresetVyAA0cdE6ParamsVGGvgZ",
+                "mangledName": "$s11FoilShaders20AnimatedMeshGradientV7presetsSayAA12ShaderPresetVyAA0cdE6ParamsVGGvgZ",
                 "moduleName": "FoilShaders",
                 "static": true,
                 "implicit": true,
@@ -379,19 +379,19 @@
               },
               {
                 "kind": "TypeNameAlias",
-                "name": "MeshGradientPreset",
-                "printedName": "FoilShaders.MeshGradientPreset",
+                "name": "AnimatedMeshGradientPreset",
+                "printedName": "FoilShaders.AnimatedMeshGradientPreset",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "ShaderPreset",
-                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.MeshGradientParams>",
+                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.AnimatedMeshGradientParams>",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "MeshGradientParams",
-                        "printedName": "FoilShaders.MeshGradientParams",
-                        "usr": "s:11FoilShaders18MeshGradientParamsV"
+                        "name": "AnimatedMeshGradientParams",
+                        "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                        "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
                       }
                     ],
                     "usr": "s:11FoilShaders12ShaderPresetV"
@@ -401,8 +401,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders20AnimatedMeshGradientVyAcA12ShaderPresetVyAA0dE6ParamsVGcfc",
-            "mangledName": "$s11FoilShaders20AnimatedMeshGradientVyAcA12ShaderPresetVyAA0dE6ParamsVGcfc",
+            "usr": "s:11FoilShaders20AnimatedMeshGradientVyAcA12ShaderPresetVyAA0cdE6ParamsVGcfc",
+            "mangledName": "$s11FoilShaders20AnimatedMeshGradientVyAcA12ShaderPresetVyAA0cdE6ParamsVGcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -423,9 +423,9 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "MeshGradientParams",
-                "printedName": "FoilShaders.MeshGradientParams",
-                "usr": "s:11FoilShaders18MeshGradientParamsV"
+                "name": "AnimatedMeshGradientParams",
+                "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
               },
               {
                 "kind": "TypeNominal",
@@ -465,8 +465,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders20AnimatedMeshGradientV6params6sizing6motion13renderOptions5imageAcA0dE6ParamsV_AA012ShaderSizingL0VAA0m6MotionL0VAA0m6RenderJ0VAA0M5ImageVSgtcfc",
-            "mangledName": "$s11FoilShaders20AnimatedMeshGradientV6params6sizing6motion13renderOptions5imageAcA0dE6ParamsV_AA012ShaderSizingL0VAA0m6MotionL0VAA0m6RenderJ0VAA0M5ImageVSgtcfc",
+            "usr": "s:11FoilShaders20AnimatedMeshGradientV6params6sizing6motion13renderOptions5imageAcA0cdE6ParamsV_AA012ShaderSizingL0VAA0m6MotionL0VAA0m6RenderJ0VAA0M5ImageVSgtcfc",
+            "mangledName": "$s11FoilShaders20AnimatedMeshGradientV6params6sizing6motion13renderOptions5imageAcA0cdE6ParamsV_AA012ShaderSizingL0VAA0m6MotionL0VAA0m6RenderJ0VAA0M5ImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -17740,8 +17740,8 @@
       },
       {
         "kind": "TypeDecl",
-        "name": "HalftoneCmyk",
-        "printedName": "HalftoneCmyk",
+        "name": "HalftoneCMYK",
+        "printedName": "HalftoneCMYK",
         "children": [
           {
             "kind": "Var",
@@ -17756,8 +17756,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders12HalftoneCmykV13configurationAA19ShaderConfigurationVvp",
-            "mangledName": "$s11FoilShaders12HalftoneCmykV13configurationAA19ShaderConfigurationVvp",
+            "usr": "s:11FoilShaders12HalftoneCMYKV13configurationAA19ShaderConfigurationVvp",
+            "mangledName": "$s11FoilShaders12HalftoneCMYKV13configurationAA19ShaderConfigurationVvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -17779,8 +17779,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders12HalftoneCmykV13configurationAA19ShaderConfigurationVvg",
-                "mangledName": "$s11FoilShaders12HalftoneCmykV13configurationAA19ShaderConfigurationVvg",
+                "usr": "s:11FoilShaders12HalftoneCMYKV13configurationAA19ShaderConfigurationVvg",
+                "mangledName": "$s11FoilShaders12HalftoneCMYKV13configurationAA19ShaderConfigurationVvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -17806,8 +17806,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders12HalftoneCmykV13configurationAA19ShaderConfigurationVvs",
-                "mangledName": "$s11FoilShaders12HalftoneCmykV13configurationAA19ShaderConfigurationVvs",
+                "usr": "s:11FoilShaders12HalftoneCMYKV13configurationAA19ShaderConfigurationVvs",
+                "mangledName": "$s11FoilShaders12HalftoneCMYKV13configurationAA19ShaderConfigurationVvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -17825,23 +17825,23 @@
               {
                 "kind": "TypeNominal",
                 "name": "Array",
-                "printedName": "[FoilShaders.HalftoneCmykPreset]",
+                "printedName": "[FoilShaders.HalftoneCMYKPreset]",
                 "children": [
                   {
                     "kind": "TypeNameAlias",
-                    "name": "HalftoneCmykPreset",
-                    "printedName": "FoilShaders.HalftoneCmykPreset",
+                    "name": "HalftoneCMYKPreset",
+                    "printedName": "FoilShaders.HalftoneCMYKPreset",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ShaderPreset",
-                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCmykParams>",
+                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCMYKParams>",
                         "children": [
                           {
                             "kind": "TypeNominal",
-                            "name": "HalftoneCmykParams",
-                            "printedName": "FoilShaders.HalftoneCmykParams",
-                            "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                            "name": "HalftoneCMYKParams",
+                            "printedName": "FoilShaders.HalftoneCMYKParams",
+                            "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
                           }
                         ],
                         "usr": "s:11FoilShaders12ShaderPresetV"
@@ -17853,8 +17853,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders12HalftoneCmykV7presetsSayAA12ShaderPresetVyAA0cD6ParamsVGGvpZ",
-            "mangledName": "$s11FoilShaders12HalftoneCmykV7presetsSayAA12ShaderPresetVyAA0cD6ParamsVGGvpZ",
+            "usr": "s:11FoilShaders12HalftoneCMYKV7presetsSayAA12ShaderPresetVyAA0C10CMYKParamsVGGvpZ",
+            "mangledName": "$s11FoilShaders12HalftoneCMYKV7presetsSayAA12ShaderPresetVyAA0C10CMYKParamsVGGvpZ",
             "moduleName": "FoilShaders",
             "static": true,
             "declAttributes": [
@@ -17873,23 +17873,23 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Array",
-                    "printedName": "[FoilShaders.HalftoneCmykPreset]",
+                    "printedName": "[FoilShaders.HalftoneCMYKPreset]",
                     "children": [
                       {
                         "kind": "TypeNameAlias",
-                        "name": "HalftoneCmykPreset",
-                        "printedName": "FoilShaders.HalftoneCmykPreset",
+                        "name": "HalftoneCMYKPreset",
+                        "printedName": "FoilShaders.HalftoneCMYKPreset",
                         "children": [
                           {
                             "kind": "TypeNominal",
                             "name": "ShaderPreset",
-                            "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCmykParams>",
+                            "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCMYKParams>",
                             "children": [
                               {
                                 "kind": "TypeNominal",
-                                "name": "HalftoneCmykParams",
-                                "printedName": "FoilShaders.HalftoneCmykParams",
-                                "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                                "name": "HalftoneCMYKParams",
+                                "printedName": "FoilShaders.HalftoneCMYKParams",
+                                "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
                               }
                             ],
                             "usr": "s:11FoilShaders12ShaderPresetV"
@@ -17901,8 +17901,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders12HalftoneCmykV7presetsSayAA12ShaderPresetVyAA0cD6ParamsVGGvgZ",
-                "mangledName": "$s11FoilShaders12HalftoneCmykV7presetsSayAA12ShaderPresetVyAA0cD6ParamsVGGvgZ",
+                "usr": "s:11FoilShaders12HalftoneCMYKV7presetsSayAA12ShaderPresetVyAA0C10CMYKParamsVGGvgZ",
+                "mangledName": "$s11FoilShaders12HalftoneCMYKV7presetsSayAA12ShaderPresetVyAA0C10CMYKParamsVGGvgZ",
                 "moduleName": "FoilShaders",
                 "static": true,
                 "implicit": true,
@@ -17920,25 +17920,25 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "HalftoneCmyk",
-                "printedName": "FoilShaders.HalftoneCmyk",
-                "usr": "s:11FoilShaders12HalftoneCmykV"
+                "name": "HalftoneCMYK",
+                "printedName": "FoilShaders.HalftoneCMYK",
+                "usr": "s:11FoilShaders12HalftoneCMYKV"
               },
               {
                 "kind": "TypeNameAlias",
-                "name": "HalftoneCmykPreset",
-                "printedName": "FoilShaders.HalftoneCmykPreset",
+                "name": "HalftoneCMYKPreset",
+                "printedName": "FoilShaders.HalftoneCMYKPreset",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "ShaderPreset",
-                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCmykParams>",
+                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCMYKParams>",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "HalftoneCmykParams",
-                        "printedName": "FoilShaders.HalftoneCmykParams",
-                        "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                        "name": "HalftoneCMYKParams",
+                        "printedName": "FoilShaders.HalftoneCMYKParams",
+                        "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
                       }
                     ],
                     "usr": "s:11FoilShaders12ShaderPresetV"
@@ -17948,8 +17948,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders12HalftoneCmykVyAcA12ShaderPresetVyAA0cD6ParamsVGcfc",
-            "mangledName": "$s11FoilShaders12HalftoneCmykVyAcA12ShaderPresetVyAA0cD6ParamsVGcfc",
+            "usr": "s:11FoilShaders12HalftoneCMYKVyAcA12ShaderPresetVyAA0C10CMYKParamsVGcfc",
+            "mangledName": "$s11FoilShaders12HalftoneCMYKVyAcA12ShaderPresetVyAA0C10CMYKParamsVGcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -17964,15 +17964,15 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "HalftoneCmyk",
-                "printedName": "FoilShaders.HalftoneCmyk",
-                "usr": "s:11FoilShaders12HalftoneCmykV"
+                "name": "HalftoneCMYK",
+                "printedName": "FoilShaders.HalftoneCMYK",
+                "usr": "s:11FoilShaders12HalftoneCMYKV"
               },
               {
                 "kind": "TypeNominal",
-                "name": "HalftoneCmykParams",
-                "printedName": "FoilShaders.HalftoneCmykParams",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                "name": "HalftoneCMYKParams",
+                "printedName": "FoilShaders.HalftoneCMYKParams",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
               },
               {
                 "kind": "TypeNominal",
@@ -18012,8 +18012,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders12HalftoneCmykV6params6sizing6motion13renderOptions5imageAcA0cD6ParamsV_AA012ShaderSizingK0VAA0l6MotionK0VAA0l6RenderI0VAA0L5ImageVSgtcfc",
-            "mangledName": "$s11FoilShaders12HalftoneCmykV6params6sizing6motion13renderOptions5imageAcA0cD6ParamsV_AA012ShaderSizingK0VAA0l6MotionK0VAA0l6RenderI0VAA0L5ImageVSgtcfc",
+            "usr": "s:11FoilShaders12HalftoneCMYKV6params6sizing6motion13renderOptions5imageAcA0C10CMYKParamsV_AA18ShaderSizingParamsVAA0l6MotionN0VAA0l6RenderI0VAA0L5ImageVSgtcfc",
+            "mangledName": "$s11FoilShaders12HalftoneCMYKV6params6sizing6motion13renderOptions5imageAcA0C10CMYKParamsV_AA18ShaderSizingParamsVAA0l6MotionN0VAA0l6RenderI0VAA0L5ImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -18041,8 +18041,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders12HalftoneCmykV4bodyQrvp",
-            "mangledName": "$s11FoilShaders12HalftoneCmykV4bodyQrvp",
+            "usr": "s:11FoilShaders12HalftoneCMYKV4bodyQrvp",
+            "mangledName": "$s11FoilShaders12HalftoneCMYKV4bodyQrvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -18069,8 +18069,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders12HalftoneCmykV4bodyQrvg",
-                "mangledName": "$s11FoilShaders12HalftoneCmykV4bodyQrvg",
+                "usr": "s:11FoilShaders12HalftoneCMYKV4bodyQrvg",
+                "mangledName": "$s11FoilShaders12HalftoneCMYKV4bodyQrvg",
                 "moduleName": "FoilShaders",
                 "accessorKind": "get"
               }
@@ -18096,8 +18096,8 @@
               }
             ],
             "declKind": "TypeAlias",
-            "usr": "s:11FoilShaders12HalftoneCmykV4Bodya",
-            "mangledName": "$s11FoilShaders12HalftoneCmykV4Bodya",
+            "usr": "s:11FoilShaders12HalftoneCMYKV4Bodya",
+            "mangledName": "$s11FoilShaders12HalftoneCMYKV4Bodya",
             "moduleName": "FoilShaders",
             "implicit": true
           },
@@ -18108,9 +18108,9 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "HalftoneCmyk",
-                "printedName": "FoilShaders.HalftoneCmyk",
-                "usr": "s:11FoilShaders12HalftoneCmykV"
+                "name": "HalftoneCMYK",
+                "printedName": "FoilShaders.HalftoneCMYK",
+                "usr": "s:11FoilShaders12HalftoneCMYKV"
               },
               {
                 "kind": "TypeNominal",
@@ -18254,10 +18254,10 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "HalftoneCmykType",
-                "printedName": "FoilShaders.HalftoneCmykType",
+                "name": "HalftoneCMYKType",
+                "printedName": "FoilShaders.HalftoneCMYKType",
                 "hasDefaultArg": true,
-                "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
               },
               {
                 "kind": "TypeNominal",
@@ -18397,8 +18397,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders12HalftoneCmykV9colorBack0E1C0E1M0E1Y0E1K4size8contrast8softness9grainSize0J5Mixer0J7Overlay9gridNoise6floodC0P1M0P1Y0P1K5gainC0Q1M0Q1Y0Q1K4type3fit5scale8rotation7originX0V1Y7offsetX0W1Y10worldWidth0X6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A14_A14_A14_A14_S15fAA0cD4TypeOAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA22_AA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders12HalftoneCmykV9colorBack0E1C0E1M0E1Y0E1K4size8contrast8softness9grainSize0J5Mixer0J7Overlay9gridNoise6floodC0P1M0P1Y0P1K5gainC0Q1M0Q1Y0Q1K4type3fit5scale8rotation7originX0V1Y7offsetX0W1Y10worldWidth0X6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A14_A14_A14_A14_S15fAA0cD4TypeOAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA22_AA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders12HalftoneCMYKV9colorBack0E1C0E1M0E1Y0E1K4size8contrast8softness9grainSize0J5Mixer0J7Overlay9gridNoise6floodC0P1M0P1Y0P1K5gainC0Q1M0Q1Y0Q1K4type3fit5scale8rotation7originX0V1Y7offsetX0W1Y10worldWidth0X6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A14_A14_A14_A14_S15fAA0C8CMYKTypeOAA9ShaderFitOS11fSi14CoreFoundation7CGFloatVSgA22_AA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders12HalftoneCMYKV9colorBack0E1C0E1M0E1Y0E1K4size8contrast8softness9grainSize0J5Mixer0J7Overlay9gridNoise6floodC0P1M0P1Y0P1K5gainC0Q1M0Q1Y0Q1K4type3fit5scale8rotation7originX0V1Y7offsetX0W1Y10worldWidth0X6Height5speed5frame13minPixelRatio13maxPixelCount5width6height5imageAcA11ShaderColorV_A14_A14_A14_A14_S15fAA0C8CMYKTypeOAA9ShaderFitOS11fSi12CoreGraphics7CGFloatVSgA22_AA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -18409,8 +18409,8 @@
           }
         ],
         "declKind": "Struct",
-        "usr": "s:11FoilShaders12HalftoneCmykV",
-        "mangledName": "$s11FoilShaders12HalftoneCmykV",
+        "usr": "s:11FoilShaders12HalftoneCMYKV",
+        "mangledName": "$s11FoilShaders12HalftoneCMYKV",
         "moduleName": "FoilShaders",
         "declAttributes": [
           "Preconcurrency",
@@ -19140,6 +19140,606 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "FoilShaderView",
+        "printedName": "FoilShaderView",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "defaultFailureFallbackColor",
+            "printedName": "defaultFailureFallbackColor",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ShaderColor",
+                "printedName": "FoilShaders.ShaderColor",
+                "usr": "s:11FoilShaders11ShaderColorV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders0A10ShaderViewV27defaultFailureFallbackColorAA0cH0VvpZ",
+            "mangledName": "$s11FoilShaders0A10ShaderViewV27defaultFailureFallbackColorAA0cH0VvpZ",
+            "moduleName": "FoilShaders",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Preconcurrency",
+              "HasStorage",
+              "Custom"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ShaderColor",
+                    "printedName": "FoilShaders.ShaderColor",
+                    "usr": "s:11FoilShaders11ShaderColorV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders0A10ShaderViewV27defaultFailureFallbackColorAA0cH0VvgZ",
+                "mangledName": "$s11FoilShaders0A10ShaderViewV27defaultFailureFallbackColorAA0cH0VvgZ",
+                "moduleName": "FoilShaders",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "configuration",
+            "printedName": "configuration",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ShaderConfiguration",
+                "printedName": "FoilShaders.ShaderConfiguration",
+                "usr": "s:11FoilShaders19ShaderConfigurationV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders0A10ShaderViewV13configurationAA0C13ConfigurationVvp",
+            "mangledName": "$s11FoilShaders0A10ShaderViewV13configurationAA0C13ConfigurationVvp",
+            "moduleName": "FoilShaders",
+            "declAttributes": [
+              "Preconcurrency",
+              "HasStorage",
+              "Custom"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ShaderConfiguration",
+                    "printedName": "FoilShaders.ShaderConfiguration",
+                    "usr": "s:11FoilShaders19ShaderConfigurationV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders0A10ShaderViewV13configurationAA0C13ConfigurationVvg",
+                "mangledName": "$s11FoilShaders0A10ShaderViewV13configurationAA0C13ConfigurationVvg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ShaderConfiguration",
+                    "printedName": "FoilShaders.ShaderConfiguration",
+                    "usr": "s:11FoilShaders19ShaderConfigurationV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders0A10ShaderViewV13configurationAA0C13ConfigurationVvs",
+                "mangledName": "$s11FoilShaders0A10ShaderViewV13configurationAA0C13ConfigurationVvs",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "failureFallbackColor",
+            "printedName": "failureFallbackColor",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ShaderColor",
+                "printedName": "FoilShaders.ShaderColor",
+                "usr": "s:11FoilShaders11ShaderColorV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders0A10ShaderViewV20failureFallbackColorAA0cG0Vvp",
+            "mangledName": "$s11FoilShaders0A10ShaderViewV20failureFallbackColorAA0cG0Vvp",
+            "moduleName": "FoilShaders",
+            "declAttributes": [
+              "Preconcurrency",
+              "HasStorage",
+              "Custom"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ShaderColor",
+                    "printedName": "FoilShaders.ShaderColor",
+                    "usr": "s:11FoilShaders11ShaderColorV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders0A10ShaderViewV20failureFallbackColorAA0cG0Vvg",
+                "mangledName": "$s11FoilShaders0A10ShaderViewV20failureFallbackColorAA0cG0Vvg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ShaderColor",
+                    "printedName": "FoilShaders.ShaderColor",
+                    "usr": "s:11FoilShaders11ShaderColorV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders0A10ShaderViewV20failureFallbackColorAA0cG0Vvs",
+                "mangledName": "$s11FoilShaders0A10ShaderViewV20failureFallbackColorAA0cG0Vvs",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "respectsReduceMotion",
+            "printedName": "respectsReduceMotion",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders0A10ShaderViewV20respectsReduceMotionSbvp",
+            "mangledName": "$s11FoilShaders0A10ShaderViewV20respectsReduceMotionSbvp",
+            "moduleName": "FoilShaders",
+            "declAttributes": [
+              "Preconcurrency",
+              "HasStorage",
+              "Custom"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders0A10ShaderViewV20respectsReduceMotionSbvg",
+                "mangledName": "$s11FoilShaders0A10ShaderViewV20respectsReduceMotionSbvg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders0A10ShaderViewV20respectsReduceMotionSbvs",
+                "mangledName": "$s11FoilShaders0A10ShaderViewV20respectsReduceMotionSbvs",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "pausesWhenInactiveOrOffscreen",
+            "printedName": "pausesWhenInactiveOrOffscreen",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders0A10ShaderViewV29pausesWhenInactiveOrOffscreenSbvp",
+            "mangledName": "$s11FoilShaders0A10ShaderViewV29pausesWhenInactiveOrOffscreenSbvp",
+            "moduleName": "FoilShaders",
+            "declAttributes": [
+              "Preconcurrency",
+              "HasStorage",
+              "Custom"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders0A10ShaderViewV29pausesWhenInactiveOrOffscreenSbvg",
+                "mangledName": "$s11FoilShaders0A10ShaderViewV29pausesWhenInactiveOrOffscreenSbvg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders0A10ShaderViewV29pausesWhenInactiveOrOffscreenSbvs",
+                "mangledName": "$s11FoilShaders0A10ShaderViewV29pausesWhenInactiveOrOffscreenSbvs",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(configuration:rendererError:failureFallbackColor:respectsReduceMotion:pausesWhenInactiveOrOffscreen:onRendererError:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "FoilShaderView",
+                "printedName": "FoilShaders.FoilShaderView",
+                "usr": "s:11FoilShaders0A10ShaderViewV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ShaderConfiguration",
+                "printedName": "FoilShaders.ShaderConfiguration",
+                "usr": "s:11FoilShaders19ShaderConfigurationV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Binding",
+                "printedName": "SwiftUI.Binding<FoilShaders.FoilShadersError?>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "FoilShaders.FoilShadersError?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FoilShadersError",
+                        "printedName": "FoilShaders.FoilShadersError",
+                        "usr": "s:11FoilShaders0aB5ErrorO"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:7SwiftUI7BindingV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ShaderColor",
+                "printedName": "FoilShaders.ShaderColor",
+                "hasDefaultArg": true,
+                "usr": "s:11FoilShaders11ShaderColorV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((FoilShaders.FoilShadersError) -> Swift.Void)?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(FoilShaders.FoilShadersError) -> Swift.Void",
+                    "children": [
+                      {
+                        "kind": "TypeNameAlias",
+                        "name": "Void",
+                        "printedName": "Swift.Void",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FoilShadersError",
+                        "printedName": "FoilShaders.FoilShadersError",
+                        "usr": "s:11FoilShaders0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders0A10ShaderViewV13configuration13rendererError20failureFallbackColor20respectsReduceMotion29pausesWhenInactiveOrOffscreen010onRendererG0AcA0C13ConfigurationV_7SwiftUI7BindingVyAA0abG0OSgGAA0cJ0VS2byAPcSgtcfc",
+            "mangledName": "$s11FoilShaders0A10ShaderViewV13configuration13rendererError20failureFallbackColor20respectsReduceMotion29pausesWhenInactiveOrOffscreen010onRendererG0AcA0C13ConfigurationV_7SwiftUI7BindingVyAA0abG0OSgGAA0cJ0VS2byAPcSgtcfc",
+            "moduleName": "FoilShaders",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "body",
+            "printedName": "body",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpaqueTypeArchetype",
+                "printedName": "some SwiftUI.View",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "View",
+                    "printedName": "SwiftUI.View",
+                    "usr": "s:7SwiftUI4ViewP"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders0A10ShaderViewV4bodyQrvp",
+            "mangledName": "$s11FoilShaders0A10ShaderViewV4bodyQrvp",
+            "moduleName": "FoilShaders",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpaqueTypeArchetype",
+                    "printedName": "some SwiftUI.View",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "View",
+                        "printedName": "SwiftUI.View",
+                        "usr": "s:7SwiftUI4ViewP"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders0A10ShaderViewV4bodyQrvg",
+                "mangledName": "$s11FoilShaders0A10ShaderViewV4bodyQrvg",
+                "moduleName": "FoilShaders",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "TypeAlias",
+            "name": "Body",
+            "printedName": "Body",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpaqueTypeArchetype",
+                "printedName": "some SwiftUI.View",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "View",
+                    "printedName": "SwiftUI.View",
+                    "usr": "s:7SwiftUI4ViewP"
+                  }
+                ]
+              }
+            ],
+            "declKind": "TypeAlias",
+            "usr": "s:11FoilShaders0A10ShaderViewV4Bodya",
+            "mangledName": "$s11FoilShaders0A10ShaderViewV4Bodya",
+            "moduleName": "FoilShaders",
+            "implicit": true
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:11FoilShaders0A10ShaderViewV",
+        "mangledName": "$s11FoilShaders0A10ShaderViewV",
+        "moduleName": "FoilShaders",
+        "declAttributes": [
+          "Preconcurrency",
+          "Custom"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "View",
+            "printedName": "View",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Body",
+                "printedName": "Body",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpaqueTypeArchetype",
+                    "printedName": "some SwiftUI.View",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "View",
+                        "printedName": "SwiftUI.View",
+                        "usr": "s:7SwiftUI4ViewP"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7SwiftUI4ViewP",
+            "mangledName": "$s7SwiftUI4ViewP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
         "name": "FoilShadersRenderer",
         "printedName": "FoilShadersRenderer",
         "children": [
@@ -19150,8 +19750,8 @@
             "children": [
               {
                 "kind": "Var",
-                "name": "meshGradient",
-                "printedName": "meshGradient",
+                "name": "animatedMeshGradient",
+                "printedName": "animatedMeshGradient",
                 "children": [
                   {
                     "kind": "TypeFunc",
@@ -19181,8 +19781,8 @@
                   }
                 ],
                 "declKind": "EnumElement",
-                "usr": "s:11FoilShaders0aB8RendererC10ShaderKindO12meshGradientyA2EmF",
-                "mangledName": "$s11FoilShaders0aB8RendererC10ShaderKindO12meshGradientyA2EmF",
+                "usr": "s:11FoilShaders0aB8RendererC10ShaderKindO20animatedMeshGradientyA2EmF",
+                "mangledName": "$s11FoilShaders0aB8RendererC10ShaderKindO20animatedMeshGradientyA2EmF",
                 "moduleName": "FoilShaders"
               },
               {
@@ -19964,8 +20564,8 @@
               },
               {
                 "kind": "Var",
-                "name": "halftoneCmyk",
-                "printedName": "halftoneCmyk",
+                "name": "halftoneCMYK",
+                "printedName": "halftoneCMYK",
                 "children": [
                   {
                     "kind": "TypeFunc",
@@ -19995,8 +20595,8 @@
                   }
                 ],
                 "declKind": "EnumElement",
-                "usr": "s:11FoilShaders0aB8RendererC10ShaderKindO12halftoneCmykyA2EmF",
-                "mangledName": "$s11FoilShaders0aB8RendererC10ShaderKindO12halftoneCmykyA2EmF",
+                "usr": "s:11FoilShaders0aB8RendererC10ShaderKindO12halftoneCMYKyA2EmF",
+                "mangledName": "$s11FoilShaders0aB8RendererC10ShaderKindO12halftoneCMYKyA2EmF",
                 "moduleName": "FoilShaders"
               },
               {
@@ -21359,628 +21959,28 @@
         ]
       },
       {
-        "kind": "TypeDecl",
-        "name": "FoilShadersShaderView",
-        "printedName": "FoilShadersShaderView",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "defaultFailureFallbackColor",
-            "printedName": "defaultFailureFallbackColor",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "ShaderColor",
-                "printedName": "FoilShaders.ShaderColor",
-                "usr": "s:11FoilShaders11ShaderColorV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:11FoilShaders0aB10ShaderViewV27defaultFailureFallbackColorAA0cH0VvpZ",
-            "mangledName": "$s11FoilShaders0aB10ShaderViewV27defaultFailureFallbackColorAA0cH0VvpZ",
-            "moduleName": "FoilShaders",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "Preconcurrency",
-              "HasStorage",
-              "Custom"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "ShaderColor",
-                    "printedName": "FoilShaders.ShaderColor",
-                    "usr": "s:11FoilShaders11ShaderColorV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders0aB10ShaderViewV27defaultFailureFallbackColorAA0cH0VvgZ",
-                "mangledName": "$s11FoilShaders0aB10ShaderViewV27defaultFailureFallbackColorAA0cH0VvgZ",
-                "moduleName": "FoilShaders",
-                "static": true,
-                "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "configuration",
-            "printedName": "configuration",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "ShaderConfiguration",
-                "printedName": "FoilShaders.ShaderConfiguration",
-                "usr": "s:11FoilShaders19ShaderConfigurationV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:11FoilShaders0aB10ShaderViewV13configurationAA0C13ConfigurationVvp",
-            "mangledName": "$s11FoilShaders0aB10ShaderViewV13configurationAA0C13ConfigurationVvp",
-            "moduleName": "FoilShaders",
-            "declAttributes": [
-              "Preconcurrency",
-              "HasStorage",
-              "Custom"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "ShaderConfiguration",
-                    "printedName": "FoilShaders.ShaderConfiguration",
-                    "usr": "s:11FoilShaders19ShaderConfigurationV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders0aB10ShaderViewV13configurationAA0C13ConfigurationVvg",
-                "mangledName": "$s11FoilShaders0aB10ShaderViewV13configurationAA0C13ConfigurationVvg",
-                "moduleName": "FoilShaders",
-                "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "ShaderConfiguration",
-                    "printedName": "FoilShaders.ShaderConfiguration",
-                    "usr": "s:11FoilShaders19ShaderConfigurationV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders0aB10ShaderViewV13configurationAA0C13ConfigurationVvs",
-                "mangledName": "$s11FoilShaders0aB10ShaderViewV13configurationAA0C13ConfigurationVvs",
-                "moduleName": "FoilShaders",
-                "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
-                "accessorKind": "set"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "failureFallbackColor",
-            "printedName": "failureFallbackColor",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "ShaderColor",
-                "printedName": "FoilShaders.ShaderColor",
-                "usr": "s:11FoilShaders11ShaderColorV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:11FoilShaders0aB10ShaderViewV20failureFallbackColorAA0cG0Vvp",
-            "mangledName": "$s11FoilShaders0aB10ShaderViewV20failureFallbackColorAA0cG0Vvp",
-            "moduleName": "FoilShaders",
-            "declAttributes": [
-              "Preconcurrency",
-              "HasStorage",
-              "Custom"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "ShaderColor",
-                    "printedName": "FoilShaders.ShaderColor",
-                    "usr": "s:11FoilShaders11ShaderColorV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders0aB10ShaderViewV20failureFallbackColorAA0cG0Vvg",
-                "mangledName": "$s11FoilShaders0aB10ShaderViewV20failureFallbackColorAA0cG0Vvg",
-                "moduleName": "FoilShaders",
-                "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "ShaderColor",
-                    "printedName": "FoilShaders.ShaderColor",
-                    "usr": "s:11FoilShaders11ShaderColorV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders0aB10ShaderViewV20failureFallbackColorAA0cG0Vvs",
-                "mangledName": "$s11FoilShaders0aB10ShaderViewV20failureFallbackColorAA0cG0Vvs",
-                "moduleName": "FoilShaders",
-                "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
-                "accessorKind": "set"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "respectsReduceMotion",
-            "printedName": "respectsReduceMotion",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:11FoilShaders0aB10ShaderViewV20respectsReduceMotionSbvp",
-            "mangledName": "$s11FoilShaders0aB10ShaderViewV20respectsReduceMotionSbvp",
-            "moduleName": "FoilShaders",
-            "declAttributes": [
-              "Preconcurrency",
-              "HasStorage",
-              "Custom"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders0aB10ShaderViewV20respectsReduceMotionSbvg",
-                "mangledName": "$s11FoilShaders0aB10ShaderViewV20respectsReduceMotionSbvg",
-                "moduleName": "FoilShaders",
-                "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders0aB10ShaderViewV20respectsReduceMotionSbvs",
-                "mangledName": "$s11FoilShaders0aB10ShaderViewV20respectsReduceMotionSbvs",
-                "moduleName": "FoilShaders",
-                "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
-                "accessorKind": "set"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "pausesWhenInactiveOrOffscreen",
-            "printedName": "pausesWhenInactiveOrOffscreen",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:11FoilShaders0aB10ShaderViewV29pausesWhenInactiveOrOffscreenSbvp",
-            "mangledName": "$s11FoilShaders0aB10ShaderViewV29pausesWhenInactiveOrOffscreenSbvp",
-            "moduleName": "FoilShaders",
-            "declAttributes": [
-              "Preconcurrency",
-              "HasStorage",
-              "Custom"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders0aB10ShaderViewV29pausesWhenInactiveOrOffscreenSbvg",
-                "mangledName": "$s11FoilShaders0aB10ShaderViewV29pausesWhenInactiveOrOffscreenSbvg",
-                "moduleName": "FoilShaders",
-                "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders0aB10ShaderViewV29pausesWhenInactiveOrOffscreenSbvs",
-                "mangledName": "$s11FoilShaders0aB10ShaderViewV29pausesWhenInactiveOrOffscreenSbvs",
-                "moduleName": "FoilShaders",
-                "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
-                "accessorKind": "set"
-              }
-            ]
-          },
-          {
-            "kind": "Constructor",
-            "name": "init",
-            "printedName": "init(configuration:rendererError:failureFallbackColor:respectsReduceMotion:pausesWhenInactiveOrOffscreen:onRendererError:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "FoilShadersShaderView",
-                "printedName": "FoilShaders.FoilShadersShaderView",
-                "usr": "s:11FoilShaders0aB10ShaderViewV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "ShaderConfiguration",
-                "printedName": "FoilShaders.ShaderConfiguration",
-                "usr": "s:11FoilShaders19ShaderConfigurationV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Binding",
-                "printedName": "SwiftUI.Binding<FoilShaders.FoilShadersError?>",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "FoilShaders.FoilShadersError?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FoilShadersError",
-                        "printedName": "FoilShaders.FoilShadersError",
-                        "usr": "s:11FoilShaders0aB5ErrorO"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:7SwiftUI7BindingV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "ShaderColor",
-                "printedName": "FoilShaders.ShaderColor",
-                "hasDefaultArg": true,
-                "usr": "s:11FoilShaders11ShaderColorV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "hasDefaultArg": true,
-                "usr": "s:Sb"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "hasDefaultArg": true,
-                "usr": "s:Sb"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "((FoilShaders.FoilShadersError) -> Swift.Void)?",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(FoilShaders.FoilShadersError) -> Swift.Void",
-                    "children": [
-                      {
-                        "kind": "TypeNameAlias",
-                        "name": "Void",
-                        "printedName": "Swift.Void",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Void",
-                            "printedName": "()"
-                          }
-                        ]
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FoilShadersError",
-                        "printedName": "FoilShaders.FoilShadersError",
-                        "usr": "s:11FoilShaders0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Constructor",
-            "usr": "s:11FoilShaders0aB10ShaderViewV13configuration13rendererError20failureFallbackColor20respectsReduceMotion29pausesWhenInactiveOrOffscreen010onRendererG0AcA0C13ConfigurationV_7SwiftUI7BindingVyAA0abG0OSgGAA0cJ0VS2byAPcSgtcfc",
-            "mangledName": "$s11FoilShaders0aB10ShaderViewV13configuration13rendererError20failureFallbackColor20respectsReduceMotion29pausesWhenInactiveOrOffscreen010onRendererG0AcA0C13ConfigurationV_7SwiftUI7BindingVyAA0abG0OSgGAA0cJ0VS2byAPcSgtcfc",
-            "moduleName": "FoilShaders",
-            "declAttributes": [
-              "Preconcurrency",
-              "Custom"
-            ],
-            "init_kind": "Designated"
-          },
-          {
-            "kind": "Var",
-            "name": "body",
-            "printedName": "body",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "OpaqueTypeArchetype",
-                "printedName": "some SwiftUI.View",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "View",
-                    "printedName": "SwiftUI.View",
-                    "usr": "s:7SwiftUI4ViewP"
-                  }
-                ]
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:11FoilShaders0aB10ShaderViewV4bodyQrvp",
-            "mangledName": "$s11FoilShaders0aB10ShaderViewV4bodyQrvp",
-            "moduleName": "FoilShaders",
-            "declAttributes": [
-              "Preconcurrency",
-              "Custom"
-            ],
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "OpaqueTypeArchetype",
-                    "printedName": "some SwiftUI.View",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "View",
-                        "printedName": "SwiftUI.View",
-                        "usr": "s:7SwiftUI4ViewP"
-                      }
-                    ]
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders0aB10ShaderViewV4bodyQrvg",
-                "mangledName": "$s11FoilShaders0aB10ShaderViewV4bodyQrvg",
-                "moduleName": "FoilShaders",
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "TypeAlias",
-            "name": "Body",
-            "printedName": "Body",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "OpaqueTypeArchetype",
-                "printedName": "some SwiftUI.View",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "View",
-                    "printedName": "SwiftUI.View",
-                    "usr": "s:7SwiftUI4ViewP"
-                  }
-                ]
-              }
-            ],
-            "declKind": "TypeAlias",
-            "usr": "s:11FoilShaders0aB10ShaderViewV4Bodya",
-            "mangledName": "$s11FoilShaders0aB10ShaderViewV4Bodya",
-            "moduleName": "FoilShaders",
-            "implicit": true
-          }
-        ],
-        "declKind": "Struct",
-        "usr": "s:11FoilShaders0aB10ShaderViewV",
-        "mangledName": "$s11FoilShaders0aB10ShaderViewV",
-        "moduleName": "FoilShaders",
-        "declAttributes": [
-          "Preconcurrency",
-          "Custom"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Sendable",
-            "printedName": "Sendable",
-            "usr": "s:s8SendableP",
-            "mangledName": "$ss8SendableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "View",
-            "printedName": "View",
-            "children": [
-              {
-                "kind": "TypeWitness",
-                "name": "Body",
-                "printedName": "Body",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "OpaqueTypeArchetype",
-                    "printedName": "some SwiftUI.View",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "View",
-                        "printedName": "SwiftUI.View",
-                        "usr": "s:7SwiftUI4ViewP"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "usr": "s:7SwiftUI4ViewP",
-            "mangledName": "$s7SwiftUI4ViewP"
-          }
-        ]
-      },
-      {
         "kind": "TypeAlias",
-        "name": "MeshGradientPreset",
-        "printedName": "MeshGradientPreset",
+        "name": "AnimatedMeshGradientPreset",
+        "printedName": "AnimatedMeshGradientPreset",
         "children": [
           {
             "kind": "TypeNominal",
             "name": "ShaderPreset",
-            "printedName": "FoilShaders.ShaderPreset<FoilShaders.MeshGradientParams>",
+            "printedName": "FoilShaders.ShaderPreset<FoilShaders.AnimatedMeshGradientParams>",
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "MeshGradientParams",
-                "printedName": "FoilShaders.MeshGradientParams",
-                "usr": "s:11FoilShaders18MeshGradientParamsV"
+                "name": "AnimatedMeshGradientParams",
+                "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
               }
             ],
             "usr": "s:11FoilShaders12ShaderPresetV"
           }
         ],
         "declKind": "TypeAlias",
-        "usr": "s:11FoilShaders18MeshGradientPreseta",
-        "mangledName": "$s11FoilShaders18MeshGradientPreseta",
+        "usr": "s:11FoilShaders26AnimatedMeshGradientPreseta",
+        "mangledName": "$s11FoilShaders26AnimatedMeshGradientPreseta",
         "moduleName": "FoilShaders"
       },
       {
@@ -22635,27 +22635,27 @@
       },
       {
         "kind": "TypeAlias",
-        "name": "HalftoneCmykPreset",
-        "printedName": "HalftoneCmykPreset",
+        "name": "HalftoneCMYKPreset",
+        "printedName": "HalftoneCMYKPreset",
         "children": [
           {
             "kind": "TypeNominal",
             "name": "ShaderPreset",
-            "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCmykParams>",
+            "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCMYKParams>",
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "HalftoneCmykParams",
-                "printedName": "FoilShaders.HalftoneCmykParams",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                "name": "HalftoneCMYKParams",
+                "printedName": "FoilShaders.HalftoneCMYKParams",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
               }
             ],
             "usr": "s:11FoilShaders12ShaderPresetV"
           }
         ],
         "declKind": "TypeAlias",
-        "usr": "s:11FoilShaders18HalftoneCmykPreseta",
-        "mangledName": "$s11FoilShaders18HalftoneCmykPreseta",
+        "usr": "s:11FoilShaders18HalftoneCMYKPreseta",
+        "mangledName": "$s11FoilShaders18HalftoneCMYKPreseta",
         "moduleName": "FoilShaders"
       },
       {
@@ -25067,19 +25067,19 @@
             "children": [
               {
                 "kind": "TypeNameAlias",
-                "name": "MeshGradientPreset",
-                "printedName": "FoilShaders.MeshGradientPreset",
+                "name": "AnimatedMeshGradientPreset",
+                "printedName": "FoilShaders.AnimatedMeshGradientPreset",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "ShaderPreset",
-                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.MeshGradientParams>",
+                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.AnimatedMeshGradientParams>",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "MeshGradientParams",
-                        "printedName": "FoilShaders.MeshGradientParams",
-                        "usr": "s:11FoilShaders18MeshGradientParamsV"
+                        "name": "AnimatedMeshGradientParams",
+                        "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                        "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
                       }
                     ],
                     "usr": "s:11FoilShaders12ShaderPresetV"
@@ -25088,8 +25088,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE7defaultACyAEGvpZ",
-            "mangledName": "$s11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE7defaultACyAEGvpZ",
+            "usr": "s:11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE7defaultACyAEGvpZ",
+            "mangledName": "$s11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE7defaultACyAEGvpZ",
             "moduleName": "FoilShaders",
             "static": true,
             "declAttributes": [
@@ -25107,19 +25107,19 @@
                 "children": [
                   {
                     "kind": "TypeNameAlias",
-                    "name": "MeshGradientPreset",
-                    "printedName": "FoilShaders.MeshGradientPreset",
+                    "name": "AnimatedMeshGradientPreset",
+                    "printedName": "FoilShaders.AnimatedMeshGradientPreset",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ShaderPreset",
-                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.MeshGradientParams>",
+                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.AnimatedMeshGradientParams>",
                         "children": [
                           {
                             "kind": "TypeNominal",
-                            "name": "MeshGradientParams",
-                            "printedName": "FoilShaders.MeshGradientParams",
-                            "usr": "s:11FoilShaders18MeshGradientParamsV"
+                            "name": "AnimatedMeshGradientParams",
+                            "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
                           }
                         ],
                         "usr": "s:11FoilShaders12ShaderPresetV"
@@ -25128,10 +25128,10 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE7defaultACyAEGvgZ",
-                "mangledName": "$s11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE7defaultACyAEGvgZ",
+                "usr": "s:11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE7defaultACyAEGvgZ",
+                "mangledName": "$s11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE7defaultACyAEGvgZ",
                 "moduleName": "FoilShaders",
-                "genericSig": "<Params where Params == FoilShaders.MeshGradientParams>",
+                "genericSig": "<Params where Params == FoilShaders.AnimatedMeshGradientParams>",
                 "static": true,
                 "implicit": true,
                 "declAttributes": [
@@ -25149,19 +25149,19 @@
             "children": [
               {
                 "kind": "TypeNameAlias",
-                "name": "MeshGradientPreset",
-                "printedName": "FoilShaders.MeshGradientPreset",
+                "name": "AnimatedMeshGradientPreset",
+                "printedName": "FoilShaders.AnimatedMeshGradientPreset",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "ShaderPreset",
-                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.MeshGradientParams>",
+                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.AnimatedMeshGradientParams>",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "MeshGradientParams",
-                        "printedName": "FoilShaders.MeshGradientParams",
-                        "usr": "s:11FoilShaders18MeshGradientParamsV"
+                        "name": "AnimatedMeshGradientParams",
+                        "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                        "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
                       }
                     ],
                     "usr": "s:11FoilShaders12ShaderPresetV"
@@ -25170,8 +25170,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE3inkACyAEGvpZ",
-            "mangledName": "$s11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE3inkACyAEGvpZ",
+            "usr": "s:11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE3inkACyAEGvpZ",
+            "mangledName": "$s11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE3inkACyAEGvpZ",
             "moduleName": "FoilShaders",
             "static": true,
             "declAttributes": [
@@ -25189,19 +25189,19 @@
                 "children": [
                   {
                     "kind": "TypeNameAlias",
-                    "name": "MeshGradientPreset",
-                    "printedName": "FoilShaders.MeshGradientPreset",
+                    "name": "AnimatedMeshGradientPreset",
+                    "printedName": "FoilShaders.AnimatedMeshGradientPreset",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ShaderPreset",
-                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.MeshGradientParams>",
+                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.AnimatedMeshGradientParams>",
                         "children": [
                           {
                             "kind": "TypeNominal",
-                            "name": "MeshGradientParams",
-                            "printedName": "FoilShaders.MeshGradientParams",
-                            "usr": "s:11FoilShaders18MeshGradientParamsV"
+                            "name": "AnimatedMeshGradientParams",
+                            "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
                           }
                         ],
                         "usr": "s:11FoilShaders12ShaderPresetV"
@@ -25210,10 +25210,10 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE3inkACyAEGvgZ",
-                "mangledName": "$s11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE3inkACyAEGvgZ",
+                "usr": "s:11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE3inkACyAEGvgZ",
+                "mangledName": "$s11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE3inkACyAEGvgZ",
                 "moduleName": "FoilShaders",
-                "genericSig": "<Params where Params == FoilShaders.MeshGradientParams>",
+                "genericSig": "<Params where Params == FoilShaders.AnimatedMeshGradientParams>",
                 "static": true,
                 "implicit": true,
                 "declAttributes": [
@@ -25231,19 +25231,19 @@
             "children": [
               {
                 "kind": "TypeNameAlias",
-                "name": "MeshGradientPreset",
-                "printedName": "FoilShaders.MeshGradientPreset",
+                "name": "AnimatedMeshGradientPreset",
+                "printedName": "FoilShaders.AnimatedMeshGradientPreset",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "ShaderPreset",
-                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.MeshGradientParams>",
+                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.AnimatedMeshGradientParams>",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "MeshGradientParams",
-                        "printedName": "FoilShaders.MeshGradientParams",
-                        "usr": "s:11FoilShaders18MeshGradientParamsV"
+                        "name": "AnimatedMeshGradientParams",
+                        "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                        "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
                       }
                     ],
                     "usr": "s:11FoilShaders12ShaderPresetV"
@@ -25252,8 +25252,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE6purpleACyAEGvpZ",
-            "mangledName": "$s11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE6purpleACyAEGvpZ",
+            "usr": "s:11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE6purpleACyAEGvpZ",
+            "mangledName": "$s11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE6purpleACyAEGvpZ",
             "moduleName": "FoilShaders",
             "static": true,
             "declAttributes": [
@@ -25271,19 +25271,19 @@
                 "children": [
                   {
                     "kind": "TypeNameAlias",
-                    "name": "MeshGradientPreset",
-                    "printedName": "FoilShaders.MeshGradientPreset",
+                    "name": "AnimatedMeshGradientPreset",
+                    "printedName": "FoilShaders.AnimatedMeshGradientPreset",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ShaderPreset",
-                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.MeshGradientParams>",
+                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.AnimatedMeshGradientParams>",
                         "children": [
                           {
                             "kind": "TypeNominal",
-                            "name": "MeshGradientParams",
-                            "printedName": "FoilShaders.MeshGradientParams",
-                            "usr": "s:11FoilShaders18MeshGradientParamsV"
+                            "name": "AnimatedMeshGradientParams",
+                            "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
                           }
                         ],
                         "usr": "s:11FoilShaders12ShaderPresetV"
@@ -25292,10 +25292,10 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE6purpleACyAEGvgZ",
-                "mangledName": "$s11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE6purpleACyAEGvgZ",
+                "usr": "s:11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE6purpleACyAEGvgZ",
+                "mangledName": "$s11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE6purpleACyAEGvgZ",
                 "moduleName": "FoilShaders",
-                "genericSig": "<Params where Params == FoilShaders.MeshGradientParams>",
+                "genericSig": "<Params where Params == FoilShaders.AnimatedMeshGradientParams>",
                 "static": true,
                 "implicit": true,
                 "declAttributes": [
@@ -25313,19 +25313,19 @@
             "children": [
               {
                 "kind": "TypeNameAlias",
-                "name": "MeshGradientPreset",
-                "printedName": "FoilShaders.MeshGradientPreset",
+                "name": "AnimatedMeshGradientPreset",
+                "printedName": "FoilShaders.AnimatedMeshGradientPreset",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "ShaderPreset",
-                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.MeshGradientParams>",
+                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.AnimatedMeshGradientParams>",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "MeshGradientParams",
-                        "printedName": "FoilShaders.MeshGradientParams",
-                        "usr": "s:11FoilShaders18MeshGradientParamsV"
+                        "name": "AnimatedMeshGradientParams",
+                        "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                        "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
                       }
                     ],
                     "usr": "s:11FoilShaders12ShaderPresetV"
@@ -25334,8 +25334,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE5beachACyAEGvpZ",
-            "mangledName": "$s11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE5beachACyAEGvpZ",
+            "usr": "s:11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE5beachACyAEGvpZ",
+            "mangledName": "$s11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE5beachACyAEGvpZ",
             "moduleName": "FoilShaders",
             "static": true,
             "declAttributes": [
@@ -25353,19 +25353,19 @@
                 "children": [
                   {
                     "kind": "TypeNameAlias",
-                    "name": "MeshGradientPreset",
-                    "printedName": "FoilShaders.MeshGradientPreset",
+                    "name": "AnimatedMeshGradientPreset",
+                    "printedName": "FoilShaders.AnimatedMeshGradientPreset",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ShaderPreset",
-                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.MeshGradientParams>",
+                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.AnimatedMeshGradientParams>",
                         "children": [
                           {
                             "kind": "TypeNominal",
-                            "name": "MeshGradientParams",
-                            "printedName": "FoilShaders.MeshGradientParams",
-                            "usr": "s:11FoilShaders18MeshGradientParamsV"
+                            "name": "AnimatedMeshGradientParams",
+                            "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
                           }
                         ],
                         "usr": "s:11FoilShaders12ShaderPresetV"
@@ -25374,10 +25374,10 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE5beachACyAEGvgZ",
-                "mangledName": "$s11FoilShaders12ShaderPresetVA2A18MeshGradientParamsVRszrlE5beachACyAEGvgZ",
+                "usr": "s:11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE5beachACyAEGvgZ",
+                "mangledName": "$s11FoilShaders12ShaderPresetVA2A26AnimatedMeshGradientParamsVRszrlE5beachACyAEGvgZ",
                 "moduleName": "FoilShaders",
-                "genericSig": "<Params where Params == FoilShaders.MeshGradientParams>",
+                "genericSig": "<Params where Params == FoilShaders.AnimatedMeshGradientParams>",
                 "static": true,
                 "implicit": true,
                 "declAttributes": [
@@ -34251,19 +34251,19 @@
             "children": [
               {
                 "kind": "TypeNameAlias",
-                "name": "HalftoneCmykPreset",
-                "printedName": "FoilShaders.HalftoneCmykPreset",
+                "name": "HalftoneCMYKPreset",
+                "printedName": "FoilShaders.HalftoneCMYKPreset",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "ShaderPreset",
-                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCmykParams>",
+                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCMYKParams>",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "HalftoneCmykParams",
-                        "printedName": "FoilShaders.HalftoneCmykParams",
-                        "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                        "name": "HalftoneCMYKParams",
+                        "printedName": "FoilShaders.HalftoneCMYKParams",
+                        "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
                       }
                     ],
                     "usr": "s:11FoilShaders12ShaderPresetV"
@@ -34272,8 +34272,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE7defaultACyAEGvpZ",
-            "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE7defaultACyAEGvpZ",
+            "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE7defaultACyAEGvpZ",
+            "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE7defaultACyAEGvpZ",
             "moduleName": "FoilShaders",
             "static": true,
             "declAttributes": [
@@ -34291,19 +34291,19 @@
                 "children": [
                   {
                     "kind": "TypeNameAlias",
-                    "name": "HalftoneCmykPreset",
-                    "printedName": "FoilShaders.HalftoneCmykPreset",
+                    "name": "HalftoneCMYKPreset",
+                    "printedName": "FoilShaders.HalftoneCMYKPreset",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ShaderPreset",
-                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCmykParams>",
+                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCMYKParams>",
                         "children": [
                           {
                             "kind": "TypeNominal",
-                            "name": "HalftoneCmykParams",
-                            "printedName": "FoilShaders.HalftoneCmykParams",
-                            "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                            "name": "HalftoneCMYKParams",
+                            "printedName": "FoilShaders.HalftoneCMYKParams",
+                            "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
                           }
                         ],
                         "usr": "s:11FoilShaders12ShaderPresetV"
@@ -34312,10 +34312,10 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE7defaultACyAEGvgZ",
-                "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE7defaultACyAEGvgZ",
+                "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE7defaultACyAEGvgZ",
+                "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE7defaultACyAEGvgZ",
                 "moduleName": "FoilShaders",
-                "genericSig": "<Params where Params == FoilShaders.HalftoneCmykParams>",
+                "genericSig": "<Params where Params == FoilShaders.HalftoneCMYKParams>",
                 "static": true,
                 "implicit": true,
                 "declAttributes": [
@@ -34333,19 +34333,19 @@
             "children": [
               {
                 "kind": "TypeNameAlias",
-                "name": "HalftoneCmykPreset",
-                "printedName": "FoilShaders.HalftoneCmykPreset",
+                "name": "HalftoneCMYKPreset",
+                "printedName": "FoilShaders.HalftoneCMYKPreset",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "ShaderPreset",
-                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCmykParams>",
+                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCMYKParams>",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "HalftoneCmykParams",
-                        "printedName": "FoilShaders.HalftoneCmykParams",
-                        "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                        "name": "HalftoneCMYKParams",
+                        "printedName": "FoilShaders.HalftoneCMYKParams",
+                        "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
                       }
                     ],
                     "usr": "s:11FoilShaders12ShaderPresetV"
@@ -34354,8 +34354,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE5dropsACyAEGvpZ",
-            "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE5dropsACyAEGvpZ",
+            "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE5dropsACyAEGvpZ",
+            "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE5dropsACyAEGvpZ",
             "moduleName": "FoilShaders",
             "static": true,
             "declAttributes": [
@@ -34373,19 +34373,19 @@
                 "children": [
                   {
                     "kind": "TypeNameAlias",
-                    "name": "HalftoneCmykPreset",
-                    "printedName": "FoilShaders.HalftoneCmykPreset",
+                    "name": "HalftoneCMYKPreset",
+                    "printedName": "FoilShaders.HalftoneCMYKPreset",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ShaderPreset",
-                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCmykParams>",
+                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCMYKParams>",
                         "children": [
                           {
                             "kind": "TypeNominal",
-                            "name": "HalftoneCmykParams",
-                            "printedName": "FoilShaders.HalftoneCmykParams",
-                            "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                            "name": "HalftoneCMYKParams",
+                            "printedName": "FoilShaders.HalftoneCMYKParams",
+                            "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
                           }
                         ],
                         "usr": "s:11FoilShaders12ShaderPresetV"
@@ -34394,10 +34394,10 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE5dropsACyAEGvgZ",
-                "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE5dropsACyAEGvgZ",
+                "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE5dropsACyAEGvgZ",
+                "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE5dropsACyAEGvgZ",
                 "moduleName": "FoilShaders",
-                "genericSig": "<Params where Params == FoilShaders.HalftoneCmykParams>",
+                "genericSig": "<Params where Params == FoilShaders.HalftoneCMYKParams>",
                 "static": true,
                 "implicit": true,
                 "declAttributes": [
@@ -34415,19 +34415,19 @@
             "children": [
               {
                 "kind": "TypeNameAlias",
-                "name": "HalftoneCmykPreset",
-                "printedName": "FoilShaders.HalftoneCmykPreset",
+                "name": "HalftoneCMYKPreset",
+                "printedName": "FoilShaders.HalftoneCMYKPreset",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "ShaderPreset",
-                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCmykParams>",
+                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCMYKParams>",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "HalftoneCmykParams",
-                        "printedName": "FoilShaders.HalftoneCmykParams",
-                        "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                        "name": "HalftoneCMYKParams",
+                        "printedName": "FoilShaders.HalftoneCMYKParams",
+                        "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
                       }
                     ],
                     "usr": "s:11FoilShaders12ShaderPresetV"
@@ -34436,8 +34436,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE9newspaperACyAEGvpZ",
-            "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE9newspaperACyAEGvpZ",
+            "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE9newspaperACyAEGvpZ",
+            "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE9newspaperACyAEGvpZ",
             "moduleName": "FoilShaders",
             "static": true,
             "declAttributes": [
@@ -34455,19 +34455,19 @@
                 "children": [
                   {
                     "kind": "TypeNameAlias",
-                    "name": "HalftoneCmykPreset",
-                    "printedName": "FoilShaders.HalftoneCmykPreset",
+                    "name": "HalftoneCMYKPreset",
+                    "printedName": "FoilShaders.HalftoneCMYKPreset",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ShaderPreset",
-                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCmykParams>",
+                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCMYKParams>",
                         "children": [
                           {
                             "kind": "TypeNominal",
-                            "name": "HalftoneCmykParams",
-                            "printedName": "FoilShaders.HalftoneCmykParams",
-                            "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                            "name": "HalftoneCMYKParams",
+                            "printedName": "FoilShaders.HalftoneCMYKParams",
+                            "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
                           }
                         ],
                         "usr": "s:11FoilShaders12ShaderPresetV"
@@ -34476,10 +34476,10 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE9newspaperACyAEGvgZ",
-                "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE9newspaperACyAEGvgZ",
+                "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE9newspaperACyAEGvgZ",
+                "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE9newspaperACyAEGvgZ",
                 "moduleName": "FoilShaders",
-                "genericSig": "<Params where Params == FoilShaders.HalftoneCmykParams>",
+                "genericSig": "<Params where Params == FoilShaders.HalftoneCMYKParams>",
                 "static": true,
                 "implicit": true,
                 "declAttributes": [
@@ -34497,19 +34497,19 @@
             "children": [
               {
                 "kind": "TypeNameAlias",
-                "name": "HalftoneCmykPreset",
-                "printedName": "FoilShaders.HalftoneCmykPreset",
+                "name": "HalftoneCMYKPreset",
+                "printedName": "FoilShaders.HalftoneCMYKPreset",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "ShaderPreset",
-                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCmykParams>",
+                    "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCMYKParams>",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "HalftoneCmykParams",
-                        "printedName": "FoilShaders.HalftoneCmykParams",
-                        "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                        "name": "HalftoneCMYKParams",
+                        "printedName": "FoilShaders.HalftoneCMYKParams",
+                        "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
                       }
                     ],
                     "usr": "s:11FoilShaders12ShaderPresetV"
@@ -34518,8 +34518,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE7vintageACyAEGvpZ",
-            "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE7vintageACyAEGvpZ",
+            "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE7vintageACyAEGvpZ",
+            "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE7vintageACyAEGvpZ",
             "moduleName": "FoilShaders",
             "static": true,
             "declAttributes": [
@@ -34537,19 +34537,19 @@
                 "children": [
                   {
                     "kind": "TypeNameAlias",
-                    "name": "HalftoneCmykPreset",
-                    "printedName": "FoilShaders.HalftoneCmykPreset",
+                    "name": "HalftoneCMYKPreset",
+                    "printedName": "FoilShaders.HalftoneCMYKPreset",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ShaderPreset",
-                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCmykParams>",
+                        "printedName": "FoilShaders.ShaderPreset<FoilShaders.HalftoneCMYKParams>",
                         "children": [
                           {
                             "kind": "TypeNominal",
-                            "name": "HalftoneCmykParams",
-                            "printedName": "FoilShaders.HalftoneCmykParams",
-                            "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                            "name": "HalftoneCMYKParams",
+                            "printedName": "FoilShaders.HalftoneCMYKParams",
+                            "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
                           }
                         ],
                         "usr": "s:11FoilShaders12ShaderPresetV"
@@ -34558,10 +34558,10 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE7vintageACyAEGvgZ",
-                "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCmykParamsVRszrlE7vintageACyAEGvgZ",
+                "usr": "s:11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE7vintageACyAEGvgZ",
+                "mangledName": "$s11FoilShaders12ShaderPresetVA2A18HalftoneCMYKParamsVRszrlE7vintageACyAEGvgZ",
                 "moduleName": "FoilShaders",
-                "genericSig": "<Params where Params == FoilShaders.HalftoneCmykParams>",
+                "genericSig": "<Params where Params == FoilShaders.HalftoneCMYKParams>",
                 "static": true,
                 "implicit": true,
                 "declAttributes": [
@@ -38620,8 +38620,8 @@
       },
       {
         "kind": "TypeDecl",
-        "name": "HalftoneCmykType",
-        "printedName": "HalftoneCmykType",
+        "name": "HalftoneCMYKType",
+        "printedName": "HalftoneCMYKType",
         "children": [
           {
             "kind": "Var",
@@ -38631,24 +38631,24 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(FoilShaders.HalftoneCmykType.Type) -> FoilShaders.HalftoneCmykType",
+                "printedName": "(FoilShaders.HalftoneCMYKType.Type) -> FoilShaders.HalftoneCMYKType",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "HalftoneCmykType",
-                    "printedName": "FoilShaders.HalftoneCmykType",
-                    "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                    "name": "HalftoneCMYKType",
+                    "printedName": "FoilShaders.HalftoneCMYKType",
+                    "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
                   },
                   {
                     "kind": "TypeNominal",
                     "name": "Metatype",
-                    "printedName": "FoilShaders.HalftoneCmykType.Type",
+                    "printedName": "FoilShaders.HalftoneCMYKType.Type",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "HalftoneCmykType",
-                        "printedName": "FoilShaders.HalftoneCmykType",
-                        "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                        "name": "HalftoneCMYKType",
+                        "printedName": "FoilShaders.HalftoneCMYKType",
+                        "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
                       }
                     ]
                   }
@@ -38656,8 +38656,8 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:11FoilShaders16HalftoneCmykTypeO4dotsyA2CmF",
-            "mangledName": "$s11FoilShaders16HalftoneCmykTypeO4dotsyA2CmF",
+            "usr": "s:11FoilShaders16HalftoneCMYKTypeO4dotsyA2CmF",
+            "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO4dotsyA2CmF",
             "moduleName": "FoilShaders"
           },
           {
@@ -38668,24 +38668,24 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(FoilShaders.HalftoneCmykType.Type) -> FoilShaders.HalftoneCmykType",
+                "printedName": "(FoilShaders.HalftoneCMYKType.Type) -> FoilShaders.HalftoneCMYKType",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "HalftoneCmykType",
-                    "printedName": "FoilShaders.HalftoneCmykType",
-                    "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                    "name": "HalftoneCMYKType",
+                    "printedName": "FoilShaders.HalftoneCMYKType",
+                    "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
                   },
                   {
                     "kind": "TypeNominal",
                     "name": "Metatype",
-                    "printedName": "FoilShaders.HalftoneCmykType.Type",
+                    "printedName": "FoilShaders.HalftoneCMYKType.Type",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "HalftoneCmykType",
-                        "printedName": "FoilShaders.HalftoneCmykType",
-                        "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                        "name": "HalftoneCMYKType",
+                        "printedName": "FoilShaders.HalftoneCMYKType",
+                        "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
                       }
                     ]
                   }
@@ -38693,8 +38693,8 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:11FoilShaders16HalftoneCmykTypeO3inkyA2CmF",
-            "mangledName": "$s11FoilShaders16HalftoneCmykTypeO3inkyA2CmF",
+            "usr": "s:11FoilShaders16HalftoneCMYKTypeO3inkyA2CmF",
+            "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO3inkyA2CmF",
             "moduleName": "FoilShaders"
           },
           {
@@ -38705,24 +38705,24 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(FoilShaders.HalftoneCmykType.Type) -> FoilShaders.HalftoneCmykType",
+                "printedName": "(FoilShaders.HalftoneCMYKType.Type) -> FoilShaders.HalftoneCMYKType",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "HalftoneCmykType",
-                    "printedName": "FoilShaders.HalftoneCmykType",
-                    "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                    "name": "HalftoneCMYKType",
+                    "printedName": "FoilShaders.HalftoneCMYKType",
+                    "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
                   },
                   {
                     "kind": "TypeNominal",
                     "name": "Metatype",
-                    "printedName": "FoilShaders.HalftoneCmykType.Type",
+                    "printedName": "FoilShaders.HalftoneCMYKType.Type",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "HalftoneCmykType",
-                        "printedName": "FoilShaders.HalftoneCmykType",
-                        "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                        "name": "HalftoneCMYKType",
+                        "printedName": "FoilShaders.HalftoneCMYKType",
+                        "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
                       }
                     ]
                   }
@@ -38730,8 +38730,8 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:11FoilShaders16HalftoneCmykTypeO5sharpyA2CmF",
-            "mangledName": "$s11FoilShaders16HalftoneCmykTypeO5sharpyA2CmF",
+            "usr": "s:11FoilShaders16HalftoneCMYKTypeO5sharpyA2CmF",
+            "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO5sharpyA2CmF",
             "moduleName": "FoilShaders"
           },
           {
@@ -38742,13 +38742,13 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "FoilShaders.HalftoneCmykType?",
+                "printedName": "FoilShaders.HalftoneCMYKType?",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "HalftoneCmykType",
-                    "printedName": "FoilShaders.HalftoneCmykType",
-                    "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                    "name": "HalftoneCMYKType",
+                    "printedName": "FoilShaders.HalftoneCMYKType",
+                    "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
                   }
                 ],
                 "usr": "s:Sq"
@@ -38761,8 +38761,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders16HalftoneCmykTypeO8rawValueACSgSf_tcfc",
-            "mangledName": "$s11FoilShaders16HalftoneCmykTypeO8rawValueACSgSf_tcfc",
+            "usr": "s:11FoilShaders16HalftoneCMYKTypeO8rawValueACSgSf_tcfc",
+            "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO8rawValueACSgSf_tcfc",
             "moduleName": "FoilShaders",
             "implicit": true,
             "declAttributes": [
@@ -38778,21 +38778,21 @@
               {
                 "kind": "TypeNominal",
                 "name": "Array",
-                "printedName": "[FoilShaders.HalftoneCmykType]",
+                "printedName": "[FoilShaders.HalftoneCMYKType]",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "HalftoneCmykType",
-                    "printedName": "FoilShaders.HalftoneCmykType",
-                    "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                    "name": "HalftoneCMYKType",
+                    "printedName": "FoilShaders.HalftoneCMYKType",
+                    "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
                   }
                 ],
                 "usr": "s:Sa"
               }
             ],
             "declKind": "TypeAlias",
-            "usr": "s:11FoilShaders16HalftoneCmykTypeO8AllCasesa",
-            "mangledName": "$s11FoilShaders16HalftoneCmykTypeO8AllCasesa",
+            "usr": "s:11FoilShaders16HalftoneCMYKTypeO8AllCasesa",
+            "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO8AllCasesa",
             "moduleName": "FoilShaders",
             "implicit": true
           },
@@ -38809,8 +38809,8 @@
               }
             ],
             "declKind": "TypeAlias",
-            "usr": "s:11FoilShaders16HalftoneCmykTypeO8RawValuea",
-            "mangledName": "$s11FoilShaders16HalftoneCmykTypeO8RawValuea",
+            "usr": "s:11FoilShaders16HalftoneCMYKTypeO8RawValuea",
+            "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO8RawValuea",
             "moduleName": "FoilShaders",
             "implicit": true
           },
@@ -38822,21 +38822,21 @@
               {
                 "kind": "TypeNominal",
                 "name": "Array",
-                "printedName": "[FoilShaders.HalftoneCmykType]",
+                "printedName": "[FoilShaders.HalftoneCMYKType]",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "HalftoneCmykType",
-                    "printedName": "FoilShaders.HalftoneCmykType",
-                    "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                    "name": "HalftoneCMYKType",
+                    "printedName": "FoilShaders.HalftoneCMYKType",
+                    "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
                   }
                 ],
                 "usr": "s:Sa"
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders16HalftoneCmykTypeO8allCasesSayACGvpZ",
-            "mangledName": "$s11FoilShaders16HalftoneCmykTypeO8allCasesSayACGvpZ",
+            "usr": "s:11FoilShaders16HalftoneCMYKTypeO8allCasesSayACGvpZ",
+            "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO8allCasesSayACGvpZ",
             "moduleName": "FoilShaders",
             "static": true,
             "implicit": true,
@@ -38852,21 +38852,21 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Array",
-                    "printedName": "[FoilShaders.HalftoneCmykType]",
+                    "printedName": "[FoilShaders.HalftoneCMYKType]",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "HalftoneCmykType",
-                        "printedName": "FoilShaders.HalftoneCmykType",
-                        "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                        "name": "HalftoneCMYKType",
+                        "printedName": "FoilShaders.HalftoneCMYKType",
+                        "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
                       }
                     ],
                     "usr": "s:Sa"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders16HalftoneCmykTypeO8allCasesSayACGvgZ",
-                "mangledName": "$s11FoilShaders16HalftoneCmykTypeO8allCasesSayACGvgZ",
+                "usr": "s:11FoilShaders16HalftoneCMYKTypeO8allCasesSayACGvgZ",
+                "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO8allCasesSayACGvgZ",
                 "moduleName": "FoilShaders",
                 "static": true,
                 "implicit": true,
@@ -38887,8 +38887,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders16HalftoneCmykTypeO8rawValueSfvp",
-            "mangledName": "$s11FoilShaders16HalftoneCmykTypeO8rawValueSfvp",
+            "usr": "s:11FoilShaders16HalftoneCMYKTypeO8rawValueSfvp",
+            "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO8rawValueSfvp",
             "moduleName": "FoilShaders",
             "implicit": true,
             "accessors": [
@@ -38905,8 +38905,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders16HalftoneCmykTypeO8rawValueSfvg",
-                "mangledName": "$s11FoilShaders16HalftoneCmykTypeO8rawValueSfvg",
+                "usr": "s:11FoilShaders16HalftoneCMYKTypeO8rawValueSfvg",
+                "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO8rawValueSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -38918,8 +38918,8 @@
           }
         ],
         "declKind": "Enum",
-        "usr": "s:11FoilShaders16HalftoneCmykTypeO",
-        "mangledName": "$s11FoilShaders16HalftoneCmykTypeO",
+        "usr": "s:11FoilShaders16HalftoneCMYKTypeO",
+        "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO",
         "moduleName": "FoilShaders",
         "enumRawTypeName": "Float",
         "isEnumExhaustive": true,
@@ -38937,13 +38937,13 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Array",
-                    "printedName": "[FoilShaders.HalftoneCmykType]",
+                    "printedName": "[FoilShaders.HalftoneCMYKType]",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "HalftoneCmykType",
-                        "printedName": "FoilShaders.HalftoneCmykType",
-                        "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                        "name": "HalftoneCMYKType",
+                        "printedName": "FoilShaders.HalftoneCMYKType",
+                        "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
                       }
                     ],
                     "usr": "s:Sa"
@@ -40966,18 +40966,18 @@
         "children": [
           {
             "kind": "Var",
-            "name": "meshGradient",
-            "printedName": "meshGradient",
+            "name": "animatedMeshGradient",
+            "printedName": "animatedMeshGradient",
             "children": [
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(FoilShaders.ShaderParameters.Type) -> (FoilShaders.MeshGradientParams) -> FoilShaders.ShaderParameters",
+                "printedName": "(FoilShaders.ShaderParameters.Type) -> (FoilShaders.AnimatedMeshGradientParams) -> FoilShaders.ShaderParameters",
                 "children": [
                   {
                     "kind": "TypeFunc",
                     "name": "Function",
-                    "printedName": "(FoilShaders.MeshGradientParams) -> FoilShaders.ShaderParameters",
+                    "printedName": "(FoilShaders.AnimatedMeshGradientParams) -> FoilShaders.ShaderParameters",
                     "children": [
                       {
                         "kind": "TypeNominal",
@@ -40987,9 +40987,9 @@
                       },
                       {
                         "kind": "TypeNominal",
-                        "name": "MeshGradientParams",
-                        "printedName": "FoilShaders.MeshGradientParams",
-                        "usr": "s:11FoilShaders18MeshGradientParamsV"
+                        "name": "AnimatedMeshGradientParams",
+                        "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                        "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
                       }
                     ]
                   },
@@ -41010,8 +41010,8 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:11FoilShaders16ShaderParametersO12meshGradientyAcA04MeshF6ParamsVcACmF",
-            "mangledName": "$s11FoilShaders16ShaderParametersO12meshGradientyAcA04MeshF6ParamsVcACmF",
+            "usr": "s:11FoilShaders16ShaderParametersO20animatedMeshGradientyAcA08AnimatedfG6ParamsVcACmF",
+            "mangledName": "$s11FoilShaders16ShaderParametersO20animatedMeshGradientyAcA08AnimatedfG6ParamsVcACmF",
             "moduleName": "FoilShaders"
           },
           {
@@ -42066,18 +42066,18 @@
           },
           {
             "kind": "Var",
-            "name": "halftoneCmyk",
-            "printedName": "halftoneCmyk",
+            "name": "halftoneCMYK",
+            "printedName": "halftoneCMYK",
             "children": [
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(FoilShaders.ShaderParameters.Type) -> (FoilShaders.HalftoneCmykParams) -> FoilShaders.ShaderParameters",
+                "printedName": "(FoilShaders.ShaderParameters.Type) -> (FoilShaders.HalftoneCMYKParams) -> FoilShaders.ShaderParameters",
                 "children": [
                   {
                     "kind": "TypeFunc",
                     "name": "Function",
-                    "printedName": "(FoilShaders.HalftoneCmykParams) -> FoilShaders.ShaderParameters",
+                    "printedName": "(FoilShaders.HalftoneCMYKParams) -> FoilShaders.ShaderParameters",
                     "children": [
                       {
                         "kind": "TypeNominal",
@@ -42087,9 +42087,9 @@
                       },
                       {
                         "kind": "TypeNominal",
-                        "name": "HalftoneCmykParams",
-                        "printedName": "FoilShaders.HalftoneCmykParams",
-                        "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                        "name": "HalftoneCMYKParams",
+                        "printedName": "FoilShaders.HalftoneCMYKParams",
+                        "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
                       }
                     ]
                   },
@@ -42110,8 +42110,8 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:11FoilShaders16ShaderParametersO12halftoneCmykyAcA08HalftoneF6ParamsVcACmF",
-            "mangledName": "$s11FoilShaders16ShaderParametersO12halftoneCmykyAcA08HalftoneF6ParamsVcACmF",
+            "usr": "s:11FoilShaders16ShaderParametersO12halftoneCMYKyAcA18HalftoneCMYKParamsVcACmF",
+            "mangledName": "$s11FoilShaders16ShaderParametersO12halftoneCMYKyAcA18HalftoneCMYKParamsVcACmF",
             "moduleName": "FoilShaders"
           },
           {
@@ -44845,8 +44845,8 @@
       },
       {
         "kind": "TypeDecl",
-        "name": "MeshGradientParams",
-        "printedName": "MeshGradientParams",
+        "name": "AnimatedMeshGradientParams",
+        "printedName": "AnimatedMeshGradientParams",
         "children": [
           {
             "kind": "Var",
@@ -44861,8 +44861,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18MeshGradientParamsV13maxColorCountSivpZ",
-            "mangledName": "$s11FoilShaders18MeshGradientParamsV13maxColorCountSivpZ",
+            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV13maxColorCountSivpZ",
+            "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV13maxColorCountSivpZ",
             "moduleName": "FoilShaders",
             "static": true,
             "declAttributes": [
@@ -44885,8 +44885,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18MeshGradientParamsV13maxColorCountSivgZ",
-                "mangledName": "$s11FoilShaders18MeshGradientParamsV13maxColorCountSivgZ",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV13maxColorCountSivgZ",
+                "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV13maxColorCountSivgZ",
                 "moduleName": "FoilShaders",
                 "static": true,
                 "implicit": true,
@@ -44918,8 +44918,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18MeshGradientParamsV6colorsSayAA11ShaderColorVGvp",
-            "mangledName": "$s11FoilShaders18MeshGradientParamsV6colorsSayAA11ShaderColorVGvp",
+            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV6colorsSayAA11ShaderColorVGvp",
+            "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV6colorsSayAA11ShaderColorVGvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -44947,8 +44947,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18MeshGradientParamsV6colorsSayAA11ShaderColorVGvg",
-                "mangledName": "$s11FoilShaders18MeshGradientParamsV6colorsSayAA11ShaderColorVGvg",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV6colorsSayAA11ShaderColorVGvg",
+                "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV6colorsSayAA11ShaderColorVGvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -44982,8 +44982,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18MeshGradientParamsV6colorsSayAA11ShaderColorVGvs",
-                "mangledName": "$s11FoilShaders18MeshGradientParamsV6colorsSayAA11ShaderColorVGvs",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV6colorsSayAA11ShaderColorVGvs",
+                "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV6colorsSayAA11ShaderColorVGvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -45006,8 +45006,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18MeshGradientParamsV10distortionSfvp",
-            "mangledName": "$s11FoilShaders18MeshGradientParamsV10distortionSfvp",
+            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV10distortionSfvp",
+            "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV10distortionSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -45027,8 +45027,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18MeshGradientParamsV10distortionSfvg",
-                "mangledName": "$s11FoilShaders18MeshGradientParamsV10distortionSfvg",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV10distortionSfvg",
+                "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV10distortionSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -45054,8 +45054,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18MeshGradientParamsV10distortionSfvs",
-                "mangledName": "$s11FoilShaders18MeshGradientParamsV10distortionSfvs",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV10distortionSfvs",
+                "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV10distortionSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -45078,8 +45078,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18MeshGradientParamsV5swirlSfvp",
-            "mangledName": "$s11FoilShaders18MeshGradientParamsV5swirlSfvp",
+            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV5swirlSfvp",
+            "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV5swirlSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -45099,8 +45099,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18MeshGradientParamsV5swirlSfvg",
-                "mangledName": "$s11FoilShaders18MeshGradientParamsV5swirlSfvg",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV5swirlSfvg",
+                "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV5swirlSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -45126,8 +45126,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18MeshGradientParamsV5swirlSfvs",
-                "mangledName": "$s11FoilShaders18MeshGradientParamsV5swirlSfvs",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV5swirlSfvs",
+                "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV5swirlSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -45150,8 +45150,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18MeshGradientParamsV10grainMixerSfvp",
-            "mangledName": "$s11FoilShaders18MeshGradientParamsV10grainMixerSfvp",
+            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV10grainMixerSfvp",
+            "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV10grainMixerSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -45171,8 +45171,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18MeshGradientParamsV10grainMixerSfvg",
-                "mangledName": "$s11FoilShaders18MeshGradientParamsV10grainMixerSfvg",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV10grainMixerSfvg",
+                "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV10grainMixerSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -45198,8 +45198,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18MeshGradientParamsV10grainMixerSfvs",
-                "mangledName": "$s11FoilShaders18MeshGradientParamsV10grainMixerSfvs",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV10grainMixerSfvs",
+                "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV10grainMixerSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -45222,8 +45222,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18MeshGradientParamsV12grainOverlaySfvp",
-            "mangledName": "$s11FoilShaders18MeshGradientParamsV12grainOverlaySfvp",
+            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV12grainOverlaySfvp",
+            "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV12grainOverlaySfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -45243,8 +45243,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18MeshGradientParamsV12grainOverlaySfvg",
-                "mangledName": "$s11FoilShaders18MeshGradientParamsV12grainOverlaySfvg",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV12grainOverlaySfvg",
+                "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV12grainOverlaySfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -45270,8 +45270,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18MeshGradientParamsV12grainOverlaySfvs",
-                "mangledName": "$s11FoilShaders18MeshGradientParamsV12grainOverlaySfvs",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV12grainOverlaySfvs",
+                "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV12grainOverlaySfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -45288,9 +45288,9 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "MeshGradientParams",
-                "printedName": "FoilShaders.MeshGradientParams",
-                "usr": "s:11FoilShaders18MeshGradientParamsV"
+                "name": "AnimatedMeshGradientParams",
+                "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
               },
               {
                 "kind": "TypeNominal",
@@ -45336,8 +45336,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders18MeshGradientParamsV6colors10distortion5swirl10grainMixer0I7OverlayACSayAA11ShaderColorVG_S4ftcfc",
-            "mangledName": "$s11FoilShaders18MeshGradientParamsV6colors10distortion5swirl10grainMixer0I7OverlayACSayAA11ShaderColorVG_S4ftcfc",
+            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV6colors10distortion5swirl10grainMixer0J7OverlayACSayAA11ShaderColorVG_S4ftcfc",
+            "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV6colors10distortion5swirl10grainMixer0J7OverlayACSayAA11ShaderColorVG_S4ftcfc",
             "moduleName": "FoilShaders",
             "init_kind": "Designated"
           },
@@ -45354,20 +45354,20 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "MeshGradientParams",
-                "printedName": "FoilShaders.MeshGradientParams",
-                "usr": "s:11FoilShaders18MeshGradientParamsV"
+                "name": "AnimatedMeshGradientParams",
+                "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
               },
               {
                 "kind": "TypeNominal",
-                "name": "MeshGradientParams",
-                "printedName": "FoilShaders.MeshGradientParams",
-                "usr": "s:11FoilShaders18MeshGradientParamsV"
+                "name": "AnimatedMeshGradientParams",
+                "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
               }
             ],
             "declKind": "Func",
-            "usr": "s:11FoilShaders18MeshGradientParamsV23__derived_struct_equalsySbAC_ACtFZ",
-            "mangledName": "$s11FoilShaders18MeshGradientParamsV23__derived_struct_equalsySbAC_ACtFZ",
+            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV23__derived_struct_equalsySbAC_ACtFZ",
+            "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV23__derived_struct_equalsySbAC_ACtFZ",
             "moduleName": "FoilShaders",
             "static": true,
             "implicit": true,
@@ -45394,8 +45394,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:11FoilShaders18MeshGradientParamsV6encode2toys7Encoder_p_tKF",
-            "mangledName": "$s11FoilShaders18MeshGradientParamsV6encode2toys7Encoder_p_tKF",
+            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV6encode2toys7Encoder_p_tKF",
             "moduleName": "FoilShaders",
             "implicit": true,
             "throwing": true,
@@ -45408,9 +45408,9 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "MeshGradientParams",
-                "printedName": "FoilShaders.MeshGradientParams",
-                "usr": "s:11FoilShaders18MeshGradientParamsV"
+                "name": "AnimatedMeshGradientParams",
+                "printedName": "FoilShaders.AnimatedMeshGradientParams",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV"
               },
               {
                 "kind": "TypeNominal",
@@ -45420,8 +45420,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders18MeshGradientParamsV4fromACs7Decoder_p_tKcfc",
-            "mangledName": "$s11FoilShaders18MeshGradientParamsV4fromACs7Decoder_p_tKcfc",
+            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV4fromACs7Decoder_p_tKcfc",
             "moduleName": "FoilShaders",
             "implicit": true,
             "throwing": true,
@@ -45429,8 +45429,8 @@
           }
         ],
         "declKind": "Struct",
-        "usr": "s:11FoilShaders18MeshGradientParamsV",
-        "mangledName": "$s11FoilShaders18MeshGradientParamsV",
+        "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV",
+        "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV",
         "moduleName": "FoilShaders",
         "conformances": [
           {
@@ -63594,8 +63594,8 @@
       },
       {
         "kind": "TypeDecl",
-        "name": "HalftoneCmykParams",
-        "printedName": "HalftoneCmykParams",
+        "name": "HalftoneCMYKParams",
+        "printedName": "HalftoneCMYKParams",
         "children": [
           {
             "kind": "Var",
@@ -63610,8 +63610,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV9colorBackAA11ShaderColorVvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV9colorBackAA11ShaderColorVvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV9colorBackAA11ShaderColorVvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV9colorBackAA11ShaderColorVvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -63631,8 +63631,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV9colorBackAA11ShaderColorVvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV9colorBackAA11ShaderColorVvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV9colorBackAA11ShaderColorVvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV9colorBackAA11ShaderColorVvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -63658,8 +63658,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV9colorBackAA11ShaderColorVvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV9colorBackAA11ShaderColorVvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV9colorBackAA11ShaderColorVvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV9colorBackAA11ShaderColorVvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -63682,8 +63682,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV6colorCAA11ShaderColorVvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6colorCAA11ShaderColorVvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV6colorCAA11ShaderColorVvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6colorCAA11ShaderColorVvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -63703,8 +63703,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6colorCAA11ShaderColorVvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6colorCAA11ShaderColorVvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6colorCAA11ShaderColorVvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6colorCAA11ShaderColorVvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -63730,8 +63730,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6colorCAA11ShaderColorVvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6colorCAA11ShaderColorVvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6colorCAA11ShaderColorVvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6colorCAA11ShaderColorVvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -63754,8 +63754,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV6colorMAA11ShaderColorVvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6colorMAA11ShaderColorVvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV6colorMAA11ShaderColorVvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6colorMAA11ShaderColorVvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -63775,8 +63775,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6colorMAA11ShaderColorVvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6colorMAA11ShaderColorVvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6colorMAA11ShaderColorVvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6colorMAA11ShaderColorVvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -63802,8 +63802,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6colorMAA11ShaderColorVvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6colorMAA11ShaderColorVvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6colorMAA11ShaderColorVvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6colorMAA11ShaderColorVvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -63826,8 +63826,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV6colorYAA11ShaderColorVvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6colorYAA11ShaderColorVvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV6colorYAA11ShaderColorVvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6colorYAA11ShaderColorVvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -63847,8 +63847,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6colorYAA11ShaderColorVvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6colorYAA11ShaderColorVvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6colorYAA11ShaderColorVvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6colorYAA11ShaderColorVvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -63874,8 +63874,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6colorYAA11ShaderColorVvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6colorYAA11ShaderColorVvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6colorYAA11ShaderColorVvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6colorYAA11ShaderColorVvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -63898,8 +63898,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV6colorKAA11ShaderColorVvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6colorKAA11ShaderColorVvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV6colorKAA11ShaderColorVvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6colorKAA11ShaderColorVvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -63919,8 +63919,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6colorKAA11ShaderColorVvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6colorKAA11ShaderColorVvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6colorKAA11ShaderColorVvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6colorKAA11ShaderColorVvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -63946,8 +63946,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6colorKAA11ShaderColorVvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6colorKAA11ShaderColorVvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6colorKAA11ShaderColorVvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6colorKAA11ShaderColorVvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -63970,8 +63970,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV4sizeSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV4sizeSfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV4sizeSfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV4sizeSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -63991,8 +63991,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV4sizeSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV4sizeSfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV4sizeSfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV4sizeSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64018,8 +64018,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV4sizeSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV4sizeSfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV4sizeSfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV4sizeSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64042,8 +64042,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV8contrastSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV8contrastSfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV8contrastSfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV8contrastSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -64063,8 +64063,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV8contrastSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV8contrastSfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV8contrastSfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV8contrastSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64090,8 +64090,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV8contrastSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV8contrastSfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV8contrastSfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV8contrastSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64114,8 +64114,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV8softnessSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV8softnessSfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV8softnessSfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV8softnessSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -64135,8 +64135,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV8softnessSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV8softnessSfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV8softnessSfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV8softnessSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64162,8 +64162,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV8softnessSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV8softnessSfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV8softnessSfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV8softnessSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64186,8 +64186,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV9grainSizeSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV9grainSizeSfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV9grainSizeSfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV9grainSizeSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -64207,8 +64207,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV9grainSizeSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV9grainSizeSfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV9grainSizeSfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV9grainSizeSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64234,8 +64234,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV9grainSizeSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV9grainSizeSfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV9grainSizeSfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV9grainSizeSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64258,8 +64258,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV10grainMixerSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV10grainMixerSfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV10grainMixerSfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV10grainMixerSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -64279,8 +64279,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV10grainMixerSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV10grainMixerSfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV10grainMixerSfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV10grainMixerSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64306,8 +64306,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV10grainMixerSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV10grainMixerSfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV10grainMixerSfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV10grainMixerSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64330,8 +64330,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV12grainOverlaySfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV12grainOverlaySfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV12grainOverlaySfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV12grainOverlaySfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -64351,8 +64351,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV12grainOverlaySfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV12grainOverlaySfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV12grainOverlaySfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV12grainOverlaySfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64378,8 +64378,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV12grainOverlaySfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV12grainOverlaySfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV12grainOverlaySfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV12grainOverlaySfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64402,8 +64402,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV9gridNoiseSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV9gridNoiseSfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV9gridNoiseSfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV9gridNoiseSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -64423,8 +64423,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV9gridNoiseSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV9gridNoiseSfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV9gridNoiseSfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV9gridNoiseSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64450,8 +64450,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV9gridNoiseSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV9gridNoiseSfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV9gridNoiseSfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV9gridNoiseSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64474,8 +64474,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV6floodCSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6floodCSfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV6floodCSfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6floodCSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -64495,8 +64495,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6floodCSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6floodCSfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6floodCSfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6floodCSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64522,8 +64522,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6floodCSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6floodCSfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6floodCSfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6floodCSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64546,8 +64546,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV6floodMSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6floodMSfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV6floodMSfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6floodMSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -64567,8 +64567,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6floodMSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6floodMSfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6floodMSfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6floodMSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64594,8 +64594,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6floodMSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6floodMSfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6floodMSfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6floodMSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64618,8 +64618,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV6floodYSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6floodYSfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV6floodYSfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6floodYSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -64639,8 +64639,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6floodYSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6floodYSfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6floodYSfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6floodYSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64666,8 +64666,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6floodYSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6floodYSfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6floodYSfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6floodYSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64690,8 +64690,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV6floodKSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6floodKSfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV6floodKSfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6floodKSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -64711,8 +64711,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6floodKSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6floodKSfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6floodKSfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6floodKSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64738,8 +64738,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV6floodKSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6floodKSfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV6floodKSfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6floodKSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64762,8 +64762,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV5gainCSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV5gainCSfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV5gainCSfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV5gainCSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -64783,8 +64783,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV5gainCSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV5gainCSfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV5gainCSfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV5gainCSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64810,8 +64810,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV5gainCSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV5gainCSfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV5gainCSfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV5gainCSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64834,8 +64834,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV5gainMSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV5gainMSfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV5gainMSfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV5gainMSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -64855,8 +64855,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV5gainMSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV5gainMSfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV5gainMSfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV5gainMSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64882,8 +64882,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV5gainMSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV5gainMSfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV5gainMSfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV5gainMSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64906,8 +64906,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV5gainYSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV5gainYSfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV5gainYSfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV5gainYSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -64927,8 +64927,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV5gainYSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV5gainYSfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV5gainYSfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV5gainYSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64954,8 +64954,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV5gainYSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV5gainYSfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV5gainYSfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV5gainYSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -64978,8 +64978,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV5gainKSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV5gainKSfvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV5gainKSfvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV5gainKSfvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -64999,8 +64999,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV5gainKSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV5gainKSfvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV5gainKSfvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV5gainKSfvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -65026,8 +65026,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV5gainKSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV5gainKSfvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV5gainKSfvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV5gainKSfvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -65044,14 +65044,14 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "HalftoneCmykType",
-                "printedName": "FoilShaders.HalftoneCmykType",
-                "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                "name": "HalftoneCMYKType",
+                "printedName": "FoilShaders.HalftoneCMYKType",
+                "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV4typeAA0cD4TypeOvp",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV4typeAA0cD4TypeOvp",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV4typeAA0C8CMYKTypeOvp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV4typeAA0C8CMYKTypeOvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -65065,14 +65065,14 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "HalftoneCmykType",
-                    "printedName": "FoilShaders.HalftoneCmykType",
-                    "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                    "name": "HalftoneCMYKType",
+                    "printedName": "FoilShaders.HalftoneCMYKType",
+                    "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV4typeAA0cD4TypeOvg",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV4typeAA0cD4TypeOvg",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV4typeAA0C8CMYKTypeOvg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV4typeAA0C8CMYKTypeOvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -65092,14 +65092,14 @@
                   },
                   {
                     "kind": "TypeNominal",
-                    "name": "HalftoneCmykType",
-                    "printedName": "FoilShaders.HalftoneCmykType",
-                    "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                    "name": "HalftoneCMYKType",
+                    "printedName": "FoilShaders.HalftoneCMYKType",
+                    "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV4typeAA0cD4TypeOvs",
-                "mangledName": "$s11FoilShaders18HalftoneCmykParamsV4typeAA0cD4TypeOvs",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV4typeAA0C8CMYKTypeOvs",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV4typeAA0C8CMYKTypeOvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -65116,9 +65116,9 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "HalftoneCmykParams",
-                "printedName": "FoilShaders.HalftoneCmykParams",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                "name": "HalftoneCMYKParams",
+                "printedName": "FoilShaders.HalftoneCMYKParams",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
               },
               {
                 "kind": "TypeNominal",
@@ -65262,15 +65262,15 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "HalftoneCmykType",
-                "printedName": "FoilShaders.HalftoneCmykType",
+                "name": "HalftoneCMYKType",
+                "printedName": "FoilShaders.HalftoneCMYKType",
                 "hasDefaultArg": true,
-                "usr": "s:11FoilShaders16HalftoneCmykTypeO"
+                "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV9colorBack0F1C0F1M0F1Y0F1K4size8contrast8softness9grainSize0K5Mixer0K7Overlay9gridNoise6floodC0Q1M0Q1Y0Q1K5gainC0R1M0R1Y0R1K4typeAcA11ShaderColorV_A4ZS15fAA0cD4TypeOtcfc",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV9colorBack0F1C0F1M0F1Y0F1K4size8contrast8softness9grainSize0K5Mixer0K7Overlay9gridNoise6floodC0Q1M0Q1Y0Q1K5gainC0R1M0R1Y0R1K4typeAcA11ShaderColorV_A4ZS15fAA0cD4TypeOtcfc",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV9colorBack0E1C0E1M0E1Y0E1K4size8contrast8softness9grainSize0J5Mixer0J7Overlay9gridNoise6floodC0P1M0P1Y0P1K5gainC0Q1M0Q1Y0Q1K4typeAcA11ShaderColorV_A4ZS15fAA0C8CMYKTypeOtcfc",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV9colorBack0E1C0E1M0E1Y0E1K4size8contrast8softness9grainSize0J5Mixer0J7Overlay9gridNoise6floodC0P1M0P1Y0P1K5gainC0Q1M0Q1Y0Q1K4typeAcA11ShaderColorV_A4ZS15fAA0C8CMYKTypeOtcfc",
             "moduleName": "FoilShaders",
             "init_kind": "Designated"
           },
@@ -65287,20 +65287,20 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "HalftoneCmykParams",
-                "printedName": "FoilShaders.HalftoneCmykParams",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                "name": "HalftoneCMYKParams",
+                "printedName": "FoilShaders.HalftoneCMYKParams",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
               },
               {
                 "kind": "TypeNominal",
-                "name": "HalftoneCmykParams",
-                "printedName": "FoilShaders.HalftoneCmykParams",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                "name": "HalftoneCMYKParams",
+                "printedName": "FoilShaders.HalftoneCMYKParams",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
               }
             ],
             "declKind": "Func",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV23__derived_struct_equalsySbAC_ACtFZ",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV23__derived_struct_equalsySbAC_ACtFZ",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV23__derived_struct_equalsySbAC_ACtFZ",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV23__derived_struct_equalsySbAC_ACtFZ",
             "moduleName": "FoilShaders",
             "static": true,
             "implicit": true,
@@ -65327,8 +65327,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV6encode2toys7Encoder_p_tKF",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV6encode2toys7Encoder_p_tKF",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV6encode2toys7Encoder_p_tKF",
             "moduleName": "FoilShaders",
             "implicit": true,
             "throwing": true,
@@ -65341,9 +65341,9 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "HalftoneCmykParams",
-                "printedName": "FoilShaders.HalftoneCmykParams",
-                "usr": "s:11FoilShaders18HalftoneCmykParamsV"
+                "name": "HalftoneCMYKParams",
+                "printedName": "FoilShaders.HalftoneCMYKParams",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV"
               },
               {
                 "kind": "TypeNominal",
@@ -65353,8 +65353,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders18HalftoneCmykParamsV4fromACs7Decoder_p_tKcfc",
-            "mangledName": "$s11FoilShaders18HalftoneCmykParamsV4fromACs7Decoder_p_tKcfc",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV4fromACs7Decoder_p_tKcfc",
             "moduleName": "FoilShaders",
             "implicit": true,
             "throwing": true,
@@ -65362,8 +65362,8 @@
           }
         ],
         "declKind": "Struct",
-        "usr": "s:11FoilShaders18HalftoneCmykParamsV",
-        "mangledName": "$s11FoilShaders18HalftoneCmykParamsV",
+        "usr": "s:11FoilShaders18HalftoneCMYKParamsV",
+        "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV",
         "moduleName": "FoilShaders",
         "conformances": [
           {

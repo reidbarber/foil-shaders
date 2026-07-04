@@ -511,7 +511,7 @@ public enum HalftoneDotsGrid: Float, CaseIterable, Equatable, Sendable, Codable 
   case hex = 1
 }
 
-public enum HalftoneCmykType: Float, CaseIterable, Equatable, Sendable, Codable {
+public enum HalftoneCMYKType: Float, CaseIterable, Equatable, Sendable, Codable {
   case dots = 0
   case ink = 1
   case sharp = 2
@@ -550,7 +550,7 @@ public enum GemSmokeShape: Float, CaseIterable, Equatable, Sendable, Codable {
 }
 
 public enum ShaderParameters: Equatable, Sendable, Codable {
-  case meshGradient(MeshGradientParams)
+  case animatedMeshGradient(AnimatedMeshGradientParams)
   case staticMeshGradient(StaticMeshGradientParams)
   case staticRadialGradient(StaticRadialGradientParams)
   case swirl(SwirlParams)
@@ -572,7 +572,7 @@ public enum ShaderParameters: Equatable, Sendable, Codable {
   case smokeRing(SmokeRingParams)
   case imageDithering(ImageDitheringParams)
   case halftoneDots(HalftoneDotsParams)
-  case halftoneCmyk(HalftoneCmykParams)
+  case halftoneCMYK(HalftoneCMYKParams)
   case heatmap(HeatmapParams)
   case liquidMetal(LiquidMetalParams)
   case paperTexture(PaperTextureParams)
@@ -582,7 +582,7 @@ public enum ShaderParameters: Equatable, Sendable, Codable {
 
   public var kind: FoilShadersRenderer.ShaderKind {
     switch self {
-    case .meshGradient: .meshGradient
+    case .animatedMeshGradient: .animatedMeshGradient
     case .staticMeshGradient: .staticMeshGradient
     case .staticRadialGradient: .staticRadialGradient
     case .swirl: .swirl
@@ -604,7 +604,7 @@ public enum ShaderParameters: Equatable, Sendable, Codable {
     case .smokeRing: .smokeRing
     case .imageDithering: .imageDithering
     case .halftoneDots: .halftoneDots
-    case .halftoneCmyk: .halftoneCmyk
+    case .halftoneCMYK: .halftoneCMYK
     case .heatmap: .heatmap
     case .liquidMetal: .liquidMetal
     case .paperTexture: .paperTexture

@@ -164,7 +164,7 @@ func configuration(for shader: String, presetName: String, image: ShaderImage?) 
   switch shader {
   case "mesh-gradient":
     configuration = try makeConfiguration(presets: AnimatedMeshGradient.presets) {
-      .meshGradient($0)
+      .animatedMeshGradient($0)
     }
   case "swirl":
     configuration = try makeConfiguration(presets: Swirl.presets) { .swirl($0) }

@@ -2,7 +2,7 @@ import SwiftUI
 
 @MainActor
 private func shaderBody(_ configuration: ShaderConfiguration) -> some SwiftUI.View {
-  FoilShadersShaderView(configuration: configuration)
+  FoilShaderView(configuration: configuration)
 }
 
 /// A SwiftUI view that renders the animated Mesh Gradient shader.
@@ -10,26 +10,26 @@ private func shaderBody(_ configuration: ShaderConfiguration) -> some SwiftUI.Vi
 /// Named `AnimatedMeshGradient` to avoid colliding with SwiftUI's `MeshGradient`.
 /// It pairs with ``StaticMeshGradient``.
 ///
-/// See <doc:MeshGradientShader> for usage examples, previews, and parameter ranges.
+/// See <doc:AnimatedMeshGradientShader> for usage examples, previews, and parameter ranges.
 public struct AnimatedMeshGradient: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public nonisolated static let presets = meshGradientPresets
+  public nonisolated static let presets = animatedMeshGradientPresets
 
-  public init(_ preset: MeshGradientPreset = MeshGradientPreset.default) {
+  public init(_ preset: AnimatedMeshGradientPreset = AnimatedMeshGradientPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
   }
 
   public init(
-    params: MeshGradientParams,
-    sizing: ShaderSizingParams = MeshGradientPreset.default.sizing,
-    motion: ShaderMotionParams = MeshGradientPreset.default.motion,
-    renderOptions: ShaderRenderOptions = MeshGradientPreset.default.renderOptions,
-    image: ShaderImage? = MeshGradientPreset.default.image
+    params: AnimatedMeshGradientParams,
+    sizing: ShaderSizingParams = AnimatedMeshGradientPreset.default.sizing,
+    motion: ShaderMotionParams = AnimatedMeshGradientPreset.default.motion,
+    renderOptions: ShaderRenderOptions = AnimatedMeshGradientPreset.default.renderOptions,
+    image: ShaderImage? = AnimatedMeshGradientPreset.default.image
   ) {
     configuration = ShaderConfiguration(
-      parameters: .meshGradient(params), sizing: sizing, motion: motion,
+      parameters: .animatedMeshGradient(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
 
@@ -689,23 +689,23 @@ public struct HalftoneDots: SwiftUI.View {
 /// A SwiftUI view that renders the Halftone CMYK shader.
 ///
 /// See <doc:HalftoneCmykShader> for usage examples, previews, and parameter ranges.
-public struct HalftoneCmyk: SwiftUI.View {
+public struct HalftoneCMYK: SwiftUI.View {
   public var configuration: ShaderConfiguration
-  public nonisolated static let presets = halftoneCmykPresets
-  public init(_ preset: HalftoneCmykPreset = HalftoneCmykPreset.default) {
+  public nonisolated static let presets = halftoneCMYKPresets
+  public init(_ preset: HalftoneCMYKPreset = HalftoneCMYKPreset.default) {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
   }
   public init(
-    params: HalftoneCmykParams,
-    sizing: ShaderSizingParams = HalftoneCmykPreset.default.sizing,
-    motion: ShaderMotionParams = HalftoneCmykPreset.default.motion,
-    renderOptions: ShaderRenderOptions = HalftoneCmykPreset.default.renderOptions,
-    image: ShaderImage? = HalftoneCmykPreset.default.image
+    params: HalftoneCMYKParams,
+    sizing: ShaderSizingParams = HalftoneCMYKPreset.default.sizing,
+    motion: ShaderMotionParams = HalftoneCMYKPreset.default.motion,
+    renderOptions: ShaderRenderOptions = HalftoneCMYKPreset.default.renderOptions,
+    image: ShaderImage? = HalftoneCMYKPreset.default.image
   ) {
     configuration = ShaderConfiguration(
-      parameters: .halftoneCmyk(params), sizing: sizing, motion: motion,
+      parameters: .halftoneCMYK(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
