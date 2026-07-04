@@ -21,7 +21,7 @@ public struct MeshGradient: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .meshGradient, parameters: .meshGradient(params), sizing: sizing, motion: motion,
+      parameters: .meshGradient(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
 
@@ -42,7 +42,7 @@ public struct SmokeRing: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .smokeRing, parameters: .smokeRing(params), sizing: sizing, motion: motion,
+      parameters: .smokeRing(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -62,7 +62,7 @@ public struct NeuroNoise: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .neuroNoise, parameters: .neuroNoise(params), sizing: sizing, motion: motion,
+      parameters: .neuroNoise(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -82,7 +82,7 @@ public struct DotOrbit: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .dotOrbit, parameters: .dotOrbit(params), sizing: sizing, motion: motion,
+      parameters: .dotOrbit(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -102,7 +102,7 @@ public struct DotGrid: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .dotGrid, parameters: .dotGrid(params), sizing: sizing, motion: motion,
+      parameters: .dotGrid(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -122,7 +122,7 @@ public struct SimplexNoise: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .simplexNoise, parameters: .simplexNoise(params), sizing: sizing, motion: motion,
+      parameters: .simplexNoise(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -142,7 +142,7 @@ public struct Metaballs: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .metaballs, parameters: .metaballs(params), sizing: sizing, motion: motion,
+      parameters: .metaballs(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -162,7 +162,7 @@ public struct Waves: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .waves, parameters: .waves(params), sizing: sizing, motion: motion,
+      parameters: .waves(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -182,7 +182,7 @@ public struct PerlinNoise: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .perlinNoise, parameters: .perlinNoise(params), sizing: sizing, motion: motion,
+      parameters: .perlinNoise(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -202,7 +202,7 @@ public struct Voronoi: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .voronoi, parameters: .voronoi(params), sizing: sizing, motion: motion,
+      parameters: .voronoi(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -222,7 +222,7 @@ public struct Warp: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .warp, parameters: .warp(params), sizing: sizing, motion: motion,
+      parameters: .warp(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -242,7 +242,7 @@ public struct GodRays: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .godRays, parameters: .godRays(params), sizing: sizing, motion: motion,
+      parameters: .godRays(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -262,7 +262,7 @@ public struct Spiral: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .spiral, parameters: .spiral(params), sizing: sizing, motion: motion,
+      parameters: .spiral(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -282,7 +282,7 @@ public struct Swirl: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .swirl, parameters: .swirl(params), sizing: sizing, motion: motion,
+      parameters: .swirl(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -302,7 +302,7 @@ public struct Dithering: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .dithering, parameters: .dithering(params), sizing: sizing, motion: motion,
+      parameters: .dithering(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -322,7 +322,7 @@ public struct GrainGradient: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .grainGradient, parameters: .grainGradient(params), sizing: sizing, motion: motion,
+      parameters: .grainGradient(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -342,7 +342,7 @@ public struct PulsingBorder: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .pulsingBorder, parameters: .pulsingBorder(params), sizing: sizing, motion: motion,
+      parameters: .pulsingBorder(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -362,7 +362,7 @@ public struct ColorPanels: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .colorPanels, parameters: .colorPanels(params), sizing: sizing, motion: motion,
+      parameters: .colorPanels(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -382,7 +382,7 @@ public struct StaticMeshGradient: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .staticMeshGradient, parameters: .staticMeshGradient(params), sizing: sizing,
+      parameters: .staticMeshGradient(params), sizing: sizing,
       motion: motion, renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -402,7 +402,7 @@ public struct StaticRadialGradient: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .staticRadialGradient, parameters: .staticRadialGradient(params), sizing: sizing,
+      parameters: .staticRadialGradient(params), sizing: sizing,
       motion: motion, renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -422,7 +422,7 @@ public struct PaperTexture: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .paperTexture, parameters: .paperTexture(params), sizing: sizing, motion: motion,
+      parameters: .paperTexture(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -442,7 +442,7 @@ public struct FlutedGlass: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .flutedGlass, parameters: .flutedGlass(params), sizing: sizing, motion: motion,
+      parameters: .flutedGlass(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -462,7 +462,7 @@ public struct Water: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .water, parameters: .water(params), sizing: sizing, motion: motion,
+      parameters: .water(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -482,7 +482,7 @@ public struct ImageDithering: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .imageDithering, parameters: .imageDithering(params), sizing: sizing, motion: motion,
+      parameters: .imageDithering(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -502,7 +502,7 @@ public struct Heatmap: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .heatmap, parameters: .heatmap(params), sizing: sizing, motion: motion,
+      parameters: .heatmap(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -522,7 +522,7 @@ public struct LiquidMetal: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .liquidMetal, parameters: .liquidMetal(params), sizing: sizing, motion: motion,
+      parameters: .liquidMetal(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -542,7 +542,7 @@ public struct HalftoneDots: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .halftoneDots, parameters: .halftoneDots(params), sizing: sizing, motion: motion,
+      parameters: .halftoneDots(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -562,7 +562,7 @@ public struct HalftoneCmyk: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .halftoneCmyk, parameters: .halftoneCmyk(params), sizing: sizing, motion: motion,
+      parameters: .halftoneCmyk(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }
@@ -582,7 +582,7 @@ public struct GemSmoke: SwiftUI.View {
     renderOptions: ShaderRenderOptions = .default, image: ShaderImage? = nil
   ) {
     configuration = ShaderConfiguration(
-      kind: .gemSmoke, parameters: .gemSmoke(params), sizing: sizing, motion: motion,
+      parameters: .gemSmoke(params), sizing: sizing, motion: motion,
       renderOptions: renderOptions, image: image)
   }
   public var body: some SwiftUI.View { shaderBody(configuration) }

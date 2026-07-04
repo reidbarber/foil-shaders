@@ -357,25 +357,58 @@ public enum ShaderParameters {
   case water(WaterParams)
   case flutedGlass(FlutedGlassParams)
   case gemSmoke(GemSmokeParams)
+
+  public var kind: FoilShadersRenderer.ShaderKind {
+    switch self {
+    case .meshGradient: .meshGradient
+    case .staticMeshGradient: .staticMeshGradient
+    case .staticRadialGradient: .staticRadialGradient
+    case .swirl: .swirl
+    case .spiral: .spiral
+    case .dotGrid: .dotGrid
+    case .simplexNoise: .simplexNoise
+    case .perlinNoise: .perlinNoise
+    case .neuroNoise: .neuroNoise
+    case .waves: .waves
+    case .dithering: .dithering
+    case .colorPanels: .colorPanels
+    case .dotOrbit: .dotOrbit
+    case .godRays: .godRays
+    case .grainGradient: .grainGradient
+    case .metaballs: .metaballs
+    case .warp: .warp
+    case .voronoi: .voronoi
+    case .pulsingBorder: .pulsingBorder
+    case .smokeRing: .smokeRing
+    case .imageDithering: .imageDithering
+    case .halftoneDots: .halftoneDots
+    case .halftoneCmyk: .halftoneCmyk
+    case .heatmap: .heatmap
+    case .liquidMetal: .liquidMetal
+    case .paperTexture: .paperTexture
+    case .water: .water
+    case .flutedGlass: .flutedGlass
+    case .gemSmoke: .gemSmoke
+    }
+  }
 }
 
 public struct ShaderConfiguration {
-  public var kind: FoilShadersRenderer.ShaderKind
   public var parameters: ShaderParameters
   public var sizing: ShaderSizingParams
   public var motion: ShaderMotionParams
   public var renderOptions: ShaderRenderOptions
   public var image: ShaderImage?
 
+  public var kind: FoilShadersRenderer.ShaderKind { parameters.kind }
+
   public init(
-    kind: FoilShadersRenderer.ShaderKind,
     parameters: ShaderParameters,
     sizing: ShaderSizingParams = .defaultPatternSizing,
     motion: ShaderMotionParams = ShaderMotionParams(),
     renderOptions: ShaderRenderOptions = .default,
     image: ShaderImage? = nil
   ) {
-    self.kind = kind
     self.parameters = parameters
     self.sizing = sizing
     self.motion = motion

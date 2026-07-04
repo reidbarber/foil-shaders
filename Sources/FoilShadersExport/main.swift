@@ -148,13 +148,11 @@ func configuration(for shader: String, presetName: String, image: ShaderImage?) 
   var configuration: ShaderConfiguration
 
   func makeConfiguration<Params>(
-    kind: FoilShadersRenderer.ShaderKind,
     presets: [ShaderPreset<Params>],
     wrap: (Params) -> ShaderParameters
   ) throws -> ShaderConfiguration {
     let selectedPreset = try preset(presets, shader: shader, name: presetName)
     return ShaderConfiguration(
-      kind: kind,
       parameters: wrap(selectedPreset.params),
       sizing: selectedPreset.sizing,
       motion: selectedPreset.motion,
@@ -165,23 +163,23 @@ func configuration(for shader: String, presetName: String, image: ShaderImage?) 
 
   switch shader {
   case "mesh-gradient":
-    configuration = try makeConfiguration(kind: .meshGradient, presets: meshGradientPresets) {
+    configuration = try makeConfiguration(presets: meshGradientPresets) {
       .meshGradient($0)
     }
   case "swirl":
-    configuration = try makeConfiguration(kind: .swirl, presets: swirlPresets) { .swirl($0) }
+    configuration = try makeConfiguration(presets: swirlPresets) { .swirl($0) }
   case "dithering":
-    configuration = try makeConfiguration(kind: .dithering, presets: ditheringPresets) {
+    configuration = try makeConfiguration(presets: ditheringPresets) {
       .dithering($0)
     }
   case "voronoi":
-    configuration = try makeConfiguration(kind: .voronoi, presets: voronoiPresets) { .voronoi($0) }
+    configuration = try makeConfiguration(presets: voronoiPresets) { .voronoi($0) }
   case "paper-texture":
-    configuration = try makeConfiguration(kind: .paperTexture, presets: paperTexturePresets) {
+    configuration = try makeConfiguration(presets: paperTexturePresets) {
       .paperTexture($0)
     }
   case "liquid-metal":
-    configuration = try makeConfiguration(kind: .liquidMetal, presets: liquidMetalPresets) {
+    configuration = try makeConfiguration(presets: liquidMetalPresets) {
       .liquidMetal($0)
     }
   default:

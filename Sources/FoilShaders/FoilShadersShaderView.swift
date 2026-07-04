@@ -53,11 +53,12 @@ public struct FoilShadersShaderView: SwiftUI.View {
       guard let device = mtkView.device else { return mtkView }
       do {
         let renderer = try FoilShadersRenderer(device: device)
+        let shaderKind = configuration.kind
         renderer.attach(to: mtkView)
-        try renderer.configure(configuration.kind)
+        try renderer.configure(shaderKind)
         renderer.apply(configuration)
         context.coordinator.renderer = renderer
-        context.coordinator.currentKind = configuration.kind
+        context.coordinator.currentKind = shaderKind
       } catch {
         assertionFailure("FoilShaders renderer setup failed: \(error)")
       }
@@ -66,10 +67,11 @@ public struct FoilShadersShaderView: SwiftUI.View {
 
     fileprivate func update(_ view: MTKView, context: Context) {
       guard let renderer = context.coordinator.renderer else { return }
-      if context.coordinator.currentKind != configuration.kind {
+      let shaderKind = configuration.kind
+      if context.coordinator.currentKind != shaderKind {
         do {
-          try renderer.configure(configuration.kind)
-          context.coordinator.currentKind = configuration.kind
+          try renderer.configure(shaderKind)
+          context.coordinator.currentKind = shaderKind
         } catch {
           assertionFailure("FoilShaders shader configure failed: \(error)")
         }

@@ -181,7 +181,6 @@ final class FoilShadersTests: XCTestCase {
     try renderer.configure(.heatmap)
     renderer.apply(
       ShaderConfiguration(
-        kind: .heatmap,
         parameters: .heatmap(
           HeatmapParams(
             colorBack: .black,
