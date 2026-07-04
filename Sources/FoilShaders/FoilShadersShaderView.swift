@@ -59,6 +59,7 @@ public struct FoilShadersShaderView: SwiftUI.View {
         renderer.apply(configuration)
         context.coordinator.renderer = renderer
         context.coordinator.currentKind = shaderKind
+        context.coordinator.currentConfiguration = configuration
       } catch {
         assertionFailure("FoilShaders renderer setup failed: \(error)")
       }
@@ -68,7 +69,9 @@ public struct FoilShadersShaderView: SwiftUI.View {
     fileprivate func update(_ view: MTKView, context: Context) {
       guard let renderer = context.coordinator.renderer else { return }
       let shaderKind = configuration.kind
-      if context.coordinator.currentKind != shaderKind {
+      let needsConfigure = context.coordinator.currentKind != shaderKind
+      let needsApply = context.coordinator.currentConfiguration != configuration
+      if needsConfigure {
         do {
           try renderer.configure(shaderKind)
           context.coordinator.currentKind = shaderKind
@@ -76,13 +79,17 @@ public struct FoilShadersShaderView: SwiftUI.View {
           assertionFailure("FoilShaders shader configure failed: \(error)")
         }
       }
-      renderer.apply(configuration)
+      if needsConfigure || needsApply {
+        renderer.apply(configuration)
+        context.coordinator.currentConfiguration = configuration
+      }
       view.setNeedsDisplay(view.bounds)
     }
 
     fileprivate final class Coordinator {
       var renderer: FoilShadersRenderer?
       var currentKind: FoilShadersRenderer.ShaderKind?
+      var currentConfiguration: ShaderConfiguration?
     }
   }
 #endif

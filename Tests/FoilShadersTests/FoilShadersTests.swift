@@ -65,6 +65,78 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertEqual(GlassDistortionShape.prism.rawValue, 1)
   }
 
+  func testConfigurationGraphConformancesCompile() {
+    assertEquatableSendableCodable(ShaderColor.self)
+    assertEquatableSendableCodable(ShaderImage.self)
+    assertEquatableSendableCodable(ShaderRenderOptions.self)
+    assertEquatableSendableCodable(ShaderSizingParams.self)
+    assertEquatableSendableCodable(ShaderMotionParams.self)
+    assertEquatableSendableCodable(ShaderParameters.self)
+    assertEquatableSendableCodable(ShaderConfiguration.self)
+    assertEquatableSendableCodable(ShaderPreset<MeshGradientParams>.self)
+
+    assertEquatableSendableCodable(MeshGradientParams.self)
+    assertEquatableSendableCodable(StaticMeshGradientParams.self)
+    assertEquatableSendableCodable(StaticRadialGradientParams.self)
+    assertEquatableSendableCodable(SwirlParams.self)
+    assertEquatableSendableCodable(SpiralParams.self)
+    assertEquatableSendableCodable(DotGridParams.self)
+    assertEquatableSendableCodable(SimplexNoiseParams.self)
+    assertEquatableSendableCodable(PerlinNoiseParams.self)
+    assertEquatableSendableCodable(NeuroNoiseParams.self)
+    assertEquatableSendableCodable(WavesParams.self)
+    assertEquatableSendableCodable(DitheringParams.self)
+    assertEquatableSendableCodable(ColorPanelsParams.self)
+    assertEquatableSendableCodable(DotOrbitParams.self)
+    assertEquatableSendableCodable(GodRaysParams.self)
+    assertEquatableSendableCodable(GrainGradientParams.self)
+    assertEquatableSendableCodable(MetaballsParams.self)
+    assertEquatableSendableCodable(WarpParams.self)
+    assertEquatableSendableCodable(VoronoiParams.self)
+    assertEquatableSendableCodable(PulsingBorderParams.self)
+    assertEquatableSendableCodable(SmokeRingParams.self)
+    assertEquatableSendableCodable(ImageDitheringParams.self)
+    assertEquatableSendableCodable(HalftoneDotsParams.self)
+    assertEquatableSendableCodable(HalftoneCmykParams.self)
+    assertEquatableSendableCodable(HeatmapParams.self)
+    assertEquatableSendableCodable(LiquidMetalParams.self)
+    assertEquatableSendableCodable(PaperTextureParams.self)
+    assertEquatableSendableCodable(WaterParams.self)
+    assertEquatableSendableCodable(FlutedGlassParams.self)
+    assertEquatableSendableCodable(GemSmokeParams.self)
+  }
+
+  func testShaderConfigurationCodableRoundTrip() throws {
+    let configuration = ShaderConfiguration(
+      parameters: .meshGradient(meshGradientPresets[0].params),
+      sizing: meshGradientPresets[0].sizing,
+      motion: ShaderMotionParams(speed: 0.25, frame: 12),
+      renderOptions: ShaderRenderOptions(width: 320, height: 180),
+      image: .url(URL(fileURLWithPath: "/tmp/source.png"))
+    )
+
+    let data = try JSONEncoder().encode(configuration)
+    let decoded = try JSONDecoder().decode(ShaderConfiguration.self, from: data)
+
+    XCTAssertEqual(decoded, configuration)
+  }
+
+  func testShaderConfigurationRejectsRawCGImageEncoding() throws {
+    let image = try Self.makeTopDarkBottomLightImage(width: 8, height: 8)
+    let configuration = ShaderConfiguration(
+      parameters: .heatmap(
+        HeatmapParams(colorBack: .black, colors: [.white], contour: 0, innerGlow: 1, outerGlow: 0)
+      ),
+      image: .cgImage(image)
+    )
+
+    XCTAssertThrowsError(try JSONEncoder().encode(configuration)) { error in
+      guard case EncodingError.invalidValue = error else {
+        return XCTFail("Expected EncodingError.invalidValue, got \(error)")
+      }
+    }
+  }
+
   func testPaperDefaultPresetValues() {
     XCTAssertEqual(meshGradientPresets[0].name, "Default")
     XCTAssertEqual(meshGradientPresets[0].params.colors.count, 4)
@@ -271,6 +343,12 @@ final class FoilShadersTests: XCTestCase {
     }
     return total / Double(max(count, 1))
   }
+
+  private func assertEquatableSendableCodable<T: Equatable & Sendable & Codable>(
+    _: T.Type,
+    file: StaticString = #filePath,
+    line: UInt = #line
+  ) {}
 
   private enum TestImageError: Error {
     case providerCreationFailed

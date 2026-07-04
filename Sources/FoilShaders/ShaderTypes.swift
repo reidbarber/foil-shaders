@@ -3,13 +3,13 @@ import simd
 
 // MARK: - Shader Sizing
 
-public enum ShaderFit: Float, Sendable {
+public enum ShaderFit: Float, Equatable, Sendable, Codable {
   case none = 0.0
   case contain = 1.0
   case cover = 2.0
 }
 
-public struct ShaderSizingParams: Sendable {
+public struct ShaderSizingParams: Equatable, Sendable, Codable {
   public var fit: ShaderFit
   public var scale: Float
   public var rotation: Float
@@ -55,7 +55,7 @@ public struct ShaderSizingParams: Sendable {
   }
 }
 
-public struct ShaderMotionParams: Sendable {
+public struct ShaderMotionParams: Equatable, Sendable, Codable {
   public var speed: Float
   public var frame: Float
 
@@ -67,7 +67,7 @@ public struct ShaderMotionParams: Sendable {
 
 // MARK: - Mesh Gradient
 
-public struct MeshGradientParams {
+public struct MeshGradientParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colors: [ShaderColor]
   public var distortion: Float
@@ -92,7 +92,7 @@ public struct MeshGradientParams {
 
 // MARK: - Static Mesh Gradient
 
-public struct StaticMeshGradientParams {
+public struct StaticMeshGradientParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colors: [ShaderColor]
   public var positions: Float
@@ -129,7 +129,7 @@ public struct StaticMeshGradientParams {
 
 // MARK: - Static Radial Gradient
 
-public struct StaticRadialGradientParams {
+public struct StaticRadialGradientParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
   public var colors: [ShaderColor]
@@ -175,7 +175,7 @@ public struct StaticRadialGradientParams {
 
 // MARK: - Swirl
 
-public struct SwirlParams {
+public struct SwirlParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
   public var colors: [ShaderColor]
@@ -212,7 +212,7 @@ public struct SwirlParams {
 
 // MARK: - Spiral
 
-public struct SpiralParams {
+public struct SpiralParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorFront: ShaderColor
   public var density: Float
@@ -251,7 +251,7 @@ public struct SpiralParams {
 
 // MARK: - Dot Grid
 
-public struct DotGridParams {
+public struct DotGridParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorFill: ShaderColor
   public var colorStroke: ShaderColor
@@ -290,7 +290,7 @@ public struct DotGridParams {
 
 // MARK: - Simplex Noise
 
-public struct SimplexNoiseParams {
+public struct SimplexNoiseParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colors: [ShaderColor]
   public var stepsPerColor: Float
@@ -309,7 +309,7 @@ public struct SimplexNoiseParams {
 
 // MARK: - Perlin Noise
 
-public struct PerlinNoiseParams {
+public struct PerlinNoiseParams: Equatable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
   public var proportion: Float
@@ -340,7 +340,7 @@ public struct PerlinNoiseParams {
 
 // MARK: - Neuro Noise
 
-public struct NeuroNoiseParams {
+public struct NeuroNoiseParams: Equatable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorMid: ShaderColor
   public var colorBack: ShaderColor
@@ -364,7 +364,7 @@ public struct NeuroNoiseParams {
 
 // MARK: - Waves
 
-public struct WavesParams {
+public struct WavesParams: Equatable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
   public var shape: Float
@@ -397,7 +397,7 @@ public struct WavesParams {
 
 // MARK: - Dithering
 
-public struct DitheringParams {
+public struct DitheringParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorFront: ShaderColor
   public var shape: DitheringShape
@@ -421,7 +421,7 @@ public struct DitheringParams {
 
 // MARK: - Color Panels
 
-public struct ColorPanelsParams {
+public struct ColorPanelsParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 7
   public var colors: [ShaderColor]
   public var colorBack: ShaderColor
@@ -464,7 +464,7 @@ public struct ColorPanelsParams {
 
 // MARK: - Dot Orbit
 
-public struct DotOrbitParams {
+public struct DotOrbitParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
   public var colors: [ShaderColor]
@@ -492,7 +492,7 @@ public struct DotOrbitParams {
 
 // MARK: - God Rays
 
-public struct GodRaysParams {
+public struct GodRaysParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 5
   public var colorBack: ShaderColor
   public var colorBloom: ShaderColor
@@ -529,7 +529,7 @@ public struct GodRaysParams {
 
 // MARK: - Grain Gradient
 
-public struct GrainGradientParams {
+public struct GrainGradientParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 7
   public var colorBack: ShaderColor
   public var colors: [ShaderColor]
@@ -557,7 +557,7 @@ public struct GrainGradientParams {
 
 // MARK: - Metaballs
 
-public struct MetaballsParams {
+public struct MetaballsParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 8
   public var colorBack: ShaderColor
   public var colors: [ShaderColor]
@@ -582,7 +582,7 @@ public struct MetaballsParams {
 
 // MARK: - Warp
 
-public struct WarpParams {
+public struct WarpParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colors: [ShaderColor]
   public var proportion: Float
@@ -616,7 +616,7 @@ public struct WarpParams {
 
 // MARK: - Voronoi
 
-public struct VoronoiParams {
+public struct VoronoiParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 5
   public var colors: [ShaderColor]
   public var stepsPerColor: Float
@@ -647,7 +647,7 @@ public struct VoronoiParams {
 
 // MARK: - Pulsing Border
 
-public struct PulsingBorderParams {
+public struct PulsingBorderParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 5
   public var colorBack: ShaderColor
   public var colors: [ShaderColor]
@@ -708,7 +708,7 @@ public struct PulsingBorderParams {
 
 // MARK: - Smoke Ring
 
-public struct SmokeRingParams {
+public struct SmokeRingParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
   public var colors: [ShaderColor]
@@ -739,7 +739,7 @@ public struct SmokeRingParams {
 
 // MARK: - Image Dithering
 
-public struct ImageDitheringParams {
+public struct ImageDitheringParams: Equatable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
   public var colorHighlight: ShaderColor
@@ -772,7 +772,7 @@ public struct ImageDitheringParams {
 
 // MARK: - Halftone Dots
 
-public struct HalftoneDotsParams {
+public struct HalftoneDotsParams: Equatable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
   public var size: Float
@@ -818,7 +818,7 @@ public struct HalftoneDotsParams {
 
 // MARK: - Halftone CMYK
 
-public struct HalftoneCmykParams {
+public struct HalftoneCmykParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorC: ShaderColor
   public var colorM: ShaderColor
@@ -893,7 +893,7 @@ public struct HalftoneCmykParams {
 
 // MARK: - Heatmap
 
-public struct HeatmapParams {
+public struct HeatmapParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
   public var colors: [ShaderColor]
@@ -924,7 +924,7 @@ public struct HeatmapParams {
 
 // MARK: - Liquid Metal
 
-public struct LiquidMetalParams {
+public struct LiquidMetalParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorTint: ShaderColor
   public var repetition: Float
@@ -964,7 +964,7 @@ public struct LiquidMetalParams {
 
 // MARK: - Paper Texture
 
-public struct PaperTextureParams {
+public struct PaperTextureParams: Equatable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
   public var contrast: Float
@@ -1013,7 +1013,7 @@ public struct PaperTextureParams {
 
 // MARK: - Water
 
-public struct WaterParams {
+public struct WaterParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorHighlight: ShaderColor
   public var highlights: Float
@@ -1047,7 +1047,7 @@ public struct WaterParams {
 
 // MARK: - Fluted Glass
 
-public struct FlutedGlassParams {
+public struct FlutedGlassParams: Equatable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorShadow: ShaderColor
   public var colorHighlight: ShaderColor
@@ -1116,7 +1116,7 @@ public struct FlutedGlassParams {
 
 // MARK: - Gem Smoke
 
-public struct GemSmokeParams {
+public struct GemSmokeParams: Equatable, Sendable, Codable {
   public static let maxColorCount = 6
   public var colors: [ShaderColor]
   public var colorBack: ShaderColor
