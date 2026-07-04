@@ -3,9 +3,9 @@
 A Metal-based SwiftUI port of
 [Paper Shaders](https://github.com/paper-design/shaders) for iOS and macOS.
 
-<img src="Docs/Media/readme/mesh-gradient-hero.png" alt="Foil Shaders Mesh Gradient output" width="830">
+<img src="Docs/Media/readme/hero.png" alt="Screenshot of Foil Shader Studio app featuring Mesh Gradient shader preview" width="830">
 
-[Download the Foil Shader Studio app](https://github.com/reidbarber/foil-shaders/releases/latest/download/FoilShadersStudio.dmg) to preview shaders, adjust presets, and copy SwiftUI code.
+[**Download the Foil Shader Studio app**](https://github.com/reidbarber/foil-shaders/releases/latest/download/FoilShadersStudio.dmg)
 
 ## Install With Xcode
 
