@@ -1,3 +1,4 @@
+import CoreGraphics
 import Metal
 import XCTest
 
@@ -115,5 +116,113 @@ final class FoilShadersTests: XCTestCase {
     for shader in FoilShadersRenderer.ShaderKind.allCases {
       XCTAssertNoThrow(try renderer.configure(shader), "Failed to configure \(shader)")
     }
+  }
+
+  @MainActor
+  func testHeatmapImageRenderingPreservesSourceOrientation() throws {
+    guard let device = MTLCreateSystemDefaultDevice() else {
+      throw XCTSkip("Metal is not available")
+    }
+
+    let image = try Self.makeTopDarkBottomLightImage(width: 32, height: 32)
+    let renderer = try FoilShadersRenderer(device: device)
+    try renderer.configure(.heatmap)
+    renderer.apply(
+      ShaderConfiguration(
+        kind: .heatmap,
+        parameters: .heatmap(
+          HeatmapParams(
+            colorBack: SIMD4<Float>(0, 0, 0, 1),
+            colors: [SIMD4<Float>(1, 1, 1, 1)],
+            contour: 0,
+            angle: 0,
+            noise: 0,
+            innerGlow: 1,
+            outerGlow: 0
+          )
+        ),
+        sizing: ShaderSizingParams(fit: .contain),
+        motion: ShaderMotionParams(speed: 0, frame: 0),
+        image: .cgImage(image)
+      )
+    )
+    renderer.setRenderSize(width: 96, height: 96, pixelRatio: 1)
+
+    guard let capture = renderer.captureCurrentPixels() else {
+      return XCTFail("Expected heatmap capture")
+    }
+
+    let sampleX = (capture.width / 3)..<(2 * capture.width / 3)
+    let topSampleY = (capture.height / 4)..<(capture.height / 2)
+    let bottomSampleY = (capture.height / 2)..<(3 * capture.height / 4)
+    let topLuminance = Self.averageLuminance(
+      capture.rgba, width: capture.width, xRange: sampleX, yRange: topSampleY)
+    let bottomLuminance = Self.averageLuminance(
+      capture.rgba, width: capture.width, xRange: sampleX, yRange: bottomSampleY)
+
+    XCTAssertGreaterThan(
+      topLuminance,
+      bottomLuminance + 25,
+      "The dark top half of the source image should render as the brighter heatmap region.")
+  }
+
+  private static func makeTopDarkBottomLightImage(width: Int, height: Int) throws -> CGImage {
+    var rgba = [UInt8](repeating: 255, count: width * height * 4)
+    for y in 0..<height {
+      for x in 0..<width {
+        let base = (y * width + x) * 4
+        let value: UInt8 = y < height / 2 ? 0 : 255
+        rgba[base] = value
+        rgba[base + 1] = value
+        rgba[base + 2] = value
+        rgba[base + 3] = 255
+      }
+    }
+
+    guard let provider = CGDataProvider(data: Data(rgba) as CFData) else {
+      throw TestImageError.providerCreationFailed
+    }
+    let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+      .union(.byteOrder32Big)
+    guard
+      let image = CGImage(
+        width: width,
+        height: height,
+        bitsPerComponent: 8,
+        bitsPerPixel: 32,
+        bytesPerRow: width * 4,
+        space: CGColorSpaceCreateDeviceRGB(),
+        bitmapInfo: bitmapInfo,
+        provider: provider,
+        decode: nil,
+        shouldInterpolate: false,
+        intent: .defaultIntent
+      )
+    else {
+      throw TestImageError.imageCreationFailed
+    }
+    return image
+  }
+
+  private static func averageLuminance(
+    _ rgba: [UInt8], width: Int, xRange: Range<Int>, yRange: Range<Int>
+  ) -> Double {
+    var total = 0.0
+    var count = 0
+    for y in yRange {
+      for x in xRange {
+        let base = (y * width + x) * 4
+        total += Double(rgba[base]) * 0.2126
+          + Double(rgba[base + 1]) * 0.7152
+          + Double(rgba[base + 2]) * 0.0722
+        count += 1
+      }
+    }
+    return total / Double(max(count, 1))
+  }
+
+  private enum TestImageError: Error {
+    case providerCreationFailed
+    case imageCreationFailed
   }
 }

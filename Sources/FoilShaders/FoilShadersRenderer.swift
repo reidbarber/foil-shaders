@@ -291,8 +291,6 @@ public class FoilShadersRenderer: NSObject, MTKViewDelegate, @unchecked Sendable
     }
 
     context.interpolationQuality = .default
-    context.translateBy(x: 0, y: CGFloat(height))
-    context.scaleBy(x: 1, y: -1)
     context.draw(
       image,
       in: CGRect(x: padding, y: padding, width: imageWidth, height: imageHeight))
