@@ -1,9 +1,4 @@
 import SwiftUI
-import simd
-
-private func shaderColors(_ values: [ShaderColor]) -> [SIMD4<Float>] {
-  values.map(\.rgba)
-}
 
 @MainActor
 private func shaderBody(_ configuration: ShaderConfiguration) -> some SwiftUI.View {
@@ -18,41 +13,6 @@ public struct MeshGradient: SwiftUI.View {
     self.init(
       params: preset.params, sizing: preset.sizing, motion: preset.motion,
       renderOptions: preset.renderOptions, image: preset.image)
-  }
-
-  public init(
-    colors: [ShaderColor] = ["#e0eaff", "#241d9a", "#f75092", "#9f50d3"],
-    distortion: Float = 0.8,
-    swirl: Float = 0.1,
-    grainMixer: Float = 0,
-    grainOverlay: Float = 0,
-    speed: Float = 1,
-    frame: Float = 0,
-    scale: Float = 1,
-    rotation: Float = 0,
-    offsetX: Float = 0,
-    offsetY: Float = 0,
-    fit: ShaderFit = .contain,
-    worldWidth: Float = 0,
-    worldHeight: Float = 0,
-    originX: Float = 0.5,
-    originY: Float = 0.5,
-    minPixelRatio: Float = 2,
-    maxPixelCount: Int = ShaderRenderOptions.defaultMaxPixelCount,
-    width: CGFloat? = nil,
-    height: CGFloat? = nil
-  ) {
-    self.init(
-      params: MeshGradientParams(
-        colors: shaderColors(colors), distortion: distortion, swirl: swirl, grainMixer: grainMixer,
-        grainOverlay: grainOverlay),
-      sizing: ShaderSizingParams(
-        fit: fit, scale: scale, rotation: rotation, originX: originX, originY: originY,
-        offsetX: offsetX, offsetY: offsetY, worldWidth: worldWidth, worldHeight: worldHeight),
-      motion: ShaderMotionParams(speed: speed, frame: frame),
-      renderOptions: ShaderRenderOptions(
-        minPixelRatio: minPixelRatio, maxPixelCount: maxPixelCount, width: width, height: height)
-    )
   }
 
   public init(

@@ -74,13 +74,65 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertEqual(meshGradientPresets[0].sizing.fit, .contain)
 
     XCTAssertEqual(dotGridPresets[0].params.dotSize, 2, accuracy: 0.0001)
-    XCTAssertEqual(dotGridPresets[0].params.shape, DotGridShape.circle.rawValue, accuracy: 0.0001)
+    XCTAssertEqual(dotGridPresets[0].params.shape, .circle)
     XCTAssertEqual(dotGridPresets[0].renderOptions.maxPixelCount, 6016 * 3384)
 
-    XCTAssertEqual(imageDitheringPresets[0].params.type, DitheringType.eightByEight.rawValue)
+    XCTAssertEqual(imageDitheringPresets[0].params.type, .eightByEight)
     XCTAssertEqual(imageDitheringPresets[0].params.inverted, 0)
-    XCTAssertEqual(liquidMetalPresets[0].params.shape, LiquidMetalShape.diamond.rawValue)
-    XCTAssertEqual(gemSmokePresets[0].params.shape, GemSmokeShape.diamond.rawValue)
+    XCTAssertEqual(liquidMetalPresets[0].params.shape, .diamond)
+    XCTAssertEqual(gemSmokePresets[0].params.shape, .diamond)
+  }
+
+  @MainActor
+  func testFlatInitializersAcceptShaderColorLiterals() {
+    let configurations: [ShaderConfiguration] = [
+      MeshGradient(colors: ["#5100ff", "#00ff80", "#ffcc00", "#ea00ff"]).configuration,
+      SmokeRing(colorBack: "#000000", colors: ["#ffffff"]).configuration,
+      NeuroNoise(colorFront: "#ffffff", colorMid: "#47a6ff", colorBack: "#000000").configuration,
+      DotOrbit(colorBack: "#000000", colors: ["#ffffff"]).configuration,
+      DotGrid(colorBack: "#000000", colorFill: "#ffffff", colorStroke: "#ffaa00", shape: .circle)
+        .configuration,
+      SimplexNoise(colors: ["#4449cf", "#ffd1e0", "#f94446"]).configuration,
+      Metaballs(colorBack: "#000000", colors: ["#7300ff", "#eba8ff"]).configuration,
+      Waves(colorFront: "#ffbb00", colorBack: "#000000").configuration,
+      PerlinNoise(colorFront: "#79d1ff", colorBack: "#001429").configuration,
+      Voronoi(colors: ["#ff8247", "#ffe53d"], colorGap: "#2e0000", colorGlow: "#ffffff")
+        .configuration,
+      Warp(colors: ["#121212", "#9470ff"], shape: .checks).configuration,
+      GodRays(colorBack: "#000000", colorBloom: "#0000ff", colors: ["#ffffff"]).configuration,
+      Spiral(colorBack: "#001429", colorFront: "#79d1ff").configuration,
+      Swirl(colorBack: "#330000", colors: ["#ffd1d1", "#ff8a8a"]).configuration,
+      Dithering(colorBack: "#000000", colorFront: "#00b2ff", shape: .sphere, type: .fourByFour)
+        .configuration,
+      GrainGradient(colorBack: "#000000", colors: ["#7300ff", "#eba8ff"], shape: .corners)
+        .configuration,
+      PulsingBorder(colorBack: "#000000", colors: ["#0dc1fd"], aspectRatio: .auto).configuration,
+      ColorPanels(colors: ["#ff9d00", "#fd4f30"], colorBack: "#000000").configuration,
+      StaticMeshGradient(colors: ["#ffad0a", "#6200ff"]).configuration,
+      StaticRadialGradient(colorBack: "#000000", colors: ["#00bbff", "#00ffe1"]).configuration,
+      PaperTexture(colorFront: "#9fadbc", colorBack: "#ffffff").configuration,
+      FlutedGlass(
+        colorBack: "#00000000", colorShadow: "#000000", colorHighlight: "#ffffff",
+        distortionShape: .prism, shape: .lines
+      ).configuration,
+      Water(colorBack: "#909090", colorHighlight: "#ffffff").configuration,
+      ImageDithering(
+        colorFront: "#94ffaf", colorBack: "#000c38", colorHighlight: "#eaff94",
+        type: .eightByEight
+      ).configuration,
+      Heatmap(colorBack: "#000000", colors: ["#11206a", "#1f3ba2"]).configuration,
+      LiquidMetal(colorBack: "#aaaaac", colorTint: "#ffffff", shape: .diamond).configuration,
+      HalftoneDots(colorFront: "#2b2b2b", colorBack: "#f2f1e8", grid: .hex, type: .gooey)
+        .configuration,
+      HalftoneCmyk(
+        colorBack: "#fbfaf5", colorC: "#00b4ff", colorM: "#fc519f", colorY: "#ffd800",
+        colorK: "#231f20", type: .ink
+      ).configuration,
+      GemSmoke(colors: ["#333333", "#e7e6df"], colorBack: "#f0efea", colorInner: "#fafaf5")
+        .configuration,
+    ]
+
+    XCTAssertEqual(configurations.count, 29)
   }
 
   func testCodeGeneratorQualifiesMeshGradient() {
@@ -132,8 +184,8 @@ final class FoilShadersTests: XCTestCase {
         kind: .heatmap,
         parameters: .heatmap(
           HeatmapParams(
-            colorBack: SIMD4<Float>(0, 0, 0, 1),
-            colors: [SIMD4<Float>(1, 1, 1, 1)],
+            colorBack: .black,
+            colors: [.white],
             contour: 0,
             angle: 0,
             noise: 0,

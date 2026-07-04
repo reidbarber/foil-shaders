@@ -223,6 +223,22 @@ enum ParityConfigurationFactory {
       guard let want = expected.doubleValue, abs(Double(scalar) - want) <= accuracy else {
         throw ParityError.paramsMismatch("\(path): Swift has \(scalar), manifest has \(expected)")
       }
+    case let value as any RawRepresentable:
+      guard let rawValue = value.rawValue as? Float else {
+        throw ParityError.paramsMismatch(
+          "\(path): unsupported enum raw value type \(type(of: value.rawValue))")
+      }
+      try compare(rawValue, to: expected, path: path)
+    case let color as ShaderColor:
+      try compare(color.rgba, to: expected, path: path)
+    case let colors as [ShaderColor]:
+      guard let want = expected.arrayValue, want.count == colors.count else {
+        throw ParityError.paramsMismatch(
+          "\(path): Swift has \(colors.count) colors, manifest disagrees")
+      }
+      for (index, color) in colors.enumerated() {
+        try compare(color, to: want[index], path: "\(path)[\(index)]")
+      }
     case let color as SIMD4<Float>:
       guard let want = expected.arrayValue, want.count == 4 else {
         throw ParityError.paramsMismatch("\(path): manifest value is not a 4-component color")

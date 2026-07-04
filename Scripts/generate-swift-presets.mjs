@@ -13,6 +13,91 @@ const enumMaps = snapshot.enums;
 
 const typealiases = specs.map((spec) => spec.componentName);
 
+const swiftEnumCases = {
+  DotGridShapes: {
+    0: ".circle",
+    1: ".diamond",
+    2: ".square",
+    3: ".triangle",
+  },
+  DitheringShapes: {
+    1: ".simplex",
+    2: ".warp",
+    3: ".dots",
+    4: ".wave",
+    5: ".ripple",
+    6: ".swirl",
+    7: ".sphere",
+  },
+  DitheringTypes: {
+    1: ".random",
+    2: ".twoByTwo",
+    3: ".fourByFour",
+    4: ".eightByEight",
+  },
+  WarpPatterns: {
+    0: ".checks",
+    1: ".stripes",
+    2: ".edge",
+  },
+  GrainGradientShapes: {
+    1: ".wave",
+    2: ".dots",
+    3: ".truchet",
+    4: ".corners",
+    5: ".ripple",
+    6: ".blob",
+    7: ".sphere",
+  },
+  PulsingBorderAspectRatios: {
+    0: ".auto",
+    1: ".square",
+  },
+  HalftoneDotsTypes: {
+    0: ".classic",
+    1: ".gooey",
+    2: ".holes",
+    3: ".soft",
+  },
+  HalftoneDotsGrids: {
+    0: ".square",
+    1: ".hex",
+  },
+  HalftoneCmykTypes: {
+    0: ".dots",
+    1: ".ink",
+    2: ".sharp",
+  },
+  LiquidMetalShapes: {
+    0: ".none",
+    1: ".circle",
+    2: ".daisy",
+    3: ".diamond",
+    4: ".metaballs",
+  },
+  GlassGridShapes: {
+    1: ".lines",
+    2: ".linesIrregular",
+    3: ".wave",
+    4: ".zigzag",
+    5: ".pattern",
+  },
+  GlassDistortionShapes: {
+    1: ".prism",
+    2: ".lens",
+    3: ".contour",
+    4: ".cascade",
+    5: ".flat",
+  },
+  GemSmokeShapes: {
+    0: ".none",
+    1: ".circle",
+    2: ".daisy",
+    3: ".diamond",
+    4: ".metaballs",
+  },
+};
+
 function arrayFor(spec) {
   const values = snapshot.presets[spec.key];
   if (!values) throw new Error(`Missing preset namespace ${spec.key}`);
@@ -41,7 +126,9 @@ function valueCode(value, field) {
   if (field?.enum) {
     const mapped = enumMaps[field.enum]?.[value];
     if (mapped === undefined) throw new Error(`Unknown ${field.enum} value ${value}`);
-    return number(mapped);
+    const caseName = swiftEnumCases[field.enum]?.[mapped];
+    if (caseName === undefined) throw new Error(`Missing Swift enum case for ${field.enum}.${value} (${mapped})`);
+    return caseName;
   }
   if (typeof value === "string") {
     if (value.startsWith("#") || value.startsWith("rgb") || value.startsWith("hsl")) {
@@ -130,11 +217,10 @@ function presetArrayCode(spec) {
 
 const out = [];
 out.push("import Foundation");
-out.push("import simd");
 out.push("");
 out.push("// Generated from Paper Shaders preset metadata with Scripts/extract-paper-presets.mjs.");
-out.push("private func color(_ value: String) -> SIMD4<Float> {");
-out.push("  (ShaderColor(value) ?? .black).rgba");
+out.push("private func color(_ value: String) -> ShaderColor {");
+out.push("  ShaderColor(value) ?? .black");
 out.push("}");
 out.push("");
 

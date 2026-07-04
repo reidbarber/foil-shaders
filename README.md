@@ -61,6 +61,20 @@ FoilShaders.Swirl(FoilShaders.Swirl.presets[1])
   .frame(width: 240, height: 240)
 ```
 
+Every shader component also has a flat initializer. Color parameters accept
+`ShaderColor` values, including string literals parsed as hex, `rgb()`, or
+`hsl()` colors:
+
+```swift
+FoilShaders.Dithering(
+  colorBack: "#000000",
+  colorFront: "hsl(195 100% 50%)",
+  shape: .sphere,
+  type: .fourByFour,
+  speed: 0.2
+)
+```
+
 ## Visual Parity
 
 Foil Shaders ports the Paper Shaders APIs, preset metadata, and shader behavior

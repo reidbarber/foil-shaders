@@ -1,9 +1,8 @@
 import Foundation
-import simd
 
 // Generated from Paper Shaders preset metadata with Scripts/extract-paper-presets.mjs.
-private func color(_ value: String) -> SIMD4<Float> {
-  (ShaderColor(value) ?? .black).rgba
+private func color(_ value: String) -> ShaderColor {
+  ShaderColor(value) ?? .black
 }
 
 public typealias MeshGradientPreset = ShaderPreset<MeshGradientParams>
@@ -299,7 +298,7 @@ public let dotGridPresets: [DotGridPreset] = [
       strokeWidth: 0,
       sizeRange: 0,
       opacityRange: 0,
-      shape: 0
+      shape: .circle
     ),
     sizing: ShaderSizingParams(
       fit: .none, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -319,7 +318,7 @@ public let dotGridPresets: [DotGridPreset] = [
       strokeWidth: 1,
       sizeRange: 0,
       opacityRange: 0,
-      shape: 3
+      shape: .triangle
     ),
     sizing: ShaderSizingParams(
       fit: .none, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -339,7 +338,7 @@ public let dotGridPresets: [DotGridPreset] = [
       strokeWidth: 0,
       sizeRange: 1,
       opacityRange: 0.6,
-      shape: 0
+      shape: .circle
     ),
     sizing: ShaderSizingParams(
       fit: .none, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -359,7 +358,7 @@ public let dotGridPresets: [DotGridPreset] = [
       strokeWidth: 1,
       sizeRange: 0,
       opacityRange: 0,
-      shape: 1
+      shape: .diamond
     ),
     sizing: ShaderSizingParams(
       fit: .none, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -701,7 +700,7 @@ public let warpPresets: [WarpPreset] = [
       colors: [color("#121212"), color("#9470ff"), color("#121212"), color("#8838ff")],
       proportion: 0.45,
       softness: 1,
-      shape: 0,
+      shape: .checks,
       shapeScale: 0.1,
       distortion: 0.25,
       swirl: 0.8,
@@ -718,7 +717,7 @@ public let warpPresets: [WarpPreset] = [
       colors: [color("#a7e58b"), color("#324472"), color("#0a180d")],
       proportion: 0.64,
       softness: 1.5,
-      shape: 2,
+      shape: .edge,
       shapeScale: 0.6,
       distortion: 0.2,
       swirl: 0.86,
@@ -735,7 +734,7 @@ public let warpPresets: [WarpPreset] = [
       colors: [color("#111314"), color("#9faeab"), color("#f3fee7"), color("#f3fee7")],
       proportion: 0.05,
       softness: 0,
-      shape: 0,
+      shape: .checks,
       shapeScale: 0.28,
       distortion: 0.25,
       swirl: 0.8,
@@ -752,7 +751,7 @@ public let warpPresets: [WarpPreset] = [
       colors: [color("#dbff8f"), color("#404f3e"), color("#091316")],
       proportion: 0.67,
       softness: 0,
-      shape: 1,
+      shape: .stripes,
       shapeScale: 1,
       distortion: 0,
       swirl: 0.2,
@@ -769,7 +768,7 @@ public let warpPresets: [WarpPreset] = [
       colors: [color("#151310"), color("#d3a86b"), color("#f0edea")],
       proportion: 0.24,
       softness: 1,
-      shape: 2,
+      shape: .edge,
       shapeScale: 0.75,
       distortion: 0.21,
       swirl: 0.57,
@@ -786,7 +785,7 @@ public let warpPresets: [WarpPreset] = [
       colors: [color("#3b1515"), color("#954751"), color("#ffc085")],
       proportion: 0.5,
       softness: 1,
-      shape: 0,
+      shape: .checks,
       shapeScale: 0.25,
       distortion: 0.09,
       swirl: 0.9,
@@ -1034,8 +1033,8 @@ public let ditheringPresets: [DitheringPreset] = [
     params: DitheringParams(
       colorBack: color("#000000"),
       colorFront: color("#00b2ff"),
-      shape: 7,
-      type: 3,
+      shape: .sphere,
+      type: .fourByFour,
       size: 2
     ),
     sizing: ShaderSizingParams(
@@ -1048,8 +1047,8 @@ public let ditheringPresets: [DitheringPreset] = [
     params: DitheringParams(
       colorBack: color("#301c2a"),
       colorFront: color("#56ae6c"),
-      shape: 2,
-      type: 3,
+      shape: .warp,
+      type: .fourByFour,
       size: 2.5
     ),
     sizing: ShaderSizingParams(
@@ -1062,8 +1061,8 @@ public let ditheringPresets: [DitheringPreset] = [
     params: DitheringParams(
       colorBack: color("#730d54"),
       colorFront: color("#00becc"),
-      shape: 4,
-      type: 3,
+      shape: .wave,
+      type: .fourByFour,
       size: 11
     ),
     sizing: ShaderSizingParams(
@@ -1076,8 +1075,8 @@ public let ditheringPresets: [DitheringPreset] = [
     params: DitheringParams(
       colorBack: color("#603520"),
       colorFront: color("#c67953"),
-      shape: 5,
-      type: 2,
+      shape: .ripple,
+      type: .twoByTwo,
       size: 3
     ),
     sizing: ShaderSizingParams(
@@ -1090,8 +1089,8 @@ public let ditheringPresets: [DitheringPreset] = [
     params: DitheringParams(
       colorBack: color("#000000"),
       colorFront: color("#008000"),
-      shape: 3,
-      type: 1,
+      shape: .dots,
+      type: .random,
       size: 9
     ),
     sizing: ShaderSizingParams(
@@ -1104,8 +1103,8 @@ public let ditheringPresets: [DitheringPreset] = [
     params: DitheringParams(
       colorBack: color("#00000000"),
       colorFront: color("#47a8e1"),
-      shape: 6,
-      type: 4,
+      shape: .swirl,
+      type: .eightByEight,
       size: 2
     ),
     sizing: ShaderSizingParams(
@@ -1124,7 +1123,7 @@ public let grainGradientPresets: [GrainGradientPreset] = [
       softness: 0.5,
       intensity: 0.5,
       noise: 0.25,
-      shape: 4
+      shape: .corners
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -1139,7 +1138,7 @@ public let grainGradientPresets: [GrainGradientPreset] = [
       softness: 0.7,
       intensity: 0.15,
       noise: 0.5,
-      shape: 1
+      shape: .wave
     ),
     sizing: ShaderSizingParams(
       fit: .none, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -1154,7 +1153,7 @@ public let grainGradientPresets: [GrainGradientPreset] = [
       softness: 1,
       intensity: 1,
       noise: 0.7,
-      shape: 2
+      shape: .dots
     ),
     sizing: ShaderSizingParams(
       fit: .none, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -1169,7 +1168,7 @@ public let grainGradientPresets: [GrainGradientPreset] = [
       softness: 0,
       intensity: 0.2,
       noise: 1,
-      shape: 3
+      shape: .truchet
     ),
     sizing: ShaderSizingParams(
       fit: .none, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -1184,7 +1183,7 @@ public let grainGradientPresets: [GrainGradientPreset] = [
       softness: 0.5,
       intensity: 0.5,
       noise: 0.5,
-      shape: 5
+      shape: .ripple
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.5, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -1199,7 +1198,7 @@ public let grainGradientPresets: [GrainGradientPreset] = [
       softness: 0,
       intensity: 0.15,
       noise: 0.5,
-      shape: 6
+      shape: .blob
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 1.3, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -1220,7 +1219,7 @@ public let pulsingBorderPresets: [PulsingBorderPreset] = [
       marginRight: 0,
       marginTop: 0,
       marginBottom: 0,
-      aspectRatio: 0,
+      aspectRatio: .auto,
       softness: 0.75,
       intensity: 0.2,
       bloom: 0.25,
@@ -1246,7 +1245,7 @@ public let pulsingBorderPresets: [PulsingBorderPreset] = [
       marginRight: 0,
       marginTop: 0,
       marginBottom: 0,
-      aspectRatio: 1,
+      aspectRatio: .square,
       softness: 0.75,
       intensity: 0.2,
       bloom: 0.45,
@@ -1274,7 +1273,7 @@ public let pulsingBorderPresets: [PulsingBorderPreset] = [
       marginRight: 0,
       marginTop: 0,
       marginBottom: 0,
-      aspectRatio: 0,
+      aspectRatio: .auto,
       softness: 1,
       intensity: 0.1,
       bloom: 0.2,
@@ -1300,7 +1299,7 @@ public let pulsingBorderPresets: [PulsingBorderPreset] = [
       marginRight: 0,
       marginTop: 0,
       marginBottom: 0,
-      aspectRatio: 0,
+      aspectRatio: .auto,
       softness: 0,
       intensity: 0,
       bloom: 0.15,
@@ -1678,9 +1677,9 @@ public let flutedGlassPresets: [FlutedGlassPreset] = [
       marginTop: 0,
       marginBottom: 0,
       stretch: 0,
-      distortionShape: 1,
+      distortionShape: .prism,
       highlights: 0.1,
-      shape: 1,
+      shape: .lines,
       grainMixer: 0,
       grainOverlay: 0
     ),
@@ -1707,9 +1706,9 @@ public let flutedGlassPresets: [FlutedGlassPreset] = [
       marginTop: 0,
       marginBottom: 0,
       stretch: 1,
-      distortionShape: 5,
+      distortionShape: .flat,
       highlights: 0,
-      shape: 2,
+      shape: .linesIrregular,
       grainMixer: 0.1,
       grainOverlay: 0.1
     ),
@@ -1736,9 +1735,9 @@ public let flutedGlassPresets: [FlutedGlassPreset] = [
       marginTop: 0,
       marginBottom: 0,
       stretch: 1,
-      distortionShape: 3,
+      distortionShape: .contour,
       highlights: 0,
-      shape: 3,
+      shape: .wave,
       grainMixer: 0,
       grainOverlay: 0.05
     ),
@@ -1765,9 +1764,9 @@ public let flutedGlassPresets: [FlutedGlassPreset] = [
       marginTop: 0.1,
       marginBottom: 0.1,
       stretch: 0,
-      distortionShape: 4,
+      distortionShape: .cascade,
       highlights: 0,
-      shape: 1,
+      shape: .lines,
       grainMixer: 0,
       grainOverlay: 0
     ),
@@ -1856,7 +1855,7 @@ public let imageDitheringPresets: [ImageDitheringPreset] = [
       colorFront: color("#94ffaf"),
       colorBack: color("#000c38"),
       colorHighlight: color("#eaff94"),
-      type: 4,
+      type: .eightByEight,
       size: 2,
       colorSteps: 2,
       originalColors: 0,
@@ -1873,7 +1872,7 @@ public let imageDitheringPresets: [ImageDitheringPreset] = [
       colorFront: color("#a2997c"),
       colorBack: color("#000000"),
       colorHighlight: color("#ededed"),
-      type: 1,
+      type: .random,
       size: 1,
       colorSteps: 1,
       originalColors: 0,
@@ -1890,7 +1889,7 @@ public let imageDitheringPresets: [ImageDitheringPreset] = [
       colorFront: color("#eeeeee"),
       colorBack: color("#5452ff"),
       colorHighlight: color("#eeeeee"),
-      type: 2,
+      type: .twoByTwo,
       size: 3,
       colorSteps: 1,
       originalColors: 1,
@@ -1907,7 +1906,7 @@ public let imageDitheringPresets: [ImageDitheringPreset] = [
       colorFront: color("#ffffff"),
       colorBack: color("#000000"),
       colorHighlight: color("#ffffff"),
-      type: 4,
+      type: .eightByEight,
       size: 2,
       colorSteps: 5,
       originalColors: 1,
@@ -1971,7 +1970,7 @@ public let liquidMetalPresets: [LiquidMetalPreset] = [
       distortion: 0.07,
       contour: 0.4,
       angle: 70,
-      shape: 3
+      shape: .diamond
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -1990,7 +1989,7 @@ public let liquidMetalPresets: [LiquidMetalPreset] = [
       distortion: 0,
       contour: 0,
       angle: 90,
-      shape: 3
+      shape: .diamond
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2009,7 +2008,7 @@ public let liquidMetalPresets: [LiquidMetalPreset] = [
       distortion: 0.1,
       contour: 0.4,
       angle: 90,
-      shape: 0
+      shape: .none
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2028,7 +2027,7 @@ public let liquidMetalPresets: [LiquidMetalPreset] = [
       distortion: 0.4,
       contour: 0.4,
       angle: 0,
-      shape: 1
+      shape: .circle
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2044,7 +2043,7 @@ public let halftoneDotsPresets: [HalftoneDotsPreset] = [
       colorFront: color("#2b2b2b"),
       colorBack: color("#f2f1e8"),
       size: 0.5,
-      grid: 1,
+      grid: .hex,
       radius: 1.25,
       contrast: 0.4,
       originalColors: 0,
@@ -2052,7 +2051,7 @@ public let halftoneDotsPresets: [HalftoneDotsPreset] = [
       grainMixer: 0.2,
       grainOverlay: 0.2,
       grainSize: 0.5,
-      type: 1
+      type: .gooey
     ),
     sizing: ShaderSizingParams(
       fit: .cover, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2065,7 +2064,7 @@ public let halftoneDotsPresets: [HalftoneDotsPreset] = [
       colorFront: color("#29ff7b"),
       colorBack: color("#000000"),
       size: 0.5,
-      grid: 0,
+      grid: .square,
       radius: 1.5,
       contrast: 0.3,
       originalColors: 0,
@@ -2073,7 +2072,7 @@ public let halftoneDotsPresets: [HalftoneDotsPreset] = [
       grainMixer: 0,
       grainOverlay: 0,
       grainSize: 0.5,
-      type: 3
+      type: .soft
     ),
     sizing: ShaderSizingParams(
       fit: .cover, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2086,7 +2085,7 @@ public let halftoneDotsPresets: [HalftoneDotsPreset] = [
       colorFront: color("#b2aeae"),
       colorBack: color("#000000"),
       size: 0.6,
-      grid: 1,
+      grid: .hex,
       radius: 2,
       contrast: 0.01,
       originalColors: 1,
@@ -2094,7 +2093,7 @@ public let halftoneDotsPresets: [HalftoneDotsPreset] = [
       grainMixer: 0,
       grainOverlay: 0,
       grainSize: 0.5,
-      type: 0
+      type: .classic
     ),
     sizing: ShaderSizingParams(
       fit: .cover, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2107,7 +2106,7 @@ public let halftoneDotsPresets: [HalftoneDotsPreset] = [
       colorFront: color("#ff8000"),
       colorBack: color("#141414"),
       size: 0.8,
-      grid: 0,
+      grid: .square,
       radius: 1,
       contrast: 1,
       originalColors: 0,
@@ -2115,7 +2114,7 @@ public let halftoneDotsPresets: [HalftoneDotsPreset] = [
       grainMixer: 0.05,
       grainOverlay: 0.3,
       grainSize: 0.5,
-      type: 2
+      type: .holes
     ),
     sizing: ShaderSizingParams(
       fit: .cover, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2148,7 +2147,7 @@ public let halftoneCmykPresets: [HalftoneCmykPreset] = [
       gainM: 0,
       gainY: 0.2,
       gainK: 0,
-      type: 1
+      type: .ink
     ),
     sizing: ShaderSizingParams(
       fit: .cover, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2178,7 +2177,7 @@ public let halftoneCmykPresets: [HalftoneCmykPreset] = [
       gainM: 0.44,
       gainY: -1,
       gainK: 0,
-      type: 1
+      type: .ink
     ),
     sizing: ShaderSizingParams(
       fit: .cover, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2208,7 +2207,7 @@ public let halftoneCmykPresets: [HalftoneCmykPreset] = [
       gainM: -0.45,
       gainY: -0.45,
       gainK: 0,
-      type: 0
+      type: .dots
     ),
     sizing: ShaderSizingParams(
       fit: .cover, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2238,7 +2237,7 @@ public let halftoneCmykPresets: [HalftoneCmykPreset] = [
       gainM: 0,
       gainY: 0.2,
       gainK: 0,
-      type: 2
+      type: .sharp
     ),
     sizing: ShaderSizingParams(
       fit: .cover, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2261,7 +2260,7 @@ public let gemSmokePresets: [GemSmokePreset] = [
       offset: 0,
       angle: 0,
       size: 0.8,
-      shape: 3
+      shape: .diamond
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2281,7 +2280,7 @@ public let gemSmokePresets: [GemSmokePreset] = [
       offset: 0,
       angle: 0,
       size: 0.8,
-      shape: 3
+      shape: .diamond
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2301,7 +2300,7 @@ public let gemSmokePresets: [GemSmokePreset] = [
       offset: 0,
       angle: 0,
       size: 0.8,
-      shape: 3
+      shape: .diamond
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2323,7 +2322,7 @@ public let gemSmokePresets: [GemSmokePreset] = [
       offset: 0.2,
       angle: 0,
       size: 1,
-      shape: 3
+      shape: .diamond
     ),
     sizing: ShaderSizingParams(
       fit: .contain, scale: 0.6, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
