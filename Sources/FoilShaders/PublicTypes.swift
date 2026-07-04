@@ -1,13 +1,23 @@
 import CoreGraphics
 import CryptoKit
 import Foundation
+import OSLog
 import simd
+
+#if DEBUG
+  private let shaderColorDiagnosticsLogger = Logger(
+    subsystem: "FoilShaders",
+    category: "ShaderColor"
+  )
+#endif
 
 /// A normalized RGBA color passed to Metal shader uniforms.
 ///
 /// Component values use the `0...1` range. String literals and string parsing accept
 /// CSS-style hex, `rgb()`/`rgba()`, and `hsl()`/`hsla()` values and normalize them to
-/// the same component range.
+/// the same component range. Invalid string literals fall back to ``black``; use
+/// `ShaderColor(value)` with a `String`-typed value when you need to detect parse
+/// failures.
 public struct ShaderColor: Equatable, Sendable, Codable, ExpressibleByStringLiteral {
   /// Red channel in the `0...1` range.
   public var red: Float
@@ -41,15 +51,26 @@ public struct ShaderColor: Equatable, Sendable, Codable, ExpressibleByStringLite
 
   /// Creates a color from a CSS-style color string literal.
   ///
-  /// Invalid strings fall back to ``black``.
+  /// Invalid strings fall back to ``black`` because string-literal initialization cannot
+  /// fail. Use `ShaderColor(value)` with a `String`-typed value when parsing user input
+  /// or other values that need validation.
   public init(stringLiteral value: String) {
-    self = ShaderColor(value) ?? .black
+    if let color = ShaderColor(value) {
+      self = color
+    } else {
+      #if DEBUG
+        shaderColorDiagnosticsLogger.warning(
+          "Invalid ShaderColor string literal \(value, privacy: .public); using .black. Use ShaderColor(_:) to validate input."
+        )
+      #endif
+      self = .black
+    }
   }
 
   /// Creates a color from a CSS-style color string.
   ///
   /// Supported formats include `#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`, `rgb()`,
-  /// `rgba()`, `hsl()`, and `hsla()`.
+  /// `rgba()`, `hsl()`, and `hsla()`. Returns `nil` for unparseable `String` values.
   public init?(_ value: String) {
     let text = value.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
     if let color = Self.parseHex(text) ?? Self.parseRGB(text) ?? Self.parseHSL(text) {

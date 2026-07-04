@@ -3,6 +3,23 @@ import SwiftUI
 import XCTest
 
 final class PublicAPITests: XCTestCase {
+  func testShaderColorStringLiteralFallsBackToBlackForInvalidInput() {
+    let input = "definitely-not-a-color"
+    let color: ShaderColor = "definitely-not-a-color"
+
+    XCTAssertEqual(color, .black)
+    XCTAssertNil(ShaderColor(input))
+  }
+
+  func testColorArrayParamsKeepOnlyMaxColorCountColors() {
+    let colors = (0..<(MeshGradientParams.maxColorCount + 2)).map {
+      ShaderColor(red: Float($0) / 20, green: 0, blue: 0)
+    }
+    let params = MeshGradientParams(colors: colors)
+
+    XCTAssertEqual(params.colors, Array(colors.prefix(MeshGradientParams.maxColorCount)))
+  }
+
   func testFoilShadersErrorIsPublicAndLocalized() {
     let error: any Error = FoilShadersError.shaderError("missing_fragment")
 
