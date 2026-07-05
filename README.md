@@ -85,6 +85,14 @@ AnimatedMeshGradient()
   .foilShadersPausesWhenInactiveOrOffscreen(false)
 ```
 
+## Agent Skills
+
+Install the `foil-shaders` agent skill by running the following command in your project root:
+
+```bash
+npx skills add https://github.com/reidbarber/foil-shaders
+```
+
 ## Visual Parity
 
 Foil Shaders ports the Paper Shaders APIs, preset metadata, and shader behavior
