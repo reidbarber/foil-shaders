@@ -1,5 +1,6 @@
 import CoreGraphics
 import FoilShaders
+import MetalKit
 import SwiftUI
 import XCTest
 
@@ -200,6 +201,28 @@ final class PublicAPITests: XCTestCase {
     }
 
     _ = clearImage
+  }
+
+  @MainActor
+  func testRendererPublicRenderAndThrowingCaptureAPIsCompile() {
+    let renderConfiguration: (FoilShadersRenderer, ShaderConfiguration) throws -> Void = {
+      renderer,
+      configuration in
+      try renderer.render(configuration)
+    }
+    let renderInView: (FoilShadersRenderer, ShaderConfiguration, MTKView) throws -> Void = {
+      renderer,
+      configuration,
+      view in
+      try renderer.render(configuration, in: view)
+    }
+    let captureImage: (FoilShadersRenderer) throws -> CGImage = { renderer in
+      try renderer.captureImage(width: 1, height: 1)
+    }
+
+    _ = renderConfiguration
+    _ = renderInView
+    _ = captureImage
   }
 
   @MainActor

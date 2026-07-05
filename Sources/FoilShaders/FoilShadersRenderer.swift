@@ -789,6 +789,33 @@ import MetalKit
     }
   }
 
+  private func configureIfNeeded(_ shaderKind: ShaderKind) throws {
+    if pipelineState == nil || activeShader != shaderKind {
+      try configure(shaderKind)
+    }
+  }
+
+  /// Configures the renderer for the supplied configuration if needed, then applies it.
+  ///
+  /// Use this for offscreen capture paths, or for an already-attached renderer.
+  ///
+  /// - Throws: `FoilShadersError` when the shader library, shader functions, or Metal pipeline
+  ///   cannot be loaded or compiled.
+  public func render(_ configuration: ShaderConfiguration) throws {
+    try configureIfNeeded(configuration.kind)
+    apply(configuration)
+  }
+
+  /// Attaches the renderer to a live Metal view, configures it if needed, then applies it.
+  ///
+  /// - Throws: `FoilShadersError` when the shader library, shader functions, or Metal pipeline
+  ///   cannot be loaded or compiled.
+  public func render(_ configuration: ShaderConfiguration, in view: MTKView) throws {
+    try configureIfNeeded(configuration.kind)
+    attach(to: view)
+    apply(configuration)
+  }
+
   /// Applies shader parameters, sizing, motion, render options, and image input.
   public func apply(_ configuration: ShaderConfiguration) {
     sizingParams = configuration.sizing
@@ -1216,18 +1243,37 @@ import MetalKit
   }
 
   /// Renders the current shader configuration offscreen at the requested pixel size.
-  public func captureImage(width: Int, height: Int, pixelRatio: Float = 1) -> CGImage? {
-    guard let capture = capturePixels(width: width, height: height, pixelRatio: pixelRatio) else {
-      return nil
+  ///
+  /// - Throws: `FoilShadersError` when capture dimensions are invalid, the renderer has not been
+  ///   configured, Metal cannot allocate or encode the capture pass, or the captured pixels cannot
+  ///   be converted to a `CGImage`.
+  public func captureImage(width: Int, height: Int, pixelRatio: Float = 1) throws -> CGImage {
+    let capture = try capturePixels(width: width, height: height, pixelRatio: pixelRatio)
+    guard let image = makeImage(from: capture) else {
+      throw FoilShadersError.captureImageCreationFailed
     }
-    return makeImage(from: capture)
+    return image
   }
 
-  func capturePixels(width: Int, height: Int, pixelRatio: Float = 1) -> (
+  func capturePixels(width: Int, height: Int, pixelRatio: Float = 1) throws -> (
     rgba: [UInt8], width: Int, height: Int
-  )? {
+  ) {
+    guard width > 0, height > 0, pixelRatio > 0, pixelRatio.isFinite else {
+      throw FoilShadersError.captureInvalidSize(
+        width: width,
+        height: height,
+        pixelRatio: pixelRatio
+      )
+    }
+    guard width <= Int.max / height / 4 else {
+      throw FoilShadersError.captureInvalidSize(
+        width: width,
+        height: height,
+        pixelRatio: pixelRatio
+      )
+    }
     setRenderSize(width: width, height: height, pixelRatio: pixelRatio)
-    return captureCurrentPixels()
+    return try captureCurrentPixels()
   }
 
   private func makeImage(from capture: (rgba: [UInt8], width: Int, height: Int)) -> CGImage? {
@@ -1256,15 +1302,21 @@ import MetalKit
   /// Renders the current shader offscreen and returns the raw RGBA8 bytes
   /// (premultiplied alpha, top-down row order), exactly as produced by the
   /// fragment shader with no color management applied.
-  private func captureCurrentPixels() -> (rgba: [UInt8], width: Int, height: Int)? {
+  private func captureCurrentPixels() throws -> (rgba: [UInt8], width: Int, height: Int) {
     guard let pipelineState = pipelineState,
       let vertexBuffer = vertexBuffer
     else {
-      return nil
+      throw FoilShadersError.captureNotConfigured
     }
     let width = Int(resolution.x)
     let height = Int(resolution.y)
-    if width <= 0 || height <= 0 { return nil }
+    if width <= 0 || height <= 0 {
+      throw FoilShadersError.captureInvalidSize(
+        width: width,
+        height: height,
+        pixelRatio: pixelRatio
+      )
+    }
 
     // The export path never runs `draw(in:)`, so compute the shader time from
     // the current frame here; otherwise captures always encode `time == 0`.
@@ -1278,7 +1330,7 @@ import MetalKit
     )
     textureDescriptor.usage = [.renderTarget, .shaderRead]
     guard let texture = device.makeTexture(descriptor: textureDescriptor) else {
-      return nil
+      throw FoilShadersError.captureTextureCreationFailed(width: width, height: height)
     }
 
     let passDescriptor = MTLRenderPassDescriptor()
@@ -1290,7 +1342,7 @@ import MetalKit
     guard let commandBuffer = commandQueue.makeCommandBuffer(),
       let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: passDescriptor)
     else {
-      return nil
+      throw FoilShadersError.captureCommandEncodingFailed
     }
 
     var vertexUniforms = VertexUniforms(
@@ -1445,6 +1497,9 @@ import MetalKit
 
     commandBuffer.commit()
     commandBuffer.waitUntilCompleted()
+    if let error = commandBuffer.error {
+      throw FoilShadersError.captureCommandFailed(error)
+    }
 
     var raw = [UInt8](repeating: 0, count: width * height * 4)
     let bytesPerRow = width * 4
@@ -1515,6 +1570,24 @@ public enum FoilShadersError: Error {
   /// Runtime compilation of Metal shader source failed.
   case libraryCompileError(String)
 
+  /// The requested capture dimensions or scale cannot produce a valid image.
+  case captureInvalidSize(width: Int, height: Int, pixelRatio: Float)
+
+  /// Capture was requested before a shader pipeline was configured.
+  case captureNotConfigured
+
+  /// Metal could not allocate the offscreen texture for image capture.
+  case captureTextureCreationFailed(width: Int, height: Int)
+
+  /// Metal could not create a command buffer or render encoder for image capture.
+  case captureCommandEncodingFailed
+
+  /// Metal failed while executing the image capture command buffer.
+  case captureCommandFailed(any Error)
+
+  /// Captured pixels could not be converted into a `CGImage`.
+  case captureImageCreationFailed
+
   /// An unexpected underlying error escaped the renderer setup path.
   case unexpectedError(any Error)
 }
@@ -1537,6 +1610,20 @@ extension FoilShadersError: LocalizedError {
         "FoilShaders could not read Metal shader source resources: \(error.localizedDescription)"
     case .libraryCompileError(let message):
       return "FoilShaders could not compile Metal shader source: \(message)"
+    case .captureInvalidSize(let width, let height, let pixelRatio):
+      return
+        "FoilShaders could not capture an image with width \(width), height \(height), and pixelRatio \(pixelRatio)."
+    case .captureNotConfigured:
+      return "FoilShaders could not capture an image before a shader was configured."
+    case .captureTextureCreationFailed(let width, let height):
+      return
+        "FoilShaders could not create a \(width)x\(height) Metal texture for image capture."
+    case .captureCommandEncodingFailed:
+      return "FoilShaders could not encode the Metal image capture pass."
+    case .captureCommandFailed(let error):
+      return "FoilShaders image capture failed: \(error.localizedDescription)"
+    case .captureImageCreationFailed:
+      return "FoilShaders captured pixels but could not create a CGImage."
     case .unexpectedError(let error):
       return "FoilShaders renderer setup failed: \(error.localizedDescription)"
     }
@@ -1550,6 +1637,16 @@ extension FoilShadersError: LocalizedError {
       return "The shader library could not be loaded into a renderable Metal pipeline."
     case .pipelineError:
       return "Metal rejected the render pipeline descriptor."
+    case .captureInvalidSize:
+      return "Capture width, height, and pixel ratio must be positive finite values."
+    case .captureNotConfigured:
+      return "Call render(_:) or configure(_:) before capturing an image."
+    case .captureTextureCreationFailed:
+      return "The requested capture is too large or incompatible with the Metal device."
+    case .captureCommandEncodingFailed, .captureCommandFailed:
+      return "Metal could not complete the offscreen render pass."
+    case .captureImageCreationFailed:
+      return "Core Graphics could not wrap the captured RGBA bytes."
     case .unexpectedError:
       return "An unexpected lower-level renderer error occurred."
     }

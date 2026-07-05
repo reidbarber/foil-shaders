@@ -59,20 +59,12 @@ final class GoldenParityTests: XCTestCase {
           for: parityCase, fixture: fixture)
         configuration.motion.speed = 0
         configuration.motion.frame = parityCase.frame
-        try renderer.configure(configuration.kind)
-        renderer.apply(configuration)
-
-        guard
-          let capture = renderer.capturePixels(
-            width: manifest.canvas.width,
-            height: manifest.canvas.height,
-            pixelRatio: manifest.canvas.pixelRatio
-          )
-        else {
-          XCTFail("\(parityCase.id): capturePixels returned nil")
-          failed += 1
-          return
-        }
+        try renderer.render(configuration)
+        let capture = try renderer.capturePixels(
+          width: manifest.canvas.width,
+          height: manifest.canvas.height,
+          pixelRatio: manifest.canvas.pixelRatio
+        )
         XCTAssertEqual(capture.width, manifest.canvas.width)
         XCTAssertEqual(capture.height, manifest.canvas.height)
 

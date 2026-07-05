@@ -112,6 +112,11 @@ final class FoilShadersTests: XCTestCase {
     assertEquatableSendableCodable(GemSmokeParams.self)
   }
 
+  func testShaderSizingExplicitDefaultNames() {
+    XCTAssertEqual(ShaderSizingParams.defaultObjectSizing.fit, .contain)
+    XCTAssertEqual(ShaderSizingParams.defaultPatternSizing.fit, .none)
+  }
+
   func testShaderConfigurationCodableRoundTrip() throws {
     let configuration = ShaderConfiguration(
       parameters: .animatedMeshGradient(AnimatedMeshGradientPreset.default.params),
@@ -653,6 +658,39 @@ final class FoilShadersTests: XCTestCase {
   }
 
   @MainActor
+  func testRendererRenderConvenienceConfiguresForCapture() throws {
+    guard let device = MTLCreateSystemDefaultDevice() else {
+      throw XCTSkip("Metal is not available")
+    }
+
+    let renderer = try FoilShadersRenderer(device: device)
+    try renderer.render(AnimatedMeshGradient().configuration)
+    let image = try renderer.captureImage(width: 8, height: 8, pixelRatio: 1)
+
+    XCTAssertEqual(image.width, 8)
+    XCTAssertEqual(image.height, 8)
+  }
+
+  @MainActor
+  func testCaptureImageThrowsSpecificPublicError() throws {
+    guard let device = MTLCreateSystemDefaultDevice() else {
+      throw XCTSkip("Metal is not available")
+    }
+
+    let renderer = try FoilShadersRenderer(device: device)
+
+    XCTAssertThrowsError(try renderer.captureImage(width: 0, height: 8, pixelRatio: 1)) { error in
+      guard case FoilShadersError.captureInvalidSize(let width, let height, let pixelRatio) = error
+      else {
+        return XCTFail("Expected captureInvalidSize, got \(error)")
+      }
+      XCTAssertEqual(width, 0)
+      XCTAssertEqual(height, 8)
+      XCTAssertEqual(pixelRatio, 1)
+    }
+  }
+
+  @MainActor
   func testDefaultMetalContextSharesReusableResources() throws {
     guard MTLCreateSystemDefaultDevice() != nil else {
       throw XCTSkip("Metal is not available")
@@ -685,8 +723,7 @@ final class FoilShadersTests: XCTestCase {
 
     let image = try Self.makeTopDarkBottomLightImage(width: 32, height: 32)
     let renderer = try FoilShadersRenderer(device: device)
-    try renderer.configure(.heatmap)
-    renderer.apply(
+    try renderer.render(
       ShaderConfiguration(
         parameters: .heatmap(
           HeatmapParams(
@@ -704,9 +741,7 @@ final class FoilShadersTests: XCTestCase {
         image: .cgImage(image)
       )
     )
-    guard let capture = renderer.capturePixels(width: 96, height: 96, pixelRatio: 1) else {
-      return XCTFail("Expected heatmap capture")
-    }
+    let capture = try renderer.capturePixels(width: 96, height: 96, pixelRatio: 1)
 
     let sampleX = (capture.width / 3)..<(2 * capture.width / 3)
     let topSampleY = (capture.height / 4)..<(capture.height / 2)

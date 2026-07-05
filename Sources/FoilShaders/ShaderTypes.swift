@@ -63,19 +63,6 @@ public struct ShaderSizingParams: Equatable, Sendable, Codable {
   /// Optional explicit content height. `0` means use the rendered view height.
   public var worldHeight: Float
 
-  /// Default sizing for object-like image shaders.
-  public static let `default` = ShaderSizingParams(
-    fit: .contain,
-    scale: 1.0,
-    rotation: 0.0,
-    originX: 0.5,
-    originY: 0.5,
-    offsetX: 0.0,
-    offsetY: 0.0,
-    worldWidth: 0.0,
-    worldHeight: 0.0
-  )
-
   /// Creates shared shader sizing controls.
   ///
   /// - Parameters:

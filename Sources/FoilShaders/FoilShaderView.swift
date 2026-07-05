@@ -202,9 +202,7 @@ public struct FoilShaderView: SwiftUI.View {
         mtkView.device = metalContext.device
         let renderer = FoilShadersRenderer(context: metalContext)
         let shaderKind = configuration.kind
-        try renderer.configure(shaderKind)
-        renderer.attach(to: mtkView)
-        renderer.apply(configuration)
+        try renderer.render(configuration, in: mtkView)
         context.coordinator.renderer = renderer
         context.coordinator.currentKind = shaderKind
         context.coordinator.currentConfiguration = configuration
@@ -225,19 +223,19 @@ public struct FoilShaderView: SwiftUI.View {
       let shaderKind = configuration.kind
       let needsConfigure = context.coordinator.currentKind != shaderKind
       let needsApply = context.coordinator.currentConfiguration != configuration
-      if needsConfigure {
+      if needsConfigure || needsApply {
         do {
-          try renderer.configure(shaderKind)
-          renderer.attach(to: view)
+          if needsConfigure {
+            try renderer.render(configuration, in: view)
+            context.coordinator.currentKind = shaderKind
+          } else {
+            try renderer.render(configuration)
+          }
           context.coordinator.clearFailure(on: view, rendererError: $rendererError)
-          context.coordinator.currentKind = shaderKind
         } catch {
           handleFailure(FoilShadersError.wrapping(error), in: view, context: context)
           return
         }
-      }
-      if needsConfigure || needsApply {
-        renderer.apply(configuration)
         context.coordinator.currentConfiguration = configuration
       }
       context.coordinator.updateRenderingPolicy(

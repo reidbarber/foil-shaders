@@ -231,13 +231,8 @@ do {
   shaderConfiguration.motion.speed = 0
   shaderConfiguration.motion.frame = options.frame
 
-  try renderer.configure(shaderConfiguration.kind)
-  renderer.apply(shaderConfiguration)
-
-  guard let image = renderer.captureImage(width: options.width, height: options.height) else {
-    fputs("Could not capture shader image.\n", stderr)
-    exit(1)
-  }
+  try renderer.render(shaderConfiguration)
+  let image = try renderer.captureImage(width: options.width, height: options.height)
 
   try writePNG(image, to: options.outputURL)
   print(options.outputURL.path)

@@ -20346,6 +20346,68 @@
           },
           {
             "kind": "Function",
+            "name": "render",
+            "printedName": "render(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ShaderConfiguration",
+                "printedName": "FoilShaders.ShaderConfiguration",
+                "usr": "s:11FoilShaders19ShaderConfigurationV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders0aB8RendererC6renderyyAA19ShaderConfigurationVKF",
+            "mangledName": "$s11FoilShaders0aB8RendererC6renderyyAA19ShaderConfigurationVKF",
+            "moduleName": "FoilShaders",
+            "declAttributes": [
+              "Final",
+              "Custom"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "render",
+            "printedName": "render(_:in:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ShaderConfiguration",
+                "printedName": "FoilShaders.ShaderConfiguration",
+                "usr": "s:11FoilShaders19ShaderConfigurationV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "MTKView",
+                "printedName": "MetalKit.MTKView",
+                "usr": "c:objc(cs)MTKView"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders0aB8RendererC6render_2inyAA19ShaderConfigurationV_So7MTKViewCtKF",
+            "mangledName": "$s11FoilShaders0aB8RendererC6render_2inyAA19ShaderConfigurationV_So7MTKViewCtKF",
+            "moduleName": "FoilShaders",
+            "declAttributes": [
+              "Final",
+              "Custom"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "apply",
             "printedName": "apply(_:)",
             "children": [
@@ -20405,17 +20467,9 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "CoreGraphics.CGImage?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGImage",
-                    "printedName": "CoreGraphics.CGImage",
-                    "usr": "c:@T@CGImageRef"
-                  }
-                ],
-                "usr": "s:Sq"
+                "name": "CGImage",
+                "printedName": "CoreGraphics.CGImage",
+                "usr": "c:@T@CGImageRef"
               },
               {
                 "kind": "TypeNominal",
@@ -20438,13 +20492,14 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:11FoilShaders0aB8RendererC12captureImage5width6height10pixelRatioSo10CGImageRefaSgSi_SiSftF",
-            "mangledName": "$s11FoilShaders0aB8RendererC12captureImage5width6height10pixelRatioSo10CGImageRefaSgSi_SiSftF",
+            "usr": "s:11FoilShaders0aB8RendererC12captureImage5width6height10pixelRatioSo10CGImageRefaSi_SiSftKF",
+            "mangledName": "$s11FoilShaders0aB8RendererC12captureImage5width6height10pixelRatioSo10CGImageRefaSi_SiSftKF",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Final",
               "Custom"
             ],
+            "throwing": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -20862,6 +20917,299 @@
             "declKind": "EnumElement",
             "usr": "s:11FoilShaders0aB5ErrorO014libraryCompileC0yACSScACmF",
             "mangledName": "$s11FoilShaders0aB5ErrorO014libraryCompileC0yACSScACmF",
+            "moduleName": "FoilShaders"
+          },
+          {
+            "kind": "Var",
+            "name": "captureInvalidSize",
+            "printedName": "captureInvalidSize",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FoilShaders.FoilShadersError.Type) -> (Swift.Int, Swift.Int, Swift.Float) -> FoilShaders.FoilShadersError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.Int, Swift.Int, Swift.Float) -> FoilShaders.FoilShadersError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FoilShadersError",
+                        "printedName": "FoilShaders.FoilShadersError",
+                        "usr": "s:11FoilShaders0aB5ErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(width: Swift.Int, height: Swift.Int, pixelRatio: Swift.Float)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Float",
+                            "printedName": "Swift.Float",
+                            "usr": "s:Sf"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FoilShaders.FoilShadersError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FoilShadersError",
+                        "printedName": "FoilShaders.FoilShadersError",
+                        "usr": "s:11FoilShaders0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11FoilShaders0aB5ErrorO18captureInvalidSizeyACSi_SiSftcACmF",
+            "mangledName": "$s11FoilShaders0aB5ErrorO18captureInvalidSizeyACSi_SiSftcACmF",
+            "moduleName": "FoilShaders"
+          },
+          {
+            "kind": "Var",
+            "name": "captureNotConfigured",
+            "printedName": "captureNotConfigured",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FoilShaders.FoilShadersError.Type) -> FoilShaders.FoilShadersError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FoilShadersError",
+                    "printedName": "FoilShaders.FoilShadersError",
+                    "usr": "s:11FoilShaders0aB5ErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FoilShaders.FoilShadersError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FoilShadersError",
+                        "printedName": "FoilShaders.FoilShadersError",
+                        "usr": "s:11FoilShaders0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11FoilShaders0aB5ErrorO20captureNotConfiguredyA2CmF",
+            "mangledName": "$s11FoilShaders0aB5ErrorO20captureNotConfiguredyA2CmF",
+            "moduleName": "FoilShaders"
+          },
+          {
+            "kind": "Var",
+            "name": "captureTextureCreationFailed",
+            "printedName": "captureTextureCreationFailed",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FoilShaders.FoilShadersError.Type) -> (Swift.Int, Swift.Int) -> FoilShaders.FoilShadersError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.Int, Swift.Int) -> FoilShaders.FoilShadersError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FoilShadersError",
+                        "printedName": "FoilShaders.FoilShadersError",
+                        "usr": "s:11FoilShaders0aB5ErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(width: Swift.Int, height: Swift.Int)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FoilShaders.FoilShadersError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FoilShadersError",
+                        "printedName": "FoilShaders.FoilShadersError",
+                        "usr": "s:11FoilShaders0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11FoilShaders0aB5ErrorO28captureTextureCreationFailedyACSi_SitcACmF",
+            "mangledName": "$s11FoilShaders0aB5ErrorO28captureTextureCreationFailedyACSi_SitcACmF",
+            "moduleName": "FoilShaders"
+          },
+          {
+            "kind": "Var",
+            "name": "captureCommandEncodingFailed",
+            "printedName": "captureCommandEncodingFailed",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FoilShaders.FoilShadersError.Type) -> FoilShaders.FoilShadersError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FoilShadersError",
+                    "printedName": "FoilShaders.FoilShadersError",
+                    "usr": "s:11FoilShaders0aB5ErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FoilShaders.FoilShadersError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FoilShadersError",
+                        "printedName": "FoilShaders.FoilShadersError",
+                        "usr": "s:11FoilShaders0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11FoilShaders0aB5ErrorO28captureCommandEncodingFailedyA2CmF",
+            "mangledName": "$s11FoilShaders0aB5ErrorO28captureCommandEncodingFailedyA2CmF",
+            "moduleName": "FoilShaders"
+          },
+          {
+            "kind": "Var",
+            "name": "captureCommandFailed",
+            "printedName": "captureCommandFailed",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FoilShaders.FoilShadersError.Type) -> (any Swift.Error) -> FoilShaders.FoilShadersError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(any Swift.Error) -> FoilShaders.FoilShadersError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FoilShadersError",
+                        "printedName": "FoilShaders.FoilShadersError",
+                        "usr": "s:11FoilShaders0aB5ErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Error",
+                        "printedName": "any Swift.Error",
+                        "usr": "s:s5ErrorP"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FoilShaders.FoilShadersError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FoilShadersError",
+                        "printedName": "FoilShaders.FoilShadersError",
+                        "usr": "s:11FoilShaders0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11FoilShaders0aB5ErrorO20captureCommandFailedyACs0C0_pcACmF",
+            "mangledName": "$s11FoilShaders0aB5ErrorO20captureCommandFailedyACs0C0_pcACmF",
+            "moduleName": "FoilShaders"
+          },
+          {
+            "kind": "Var",
+            "name": "captureImageCreationFailed",
+            "printedName": "captureImageCreationFailed",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(FoilShaders.FoilShadersError.Type) -> FoilShaders.FoilShadersError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FoilShadersError",
+                    "printedName": "FoilShaders.FoilShadersError",
+                    "usr": "s:11FoilShaders0aB5ErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "FoilShaders.FoilShadersError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FoilShadersError",
+                        "printedName": "FoilShaders.FoilShadersError",
+                        "usr": "s:11FoilShaders0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11FoilShaders0aB5ErrorO26captureImageCreationFailedyA2CmF",
+            "mangledName": "$s11FoilShaders0aB5ErrorO26captureImageCreationFailedyA2CmF",
             "moduleName": "FoilShaders"
           },
           {
@@ -43178,55 +43526,6 @@
                   "Transparent"
                 ],
                 "accessorKind": "set"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "default",
-            "printedName": "default",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "ShaderSizingParams",
-                "printedName": "FoilShaders.ShaderSizingParams",
-                "usr": "s:11FoilShaders18ShaderSizingParamsV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:11FoilShaders18ShaderSizingParamsV7defaultACvpZ",
-            "mangledName": "$s11FoilShaders18ShaderSizingParamsV7defaultACvpZ",
-            "moduleName": "FoilShaders",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "ShaderSizingParams",
-                    "printedName": "FoilShaders.ShaderSizingParams",
-                    "usr": "s:11FoilShaders18ShaderSizingParamsV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11FoilShaders18ShaderSizingParamsV7defaultACvgZ",
-                "mangledName": "$s11FoilShaders18ShaderSizingParamsV7defaultACvgZ",
-                "moduleName": "FoilShaders",
-                "static": true,
-                "implicit": true,
-                "declAttributes": [
-                  "Transparent"
-                ],
-                "accessorKind": "get"
               }
             ]
           },

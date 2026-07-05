@@ -258,19 +258,12 @@ private struct StudioView: View {
     configuration.motion.speed = 0
     let captureSize = previewCaptureSize(for: size, renderOptions: configuration.renderOptions)
     let renderer = try FoilShadersRenderer(device: device)
-    try renderer.configure(configuration.kind)
-    renderer.apply(configuration)
-
-    guard
-      let image = renderer.captureImage(
-        width: captureSize.width,
-        height: captureSize.height,
-        pixelRatio: captureSize.pixelRatio
-      )
-    else {
-      throw PreviewImageError.captureFailed
-    }
-    return image
+    try renderer.render(configuration)
+    return try renderer.captureImage(
+      width: captureSize.width,
+      height: captureSize.height,
+      pixelRatio: captureSize.pixelRatio
+    )
   }
 
   private func previewCaptureSize(
@@ -351,7 +344,6 @@ private struct StudioView: View {
 
 private enum PreviewImageError: LocalizedError {
   case metalUnavailable
-  case captureFailed
   case pngEncodingFailed
   case cannotCreatePNGDestination(URL)
   case cannotWritePNG(URL)
@@ -360,8 +352,6 @@ private enum PreviewImageError: LocalizedError {
     switch self {
     case .metalUnavailable:
       "Metal is not available on this Mac."
-    case .captureFailed:
-      "Could not capture the current preview image."
     case .pngEncodingFailed:
       "Could not encode the preview image."
     case .cannotCreatePNGDestination(let url):

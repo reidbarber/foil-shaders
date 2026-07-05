@@ -542,8 +542,9 @@ public struct ShaderImage: Equatable, @unchecked Sendable, Codable {
     case .bundleResource:
       let bundleIdentifier = try container.decodeIfPresent(String.self, forKey: .bundleIdentifier)
       let bundleURL = try container.decodeIfPresent(URL.self, forKey: .bundleURL)
-      guard let bundle =
-        bundleIdentifier.flatMap(Bundle.init(identifier:))
+      guard
+        let bundle =
+          bundleIdentifier.flatMap(Bundle.init(identifier:))
           ?? bundleURL.flatMap(Bundle.init(url:))
       else {
         throw DecodingError.dataCorrupted(
