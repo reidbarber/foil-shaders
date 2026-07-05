@@ -2,6 +2,21 @@
 
 All notable changes to Foil Shaders will be documented in this file.
 
+## 0.5.0 - 2026-07-04
+
+- **Breaking:** Split resolution from layout.
+- **Breaking:** Drop the `CGImage` overload and standardize on `ShaderImage`.
+- **Breaking:** Remove `ShaderSizingParams.default`; add single-call renderer APIs.
+- **Breaking:** Make `ShaderParameters` encode as a stable type, plus `params` JSON.
+- Every `params:` initializer now defaults sizing, motion, render options, and image from that component's own preset default.
+- Add `ShaderColor` bridges.
+- Clamp color-array params after mutation.
+- Surface renderer errors from convenience shader components.
+- `ShaderImage` bundle-resource decoding now throws `DecodingError.dataCorrupted` when neither the encoded bundle identifier nor bundle URL resolves.
+- Fix `CodeGenerator` output.
+- Avoid redrawing and hashing the full bitmap for image hash (perf).
+- Document the enum-evolution policy for public case-bearing enums.
+
 ## 0.4.0 - 2026-07-04
 
 - **Breaking:** Rename `MeshGradient` to `AnimatedMeshGradient` to avoid a naming conflict with SwiftUI's `MeshGradient`.
