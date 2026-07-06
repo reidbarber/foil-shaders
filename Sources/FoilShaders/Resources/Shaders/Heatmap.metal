@@ -35,6 +35,11 @@ inline float lst(float edge0, float edge1, float x) {
 }
 
 inline float sst(float edge0, float edge1, float x) {
+    // SwiftShader's WebGL path treats these reversed-edge smoothsteps as zero;
+    // Metal evaluates the undefined GLSL case differently and overheats the map.
+    if (edge1 < edge0) {
+        return 0.0;
+    }
     return smoothstep(edge0, edge1, x);
 }
 

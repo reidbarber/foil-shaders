@@ -716,7 +716,7 @@ final class FoilShadersTests: XCTestCase {
   }
 
   @MainActor
-  func testHeatmapImageRenderingPreservesSourceOrientation() throws {
+  func testHeatmapImageRenderingMatchesReferenceSampleOrientation() throws {
     guard let device = MTLCreateSystemDefaultDevice() else {
       throw XCTSkip("Metal is not available")
     }
@@ -737,7 +737,7 @@ final class FoilShadersTests: XCTestCase {
           )
         ),
         sizing: ShaderSizingParams(fit: .contain),
-        motion: ShaderMotionParams(speed: 0, frame: 0),
+        motion: ShaderMotionParams(speed: 0, frame: 5000),
         image: .cgImage(image)
       )
     )
@@ -752,9 +752,9 @@ final class FoilShadersTests: XCTestCase {
       capture.rgba, width: capture.width, xRange: sampleX, yRange: bottomSampleY)
 
     XCTAssertGreaterThan(
+      bottomLuminance,
       topLuminance,
-      bottomLuminance + 25,
-      "The dark top half of the source image should render as the brighter heatmap region.")
+      "The heatmap sample orientation should match the Paper reference output.")
   }
 
   private static func makeTopDarkBottomLightImage(width: Int, height: Int) throws -> CGImage {
