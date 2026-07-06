@@ -27,7 +27,7 @@ import simd
 /// the same component range. Invalid string literals fall back to ``black``; use
 /// `ShaderColor(value)` with a `String`-typed value when you need to detect parse
 /// failures.
-public struct ShaderColor: Equatable, Sendable, Codable, ExpressibleByStringLiteral {
+public struct ShaderColor: Equatable, Hashable, Sendable, Codable, ExpressibleByStringLiteral {
   /// Red channel in the `0...1` range.
   public var red: Float
   /// Green channel in the `0...1` range.
@@ -333,8 +333,8 @@ public struct ShaderColor: Equatable, Sendable, Codable, ExpressibleByStringLite
 /// with a per-value fallback identity only if fingerprinting fails.
 /// Create runtime `CGImage` descriptors once and reuse them, such as from view
 /// state or a model, instead of constructing them inline in a SwiftUI `body`.
-public struct ShaderImage: Equatable, @unchecked Sendable, Codable {
-  enum Storage: Equatable {
+public struct ShaderImage: Equatable, Hashable, @unchecked Sendable, Codable {
+  enum Storage: Equatable, Hashable {
     case cgImage(CGImage, ImageFingerprint)
     case url(URL)
     case bundledResource(BundleResource)
@@ -351,9 +351,23 @@ public struct ShaderImage: Equatable, @unchecked Sendable, Codable {
         return false
       }
     }
+
+    func hash(into hasher: inout Hasher) {
+      switch self {
+      case .cgImage(_, let fingerprint):
+        hasher.combine(0)
+        hasher.combine(fingerprint)
+      case .url(let url):
+        hasher.combine(1)
+        hasher.combine(url)
+      case .bundledResource(let resource):
+        hasher.combine(2)
+        hasher.combine(resource)
+      }
+    }
   }
 
-  struct BundleResource: Equatable {
+  struct BundleResource: Equatable, Hashable {
     var name: String
     var fileExtension: String
     var bundle: Bundle
@@ -364,9 +378,16 @@ public struct ShaderImage: Equatable, @unchecked Sendable, Codable {
         && lhs.bundle.bundleIdentifier == rhs.bundle.bundleIdentifier
         && lhs.bundle.bundleURL.standardizedFileURL == rhs.bundle.bundleURL.standardizedFileURL
     }
+
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(name)
+      hasher.combine(fileExtension)
+      hasher.combine(bundle.bundleIdentifier)
+      hasher.combine(bundle.bundleURL.standardizedFileURL)
+    }
   }
 
-  struct ImageFingerprint: Equatable {
+  struct ImageFingerprint: Equatable, Hashable {
     var width: Int
     var height: Int
     var digest: [UInt8]?
@@ -593,7 +614,7 @@ public struct ShaderImage: Equatable, @unchecked Sendable, Codable {
 /// Use these options to keep output sharp while preventing extremely large
 /// drawable textures. SwiftUI view size comes from caller-owned layout
 /// modifiers, such as `frame(width:height:)`.
-public struct ShaderRenderOptions: Equatable, Sendable, Codable {
+public struct ShaderRenderOptions: Equatable, Hashable, Sendable, Codable {
   /// Default maximum rendered pixel count, equal to four 1080p frames.
   public static let defaultMaxPixelCount = 1920 * 1080 * 4
 
@@ -621,13 +642,14 @@ public struct ShaderRenderOptions: Equatable, Sendable, Codable {
   }
 }
 
-public struct ShaderPreset<Params: Equatable & Sendable>: Equatable, Sendable {
+public struct ShaderPreset<Params: Equatable & Sendable>: Equatable, Identifiable, Sendable {
   public var name: String
   public var params: Params
   public var sizing: ShaderSizingParams
   public var motion: ShaderMotionParams
   public var renderOptions: ShaderRenderOptions
   public var image: ShaderImage?
+  public var id: String { name }
 
   public init(
     name: String,
@@ -647,15 +669,16 @@ public struct ShaderPreset<Params: Equatable & Sendable>: Equatable, Sendable {
 }
 
 extension ShaderPreset: Codable where Params: Codable {}
+extension ShaderPreset: Hashable where Params: Hashable {}
 
-public enum DotGridShape: Float, CaseIterable, Equatable, Sendable, Codable {
+public enum DotGridShape: Float, CaseIterable, Equatable, Hashable, Sendable, Codable {
   case circle = 0
   case diamond = 1
   case square = 2
   case triangle = 3
 }
 
-public enum DitheringShape: Float, CaseIterable, Equatable, Sendable, Codable {
+public enum DitheringShape: Float, CaseIterable, Equatable, Hashable, Sendable, Codable {
   case simplex = 1
   case warp = 2
   case dots = 3
@@ -665,20 +688,20 @@ public enum DitheringShape: Float, CaseIterable, Equatable, Sendable, Codable {
   case sphere = 7
 }
 
-public enum DitheringType: Float, CaseIterable, Equatable, Sendable, Codable {
+public enum DitheringType: Float, CaseIterable, Equatable, Hashable, Sendable, Codable {
   case random = 1
   case twoByTwo = 2
   case fourByFour = 3
   case eightByEight = 4
 }
 
-public enum WarpPattern: Float, CaseIterable, Equatable, Sendable, Codable {
+public enum WarpPattern: Float, CaseIterable, Equatable, Hashable, Sendable, Codable {
   case checks = 0
   case stripes = 1
   case edge = 2
 }
 
-public enum GrainGradientShape: Float, CaseIterable, Equatable, Sendable, Codable {
+public enum GrainGradientShape: Float, CaseIterable, Equatable, Hashable, Sendable, Codable {
   case wave = 1
   case dots = 2
   case truchet = 3
@@ -688,30 +711,30 @@ public enum GrainGradientShape: Float, CaseIterable, Equatable, Sendable, Codabl
   case sphere = 7
 }
 
-public enum PulsingBorderAspectRatio: Float, CaseIterable, Equatable, Sendable, Codable {
+public enum PulsingBorderAspectRatio: Float, CaseIterable, Equatable, Hashable, Sendable, Codable {
   case auto = 0
   case square = 1
 }
 
-public enum HalftoneDotsType: Float, CaseIterable, Equatable, Sendable, Codable {
+public enum HalftoneDotsType: Float, CaseIterable, Equatable, Hashable, Sendable, Codable {
   case classic = 0
   case gooey = 1
   case holes = 2
   case soft = 3
 }
 
-public enum HalftoneDotsGrid: Float, CaseIterable, Equatable, Sendable, Codable {
+public enum HalftoneDotsGrid: Float, CaseIterable, Equatable, Hashable, Sendable, Codable {
   case square = 0
   case hex = 1
 }
 
-public enum HalftoneCMYKType: Float, CaseIterable, Equatable, Sendable, Codable {
+public enum HalftoneCMYKType: Float, CaseIterable, Equatable, Hashable, Sendable, Codable {
   case dots = 0
   case ink = 1
   case sharp = 2
 }
 
-public enum LiquidMetalShape: Float, CaseIterable, Equatable, Sendable, Codable {
+public enum LiquidMetalShape: Float, CaseIterable, Equatable, Hashable, Sendable, Codable {
   case none = 0
   case circle = 1
   case daisy = 2
@@ -719,7 +742,7 @@ public enum LiquidMetalShape: Float, CaseIterable, Equatable, Sendable, Codable 
   case metaballs = 4
 }
 
-public enum GlassGridShape: Float, CaseIterable, Equatable, Sendable, Codable {
+public enum GlassGridShape: Float, CaseIterable, Equatable, Hashable, Sendable, Codable {
   case lines = 1
   case linesIrregular = 2
   case wave = 3
@@ -727,7 +750,7 @@ public enum GlassGridShape: Float, CaseIterable, Equatable, Sendable, Codable {
   case pattern = 5
 }
 
-public enum GlassDistortionShape: Float, CaseIterable, Equatable, Sendable, Codable {
+public enum GlassDistortionShape: Float, CaseIterable, Equatable, Hashable, Sendable, Codable {
   case prism = 1
   case lens = 2
   case contour = 3
@@ -735,7 +758,7 @@ public enum GlassDistortionShape: Float, CaseIterable, Equatable, Sendable, Coda
   case flat = 5
 }
 
-public enum GemSmokeShape: Float, CaseIterable, Equatable, Sendable, Codable {
+public enum GemSmokeShape: Float, CaseIterable, Equatable, Hashable, Sendable, Codable {
   case none = 0
   case circle = 1
   case daisy = 2
@@ -743,7 +766,7 @@ public enum GemSmokeShape: Float, CaseIterable, Equatable, Sendable, Codable {
   case metaballs = 4
 }
 
-public enum ShaderParameters: Equatable, Sendable, Codable {
+public enum ShaderParameters: Equatable, Hashable, Sendable, Codable {
   case animatedMeshGradient(AnimatedMeshGradientParams)
   case staticMeshGradient(StaticMeshGradientParams)
   case staticRadialGradient(StaticRadialGradientParams)
@@ -1018,7 +1041,7 @@ public enum ShaderParameters: Equatable, Sendable, Codable {
   }
 }
 
-public struct ShaderConfiguration: Equatable, Sendable, Codable {
+public struct ShaderConfiguration: Equatable, Hashable, Sendable, Codable {
   public var parameters: ShaderParameters
   public var sizing: ShaderSizingParams
   public var motion: ShaderMotionParams

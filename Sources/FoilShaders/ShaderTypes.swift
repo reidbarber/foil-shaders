@@ -31,7 +31,7 @@ private func clampedShaderColorCount(_ colors: [ShaderColor], maxColorCount: Int
 // MARK: - Shader Sizing
 
 /// Layout mode for mapping shader pattern or image coordinates into a view.
-public enum ShaderFit: Float, Equatable, Sendable, Codable {
+public enum ShaderFit: Float, Equatable, Hashable, Sendable, Codable {
   /// Use shader-native coordinates without contain or cover scaling.
   case none = 0.0
   /// Scale the shader coordinate box to fit inside the view while preserving aspect ratio.
@@ -43,7 +43,7 @@ public enum ShaderFit: Float, Equatable, Sendable, Codable {
 /// Shared spatial controls applied before shader-specific parameters.
 ///
 /// Origins and offsets are normalized against the rendered view. Rotation uses degrees.
-public struct ShaderSizingParams: Equatable, Sendable, Codable {
+public struct ShaderSizingParams: Equatable, Hashable, Sendable, Codable {
   /// Coordinate fitting behavior.
   public var fit: ShaderFit
   /// Pattern or image scale multiplier. Values above `1` zoom in; values below `1` zoom out.
@@ -100,7 +100,7 @@ public struct ShaderSizingParams: Equatable, Sendable, Codable {
 }
 
 /// Animation controls shared by shaders that use time.
-public struct ShaderMotionParams: Equatable, Sendable, Codable {
+public struct ShaderMotionParams: Equatable, Hashable, Sendable, Codable {
   /// Animation speed multiplier. `0` freezes automatic time progression.
   public var speed: Float
   /// Fixed timeline position in milliseconds. Presets and parity tests commonly use `0` and `5000`.
@@ -123,7 +123,7 @@ public struct ShaderMotionParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Mesh-Gradient> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct AnimatedMeshGradientParams: Equatable, Sendable, Codable {
+public struct AnimatedMeshGradientParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 10
   /// Shader colors after applying `maxColorCount` truncation.
@@ -164,7 +164,7 @@ public struct AnimatedMeshGradientParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Static-Mesh-Gradient> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct StaticMeshGradientParams: Equatable, Sendable, Codable {
+public struct StaticMeshGradientParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 10
   /// Shader colors after applying `maxColorCount` truncation.
@@ -217,7 +217,7 @@ public struct StaticMeshGradientParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Static-Radial-Gradient> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct StaticRadialGradientParams: Equatable, Sendable, Codable {
+public struct StaticRadialGradientParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
@@ -279,7 +279,7 @@ public struct StaticRadialGradientParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Swirl> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct SwirlParams: Equatable, Sendable, Codable {
+public struct SwirlParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
@@ -331,7 +331,7 @@ public struct SwirlParams: Equatable, Sendable, Codable {
 /// Parameters for the spiral shader.
 ///
 /// See <doc:ParameterRanges#Spiral> for value ranges and units.
-public struct SpiralParams: Equatable, Sendable, Codable {
+public struct SpiralParams: Equatable, Hashable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorFront: ShaderColor
   public var density: Float
@@ -376,7 +376,7 @@ public struct SpiralParams: Equatable, Sendable, Codable {
 /// Parameters for the dot grid shader.
 ///
 /// See <doc:ParameterRanges#Dot-Grid> for value ranges and units.
-public struct DotGridParams: Equatable, Sendable, Codable {
+public struct DotGridParams: Equatable, Hashable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorFill: ShaderColor
   public var colorStroke: ShaderColor
@@ -422,7 +422,7 @@ public struct DotGridParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Simplex-Noise> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct SimplexNoiseParams: Equatable, Sendable, Codable {
+public struct SimplexNoiseParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 10
   /// Shader colors after applying `maxColorCount` truncation.
@@ -456,7 +456,7 @@ public struct SimplexNoiseParams: Equatable, Sendable, Codable {
 /// Parameters for the Perlin noise shader.
 ///
 /// See <doc:ParameterRanges#Perlin-Noise> for value ranges and units.
-public struct PerlinNoiseParams: Equatable, Sendable, Codable {
+public struct PerlinNoiseParams: Equatable, Hashable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
   public var proportion: Float
@@ -493,7 +493,7 @@ public struct PerlinNoiseParams: Equatable, Sendable, Codable {
 /// Parameters for the neuro noise shader.
 ///
 /// See <doc:ParameterRanges#Neuro-Noise> for value ranges and units.
-public struct NeuroNoiseParams: Equatable, Sendable, Codable {
+public struct NeuroNoiseParams: Equatable, Hashable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorMid: ShaderColor
   public var colorBack: ShaderColor
@@ -523,7 +523,7 @@ public struct NeuroNoiseParams: Equatable, Sendable, Codable {
 /// Parameters for the waves shader.
 ///
 /// See <doc:ParameterRanges#Waves> for value ranges and units.
-public struct WavesParams: Equatable, Sendable, Codable {
+public struct WavesParams: Equatable, Hashable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
   public var shape: Float
@@ -562,7 +562,7 @@ public struct WavesParams: Equatable, Sendable, Codable {
 /// Parameters for the procedural dithering shader.
 ///
 /// See <doc:ParameterRanges#Dithering> for value ranges and units.
-public struct DitheringParams: Equatable, Sendable, Codable {
+public struct DitheringParams: Equatable, Hashable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorFront: ShaderColor
   public var shape: DitheringShape
@@ -593,7 +593,7 @@ public struct DitheringParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Color-Panels> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct ColorPanelsParams: Equatable, Sendable, Codable {
+public struct ColorPanelsParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 7
   /// Shader colors after applying `maxColorCount` truncation.
@@ -652,7 +652,7 @@ public struct ColorPanelsParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Dot-Orbit> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct DotOrbitParams: Equatable, Sendable, Codable {
+public struct DotOrbitParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
@@ -696,7 +696,7 @@ public struct DotOrbitParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#God-Rays> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct GodRaysParams: Equatable, Sendable, Codable {
+public struct GodRaysParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 5
   public var colorBack: ShaderColor
@@ -749,7 +749,7 @@ public struct GodRaysParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Grain-Gradient> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct GrainGradientParams: Equatable, Sendable, Codable {
+public struct GrainGradientParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 7
   public var colorBack: ShaderColor
@@ -793,7 +793,7 @@ public struct GrainGradientParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Metaballs> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct MetaballsParams: Equatable, Sendable, Codable {
+public struct MetaballsParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 8
   public var colorBack: ShaderColor
@@ -834,7 +834,7 @@ public struct MetaballsParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Warp> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct WarpParams: Equatable, Sendable, Codable {
+public struct WarpParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 10
   /// Shader colors after applying `maxColorCount` truncation.
@@ -884,7 +884,7 @@ public struct WarpParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Voronoi> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct VoronoiParams: Equatable, Sendable, Codable {
+public struct VoronoiParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 5
   /// Shader colors after applying `maxColorCount` truncation.
@@ -931,7 +931,7 @@ public struct VoronoiParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Pulsing-Border> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct PulsingBorderParams: Equatable, Sendable, Codable {
+public struct PulsingBorderParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 5
   public var colorBack: ShaderColor
@@ -1008,7 +1008,7 @@ public struct PulsingBorderParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Smoke-Ring> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct SmokeRingParams: Equatable, Sendable, Codable {
+public struct SmokeRingParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
@@ -1054,7 +1054,7 @@ public struct SmokeRingParams: Equatable, Sendable, Codable {
 /// Parameters for the image dithering shader.
 ///
 /// See <doc:ParameterRanges#Image-Dithering> for value ranges and units.
-public struct ImageDitheringParams: Equatable, Sendable, Codable {
+public struct ImageDitheringParams: Equatable, Hashable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
   public var colorHighlight: ShaderColor
@@ -1093,7 +1093,7 @@ public struct ImageDitheringParams: Equatable, Sendable, Codable {
 /// Parameters for the halftone dots shader.
 ///
 /// See <doc:ParameterRanges#Halftone-Dots> for value ranges and units.
-public struct HalftoneDotsParams: Equatable, Sendable, Codable {
+public struct HalftoneDotsParams: Equatable, Hashable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
   public var size: Float
@@ -1145,7 +1145,7 @@ public struct HalftoneDotsParams: Equatable, Sendable, Codable {
 /// Parameters for the halftone CMYK shader.
 ///
 /// See <doc:ParameterRanges#Halftone-CMYK> for value ranges and units.
-public struct HalftoneCMYKParams: Equatable, Sendable, Codable {
+public struct HalftoneCMYKParams: Equatable, Hashable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorC: ShaderColor
   public var colorM: ShaderColor
@@ -1227,7 +1227,7 @@ public struct HalftoneCMYKParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Heatmap> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct HeatmapParams: Equatable, Sendable, Codable {
+public struct HeatmapParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 10
   public var colorBack: ShaderColor
@@ -1273,7 +1273,7 @@ public struct HeatmapParams: Equatable, Sendable, Codable {
 /// Parameters for the liquid metal shader.
 ///
 /// See <doc:ParameterRanges#Liquid-Metal> for value ranges and units.
-public struct LiquidMetalParams: Equatable, Sendable, Codable {
+public struct LiquidMetalParams: Equatable, Hashable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorTint: ShaderColor
   public var repetition: Float
@@ -1319,7 +1319,7 @@ public struct LiquidMetalParams: Equatable, Sendable, Codable {
 /// Parameters for the paper texture shader.
 ///
 /// See <doc:ParameterRanges#Paper-Texture> for value ranges and units.
-public struct PaperTextureParams: Equatable, Sendable, Codable {
+public struct PaperTextureParams: Equatable, Hashable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
   public var contrast: Float
@@ -1374,7 +1374,7 @@ public struct PaperTextureParams: Equatable, Sendable, Codable {
 /// Parameters for the water shader.
 ///
 /// See <doc:ParameterRanges#Water> for value ranges and units.
-public struct WaterParams: Equatable, Sendable, Codable {
+public struct WaterParams: Equatable, Hashable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorHighlight: ShaderColor
   public var highlights: Float
@@ -1414,7 +1414,7 @@ public struct WaterParams: Equatable, Sendable, Codable {
 /// Parameters for the fluted glass shader.
 ///
 /// See <doc:ParameterRanges#Fluted-Glass> for value ranges and units.
-public struct FlutedGlassParams: Equatable, Sendable, Codable {
+public struct FlutedGlassParams: Equatable, Hashable, Sendable, Codable {
   public var colorBack: ShaderColor
   public var colorShadow: ShaderColor
   public var colorHighlight: ShaderColor
@@ -1490,7 +1490,7 @@ public struct FlutedGlassParams: Equatable, Sendable, Codable {
 ///
 /// See <doc:ParameterRanges#Gem-Smoke> for value ranges and units.
 /// Initializers keep the first `maxColorCount` colors and ignore extras.
-public struct GemSmokeParams: Equatable, Sendable, Codable {
+public struct GemSmokeParams: Equatable, Hashable, Sendable, Codable {
   /// Maximum number of colors stored by this params type.
   public static let maxColorCount = 6
   /// Shader colors after applying `maxColorCount` truncation.

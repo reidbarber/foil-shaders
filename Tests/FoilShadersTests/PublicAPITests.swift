@@ -84,6 +84,17 @@ final class PublicAPITests: XCTestCase {
     XCTAssertEqual(color.alpha, 0.7, accuracy: 0.0001)
   }
 
+  @MainActor
+  func testShaderPresetsCanDriveSwiftUIForEachWithoutExplicitID() {
+    XCTAssertEqual(AnimatedMeshGradientPreset.default.id, AnimatedMeshGradientPreset.default.name)
+
+    let view = ForEach(AnimatedMeshGradient.presets) { preset in
+      Text(preset.name)
+    }
+
+    _ = view
+  }
+
   func testColorArrayParamsKeepOnlyMaxColorCountColors() {
     let colors = (0..<(AnimatedMeshGradientParams.maxColorCount + 2)).map {
       ShaderColor(red: Float($0) / 20, green: 0, blue: 0)

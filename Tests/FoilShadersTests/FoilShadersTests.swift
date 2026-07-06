@@ -72,44 +72,44 @@ final class FoilShadersTests: XCTestCase {
   }
 
   func testConfigurationGraphConformancesCompile() {
-    assertEquatableSendableCodable(ShaderColor.self)
-    assertEquatableSendableCodable(ShaderImage.self)
-    assertEquatableSendableCodable(ShaderRenderOptions.self)
-    assertEquatableSendableCodable(ShaderSizingParams.self)
-    assertEquatableSendableCodable(ShaderMotionParams.self)
-    assertEquatableSendableCodable(ShaderParameters.self)
-    assertEquatableSendableCodable(ShaderConfiguration.self)
-    assertEquatableSendableCodable(ShaderPreset<AnimatedMeshGradientParams>.self)
+    assertHashableSendableCodable(ShaderColor.self)
+    assertHashableSendableCodable(ShaderImage.self)
+    assertHashableSendableCodable(ShaderRenderOptions.self)
+    assertHashableSendableCodable(ShaderSizingParams.self)
+    assertHashableSendableCodable(ShaderMotionParams.self)
+    assertHashableSendableCodable(ShaderParameters.self)
+    assertHashableSendableCodable(ShaderConfiguration.self)
+    assertHashableSendableCodable(ShaderPreset<AnimatedMeshGradientParams>.self)
 
-    assertEquatableSendableCodable(AnimatedMeshGradientParams.self)
-    assertEquatableSendableCodable(StaticMeshGradientParams.self)
-    assertEquatableSendableCodable(StaticRadialGradientParams.self)
-    assertEquatableSendableCodable(SwirlParams.self)
-    assertEquatableSendableCodable(SpiralParams.self)
-    assertEquatableSendableCodable(DotGridParams.self)
-    assertEquatableSendableCodable(SimplexNoiseParams.self)
-    assertEquatableSendableCodable(PerlinNoiseParams.self)
-    assertEquatableSendableCodable(NeuroNoiseParams.self)
-    assertEquatableSendableCodable(WavesParams.self)
-    assertEquatableSendableCodable(DitheringParams.self)
-    assertEquatableSendableCodable(ColorPanelsParams.self)
-    assertEquatableSendableCodable(DotOrbitParams.self)
-    assertEquatableSendableCodable(GodRaysParams.self)
-    assertEquatableSendableCodable(GrainGradientParams.self)
-    assertEquatableSendableCodable(MetaballsParams.self)
-    assertEquatableSendableCodable(WarpParams.self)
-    assertEquatableSendableCodable(VoronoiParams.self)
-    assertEquatableSendableCodable(PulsingBorderParams.self)
-    assertEquatableSendableCodable(SmokeRingParams.self)
-    assertEquatableSendableCodable(ImageDitheringParams.self)
-    assertEquatableSendableCodable(HalftoneDotsParams.self)
-    assertEquatableSendableCodable(HalftoneCMYKParams.self)
-    assertEquatableSendableCodable(HeatmapParams.self)
-    assertEquatableSendableCodable(LiquidMetalParams.self)
-    assertEquatableSendableCodable(PaperTextureParams.self)
-    assertEquatableSendableCodable(WaterParams.self)
-    assertEquatableSendableCodable(FlutedGlassParams.self)
-    assertEquatableSendableCodable(GemSmokeParams.self)
+    assertHashableSendableCodable(AnimatedMeshGradientParams.self)
+    assertHashableSendableCodable(StaticMeshGradientParams.self)
+    assertHashableSendableCodable(StaticRadialGradientParams.self)
+    assertHashableSendableCodable(SwirlParams.self)
+    assertHashableSendableCodable(SpiralParams.self)
+    assertHashableSendableCodable(DotGridParams.self)
+    assertHashableSendableCodable(SimplexNoiseParams.self)
+    assertHashableSendableCodable(PerlinNoiseParams.self)
+    assertHashableSendableCodable(NeuroNoiseParams.self)
+    assertHashableSendableCodable(WavesParams.self)
+    assertHashableSendableCodable(DitheringParams.self)
+    assertHashableSendableCodable(ColorPanelsParams.self)
+    assertHashableSendableCodable(DotOrbitParams.self)
+    assertHashableSendableCodable(GodRaysParams.self)
+    assertHashableSendableCodable(GrainGradientParams.self)
+    assertHashableSendableCodable(MetaballsParams.self)
+    assertHashableSendableCodable(WarpParams.self)
+    assertHashableSendableCodable(VoronoiParams.self)
+    assertHashableSendableCodable(PulsingBorderParams.self)
+    assertHashableSendableCodable(SmokeRingParams.self)
+    assertHashableSendableCodable(ImageDitheringParams.self)
+    assertHashableSendableCodable(HalftoneDotsParams.self)
+    assertHashableSendableCodable(HalftoneCMYKParams.self)
+    assertHashableSendableCodable(HeatmapParams.self)
+    assertHashableSendableCodable(LiquidMetalParams.self)
+    assertHashableSendableCodable(PaperTextureParams.self)
+    assertHashableSendableCodable(WaterParams.self)
+    assertHashableSendableCodable(FlutedGlassParams.self)
+    assertHashableSendableCodable(GemSmokeParams.self)
   }
 
   func testShaderSizingExplicitDefaultNames() {
@@ -202,6 +202,15 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertEqual(ShaderImage.cgImage(imageA), .cgImage(imageB))
   }
 
+  func testShaderImageCGImageHashingUsesPixelFingerprint() throws {
+    let imageA = try Self.makeTopDarkBottomLightImage(width: 8, height: 8)
+    let imageB = try Self.makeTopDarkBottomLightImage(width: 8, height: 8)
+
+    let images: Set<ShaderImage> = [ShaderImage.cgImage(imageA), .cgImage(imageB)]
+
+    XCTAssertEqual(images.count, 1)
+  }
+
   func testShaderImageCGImageFactoryCachesFingerprintForSameInstance() throws {
     let image = try Self.makeTopDarkBottomLightImage(width: 8, height: 8)
 
@@ -245,6 +254,17 @@ final class FoilShadersTests: XCTestCase {
     let decoded = try JSONDecoder().decode(ShaderImage.self, from: data)
 
     XCTAssertEqual(decoded, image)
+  }
+
+  func testShaderImageBundledResourceHashingMatchesEquality() {
+    let bundle = Bundle(for: FoilShadersTests.self)
+    let imageA = ShaderImage.bundledResource(name: "fixture", extension: "png", bundle: bundle)
+    let imageB = ShaderImage.bundledResource(name: "fixture", extension: "png", bundle: bundle)
+
+    let images: Set<ShaderImage> = [imageA, imageB]
+
+    XCTAssertEqual(imageA, imageB)
+    XCTAssertEqual(images.count, 1)
   }
 
   func testShaderImageBundledResourceDecodeUsesBundleURLWhenIdentifierCannotResolve() throws {
@@ -819,7 +839,7 @@ final class FoilShadersTests: XCTestCase {
     return total / Double(max(count, 1))
   }
 
-  private func assertEquatableSendableCodable<T: Equatable & Sendable & Codable>(
+  private func assertHashableSendableCodable<T: Hashable & Sendable & Codable>(
     _: T.Type,
     file: StaticString = #filePath,
     line: UInt = #line
