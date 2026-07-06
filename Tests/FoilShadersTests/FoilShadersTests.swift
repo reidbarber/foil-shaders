@@ -55,7 +55,11 @@ final class FoilShadersTests: XCTestCase {
       ])
   }
 
-  func testShaderEnumRawValuesRemainStablePersistedValues() {
+  func testShaderEnumRawValuesRemainStableUniformValues() {
+    XCTAssertEqual(
+      [ShaderFit.none.rawValue, ShaderFit.contain.rawValue, ShaderFit.cover.rawValue],
+      [0, 1, 2]
+    )
     XCTAssertEqual(DotGridShape.allCases.map(\.rawValue), [0, 1, 2, 3])
     XCTAssertEqual(DitheringShape.allCases.map(\.rawValue), [1, 2, 3, 4, 5, 6, 7])
     XCTAssertEqual(DitheringType.allCases.map(\.rawValue), [1, 2, 3, 4])
@@ -69,6 +73,141 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertEqual(GlassGridShape.allCases.map(\.rawValue), [1, 2, 3, 4, 5])
     XCTAssertEqual(GlassDistortionShape.allCases.map(\.rawValue), [1, 2, 3, 4, 5])
     XCTAssertEqual(GemSmokeShape.allCases.map(\.rawValue), [0, 1, 2, 3, 4])
+  }
+
+  func testShaderEnumsEncodeReadableStableStrings() throws {
+    try assertEnumWireValues(
+      ShaderFit.self,
+      [
+        (.none, "none"),
+        (.contain, "contain"),
+        (.cover, "cover"),
+      ])
+    try assertEnumWireValues(
+      DotGridShape.self,
+      [
+        (.circle, "circle"),
+        (.diamond, "diamond"),
+        (.square, "square"),
+        (.triangle, "triangle"),
+      ])
+    try assertEnumWireValues(
+      DitheringShape.self,
+      [
+        (.simplex, "simplex"),
+        (.warp, "warp"),
+        (.dots, "dots"),
+        (.wave, "wave"),
+        (.ripple, "ripple"),
+        (.swirl, "swirl"),
+        (.sphere, "sphere"),
+      ])
+    try assertEnumWireValues(
+      DitheringType.self,
+      [
+        (.random, "random"),
+        (.twoByTwo, "2x2"),
+        (.fourByFour, "4x4"),
+        (.eightByEight, "8x8"),
+      ])
+    try assertEnumWireValues(
+      WarpPattern.self,
+      [
+        (.checks, "checks"),
+        (.stripes, "stripes"),
+        (.edge, "edge"),
+      ])
+    try assertEnumWireValues(
+      GrainGradientShape.self,
+      [
+        (.wave, "wave"),
+        (.dots, "dots"),
+        (.truchet, "truchet"),
+        (.corners, "corners"),
+        (.ripple, "ripple"),
+        (.blob, "blob"),
+        (.sphere, "sphere"),
+      ])
+    try assertEnumWireValues(
+      PulsingBorderAspectRatio.self,
+      [
+        (.auto, "auto"),
+        (.square, "square"),
+      ])
+    try assertEnumWireValues(
+      HalftoneDotsType.self,
+      [
+        (.classic, "classic"),
+        (.gooey, "gooey"),
+        (.holes, "holes"),
+        (.soft, "soft"),
+      ])
+    try assertEnumWireValues(
+      HalftoneDotsGrid.self,
+      [
+        (.square, "square"),
+        (.hex, "hex"),
+      ])
+    try assertEnumWireValues(
+      HalftoneCMYKType.self,
+      [
+        (.dots, "dots"),
+        (.ink, "ink"),
+        (.sharp, "sharp"),
+      ])
+    try assertEnumWireValues(
+      LiquidMetalShape.self,
+      [
+        (.none, "none"),
+        (.circle, "circle"),
+        (.daisy, "daisy"),
+        (.diamond, "diamond"),
+        (.metaballs, "metaballs"),
+      ])
+    try assertEnumWireValues(
+      GlassGridShape.self,
+      [
+        (.lines, "lines"),
+        (.linesIrregular, "linesIrregular"),
+        (.wave, "wave"),
+        (.zigzag, "zigzag"),
+        (.pattern, "pattern"),
+      ])
+    try assertEnumWireValues(
+      GlassDistortionShape.self,
+      [
+        (.prism, "prism"),
+        (.lens, "lens"),
+        (.contour, "contour"),
+        (.cascade, "cascade"),
+        (.flat, "flat"),
+      ])
+    try assertEnumWireValues(
+      GemSmokeShape.self,
+      [
+        (.none, "none"),
+        (.circle, "circle"),
+        (.daisy, "daisy"),
+        (.diamond, "diamond"),
+        (.metaballs, "metaballs"),
+      ])
+  }
+
+  func testShaderEnumsRejectNumericWireValues() {
+    assertNumericEnumDecodeFails(ShaderFit.self)
+    assertNumericEnumDecodeFails(DotGridShape.self)
+    assertNumericEnumDecodeFails(DitheringShape.self)
+    assertNumericEnumDecodeFails(DitheringType.self)
+    assertNumericEnumDecodeFails(WarpPattern.self)
+    assertNumericEnumDecodeFails(GrainGradientShape.self)
+    assertNumericEnumDecodeFails(PulsingBorderAspectRatio.self)
+    assertNumericEnumDecodeFails(HalftoneDotsType.self)
+    assertNumericEnumDecodeFails(HalftoneDotsGrid.self)
+    assertNumericEnumDecodeFails(HalftoneCMYKType.self)
+    assertNumericEnumDecodeFails(LiquidMetalShape.self)
+    assertNumericEnumDecodeFails(GlassGridShape.self)
+    assertNumericEnumDecodeFails(GlassDistortionShape.self)
+    assertNumericEnumDecodeFails(GemSmokeShape.self)
   }
 
   func testConfigurationGraphConformancesCompile() {
@@ -537,6 +676,189 @@ final class FoilShadersTests: XCTestCase {
     }
   }
 
+  @MainActor
+  func testShaderConfigurationParameterInitializerDefaultsToComponentPresetConfiguration() {
+    let configurations: [(String, ShaderConfiguration, ShaderConfiguration)] = [
+      (
+        "AnimatedMeshGradient",
+        ShaderConfiguration(parameters: .animatedMeshGradient(AnimatedMeshGradientPreset.default.params)),
+        AnimatedMeshGradient(AnimatedMeshGradientPreset.default).configuration
+      ),
+      (
+        "SmokeRing",
+        ShaderConfiguration(parameters: .smokeRing(SmokeRingPreset.default.params)),
+        SmokeRing(SmokeRingPreset.default).configuration
+      ),
+      (
+        "NeuroNoise",
+        ShaderConfiguration(parameters: .neuroNoise(NeuroNoisePreset.default.params)),
+        NeuroNoise(NeuroNoisePreset.default).configuration
+      ),
+      (
+        "DotOrbit",
+        ShaderConfiguration(parameters: .dotOrbit(DotOrbitPreset.default.params)),
+        DotOrbit(DotOrbitPreset.default).configuration
+      ),
+      (
+        "DotGrid",
+        ShaderConfiguration(parameters: .dotGrid(DotGridPreset.default.params)),
+        DotGrid(DotGridPreset.default).configuration
+      ),
+      (
+        "SimplexNoise",
+        ShaderConfiguration(parameters: .simplexNoise(SimplexNoisePreset.default.params)),
+        SimplexNoise(SimplexNoisePreset.default).configuration
+      ),
+      (
+        "Metaballs",
+        ShaderConfiguration(parameters: .metaballs(MetaballsPreset.default.params)),
+        Metaballs(MetaballsPreset.default).configuration
+      ),
+      (
+        "Waves",
+        ShaderConfiguration(parameters: .waves(WavesPreset.default.params)),
+        Waves(WavesPreset.default).configuration
+      ),
+      (
+        "PerlinNoise",
+        ShaderConfiguration(parameters: .perlinNoise(PerlinNoisePreset.default.params)),
+        PerlinNoise(PerlinNoisePreset.default).configuration
+      ),
+      (
+        "Voronoi",
+        ShaderConfiguration(parameters: .voronoi(VoronoiPreset.default.params)),
+        Voronoi(VoronoiPreset.default).configuration
+      ),
+      (
+        "Warp",
+        ShaderConfiguration(parameters: .warp(WarpPreset.default.params)),
+        Warp(WarpPreset.default).configuration
+      ),
+      (
+        "GodRays",
+        ShaderConfiguration(parameters: .godRays(GodRaysPreset.default.params)),
+        GodRays(GodRaysPreset.default).configuration
+      ),
+      (
+        "Spiral",
+        ShaderConfiguration(parameters: .spiral(SpiralPreset.default.params)),
+        Spiral(SpiralPreset.default).configuration
+      ),
+      (
+        "Swirl",
+        ShaderConfiguration(parameters: .swirl(SwirlPreset.default.params)),
+        Swirl(SwirlPreset.default).configuration
+      ),
+      (
+        "Dithering",
+        ShaderConfiguration(parameters: .dithering(DitheringPreset.default.params)),
+        Dithering(DitheringPreset.default).configuration
+      ),
+      (
+        "GrainGradient",
+        ShaderConfiguration(parameters: .grainGradient(GrainGradientPreset.default.params)),
+        GrainGradient(GrainGradientPreset.default).configuration
+      ),
+      (
+        "PulsingBorder",
+        ShaderConfiguration(parameters: .pulsingBorder(PulsingBorderPreset.default.params)),
+        PulsingBorder(PulsingBorderPreset.default).configuration
+      ),
+      (
+        "ColorPanels",
+        ShaderConfiguration(parameters: .colorPanels(ColorPanelsPreset.default.params)),
+        ColorPanels(ColorPanelsPreset.default).configuration
+      ),
+      (
+        "StaticMeshGradient",
+        ShaderConfiguration(parameters: .staticMeshGradient(StaticMeshGradientPreset.default.params)),
+        StaticMeshGradient(StaticMeshGradientPreset.default).configuration
+      ),
+      (
+        "StaticRadialGradient",
+        ShaderConfiguration(
+          parameters: .staticRadialGradient(StaticRadialGradientPreset.default.params)),
+        StaticRadialGradient(StaticRadialGradientPreset.default).configuration
+      ),
+      (
+        "PaperTexture",
+        ShaderConfiguration(parameters: .paperTexture(PaperTexturePreset.default.params)),
+        PaperTexture(PaperTexturePreset.default).configuration
+      ),
+      (
+        "FlutedGlass",
+        ShaderConfiguration(parameters: .flutedGlass(FlutedGlassPreset.default.params)),
+        FlutedGlass(FlutedGlassPreset.default).configuration
+      ),
+      (
+        "Water",
+        ShaderConfiguration(parameters: .water(WaterPreset.default.params)),
+        Water(WaterPreset.default).configuration
+      ),
+      (
+        "ImageDithering",
+        ShaderConfiguration(parameters: .imageDithering(ImageDitheringPreset.default.params)),
+        ImageDithering(ImageDitheringPreset.default).configuration
+      ),
+      (
+        "Heatmap",
+        ShaderConfiguration(parameters: .heatmap(HeatmapPreset.default.params)),
+        Heatmap(HeatmapPreset.default).configuration
+      ),
+      (
+        "LiquidMetal",
+        ShaderConfiguration(parameters: .liquidMetal(LiquidMetalPreset.default.params)),
+        LiquidMetal(LiquidMetalPreset.default).configuration
+      ),
+      (
+        "HalftoneDots",
+        ShaderConfiguration(parameters: .halftoneDots(HalftoneDotsPreset.default.params)),
+        HalftoneDots(HalftoneDotsPreset.default).configuration
+      ),
+      (
+        "HalftoneCMYK",
+        ShaderConfiguration(parameters: .halftoneCMYK(HalftoneCMYKPreset.default.params)),
+        HalftoneCMYK(HalftoneCMYKPreset.default).configuration
+      ),
+      (
+        "GemSmoke",
+        ShaderConfiguration(parameters: .gemSmoke(GemSmokePreset.default.params)),
+        GemSmoke(GemSmokePreset.default).configuration
+      ),
+    ]
+
+    XCTAssertEqual(configurations.count, 29)
+    for (name, configuration, presetConfiguration) in configurations {
+      XCTAssertEqual(configuration, presetConfiguration, name)
+    }
+  }
+
+  func testShaderConfigurationExplicitValuesOverrideParameterDefaults() {
+    let sizing = ShaderSizingParams(fit: .cover, scale: 0.75, rotation: 15)
+    let motion = ShaderMotionParams(speed: 0.25, frame: 12)
+    let renderOptions = ShaderRenderOptions(minPixelRatio: 1.5, maxPixelCount: 320 * 180)
+
+    let configuration = ShaderConfiguration(
+      parameters: .animatedMeshGradient(AnimatedMeshGradientPreset.default.params),
+      sizing: sizing,
+      motion: motion,
+      renderOptions: renderOptions
+    )
+
+    XCTAssertEqual(configuration.sizing, sizing)
+    XCTAssertEqual(configuration.motion, motion)
+    XCTAssertEqual(configuration.renderOptions, renderOptions)
+
+    let partialOverride = ShaderConfiguration(
+      parameters: .dotGrid(DotGridPreset.default.params),
+      motion: motion
+    )
+
+    XCTAssertEqual(partialOverride.sizing, DotGridPreset.default.sizing)
+    XCTAssertEqual(partialOverride.motion, motion)
+    XCTAssertEqual(partialOverride.renderOptions, DotGridPreset.default.renderOptions)
+  }
+
   func testNamedPresetMembersPreserveComponentPresetOrder() {
     XCTAssertEqual(SwirlPreset.candy.name, "Candy")
     XCTAssertEqual(SwirlPreset.preset007.name, "007")
@@ -876,6 +1198,39 @@ final class FoilShadersTests: XCTestCase {
     file: StaticString = #filePath,
     line: UInt = #line
   ) {}
+
+  private func assertEnumWireValues<T: Codable & Equatable>(
+    _: T.Type,
+    _ cases: [(T, String)],
+    file: StaticString = #filePath,
+    line: UInt = #line
+  ) throws {
+    for (value, wireValue) in cases {
+      let encoded = try JSONEncoder().encode(value)
+      let expected = try JSONEncoder().encode(wireValue)
+      XCTAssertEqual(
+        String(decoding: encoded, as: UTF8.self),
+        String(decoding: expected, as: UTF8.self),
+        file: file,
+        line: line
+      )
+
+      let decoded = try JSONDecoder().decode(T.self, from: expected)
+      XCTAssertEqual(decoded, value, file: file, line: line)
+    }
+  }
+
+  private func assertNumericEnumDecodeFails<T: Decodable>(
+    _: T.Type,
+    file: StaticString = #filePath,
+    line: UInt = #line
+  ) {
+    XCTAssertThrowsError(
+      try JSONDecoder().decode(T.self, from: Data("1".utf8)),
+      file: file,
+      line: line
+    )
+  }
 
   private static var fixtureShaderParameters: ShaderParameters {
     .dotGrid(fixtureDotGridParams)

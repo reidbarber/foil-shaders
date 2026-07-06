@@ -28,6 +28,47 @@ private func clampedShaderColorCount(_ colors: [ShaderColor], maxColorCount: Int
   Float(min(colors.count, maxColorCount))
 }
 
+enum ShaderEnumWireCoding {
+  static func decode<Value: Hashable>(
+    _: Value.Type,
+    from decoder: Decoder,
+    wireValues: [Value: String]
+  ) throws -> Value {
+    let container = try decoder.singleValueContainer()
+    let wireValue = try container.decode(String.self)
+    if let value = wireValues.first(where: { $0.value == wireValue })?.key {
+      return value
+    }
+
+    let expectedValues = wireValues.values.sorted().joined(separator: ", ")
+    throw DecodingError.dataCorruptedError(
+      in: container,
+      debugDescription:
+        "Unknown \(String(describing: Value.self)) value '\(wireValue)'. Expected one of: \(expectedValues)."
+    )
+  }
+
+  static func encode<Value: Hashable>(
+    _ value: Value,
+    to encoder: Encoder,
+    wireValues: [Value: String]
+  ) throws {
+    guard let wireValue = wireValues[value] else {
+      throw EncodingError.invalidValue(
+        value,
+        EncodingError.Context(
+          codingPath: encoder.codingPath,
+          debugDescription:
+            "No stable wire value configured for \(String(describing: Value.self))."
+        )
+      )
+    }
+
+    var container = encoder.singleValueContainer()
+    try container.encode(wireValue)
+  }
+}
+
 // MARK: - Shader Sizing
 
 /// Layout mode for mapping shader pattern or image coordinates into a view.
@@ -38,6 +79,22 @@ public enum ShaderFit: Float, Equatable, Hashable, Sendable, Codable {
   case contain = 1.0
   /// Scale the shader coordinate box to cover the view while preserving aspect ratio.
   case cover = 2.0
+}
+
+extension ShaderFit {
+  private static let wireValues: [ShaderFit: String] = [
+    .none: "none",
+    .contain: "contain",
+    .cover: "cover",
+  ]
+
+  public init(from decoder: Decoder) throws {
+    self = try ShaderEnumWireCoding.decode(Self.self, from: decoder, wireValues: Self.wireValues)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    try ShaderEnumWireCoding.encode(self, to: encoder, wireValues: Self.wireValues)
+  }
 }
 
 /// Shared spatial controls applied before shader-specific parameters.

@@ -766,6 +766,231 @@ public enum GemSmokeShape: Float, CaseIterable, Equatable, Hashable, Sendable, C
   case metaballs = 4
 }
 
+extension DotGridShape {
+  private static let wireValues: [DotGridShape: String] = [
+    .circle: "circle",
+    .diamond: "diamond",
+    .square: "square",
+    .triangle: "triangle",
+  ]
+
+  public init(from decoder: Decoder) throws {
+    self = try ShaderEnumWireCoding.decode(Self.self, from: decoder, wireValues: Self.wireValues)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    try ShaderEnumWireCoding.encode(self, to: encoder, wireValues: Self.wireValues)
+  }
+}
+
+extension DitheringShape {
+  private static let wireValues: [DitheringShape: String] = [
+    .simplex: "simplex",
+    .warp: "warp",
+    .dots: "dots",
+    .wave: "wave",
+    .ripple: "ripple",
+    .swirl: "swirl",
+    .sphere: "sphere",
+  ]
+
+  public init(from decoder: Decoder) throws {
+    self = try ShaderEnumWireCoding.decode(Self.self, from: decoder, wireValues: Self.wireValues)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    try ShaderEnumWireCoding.encode(self, to: encoder, wireValues: Self.wireValues)
+  }
+}
+
+extension DitheringType {
+  private static let wireValues: [DitheringType: String] = [
+    .random: "random",
+    .twoByTwo: "2x2",
+    .fourByFour: "4x4",
+    .eightByEight: "8x8",
+  ]
+
+  public init(from decoder: Decoder) throws {
+    self = try ShaderEnumWireCoding.decode(Self.self, from: decoder, wireValues: Self.wireValues)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    try ShaderEnumWireCoding.encode(self, to: encoder, wireValues: Self.wireValues)
+  }
+}
+
+extension WarpPattern {
+  private static let wireValues: [WarpPattern: String] = [
+    .checks: "checks",
+    .stripes: "stripes",
+    .edge: "edge",
+  ]
+
+  public init(from decoder: Decoder) throws {
+    self = try ShaderEnumWireCoding.decode(Self.self, from: decoder, wireValues: Self.wireValues)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    try ShaderEnumWireCoding.encode(self, to: encoder, wireValues: Self.wireValues)
+  }
+}
+
+extension GrainGradientShape {
+  private static let wireValues: [GrainGradientShape: String] = [
+    .wave: "wave",
+    .dots: "dots",
+    .truchet: "truchet",
+    .corners: "corners",
+    .ripple: "ripple",
+    .blob: "blob",
+    .sphere: "sphere",
+  ]
+
+  public init(from decoder: Decoder) throws {
+    self = try ShaderEnumWireCoding.decode(Self.self, from: decoder, wireValues: Self.wireValues)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    try ShaderEnumWireCoding.encode(self, to: encoder, wireValues: Self.wireValues)
+  }
+}
+
+extension PulsingBorderAspectRatio {
+  private static let wireValues: [PulsingBorderAspectRatio: String] = [
+    .auto: "auto",
+    .square: "square",
+  ]
+
+  public init(from decoder: Decoder) throws {
+    self = try ShaderEnumWireCoding.decode(Self.self, from: decoder, wireValues: Self.wireValues)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    try ShaderEnumWireCoding.encode(self, to: encoder, wireValues: Self.wireValues)
+  }
+}
+
+extension HalftoneDotsType {
+  private static let wireValues: [HalftoneDotsType: String] = [
+    .classic: "classic",
+    .gooey: "gooey",
+    .holes: "holes",
+    .soft: "soft",
+  ]
+
+  public init(from decoder: Decoder) throws {
+    self = try ShaderEnumWireCoding.decode(Self.self, from: decoder, wireValues: Self.wireValues)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    try ShaderEnumWireCoding.encode(self, to: encoder, wireValues: Self.wireValues)
+  }
+}
+
+extension HalftoneDotsGrid {
+  private static let wireValues: [HalftoneDotsGrid: String] = [
+    .square: "square",
+    .hex: "hex",
+  ]
+
+  public init(from decoder: Decoder) throws {
+    self = try ShaderEnumWireCoding.decode(Self.self, from: decoder, wireValues: Self.wireValues)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    try ShaderEnumWireCoding.encode(self, to: encoder, wireValues: Self.wireValues)
+  }
+}
+
+extension HalftoneCMYKType {
+  private static let wireValues: [HalftoneCMYKType: String] = [
+    .dots: "dots",
+    .ink: "ink",
+    .sharp: "sharp",
+  ]
+
+  public init(from decoder: Decoder) throws {
+    self = try ShaderEnumWireCoding.decode(Self.self, from: decoder, wireValues: Self.wireValues)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    try ShaderEnumWireCoding.encode(self, to: encoder, wireValues: Self.wireValues)
+  }
+}
+
+extension LiquidMetalShape {
+  private static let wireValues: [LiquidMetalShape: String] = [
+    .none: "none",
+    .circle: "circle",
+    .daisy: "daisy",
+    .diamond: "diamond",
+    .metaballs: "metaballs",
+  ]
+
+  public init(from decoder: Decoder) throws {
+    self = try ShaderEnumWireCoding.decode(Self.self, from: decoder, wireValues: Self.wireValues)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    try ShaderEnumWireCoding.encode(self, to: encoder, wireValues: Self.wireValues)
+  }
+}
+
+extension GlassGridShape {
+  private static let wireValues: [GlassGridShape: String] = [
+    .lines: "lines",
+    .linesIrregular: "linesIrregular",
+    .wave: "wave",
+    .zigzag: "zigzag",
+    .pattern: "pattern",
+  ]
+
+  public init(from decoder: Decoder) throws {
+    self = try ShaderEnumWireCoding.decode(Self.self, from: decoder, wireValues: Self.wireValues)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    try ShaderEnumWireCoding.encode(self, to: encoder, wireValues: Self.wireValues)
+  }
+}
+
+extension GlassDistortionShape {
+  private static let wireValues: [GlassDistortionShape: String] = [
+    .prism: "prism",
+    .lens: "lens",
+    .contour: "contour",
+    .cascade: "cascade",
+    .flat: "flat",
+  ]
+
+  public init(from decoder: Decoder) throws {
+    self = try ShaderEnumWireCoding.decode(Self.self, from: decoder, wireValues: Self.wireValues)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    try ShaderEnumWireCoding.encode(self, to: encoder, wireValues: Self.wireValues)
+  }
+}
+
+extension GemSmokeShape {
+  private static let wireValues: [GemSmokeShape: String] = [
+    .none: "none",
+    .circle: "circle",
+    .daisy: "daisy",
+    .diamond: "diamond",
+    .metaballs: "metaballs",
+  ]
+
+  public init(from decoder: Decoder) throws {
+    self = try ShaderEnumWireCoding.decode(Self.self, from: decoder, wireValues: Self.wireValues)
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    try ShaderEnumWireCoding.encode(self, to: encoder, wireValues: Self.wireValues)
+  }
+}
+
 public enum ShaderParameters: Equatable, Hashable, Sendable, Codable {
   case animatedMeshGradient(AnimatedMeshGradientParams)
   case staticMeshGradient(StaticMeshGradientParams)
@@ -1041,6 +1266,83 @@ public enum ShaderParameters: Equatable, Hashable, Sendable, Codable {
   }
 }
 
+private typealias ShaderConfigurationDefaults = (
+  sizing: ShaderSizingParams,
+  motion: ShaderMotionParams,
+  renderOptions: ShaderRenderOptions
+)
+
+private extension ShaderPreset {
+  var configurationDefaults: ShaderConfigurationDefaults {
+    (sizing: sizing, motion: motion, renderOptions: renderOptions)
+  }
+}
+
+private extension ShaderParameters {
+  var defaultConfiguration: ShaderConfigurationDefaults {
+    switch self {
+    case .animatedMeshGradient:
+      AnimatedMeshGradientPreset.default.configurationDefaults
+    case .staticMeshGradient:
+      StaticMeshGradientPreset.default.configurationDefaults
+    case .staticRadialGradient:
+      StaticRadialGradientPreset.default.configurationDefaults
+    case .swirl:
+      SwirlPreset.default.configurationDefaults
+    case .spiral:
+      SpiralPreset.default.configurationDefaults
+    case .dotGrid:
+      DotGridPreset.default.configurationDefaults
+    case .simplexNoise:
+      SimplexNoisePreset.default.configurationDefaults
+    case .perlinNoise:
+      PerlinNoisePreset.default.configurationDefaults
+    case .neuroNoise:
+      NeuroNoisePreset.default.configurationDefaults
+    case .waves:
+      WavesPreset.default.configurationDefaults
+    case .dithering:
+      DitheringPreset.default.configurationDefaults
+    case .colorPanels:
+      ColorPanelsPreset.default.configurationDefaults
+    case .dotOrbit:
+      DotOrbitPreset.default.configurationDefaults
+    case .godRays:
+      GodRaysPreset.default.configurationDefaults
+    case .grainGradient:
+      GrainGradientPreset.default.configurationDefaults
+    case .metaballs:
+      MetaballsPreset.default.configurationDefaults
+    case .warp:
+      WarpPreset.default.configurationDefaults
+    case .voronoi:
+      VoronoiPreset.default.configurationDefaults
+    case .pulsingBorder:
+      PulsingBorderPreset.default.configurationDefaults
+    case .smokeRing:
+      SmokeRingPreset.default.configurationDefaults
+    case .imageDithering:
+      ImageDitheringPreset.default.configurationDefaults
+    case .halftoneDots:
+      HalftoneDotsPreset.default.configurationDefaults
+    case .halftoneCMYK:
+      HalftoneCMYKPreset.default.configurationDefaults
+    case .heatmap:
+      HeatmapPreset.default.configurationDefaults
+    case .liquidMetal:
+      LiquidMetalPreset.default.configurationDefaults
+    case .paperTexture:
+      PaperTexturePreset.default.configurationDefaults
+    case .water:
+      WaterPreset.default.configurationDefaults
+    case .flutedGlass:
+      FlutedGlassPreset.default.configurationDefaults
+    case .gemSmoke:
+      GemSmokePreset.default.configurationDefaults
+    }
+  }
+}
+
 public struct ShaderConfiguration: Equatable, Hashable, Sendable, Codable {
   public var parameters: ShaderParameters
   public var sizing: ShaderSizingParams
@@ -1050,17 +1352,21 @@ public struct ShaderConfiguration: Equatable, Hashable, Sendable, Codable {
 
   public var kind: FoilShadersRenderer.ShaderKind { parameters.kind }
 
+  /// Creates a shader configuration.
+  ///
+  /// Omitted sizing, motion, and render options use the matching shader's default preset values.
   public init(
     parameters: ShaderParameters,
-    sizing: ShaderSizingParams = .defaultPatternSizing,
-    motion: ShaderMotionParams = ShaderMotionParams(),
-    renderOptions: ShaderRenderOptions = .default,
+    sizing: ShaderSizingParams? = nil,
+    motion: ShaderMotionParams? = nil,
+    renderOptions: ShaderRenderOptions? = nil,
     image: ShaderImage? = nil
   ) {
+    let defaults = parameters.defaultConfiguration
     self.parameters = parameters
-    self.sizing = sizing
-    self.motion = motion
-    self.renderOptions = renderOptions
+    self.sizing = sizing ?? defaults.sizing
+    self.motion = motion ?? defaults.motion
+    self.renderOptions = renderOptions ?? defaults.renderOptions
     self.image = image
   }
 }
