@@ -20,8 +20,7 @@ final class GoldenParityTests: XCTestCase {
   /// tells you to remove the entry, so this list can only shrink.
   ///
   /// Matched by prefix against the case id (`shader` or `shader/Preset`).
-  static let knownParityGaps: [String] = [
-  ]
+  static let knownParityGaps: [String] = []
 
   private static func isKnownGap(_ id: String) -> Bool {
     knownParityGaps.contains { gap in

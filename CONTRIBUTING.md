@@ -25,6 +25,18 @@ Run the lightweight unit test target:
 swift test --filter FoilShadersTests
 ```
 
+## Documentation
+
+DocC content lives in `Sources/FoilShaders/FoilShaders.docc`. The
+`swift-docc-plugin` dependency is opt-in so package consumers do not resolve it
+during normal builds. Enable it only for documentation commands:
+
+```sh
+FOILSHADERS_ENABLE_DOCC_PLUGIN=1 swift package generate-documentation --target FoilShaders
+```
+
+Do not commit a `Package.resolved` generated only by this documentation command.
+
 ## Public API Baseline
 
 CI checks the `FoilShaders` public API with `swift-api-digester` against the

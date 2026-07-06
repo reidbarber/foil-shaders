@@ -1,6 +1,17 @@
 // swift-tools-version: 6.0
 
+import Foundation
 import PackageDescription
+
+let enableDocCPlugin = ProcessInfo.processInfo.environment["FOILSHADERS_ENABLE_DOCC_PLUGIN"] == "1"
+
+var packageDependencies: [Package.Dependency] = []
+
+if enableDocCPlugin {
+  packageDependencies.append(
+    .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.5.0")
+  )
+}
 
 let package = Package(
   name: "FoilShaders",
@@ -22,9 +33,7 @@ let package = Package(
       targets: ["FoilShadersExport"]
     ),
   ],
-  dependencies: [
-    .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.5.0")
-  ],
+  dependencies: packageDependencies,
   targets: [
     .target(
       name: "FoilShaders",
