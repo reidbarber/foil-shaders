@@ -206,6 +206,25 @@ final class PublicAPITests: XCTestCase {
   }
 
   @MainActor
+  func testImageDerivedShaderFlagsArePublicBools() {
+    let color = ShaderColor(red: 1, green: 1, blue: 1)
+    let imageParams = ImageDitheringParams(
+      colorFront: color, originalColors: true, inverted: false)
+    let halftoneParams = HalftoneDotsParams(
+      colorFront: color, originalColors: false, inverted: true)
+
+    let imageView = ImageDithering(originalColors: true, inverted: false)
+    let halftoneView = HalftoneDots(originalColors: false, inverted: true)
+
+    XCTAssertTrue(imageParams.originalColors)
+    XCTAssertFalse(imageParams.inverted)
+    XCTAssertFalse(halftoneParams.originalColors)
+    XCTAssertTrue(halftoneParams.inverted)
+    XCTAssertFalse(String(describing: type(of: imageView)).isEmpty)
+    XCTAssertFalse(String(describing: type(of: halftoneView)).isEmpty)
+  }
+
+  @MainActor
   func testRendererSetImageAcceptsBareNilLiteral() {
     let clearImage: (FoilShadersRenderer) -> Void = { renderer in
       renderer.setImage(nil)

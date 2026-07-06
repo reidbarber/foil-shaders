@@ -338,9 +338,41 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertEqual(DotGridPreset.default.renderOptions.maxPixelCount, 6016 * 3384)
 
     XCTAssertEqual(ImageDitheringPreset.default.params.type, .eightByEight)
-    XCTAssertEqual(ImageDitheringPreset.default.params.inverted, 0)
+    XCTAssertFalse(ImageDitheringPreset.default.params.inverted)
     XCTAssertEqual(LiquidMetalPreset.default.params.shape, .diamond)
     XCTAssertEqual(GemSmokePreset.default.params.shape, .diamond)
+  }
+
+  func testImageBooleanParamsEncodeAsBooleans() throws {
+    let color = ShaderColor(red: 1, green: 1, blue: 1)
+    let imageParams = ImageDitheringParams(
+      colorFront: color, originalColors: true, inverted: false)
+    let halftoneParams = HalftoneDotsParams(
+      colorFront: color, originalColors: false, inverted: true)
+
+    let imageJSON = String(decoding: try JSONEncoder().encode(imageParams), as: UTF8.self)
+    let halftoneJSON = String(decoding: try JSONEncoder().encode(halftoneParams), as: UTF8.self)
+
+    XCTAssertTrue(imageJSON.contains(#""originalColors":true"#))
+    XCTAssertTrue(imageJSON.contains(#""inverted":false"#))
+    XCTAssertTrue(halftoneJSON.contains(#""originalColors":false"#))
+    XCTAssertTrue(halftoneJSON.contains(#""inverted":true"#))
+  }
+
+  func testImageBooleanParamsConvertToFloatUniforms() {
+    let color = ShaderColor(red: 1, green: 1, blue: 1)
+
+    let imageUniforms = ImageDitheringUniformsRaw(
+      params: ImageDitheringParams(colorFront: color, originalColors: true, inverted: false))
+    XCTAssertEqual(imageUniforms.u_originalColors, 1)
+    XCTAssertEqual(imageUniforms.u_inverted, 0)
+
+    let halftoneUniforms = HalftoneDotsUniformsRaw(
+      time: 0,
+      params: HalftoneDotsParams(colorFront: color, originalColors: false, inverted: true)
+    )
+    XCTAssertEqual(halftoneUniforms.u_originalColors, 0)
+    XCTAssertEqual(halftoneUniforms.u_inverted, 1)
   }
 
   @MainActor

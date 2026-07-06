@@ -150,7 +150,7 @@ Static wave-line pattern with shape, spacing, amplitude, and softness controls.
 | --- | --- | --- |
 | `colorFront` | `0...1` RGBA | Foreground ``ShaderColor``; RGBA components use `0...1`. |
 | `colorBack` | `0...1` RGBA | Background ``ShaderColor``; RGBA components use `0...1`. |
-| `shape` | `0...3` | Shape selector. |
+| `shape` | `0...3` | Continuous shape selector; fractional values intentionally morph between wave shapes. |
 | `frequency` | `0.2...0.5` | Wave frequency multiplier. |
 | `amplitude` | `0.25...1` | Wave amplitude multiplier. |
 | `spacing` | `1.05...1.25` | Wave spacing multiplier. |
@@ -457,8 +457,8 @@ Image-based dithering with color quantization, ordered dither type, and optional
 | `type` | ``DitheringType``: `.random`, `.twoByTwo`, `.fourByFour`, `.eightByEight`. | Style or matrix selector. |
 | `size` | `1...3` | Shader-specific size control; see the range for practical values. |
 | `colorSteps` | `1...5` | Number of quantized color steps. |
-| `originalColors` | `0...1` | Boolean-like `0` or `1`; `1` keeps source image colors. |
-| `inverted` | `0` | Boolean-like `0` or `1`; `1` inverts the source image luminance. |
+| `originalColors` | `Bool` | `true` keeps source image colors. |
+| `inverted` | `Bool` | `true` inverts the source image luminance. |
 
 ## Heatmap
 
@@ -509,8 +509,8 @@ Image-based halftone dots with grid, radius, contrast, grain, and style controls
 | `grid` | ``HalftoneDotsGrid``: `.square`, `.hex`. | Halftone dot grid selector. |
 | `radius` | `1...2` | Normalized radius. |
 | `contrast` | `0.01...1` | Contrast multiplier or amount. |
-| `originalColors` | `0...1` | Boolean-like `0` or `1`; `1` keeps source image colors. |
-| `inverted` | `0...1` | Boolean-like `0` or `1`; `1` inverts the source image luminance. |
+| `originalColors` | `Bool` | `true` keeps source image colors. |
+| `inverted` | `Bool` | `true` inverts the source image luminance. |
 | `grainMixer` | `0...0.2` | Normalized grain mix amount. |
 | `grainOverlay` | `0...0.3` | Normalized grain overlay opacity. |
 | `grainSize` | `0.5` | Normalized grain scale. |

@@ -24,7 +24,7 @@ Waves(.default)
 | --- | --- | --- |
 | `colorFront` | `0...1` RGBA | Foreground ``ShaderColor``; RGBA components use `0...1`. |
 | `colorBack` | `0...1` RGBA | Background ``ShaderColor``; RGBA components use `0...1`. |
-| `shape` | `0...3` | Shape selector. |
+| `shape` | `0...3` | Continuous shape selector; fractional values intentionally morph between wave shapes. |
 | `frequency` | `0.2...0.5` | Wave frequency multiplier. |
 | `amplitude` | `0.25...1` | Wave amplitude multiplier. |
 | `spacing` | `1.05...1.25` | Wave spacing multiplier. |

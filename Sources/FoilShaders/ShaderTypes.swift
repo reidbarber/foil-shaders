@@ -526,6 +526,7 @@ public struct NeuroNoiseParams: Equatable, Hashable, Sendable, Codable {
 public struct WavesParams: Equatable, Hashable, Sendable, Codable {
   public var colorFront: ShaderColor
   public var colorBack: ShaderColor
+  /// Continuous shape selector; fractional values intentionally morph between wave shapes.
   public var shape: Float
   public var frequency: Float
   public var amplitude: Float
@@ -1061,8 +1062,10 @@ public struct ImageDitheringParams: Equatable, Hashable, Sendable, Codable {
   public var type: DitheringType
   public var size: Float
   public var colorSteps: Float
-  public var originalColors: Float
-  public var inverted: Float
+  /// Keeps the source image colors instead of remapping through the shader colors.
+  public var originalColors: Bool
+  /// Inverts source image luminance before dithering.
+  public var inverted: Bool
 
   /// Creates image dithering shader parameters.
   ///
@@ -1074,8 +1077,8 @@ public struct ImageDitheringParams: Equatable, Hashable, Sendable, Codable {
     type: DitheringType = .eightByEight,
     size: Float = 2.0,
     colorSteps: Float = 2.0,
-    originalColors: Float = 0.0,
-    inverted: Float = 0.0
+    originalColors: Bool = false,
+    inverted: Bool = false
   ) {
     self.colorFront = colorFront
     self.colorBack = colorBack
@@ -1100,8 +1103,10 @@ public struct HalftoneDotsParams: Equatable, Hashable, Sendable, Codable {
   public var grid: HalftoneDotsGrid
   public var radius: Float
   public var contrast: Float
-  public var originalColors: Float
-  public var inverted: Float
+  /// Keeps the source image colors instead of remapping through the shader colors.
+  public var originalColors: Bool
+  /// Inverts source image luminance before dot sizing.
+  public var inverted: Bool
   public var grainMixer: Float
   public var grainOverlay: Float
   public var grainSize: Float
@@ -1118,8 +1123,8 @@ public struct HalftoneDotsParams: Equatable, Hashable, Sendable, Codable {
     grid: HalftoneDotsGrid = .hex,
     radius: Float = 1.25,
     contrast: Float = 0.4,
-    originalColors: Float = 0.0,
-    inverted: Float = 0.0,
+    originalColors: Bool = false,
+    inverted: Bool = false,
     grainMixer: Float = 0.2,
     grainOverlay: Float = 0.2,
     grainSize: Float = 0.5,
@@ -2402,8 +2407,8 @@ struct ImageDitheringUniformsRaw {
     self.u_colorHighlight = params.colorHighlight.rgba
     self.u_type = params.type.rawValue
     self.u_pxSize = params.size
-    self.u_originalColors = params.originalColors
-    self.u_inverted = params.inverted
+    self.u_originalColors = params.originalColors ? 1.0 : 0.0
+    self.u_inverted = params.inverted ? 1.0 : 0.0
     self.u_colorSteps = params.colorSteps
   }
 }
@@ -2434,8 +2439,8 @@ struct HalftoneDotsUniformsRaw {
     self.u_grainOverlay = params.grainOverlay
     self.u_grainSize = params.grainSize
     self.u_grid = params.grid.rawValue
-    self.u_originalColors = params.originalColors
-    self.u_inverted = params.inverted
+    self.u_originalColors = params.originalColors ? 1.0 : 0.0
+    self.u_inverted = params.inverted ? 1.0 : 0.0
     self.u_type = params.type.rawValue
   }
 }
