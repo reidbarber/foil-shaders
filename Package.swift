@@ -38,7 +38,15 @@ let package = Package(
     .target(
       name: "FoilShaders",
       resources: [
-        .process("Resources")
+        // The `.metal` files are loaded and compiled at runtime from source
+        // (see ShaderLibraryLoader), so they must be copied verbatim. Using
+        // `.process` makes Xcode's build system treat them as standalone Metal
+        // sources and compile them into a default.metallib, which fails because
+        // each shader depends on shared types from Common.metal/Vertex.metal
+        // (e.g. `unknown type name 'VertexOutput'`). `.copy` preserves the
+        // `Shaders/` subdirectory that the loader looks in.
+        .copy("Resources/Shaders"),
+        .process("Resources/noise-texture.png"),
       ]
     ),
     .executableTarget(
