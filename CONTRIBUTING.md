@@ -10,8 +10,30 @@ Requirements:
 
 - macOS with Xcode installed
 - Swift 6 toolchain
+- Xcode's Metal toolchain component. Shaders are compiled into a `metallib`
+  at build time, so builds need the offline Metal compiler. Xcode 16 ships
+  it inbox; on Xcode 26 and later, install it once with
+  `xcodebuild -downloadComponent MetalToolchain`.
 - Metal-capable Mac for renderer tests and app previews
 - Node.js for preset extraction and parity golden regeneration
+
+## Shaders
+
+The Metal sources in `Sources/FoilShaders/Resources/Shaders` are compiled at
+build time — into `default.metallib` by Xcode builds, and into
+`FoilShaders.metallib` by the `FoilShadersMetalCompilerPlugin` build tool
+plugin for `swift build`/`swift test`. Nothing is compiled at runtime, so
+shader errors fail the package build with normal compiler diagnostics.
+
+Every `.metal` file must compile as a standalone translation unit:
+
+- Shared helpers and types live in `Common.h` and `ShaderTypes.h`
+  (`VertexOutput` and friends); include them instead of relying on other
+  `.metal` files.
+- Mark file-local helper functions `static`. All shaders link into one
+  library, and non-`static` helpers with the same signature in two files
+  would be silently folded by the Metal linker even when their bodies
+  differ.
 
 Build the package:
 

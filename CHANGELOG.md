@@ -2,6 +2,19 @@
 
 All notable changes to Foil Shaders will be documented in this file.
 
+## Unreleased
+
+- Compile Metal shaders at build time instead of from source at runtime.
+  Xcode builds produce `default.metallib`; `swift build`/`swift test` produce
+  `FoilShaders.metallib` via a new `FoilShadersMetalCompilerPlugin` build tool
+  plugin. Shader errors now fail the package build with compiler diagnostics,
+  and first render no longer pays for runtime shader compilation.
+- **Breaking:** Remove `FoilShadersError.librarySourceReadError` and
+  `.libraryCompileError`; shaders are no longer read or compiled at runtime.
+  A missing precompiled library now surfaces as `.libraryError`.
+- Building the package now requires Xcode's Metal toolchain component
+  (`xcodebuild -downloadComponent MetalToolchain` on Xcode 26 and later).
+
 ## 0.5.0 - 2026-07-04
 
 - **Breaking:** Split resolution from layout.

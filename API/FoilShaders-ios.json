@@ -20821,106 +20821,6 @@
           },
           {
             "kind": "Var",
-            "name": "librarySourceReadError",
-            "printedName": "librarySourceReadError",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(FoilShaders.FoilShadersError.Type) -> (any Swift.Error) -> FoilShaders.FoilShadersError",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(any Swift.Error) -> FoilShaders.FoilShadersError",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FoilShadersError",
-                        "printedName": "FoilShaders.FoilShadersError",
-                        "usr": "s:11FoilShaders0aB5ErrorO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Error",
-                        "printedName": "any Swift.Error",
-                        "usr": "s:s5ErrorP"
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "FoilShaders.FoilShadersError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FoilShadersError",
-                        "printedName": "FoilShaders.FoilShadersError",
-                        "usr": "s:11FoilShaders0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:11FoilShaders0aB5ErrorO017librarySourceReadC0yACs0C0_pcACmF",
-            "mangledName": "$s11FoilShaders0aB5ErrorO017librarySourceReadC0yACs0C0_pcACmF",
-            "moduleName": "FoilShaders"
-          },
-          {
-            "kind": "Var",
-            "name": "libraryCompileError",
-            "printedName": "libraryCompileError",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(FoilShaders.FoilShadersError.Type) -> (Swift.String) -> FoilShaders.FoilShadersError",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(Swift.String) -> FoilShaders.FoilShadersError",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FoilShadersError",
-                        "printedName": "FoilShaders.FoilShadersError",
-                        "usr": "s:11FoilShaders0aB5ErrorO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "FoilShaders.FoilShadersError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FoilShadersError",
-                        "printedName": "FoilShaders.FoilShadersError",
-                        "usr": "s:11FoilShaders0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:11FoilShaders0aB5ErrorO014libraryCompileC0yACSScACmF",
-            "mangledName": "$s11FoilShaders0aB5ErrorO014libraryCompileC0yACSScACmF",
-            "moduleName": "FoilShaders"
-          },
-          {
-            "kind": "Var",
             "name": "captureInvalidSize",
             "printedName": "captureInvalidSize",
             "children": [
@@ -35088,6 +34988,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DotGridShape",
+                "printedName": "FoilShaders.DotGridShape",
+                "usr": "s:11FoilShaders12DotGridShapeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders12DotGridShapeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders12DotGridShapeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders12DotGridShapeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders12DotGridShapeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -35645,6 +35596,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DitheringShape",
+                "printedName": "FoilShaders.DitheringShape",
+                "usr": "s:11FoilShaders14DitheringShapeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders14DitheringShapeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders14DitheringShapeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders14DitheringShapeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders14DitheringShapeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -36091,6 +36093,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DitheringType",
+                "printedName": "FoilShaders.DitheringType",
+                "usr": "s:11FoilShaders13DitheringTypeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders13DitheringTypeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders13DitheringTypeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders13DitheringTypeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders13DitheringTypeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -36500,6 +36553,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WarpPattern",
+                "printedName": "FoilShaders.WarpPattern",
+                "usr": "s:11FoilShaders11WarpPatternO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders11WarpPatternO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders11WarpPatternO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders11WarpPatternO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders11WarpPatternO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -37057,6 +37161,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GrainGradientShape",
+                "printedName": "FoilShaders.GrainGradientShape",
+                "usr": "s:11FoilShaders18GrainGradientShapeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders18GrainGradientShapeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders18GrainGradientShapeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders18GrainGradientShapeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders18GrainGradientShapeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -37429,6 +37584,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PulsingBorderAspectRatio",
+                "printedName": "FoilShaders.PulsingBorderAspectRatio",
+                "usr": "s:11FoilShaders24PulsingBorderAspectRatioO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders24PulsingBorderAspectRatioO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders24PulsingBorderAspectRatioO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders24PulsingBorderAspectRatioO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders24PulsingBorderAspectRatioO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -37875,6 +38081,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "HalftoneDotsType",
+                "printedName": "FoilShaders.HalftoneDotsType",
+                "usr": "s:11FoilShaders16HalftoneDotsTypeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders16HalftoneDotsTypeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders16HalftoneDotsTypeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders16HalftoneDotsTypeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders16HalftoneDotsTypeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -38247,6 +38504,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "HalftoneDotsGrid",
+                "printedName": "FoilShaders.HalftoneDotsGrid",
+                "usr": "s:11FoilShaders16HalftoneDotsGridO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders16HalftoneDotsGridO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders16HalftoneDotsGridO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders16HalftoneDotsGridO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders16HalftoneDotsGridO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -38656,6 +38964,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "HalftoneCMYKType",
+                "printedName": "FoilShaders.HalftoneCMYKType",
+                "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders16HalftoneCMYKTypeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders16HalftoneCMYKTypeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -39139,6 +39498,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LiquidMetalShape",
+                "printedName": "FoilShaders.LiquidMetalShape",
+                "usr": "s:11FoilShaders16LiquidMetalShapeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders16LiquidMetalShapeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders16LiquidMetalShapeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders16LiquidMetalShapeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders16LiquidMetalShapeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -39622,6 +40032,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GlassGridShape",
+                "printedName": "FoilShaders.GlassGridShape",
+                "usr": "s:11FoilShaders14GlassGridShapeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders14GlassGridShapeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders14GlassGridShapeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders14GlassGridShapeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders14GlassGridShapeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -40105,6 +40566,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GlassDistortionShape",
+                "printedName": "FoilShaders.GlassDistortionShape",
+                "usr": "s:11FoilShaders20GlassDistortionShapeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders20GlassDistortionShapeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders20GlassDistortionShapeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders20GlassDistortionShapeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders20GlassDistortionShapeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -40588,6 +41100,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GemSmokeShape",
+                "printedName": "FoilShaders.GemSmokeShape",
+                "usr": "s:11FoilShaders13GemSmokeShapeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders13GemSmokeShapeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders13GemSmokeShapeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders13GemSmokeShapeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders13GemSmokeShapeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -42845,24 +43408,48 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "ShaderSizingParams",
-                "printedName": "FoilShaders.ShaderSizingParams",
+                "name": "Optional",
+                "printedName": "FoilShaders.ShaderSizingParams?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ShaderSizingParams",
+                    "printedName": "FoilShaders.ShaderSizingParams",
+                    "usr": "s:11FoilShaders18ShaderSizingParamsV"
+                  }
+                ],
                 "hasDefaultArg": true,
-                "usr": "s:11FoilShaders18ShaderSizingParamsV"
+                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
-                "name": "ShaderMotionParams",
-                "printedName": "FoilShaders.ShaderMotionParams",
+                "name": "Optional",
+                "printedName": "FoilShaders.ShaderMotionParams?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ShaderMotionParams",
+                    "printedName": "FoilShaders.ShaderMotionParams",
+                    "usr": "s:11FoilShaders18ShaderMotionParamsV"
+                  }
+                ],
                 "hasDefaultArg": true,
-                "usr": "s:11FoilShaders18ShaderMotionParamsV"
+                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
-                "name": "ShaderRenderOptions",
-                "printedName": "FoilShaders.ShaderRenderOptions",
+                "name": "Optional",
+                "printedName": "FoilShaders.ShaderRenderOptions?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ShaderRenderOptions",
+                    "printedName": "FoilShaders.ShaderRenderOptions",
+                    "usr": "s:11FoilShaders19ShaderRenderOptionsV"
+                  }
+                ],
                 "hasDefaultArg": true,
-                "usr": "s:11FoilShaders19ShaderRenderOptionsV"
+                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
@@ -42881,8 +43468,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders19ShaderConfigurationV10parameters6sizing6motion13renderOptions5imageAcA0C10ParametersO_AA0C12SizingParamsVAA0c6MotionM0VAA0c6RenderI0VAA0C5ImageVSgtcfc",
-            "mangledName": "$s11FoilShaders19ShaderConfigurationV10parameters6sizing6motion13renderOptions5imageAcA0C10ParametersO_AA0C12SizingParamsVAA0c6MotionM0VAA0c6RenderI0VAA0C5ImageVSgtcfc",
+            "usr": "s:11FoilShaders19ShaderConfigurationV10parameters6sizing6motion13renderOptions5imageAcA0C10ParametersO_AA0C12SizingParamsVSgAA0c6MotionM0VSgAA0c6RenderI0VSgAA0C5ImageVSgtcfc",
+            "mangledName": "$s11FoilShaders19ShaderConfigurationV10parameters6sizing6motion13renderOptions5imageAcA0C10ParametersO_AA0C12SizingParamsVSgAA0c6MotionM0VSgAA0c6RenderI0VSgAA0C5ImageVSgtcfc",
             "moduleName": "FoilShaders",
             "init_kind": "Designated"
           },
@@ -43304,6 +43891,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ShaderFit",
+                "printedName": "FoilShaders.ShaderFit",
+                "usr": "s:11FoilShaders9ShaderFitO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders9ShaderFitO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders9ShaderFitO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders9ShaderFitO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders9ShaderFitO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
