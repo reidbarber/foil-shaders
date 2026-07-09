@@ -38,16 +38,23 @@ let package = Package(
     .target(
       name: "FoilShaders",
       resources: [
-        // The `.metal` files are loaded and compiled at runtime from source
-        // (see ShaderLibraryLoader), so they must be copied verbatim. Using
-        // `.process` makes Xcode's build system treat them as standalone Metal
-        // sources and compile them into a default.metallib, which fails because
-        // each shader depends on shared types from Common.metal/Vertex.metal
-        // (e.g. `unknown type name 'VertexOutput'`). `.copy` preserves the
-        // `Shaders/` subdirectory that the loader looks in.
-        .copy("Resources/Shaders"),
+        // Shaders are compiled at build time, never at runtime:
+        // - Xcode builds (apps depending on this package) compile the
+        //   `.process`ed `.metal` files into `default.metallib` for the
+        //   platform being built (iOS, macOS, Catalyst, simulator).
+        // - Plain `swift build`/`swift test` do not compile Metal, so the
+        //   FoilShadersMetalCompilerPlugin build tool plugin produces
+        //   `FoilShaders.metallib` (macOS) for those CLI builds.
+        // ShaderLibraryLoader prefers `default.metallib` and falls back to
+        // the plugin-built library.
+        .process("Resources/Shaders"),
         .process("Resources/noise-texture.png"),
-      ]
+      ],
+      plugins: ["FoilShadersMetalCompilerPlugin"]
+    ),
+    .plugin(
+      name: "FoilShadersMetalCompilerPlugin",
+      capability: .buildTool()
     ),
     .executableTarget(
       name: "FoilShadersStudio",
