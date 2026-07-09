@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -16,12 +17,12 @@ struct MetaballsUniforms {
     float u_count;
 };
 
-inline float randomR(texture2d<float> noiseTexture, float2 p) {
+static inline float randomR(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 100.0 + 0.5;
     return noiseTexture.sample(linearSampler, fract(uv)).r;
 }
 
-inline float noise1(float x, texture2d<float> noiseTexture) {
+static inline float noise1(float x, texture2d<float> noiseTexture) {
     float i = floor(x);
     float f = fract(x);
     float u = f * f * (3.0 - 2.0 * f);
@@ -30,7 +31,7 @@ inline float noise1(float x, texture2d<float> noiseTexture) {
     return mix(randomR(noiseTexture, p0), randomR(noiseTexture, p1), u);
 }
 
-inline float getBallShape(float2 uv, float2 c, float p) {
+static inline float getBallShape(float2 uv, float2 c, float p) {
     float s = 0.5 * length(uv - c);
     s = 1.0 - clamp(s, 0.0, 1.0);
     s = pow(s, p);

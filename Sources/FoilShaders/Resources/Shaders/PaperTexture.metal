@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -34,7 +35,7 @@ struct FragmentVertexUniforms {
     float u_offsetY;
 };
 
-inline float getUvFrame(float2 uv) {
+static inline float getUvFrame(float2 uv) {
     float aax = 2.0 * fwidth(uv.x);
     float aay = 2.0 * fwidth(uv.y);
     float left = smoothstep(0.0, aax, uv.x);
@@ -44,12 +45,12 @@ inline float getUvFrame(float2 uv) {
     return left * right * bottom * top;
 }
 
-inline float randomR(texture2d<float> noiseTexture, float2 p) {
+static inline float randomR(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 100.0 + 0.5;
     return noiseTexture.sample(linearSampler, fract(uv)).r;
 }
 
-inline float valueNoise(float2 st, texture2d<float> noiseTexture) {
+static inline float valueNoise(float2 st, texture2d<float> noiseTexture) {
     float2 i = floor(st);
     float2 f = fract(st);
     float a = randomR(noiseTexture, i);
@@ -62,7 +63,7 @@ inline float valueNoise(float2 st, texture2d<float> noiseTexture) {
     return mix(x1, x2, u.y);
 }
 
-inline float fbm(float2 n, texture2d<float> noiseTexture) {
+static inline float fbm(float2 n, texture2d<float> noiseTexture) {
     float total = 0.0;
     float amplitude = 0.4;
     for (int i = 0; i < 3; i++) {
@@ -73,12 +74,12 @@ inline float fbm(float2 n, texture2d<float> noiseTexture) {
     return total;
 }
 
-inline float randomG(texture2d<float> noiseTexture, float2 p) {
+static inline float randomG(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 50.0 + 0.5;
     return noiseTexture.sample(linearSampler, fract(uv)).g;
 }
 
-inline float roughnessValue(float2 p, texture2d<float> noiseTexture) {
+static inline float roughnessValue(float2 p, texture2d<float> noiseTexture) {
     p *= 0.1;
     float o = 0.0;
     for (float i = 0.0; ++i < 4.0; p *= 2.1) {
@@ -94,18 +95,18 @@ inline float roughnessValue(float2 p, texture2d<float> noiseTexture) {
     return o / 3.0;
 }
 
-inline float2 randomGB(texture2d<float> noiseTexture, float2 p) {
+static inline float2 randomGB(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 50.0 + 0.5;
     float4 sample = noiseTexture.sample(linearSampler, fract(uv));
     return sample.gb;
 }
 
-inline float fiberRandom(texture2d<float> noiseTexture, float2 p) {
+static inline float fiberRandom(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 100.0;
     return noiseTexture.sample(linearSampler, fract(uv)).b;
 }
 
-inline float fiberValueNoise(texture2d<float> noiseTexture, float2 st) {
+static inline float fiberValueNoise(texture2d<float> noiseTexture, float2 st) {
     float2 i = floor(st);
     float2 f = fract(st);
     float a = fiberRandom(noiseTexture, i);
@@ -118,7 +119,7 @@ inline float fiberValueNoise(texture2d<float> noiseTexture, float2 st) {
     return mix(x1, x2, u.y);
 }
 
-inline float fiberNoiseFbm(texture2d<float> noiseTexture, float2 n, float2 seedOffset) {
+static inline float fiberNoiseFbm(texture2d<float> noiseTexture, float2 n, float2 seedOffset) {
     float total = 0.0;
     float amplitude = 1.0;
     for (int i = 0; i < 4; i++) {
@@ -130,7 +131,7 @@ inline float fiberNoiseFbm(texture2d<float> noiseTexture, float2 n, float2 seedO
     return total;
 }
 
-inline float fiberNoise(texture2d<float> noiseTexture, float2 uv, float2 seedOffset) {
+static inline float fiberNoise(texture2d<float> noiseTexture, float2 uv, float2 seedOffset) {
     float epsilon = 0.001;
     float n1 = fiberNoiseFbm(noiseTexture, uv + float2(epsilon, 0.0), seedOffset);
     float n2 = fiberNoiseFbm(noiseTexture, uv - float2(epsilon, 0.0), seedOffset);
@@ -139,7 +140,7 @@ inline float fiberNoise(texture2d<float> noiseTexture, float2 uv, float2 seedOff
     return length(float2(n1 - n2, n3 - n4)) / (2.0 * epsilon);
 }
 
-inline float crumpledNoise(float2 t, float pw, texture2d<float> noiseTexture) {
+static inline float crumpledNoise(float2 t, float pw, texture2d<float> noiseTexture) {
     float2 p = floor(t);
     float wsum = 0.0;
     float cl = 0.0;
@@ -159,11 +160,11 @@ inline float crumpledNoise(float2 t, float pw, texture2d<float> noiseTexture) {
     return pow(wsum != 0.0 ? cl / wsum : 0.0, 0.5) * 2.0;
 }
 
-inline float crumplesShape(float2 uv, texture2d<float> noiseTexture) {
+static inline float crumplesShape(float2 uv, texture2d<float> noiseTexture) {
     return crumpledNoise(uv * 0.25, 16.0, noiseTexture) * crumpledNoise(uv * 0.5, 2.0, noiseTexture);
 }
 
-inline float2 folds(float2 uv, float seed, float foldCount, texture2d<float> noiseTexture) {
+static inline float2 folds(float2 uv, float seed, float foldCount, texture2d<float> noiseTexture) {
     float3 pp = float3(0.0);
     float l = 9.0;
     for (float i = 0.0; i < 15.0; i++) {
@@ -181,7 +182,7 @@ inline float2 folds(float2 uv, float seed, float foldCount, texture2d<float> noi
     return mix(pp.xy, float2(0.0), pow(pp.z, 0.25));
 }
 
-inline float drops(float2 uv, float seed, texture2d<float> noiseTexture) {
+static inline float drops(float2 uv, float seed, texture2d<float> noiseTexture) {
     float2 iDropsUV = floor(uv);
     float2 fDropsUV = fract(uv);
     float dropsMinDist = 1.0;

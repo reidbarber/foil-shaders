@@ -1,47 +1,12 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
-// MARK: - Vertex Shader Uniforms
-
-struct VertexUniforms {
-    float2 u_resolution;
-    float u_pixelRatio;
-    float u_imageAspectRatio;
-    float u_originX;
-    float u_originY;
-    float u_worldWidth;
-    float u_worldHeight;
-    float u_fit;
-    float u_scale;
-    float u_rotation;
-    float u_offsetX;
-    float u_offsetY;
-};
-
-// MARK: - Vertex Input
-
-struct VertexInput {
-    float2 position [[attribute(0)]];
-};
-
-// MARK: - Vertex Output
-
-struct VertexOutput {
-    float4 position [[position]];
-    float2 objectUV;
-    float2 objectBoxSize;
-    float2 responsiveUV;
-    float2 responsiveBoxGivenSize;
-    float2 patternUV;
-    float2 patternBoxSize;
-    float2 imageUV;
-};
-
 // MARK: - Helper Functions
 
-float3 getBoxSize(float boxRatio, float2 givenBoxSize, float2 resolution, float fit) {
+static float3 getBoxSize(float boxRatio, float2 givenBoxSize, float2 resolution, float fit) {
     float2 box = float2(0.0);
     // fit = none
     box.x = boxRatio * min(givenBoxSize.x / boxRatio, givenBoxSize.y);

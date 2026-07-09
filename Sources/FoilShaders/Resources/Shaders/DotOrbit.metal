@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -16,18 +17,18 @@ struct DotOrbitUniforms {
     float u_spreading;
 };
 
-inline float randomR(texture2d<float> noiseTexture, float2 p) {
+static inline float randomR(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 100.0 + 0.5;
     return noiseTexture.sample(linearSampler, fract(uv)).r;
 }
 
-inline float2 randomGB(texture2d<float> noiseTexture, float2 p) {
+static inline float2 randomGB(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 100.0 + 0.5;
     float4 sample = noiseTexture.sample(linearSampler, fract(uv));
     return sample.gb;
 }
 
-inline float3 voronoiShape(float2 uv, float time,
+static inline float3 voronoiShape(float2 uv, float time,
                            constant DotOrbitUniforms &uniforms,
                            texture2d<float> noiseTexture) {
     float2 i_uv = floor(uv);

@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -30,7 +31,7 @@ struct FragmentVertexUniforms {
     float u_offsetY;
 };
 
-inline float getUvFrame(float2 uv) {
+static inline float getUvFrame(float2 uv) {
     float aax = 2.0 * fwidth(uv.x);
     float aay = 2.0 * fwidth(uv.y);
     float left = smoothstep(0.0, aax, uv.x);
@@ -40,15 +41,15 @@ inline float getUvFrame(float2 uv) {
     return left * right * bottom * top;
 }
 
-inline float2x2 rotate2D(float r) {
+static inline float2x2 rotate2D(float r) {
     return float2x2(cos(r), sin(r), -sin(r), cos(r));
 }
 
-inline float2 mulVectorMatrix(float2 v, float2x2 m) {
+static inline float2 mulVectorMatrix(float2 v, float2x2 m) {
     return float2(dot(v, m[0]), dot(v, m[1]));
 }
 
-inline float getCausticNoise(float2 uv, float t, float scale) {
+static inline float getCausticNoise(float2 uv, float t, float scale) {
     float2 n = float2(0.1);
     float2 N = float2(0.1);
     float2x2 m = rotate2D(0.5);

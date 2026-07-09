@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -14,13 +15,13 @@ struct PerlinNoiseUniforms {
     float u_lacunarity;
 };
 
-inline float hash31(float3 p) {
+static inline float hash31(float3 p) {
     p = fract(p * 0.3183099) + 0.1;
     p += dot(p, p.yzx + 19.19);
     return fract(p.x * (p.y + p.z));
 }
 
-inline float3 gradientPredefined(float hash) {
+static inline float3 gradientPredefined(float hash) {
     int idx = int(hash * 12.0) % 12;
     if (idx == 0) return float3(1, 1, 0);
     if (idx == 1) return float3(-1, 1, 0);
@@ -36,7 +37,7 @@ inline float3 gradientPredefined(float hash) {
     return float3(0, -1, -1);
 }
 
-inline float interpolateSafe(float v000, float v001, float v010, float v011,
+static inline float interpolateSafe(float v000, float v001, float v010, float v011,
                              float v100, float v101, float v110, float v111, float3 t) {
     t = clamp(t, 0.0, 1.0);
     float v00 = mix(v000, v100, t.x);
@@ -48,11 +49,11 @@ inline float interpolateSafe(float v000, float v001, float v010, float v011,
     return mix(v0, v1, t.z);
 }
 
-inline float3 fade(float3 t) {
+static inline float3 fade(float3 t) {
     return t * t * t * (t * (t * 6.0 - 15.0) + 10.0);
 }
 
-inline float perlinNoise(float3 position, float seed) {
+static inline float perlinNoise(float3 position, float seed) {
     position += float3(seed * 127.1, seed * 311.7, seed * 74.7);
     float3 i = floor(position);
     float3 f = fract(position);
@@ -84,7 +85,7 @@ inline float perlinNoise(float3 position, float seed) {
     return interpolateSafe(v000, v001, v010, v011, v100, v101, v110, v111, u);
 }
 
-inline float p_noise(float3 position, int octaveCount, float persistence, float lacunarity) {
+static inline float p_noise(float3 position, int octaveCount, float persistence, float lacunarity) {
     float value = 0.0;
     float amplitude = 1.0;
     float frequency = 10.0;
@@ -100,7 +101,7 @@ inline float p_noise(float3 position, int octaveCount, float persistence, float 
     return value;
 }
 
-inline float get_max_amp(float persistence, float octaveCount) {
+static inline float get_max_amp(float persistence, float octaveCount) {
     persistence = clamp(persistence * 0.999, 0.0, 0.999);
     octaveCount = clamp(octaveCount, 1.0, 8.0);
     if (abs(persistence - 1.0) < 0.001) {

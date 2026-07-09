@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -45,13 +46,13 @@ constant int bayer8x8[64] = {
     63, 31, 55, 23, 61, 29, 53, 21
 };
 
-inline float getSimplexNoise(float2 uv, float t) {
+static inline float getSimplexNoise(float2 uv, float t) {
     float noise = 0.5 * snoise(uv - float2(0.0, 0.3 * t));
     noise += 0.5 * snoise(2.0 * uv + float2(0.0, 0.32 * t));
     return noise;
 }
 
-inline float getBayerValue(float2 uv, int size) {
+static inline float getBayerValue(float2 uv, int size) {
     int2 pos = int2(fract(uv / float(size)) * float(size));
     int index = pos.y * size + pos.x;
     if (size == 2) { return float(bayer2x2[index]) / 4.0; }

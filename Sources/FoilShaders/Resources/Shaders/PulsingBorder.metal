@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -28,17 +29,17 @@ struct PulsingBorderUniforms {
     float u_smokeSize;
 };
 
-inline float beat(float time) {
+static inline float beat(float time) {
     float first = pow(abs(sin(time * TWO_PI)), 10.0);
     float second = pow(abs(sin((time - 0.15) * TWO_PI)), 10.0);
     return clamp(first + 0.6 * second, 0.0, 1.0);
 }
 
-inline float sst(float edge0, float edge1, float x) {
+static inline float sst(float edge0, float edge1, float x) {
     return smoothstep(edge0, edge1, x);
 }
 
-inline float roundedBox(float2 uv, float2 halfSize, float distance, float cornerDistance, float thickness, float softness) {
+static inline float roundedBox(float2 uv, float2 halfSize, float distance, float cornerDistance, float thickness, float softness) {
     float borderDistance = abs(distance);
     float aa = 2.0 * fwidth(distance);
     float border = 1.0 - sst(min(mix(thickness, -thickness, softness), thickness + aa),
@@ -56,18 +57,18 @@ inline float roundedBox(float2 uv, float2 halfSize, float distance, float corner
     return border;
 }
 
-inline float2 randomGB(texture2d<float> noiseTexture, float2 p) {
+static inline float2 randomGB(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 100.0 + 0.5;
     float4 sample = noiseTexture.sample(linearSampler, fract(uv));
     return sample.gb;
 }
 
-inline float randomG(texture2d<float> noiseTexture, float2 p) {
+static inline float randomG(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 100.0 + 0.5;
     return noiseTexture.sample(linearSampler, fract(uv)).g;
 }
 
-inline float valueNoise(float2 st, texture2d<float> noiseTexture) {
+static inline float valueNoise(float2 st, texture2d<float> noiseTexture) {
     float2 i = floor(st);
     float2 f = fract(st);
     float a = randomG(noiseTexture, i);

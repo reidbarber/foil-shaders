@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -19,12 +20,12 @@ struct WarpUniforms {
     float u_swirlIterations;
 };
 
-inline float randomG(texture2d<float> noiseTexture, float2 p) {
+static inline float randomG(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 100.0 + 0.5;
     return noiseTexture.sample(linearSampler, fract(uv)).g;
 }
 
-inline float valueNoise(float2 st, texture2d<float> noiseTexture) {
+static inline float valueNoise(float2 st, texture2d<float> noiseTexture) {
     float2 i = floor(st);
     float2 f = fract(st);
     float a = randomG(noiseTexture, i);

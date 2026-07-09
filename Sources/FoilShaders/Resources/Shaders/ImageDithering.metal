@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -47,7 +48,7 @@ constant int bayer8x8[64] = {
     63, 31, 55, 23, 61, 29, 53, 21
 };
 
-inline float getUvFrame(float2 uv, float2 pad) {
+static inline float getUvFrame(float2 uv, float2 pad) {
     float aa = 0.0001;
     float left = smoothstep(-pad.x, -pad.x + aa, uv.x);
     float right = smoothstep(1.0 + pad.x, 1.0 + pad.x - aa, uv.x);
@@ -56,7 +57,7 @@ inline float getUvFrame(float2 uv, float2 pad) {
     return left * right * bottom * top;
 }
 
-inline float2 getImageUV(float2 uv, constant FragmentVertexUniforms &vertexUniforms) {
+static inline float2 getImageUV(float2 uv, constant FragmentVertexUniforms &vertexUniforms) {
     float2 boxOrigin = float2(0.5 - vertexUniforms.u_originX, vertexUniforms.u_originY - 0.5);
     float r = vertexUniforms.u_rotation * PI / 180.0;
     float2x2 graphicRotation = float2x2(cos(r), sin(r), -sin(r), cos(r));
@@ -86,7 +87,7 @@ inline float2 getImageUV(float2 uv, constant FragmentVertexUniforms &vertexUnifo
     return imageUV;
 }
 
-inline float getBayerValue(float2 uv, int size) {
+static inline float getBayerValue(float2 uv, int size) {
     int2 pos = int2(fract(uv / float(size)) * float(size));
     int index = pos.y * size + pos.x;
     if (size == 2) { return float(bayer2x2[index]) / 4.0; }

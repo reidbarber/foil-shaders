@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -44,7 +45,7 @@ struct FragmentVertexUniforms {
     float u_offsetY;
 };
 
-inline float valueNoise(float2 st) {
+static inline float valueNoise(float2 st) {
     float2 i = floor(st);
     float2 f = fract(st);
     float a = hash21(i);
@@ -57,7 +58,7 @@ inline float valueNoise(float2 st) {
     return mix(x1, x2, u.y);
 }
 
-inline float getUvFrame(float2 uv, float softness) {
+static inline float getUvFrame(float2 uv, float softness) {
     float aax = 2.0 * fwidth(uv.x);
     float aay = 2.0 * fwidth(uv.y);
     float left = smoothstep(0.0, aax + softness, uv.x);
@@ -67,13 +68,13 @@ inline float getUvFrame(float2 uv, float softness) {
     return left * right * bottom * top;
 }
 
-inline float4 samplePremultiplied(texture2d<float> tex, float2 uv) {
+static inline float4 samplePremultiplied(texture2d<float> tex, float2 uv) {
     float4 c = tex.sample(linearSampler, uv);
     c.rgb *= c.a;
     return c;
 }
 
-inline float4 getBlur(texture2d<float> tex, float2 uv, float2 texelSize, float2 dir, float sigma) {
+static inline float4 getBlur(texture2d<float> tex, float2 uv, float2 texelSize, float2 dir, float sigma) {
     if (sigma <= 0.5) { return tex.sample(linearSampler, uv); }
     const int MAX_RADIUS = 50;
     int radius = int(min(float(MAX_RADIUS), ceil(3.0 * sigma)));
@@ -96,14 +97,14 @@ inline float4 getBlur(texture2d<float> tex, float2 uv, float2 texelSize, float2 
     return result;
 }
 
-inline float2 rotateAspect(float2 p, float a, float aspect) {
+static inline float2 rotateAspect(float2 p, float a, float aspect) {
     p.x *= aspect;
     p = rotate(p, a);
     p.x /= aspect;
     return p;
 }
 
-inline float smoothFract(float x) {
+static inline float smoothFract(float x) {
     float f = fract(x);
     float w = fwidth(x);
     float edge = abs(f - 0.5) - 0.5;

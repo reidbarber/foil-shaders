@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -19,12 +20,12 @@ struct GodRaysUniforms {
     float u_bloom;
 };
 
-inline float randomR(texture2d<float> noiseTexture, float2 p) {
+static inline float randomR(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 100.0 + 0.5;
     return noiseTexture.sample(linearSampler, fract(uv)).r;
 }
 
-inline float valueNoise(float2 st, texture2d<float> noiseTexture) {
+static inline float valueNoise(float2 st, texture2d<float> noiseTexture) {
     float2 i = floor(st);
     float2 f = fract(st);
     float a = randomR(noiseTexture, i);
@@ -37,7 +38,7 @@ inline float valueNoise(float2 st, texture2d<float> noiseTexture) {
     return mix(x1, x2, u.y);
 }
 
-inline float raysShape(float2 uv, float r, float freq, float intensity, float radius, texture2d<float> noiseTexture) {
+static inline float raysShape(float2 uv, float r, float freq, float intensity, float radius, texture2d<float> noiseTexture) {
     float a = atan2(uv.y, uv.x);
     float2 left = float2(a * freq, r);
     float2 right = float2(fract(a / TWO_PI) * TWO_PI * freq, r);

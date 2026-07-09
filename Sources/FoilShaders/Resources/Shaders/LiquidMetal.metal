@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -33,7 +34,7 @@ struct FragmentVertexUniforms {
     float u_offsetY;
 };
 
-inline float getColorChanges(float c1, float c2, float stripe_p, float3 w, float blur, float bump, float tint, float tintAlpha, bool isImage) {
+static inline float getColorChanges(float c1, float c2, float stripe_p, float3 w, float blur, float bump, float tint, float tintAlpha, bool isImage) {
     float ch = mix(c2, c1, smoothstep(0.0, 2.0 * blur, stripe_p));
     float border = w.x;
     ch = mix(ch, c2, smoothstep(border, border + 2.0 * blur, stripe_p));
@@ -53,7 +54,7 @@ inline float getColorChanges(float c1, float c2, float stripe_p, float3 w, float
     return ch;
 }
 
-inline float getImgFrame(float2 uv, float th) {
+static inline float getImgFrame(float2 uv, float th) {
     float frame = 1.0;
     frame *= smoothstep(0.0, th, uv.y);
     frame *= 1.0 - smoothstep(1.0 - th, 1.0, uv.y);
@@ -62,7 +63,7 @@ inline float getImgFrame(float2 uv, float th) {
     return frame;
 }
 
-inline float blurEdge3x3(texture2d<float> tex, float2 uv, float2 dudx, float2 dudy, float radius, float centerSample) {
+static inline float blurEdge3x3(texture2d<float> tex, float2 uv, float2 dudx, float2 dudy, float radius, float centerSample) {
     float2 texel = 1.0 / float2(tex.get_width(), tex.get_height());
     float2 r = radius * texel;
     float w1 = 1.0, w2 = 2.0, w4 = 4.0;

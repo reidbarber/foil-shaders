@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -13,13 +14,13 @@ struct SimplexNoiseUniforms {
     float u_softness;
 };
 
-inline float getNoise(float2 uv, float t) {
+static inline float getNoise(float2 uv, float t) {
     float noise = 0.5 * snoise(uv - float2(0.0, 0.3 * t));
     noise += 0.5 * snoise(2.0 * uv + float2(0.0, 0.32 * t));
     return noise;
 }
 
-inline float steppedSmooth(float m, float steps, float softness) {
+static inline float steppedSmooth(float m, float steps, float softness) {
     float stepT = floor(m * steps) / steps;
     float f = m * steps - floor(m * steps);
     float fw = steps * fwidth(m);

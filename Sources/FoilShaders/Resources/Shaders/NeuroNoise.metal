@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -12,7 +13,7 @@ struct NeuroNoiseUniforms {
     float u_contrast;
 };
 
-inline float neuroShape(float2 uv, float t) {
+static inline float neuroShape(float2 uv, float t) {
     float2 sine_acc = float2(0.0);
     float2 res = float2(0.0);
     float scale = 8.0;
