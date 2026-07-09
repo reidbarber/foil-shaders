@@ -108,7 +108,6 @@ import MetalKit
   private var activeShader: ShaderKind = .animatedMeshGradient
 
   private var library: MTLLibrary?
-  private var libraryShaderName: String?
 
   // Last-applied configuration values, used to diff on `apply(_:)` so that
   // repeated SwiftUI updates don't reset the animation, reload the image, or
@@ -462,7 +461,7 @@ import MetalKit
   }
 
   private func configureMeshGradient() throws {
-    try ensureLibrary(shaderName: "MeshGradient")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "mesh_gradient_fragment", library: library)
       activeShader = .animatedMeshGradient
@@ -472,7 +471,7 @@ import MetalKit
   }
 
   private func configureStaticMeshGradient() throws {
-    try ensureLibrary(shaderName: "StaticMeshGradient")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "static_mesh_gradient_fragment", library: library)
       activeShader = .staticMeshGradient
@@ -482,7 +481,7 @@ import MetalKit
   }
 
   private func configureStaticRadialGradient() throws {
-    try ensureLibrary(shaderName: "StaticRadialGradient")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "static_radial_gradient_fragment", library: library)
       activeShader = .staticRadialGradient
@@ -492,7 +491,7 @@ import MetalKit
   }
 
   private func configureSwirl() throws {
-    try ensureLibrary(shaderName: "Swirl")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "swirl_fragment", library: library)
       activeShader = .swirl
@@ -502,7 +501,7 @@ import MetalKit
   }
 
   private func configureSpiral() throws {
-    try ensureLibrary(shaderName: "Spiral")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "spiral_fragment", library: library)
       activeShader = .spiral
@@ -512,7 +511,7 @@ import MetalKit
   }
 
   private func configureDotGrid() throws {
-    try ensureLibrary(shaderName: "DotGrid")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "dot_grid_fragment", library: library)
       activeShader = .dotGrid
@@ -522,7 +521,7 @@ import MetalKit
   }
 
   private func configureSimplexNoise() throws {
-    try ensureLibrary(shaderName: "SimplexNoise")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "simplex_noise_fragment", library: library)
       activeShader = .simplexNoise
@@ -532,7 +531,7 @@ import MetalKit
   }
 
   private func configurePerlinNoise() throws {
-    try ensureLibrary(shaderName: "PerlinNoise")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "perlin_noise_fragment", library: library)
       activeShader = .perlinNoise
@@ -542,7 +541,7 @@ import MetalKit
   }
 
   private func configureNeuroNoise() throws {
-    try ensureLibrary(shaderName: "NeuroNoise")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "neuro_noise_fragment", library: library)
       activeShader = .neuroNoise
@@ -552,7 +551,7 @@ import MetalKit
   }
 
   private func configureWaves() throws {
-    try ensureLibrary(shaderName: "Waves")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "waves_fragment", library: library)
       activeShader = .waves
@@ -562,7 +561,7 @@ import MetalKit
   }
 
   private func configureDithering() throws {
-    try ensureLibrary(shaderName: "Dithering")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "dithering_fragment", library: library)
       activeShader = .dithering
@@ -572,7 +571,7 @@ import MetalKit
   }
 
   private func configureColorPanels() throws {
-    try ensureLibrary(shaderName: "ColorPanels")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "color_panels_fragment", library: library)
       activeShader = .colorPanels
@@ -582,7 +581,7 @@ import MetalKit
   }
 
   private func configureDotOrbit() throws {
-    try ensureLibrary(shaderName: "DotOrbit")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "dot_orbit_fragment", library: library)
       activeShader = .dotOrbit
@@ -592,7 +591,7 @@ import MetalKit
   }
 
   private func configureGodRays() throws {
-    try ensureLibrary(shaderName: "GodRays")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "god_rays_fragment", library: library)
       activeShader = .godRays
@@ -602,7 +601,7 @@ import MetalKit
   }
 
   private func configureGrainGradient() throws {
-    try ensureLibrary(shaderName: "GrainGradient")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "grain_gradient_fragment", library: library)
       activeShader = .grainGradient
@@ -612,7 +611,7 @@ import MetalKit
   }
 
   private func configureMetaballs() throws {
-    try ensureLibrary(shaderName: "Metaballs")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "metaballs_fragment", library: library)
       activeShader = .metaballs
@@ -622,7 +621,7 @@ import MetalKit
   }
 
   private func configureWarp() throws {
-    try ensureLibrary(shaderName: "Warp")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "warp_fragment", library: library)
       activeShader = .warp
@@ -632,7 +631,7 @@ import MetalKit
   }
 
   private func configureVoronoi() throws {
-    try ensureLibrary(shaderName: "Voronoi")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "voronoi_fragment", library: library)
       activeShader = .voronoi
@@ -642,7 +641,7 @@ import MetalKit
   }
 
   private func configurePulsingBorder() throws {
-    try ensureLibrary(shaderName: "PulsingBorder")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "pulsing_border_fragment", library: library)
       activeShader = .pulsingBorder
@@ -652,7 +651,7 @@ import MetalKit
   }
 
   private func configureSmokeRing() throws {
-    try ensureLibrary(shaderName: "SmokeRing")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "smoke_ring_fragment", library: library)
       activeShader = .smokeRing
@@ -662,7 +661,7 @@ import MetalKit
   }
 
   private func configureImageDithering() throws {
-    try ensureLibrary(shaderName: "ImageDithering")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "image_dithering_fragment", library: library)
       activeShader = .imageDithering
@@ -672,7 +671,7 @@ import MetalKit
   }
 
   private func configureHalftoneDots() throws {
-    try ensureLibrary(shaderName: "HalftoneDots")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "halftone_dots_fragment", library: library)
       activeShader = .halftoneDots
@@ -682,7 +681,7 @@ import MetalKit
   }
 
   private func configureHalftoneCMYK() throws {
-    try ensureLibrary(shaderName: "HalftoneCmyk")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "halftone_cmyk_fragment", library: library)
       activeShader = .halftoneCMYK
@@ -692,7 +691,7 @@ import MetalKit
   }
 
   private func configureHeatmap() throws {
-    try ensureLibrary(shaderName: "Heatmap")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "heatmap_fragment", library: library)
       activeShader = .heatmap
@@ -702,7 +701,7 @@ import MetalKit
   }
 
   private func configureLiquidMetal() throws {
-    try ensureLibrary(shaderName: "LiquidMetal")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "liquid_metal_fragment", library: library)
       activeShader = .liquidMetal
@@ -712,7 +711,7 @@ import MetalKit
   }
 
   private func configurePaperTexture() throws {
-    try ensureLibrary(shaderName: "PaperTexture")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "paper_texture_fragment", library: library)
       activeShader = .paperTexture
@@ -722,7 +721,7 @@ import MetalKit
   }
 
   private func configureWater() throws {
-    try ensureLibrary(shaderName: "Water")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "water_fragment", library: library)
       activeShader = .water
@@ -732,7 +731,7 @@ import MetalKit
   }
 
   private func configureFlutedGlass() throws {
-    try ensureLibrary(shaderName: "FlutedGlass")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "fluted_glass_fragment", library: library)
       activeShader = .flutedGlass
@@ -742,7 +741,7 @@ import MetalKit
   }
 
   private func configureGemSmoke() throws {
-    try ensureLibrary(shaderName: "GemSmoke")
+    try ensureLibrary()
     if let library {
       try setupPipeline(fragmentFunctionName: "gem_smoke_fragment", library: library)
       activeShader = .gemSmoke
@@ -874,10 +873,9 @@ import MetalKit
     }
   }
 
-  private func ensureLibrary(shaderName: String) throws {
-    if library == nil || libraryShaderName != shaderName {
-      library = try metalContext.library(shaderName: shaderName)
-      libraryShaderName = shaderName
+  private func ensureLibrary() throws {
+    if library == nil {
+      library = try metalContext.library()
     }
   }
 
@@ -1561,14 +1559,8 @@ public enum FoilShadersError: Error {
   /// Metal failed to create the render pipeline state.
   case pipelineError(any Error)
 
-  /// No shader library was available after a library load attempt.
+  /// The precompiled Metal shader library could not be found or loaded.
   case libraryError
-
-  /// Shader source resources could not be read while building a runtime Metal library.
-  case librarySourceReadError(any Error)
-
-  /// Runtime compilation of Metal shader source failed.
-  case libraryCompileError(String)
 
   /// The requested capture dimensions or scale cannot produce a valid image.
   case captureInvalidSize(width: Int, height: Int, pixelRatio: Float)
@@ -1604,12 +1596,7 @@ extension FoilShadersError: LocalizedError {
     case .pipelineError(let error):
       return "FoilShaders could not create a Metal render pipeline: \(error.localizedDescription)"
     case .libraryError:
-      return "FoilShaders could not load a Metal shader library."
-    case .librarySourceReadError(let error):
-      return
-        "FoilShaders could not read Metal shader source resources: \(error.localizedDescription)"
-    case .libraryCompileError(let message):
-      return "FoilShaders could not compile Metal shader source: \(message)"
+      return "FoilShaders could not load its precompiled Metal shader library."
     case .captureInvalidSize(let width, let height, let pixelRatio):
       return
         "FoilShaders could not capture an image with width \(width), height \(height), and pixelRatio \(pixelRatio)."
@@ -1633,7 +1620,7 @@ extension FoilShadersError: LocalizedError {
     switch self {
     case .deviceUnavailable, .deviceError:
       return "Metal is unavailable or the supplied Metal device cannot be used for rendering."
-    case .shaderError, .libraryError, .librarySourceReadError, .libraryCompileError:
+    case .shaderError, .libraryError:
       return "The shader library could not be loaded into a renderable Metal pipeline."
     case .pipelineError:
       return "Metal rejected the render pipeline descriptor."

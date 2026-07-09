@@ -31,7 +31,7 @@ final class FoilShadersMetalContext {
   let noiseTexture: MTLTexture?
   let fallbackNoiseTexture: MTLTexture?
 
-  private var librariesByShaderName: [String: MTLLibrary] = [:]
+  private var sharedLibrary: MTLLibrary?
   private var pipelineStatesByFragmentFunctionName: [String: MTLRenderPipelineState] = [:]
 
   private init(device: MTLDevice) throws {
@@ -48,12 +48,12 @@ final class FoilShadersMetalContext {
     )
   }
 
-  func library(shaderName: String) throws -> MTLLibrary {
-    if let library = librariesByShaderName[shaderName] {
-      return library
+  func library() throws -> MTLLibrary {
+    if let sharedLibrary {
+      return sharedLibrary
     }
-    let library = try ShaderLibraryLoader.makeLibrary(device: device, shaderNames: [shaderName])
-    librariesByShaderName[shaderName] = library
+    let library = try ShaderLibraryLoader.makeLibrary(device: device)
+    sharedLibrary = library
     return library
   }
 
