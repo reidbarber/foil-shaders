@@ -2,7 +2,7 @@
 
 All notable changes to Foil Shaders will be documented in this file.
 
-## Unreleased
+## 0.6.0 - 2026-07-11
 
 - Compile Metal shaders at build time instead of from source at runtime.
   Xcode builds produce `default.metallib`; `swift build`/`swift test` produce
@@ -14,6 +14,16 @@ All notable changes to Foil Shaders will be documented in this file.
   A missing precompiled library now surfaces as `.libraryError`.
 - Building the package now requires Xcode's Metal toolchain component
   (`xcodebuild -downloadComponent MetalToolchain` on Xcode 26 and later).
+- Make the public shader configuration graph `Hashable`.
+- Encode shader enum values as stable, human-readable strings while preserving
+  their raw values for Metal uniforms.
+- Derive `ShaderConfiguration` defaults from the matching shader kind's default
+  preset.
+- Type image-dithering and halftone-dots boolean parameters as `Bool` instead of
+  `Float`.
+- Close Heatmap and Halftone Dots rendering and preset parity gaps.
+- Remove `swift-docc-plugin` from default package resolution; it remains
+  available when `FOILSHADERS_ENABLE_DOCC_PLUGIN=1`.
 
 ## 0.5.0 - 2026-07-04
 
