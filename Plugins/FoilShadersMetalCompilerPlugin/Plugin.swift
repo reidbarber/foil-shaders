@@ -30,6 +30,9 @@ struct FoilShadersMetalCompilerPlugin: BuildToolPlugin {
     let outputLibrary = URL(
       fileURLWithPath: context.pluginWorkDirectory.string
     ).appendingPathComponent("FoilShaders.metallib")
+    let moduleCacheDirectory = URL(
+      fileURLWithPath: context.pluginWorkDirectory.string
+    ).appendingPathComponent("ModuleCache")
 
     return [
       .buildCommand(
@@ -38,6 +41,7 @@ struct FoilShadersMetalCompilerPlugin: BuildToolPlugin {
         arguments: [
           "-sdk", "macosx", "metal",
           "-mmacos-version-min=13.0",
+          "-fmodules-cache-path=\(moduleCacheDirectory.path)",
           "-o", outputLibrary.path,
         ] + metalSources.map(\.path),
         inputFiles: metalSources + headers,
