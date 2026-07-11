@@ -28,8 +28,8 @@ HalftoneDots(.default)
 | `grid` | ``HalftoneDotsGrid``: `.square`, `.hex`. | Halftone dot grid selector. |
 | `radius` | `1...2` | Normalized radius. |
 | `contrast` | `0.01...1` | Contrast multiplier or amount. |
-| `originalColors` | `0...1` | Boolean-like `0` or `1`; `1` keeps source image colors. |
-| `inverted` | `0...1` | Boolean-like `0` or `1`; `1` inverts the source image luminance. |
+| `originalColors` | `Bool` | `true` keeps source image colors. |
+| `inverted` | `Bool` | `true` inverts the source image luminance. |
 | `grainMixer` | `0...0.2` | Normalized grain mix amount. |
 | `grainOverlay` | `0...0.3` | Normalized grain overlay opacity. |
 | `grainSize` | `0.5` | Normalized grain scale. |

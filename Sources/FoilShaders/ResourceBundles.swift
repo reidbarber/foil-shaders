@@ -1,8 +1,18 @@
 import Foundation
 
+/// Anchor for locating the bundle that contains this module's code
+/// (an app binary, a framework, or an `.xctest` bundle).
+private final class FoilShadersBundleFinder {}
+
 enum FoilShadersResourceBundles {
   private static let resourceBundleName = "FoilShaders_FoilShaders"
 
+  /// Bundles that may contain the package's resources (the precompiled
+  /// shader library and the noise texture), in lookup order.
+  ///
+  /// This mirrors the locations SwiftPM's generated `Bundle.module` accessor
+  /// probes, without its `fatalError` on a miss, so a packaging problem
+  /// surfaces as a thrown `FoilShadersError` instead of a crash.
   static let candidates: [Bundle] = {
     var bundles: [Bundle] = []
     var seenPaths: Set<String> = []
@@ -24,67 +34,30 @@ enum FoilShadersResourceBundles {
       append(Bundle(url: URL(fileURLWithPath: path)))
     }
 
-    func appendSwiftPMBuildBundles(near startURL: URL) {
-      var directory = startURL.standardizedFileURL
-      for _ in 0..<8 {
-        let buildDirectory = directory.appendingPathComponent(".build")
-        appendBundle(at: buildDirectory.appendingPathComponent("debug/\(resourceBundleFileName)"))
-        appendBundle(at: buildDirectory.appendingPathComponent("release/\(resourceBundleFileName)"))
-
-        if let platformDirectories = try? FileManager.default.contentsOfDirectory(
-          at: buildDirectory,
-          includingPropertiesForKeys: [.isDirectoryKey]
-        ) {
-          for platformDirectory in platformDirectories {
-            guard
-              (try? platformDirectory.resourceValues(forKeys: [.isDirectoryKey]).isDirectory)
-                == true
-            else { continue }
-            appendBundle(
-              at: platformDirectory.appendingPathComponent("debug/\(resourceBundleFileName)")
-            )
-            appendBundle(
-              at: platformDirectory.appendingPathComponent("release/\(resourceBundleFileName)")
-            )
-          }
-        }
-
-        let parent = directory.deletingLastPathComponent()
-        guard parent.path != directory.path else { break }
-        directory = parent
-      }
-    }
-
     for bundle in Bundle.allBundles
     where bundle.bundleURL.lastPathComponent == resourceBundleFileName {
       append(bundle)
     }
-    appendBundle(at: mainBundle.url(forResource: resourceBundleName, withExtension: "bundle"))
+
+    // Apps built by Xcode embed the resource bundle in their resources
+    // directory; CLI executables built by SwiftPM have it next to the binary.
     appendBundle(at: mainBundle.resourceURL?.appendingPathComponent(resourceBundleFileName))
     appendBundle(at: mainBundle.bundleURL.appendingPathComponent(resourceBundleFileName))
-    appendBundle(
-      at: mainBundle.bundleURL.deletingLastPathComponent().appendingPathComponent(
-        resourceBundleFileName)
-    )
-    appendBundle(
-      at: mainBundle.bundleURL.appendingPathComponent(
-        "Contents/Resources/\(resourceBundleFileName)")
-    )
     appendBundle(
       at: mainBundle.executableURL?
         .deletingLastPathComponent()
         .appendingPathComponent(resourceBundleFileName)
     )
 
-    if let executablePath = CommandLine.arguments.first {
-      appendBundle(
-        at: URL(fileURLWithPath: executablePath)
-          .deletingLastPathComponent()
-          .appendingPathComponent(resourceBundleFileName)
-      )
-    }
-
-    appendSwiftPMBuildBundles(near: URL(fileURLWithPath: FileManager.default.currentDirectoryPath))
+    // The bundle hosting this module's code: a framework's resources, or —
+    // for `swift test` — the directory containing the `.xctest` bundle.
+    let hostBundle = Bundle(for: FoilShadersBundleFinder.self)
+    appendBundle(at: hostBundle.resourceURL?.appendingPathComponent(resourceBundleFileName))
+    appendBundle(
+      at: hostBundle.bundleURL
+        .deletingLastPathComponent()
+        .appendingPathComponent(resourceBundleFileName)
+    )
 
     append(mainBundle)
     return bundles

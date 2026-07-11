@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -16,7 +17,7 @@ struct DotGridUniforms {
     float u_shape;
 };
 
-inline float polygon(float2 p, float N, float rot) {
+static inline float polygon(float2 p, float N, float rot) {
     float a = atan2(p.x, p.y) + rot;
     float r = TWO_PI / N;
     return cos(floor(0.5 + a / r) * r - a) * length(p);

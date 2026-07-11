@@ -28,8 +28,8 @@ ImageDithering(.default)
 | `type` | ``DitheringType``: `.random`, `.twoByTwo`, `.fourByFour`, `.eightByEight`. | Style or matrix selector. |
 | `size` | `1...3` | Shader-specific size control; see the range for practical values. |
 | `colorSteps` | `1...5` | Number of quantized color steps. |
-| `originalColors` | `0...1` | Boolean-like `0` or `1`; `1` keeps source image colors. |
-| `inverted` | `0` | Boolean-like `0` or `1`; `1` inverts the source image luminance. |
+| `originalColors` | `Bool` | `true` keeps source image colors. |
+| `inverted` | `Bool` | `true` inverts the source image luminance. |
 
 See <doc:ParameterRanges#Image-Dithering> for the full shared context around sizing, motion, and render options.
 

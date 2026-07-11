@@ -169,6 +169,14 @@ async function swiftParamsFor(spec, params) {
       const mapped = enumMaps[field.enum]?.[value];
       if (mapped === undefined) throw new Error(`Unknown ${field.enum} value ${value}`);
       out[field.swift] = mapped;
+    } else if (field.swiftType === "Bool") {
+      if (typeof value === "boolean") {
+        out[field.swift] = value;
+      } else if (value === 0 || value === 1) {
+        out[field.swift] = value === 1;
+      } else {
+        throw new Error(`Expected boolean-compatible value for ${field.swift}: ${value}`);
+      }
     } else if (typeof value === "string") {
       out[field.swift] = await resolveColor(value);
     } else if (typeof value === "boolean") {

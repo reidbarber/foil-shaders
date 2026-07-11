@@ -2,19 +2,27 @@ import Foundation
 
 /// A JSON value from the manifest's `swiftParams` dictionaries.
 enum ParityValue: Decodable {
+  case bool(Bool)
   case number(Double)
   case array([ParityValue])
 
   init(from decoder: Decoder) throws {
     let container = try decoder.singleValueContainer()
-    if let number = try? container.decode(Double.self) {
+    if let bool = try? container.decode(Bool.self) {
+      self = .bool(bool)
+    } else if let number = try? container.decode(Double.self) {
       self = .number(number)
     } else if let array = try? container.decode([ParityValue].self) {
       self = .array(array)
     } else {
       throw DecodingError.dataCorruptedError(
-        in: container, debugDescription: "Expected a number or array")
+        in: container, debugDescription: "Expected a bool, number, or array")
     }
+  }
+
+  var boolValue: Bool? {
+    if case .bool(let value) = self { return value }
+    return nil
   }
 
   var doubleValue: Double? {

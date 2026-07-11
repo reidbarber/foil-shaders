@@ -36,11 +36,15 @@ remain breaking changes.
 {
   "type": "dotGrid",
   "params": {
-    "shape": 1
+    "shape": "diamond"
   }
 }
 ```
 
-Shape, type, fit, and aspect-ratio enums encode their `Float` raw values. Those
-raw values are stable persisted values as well as shader uniform values; do not
-renumber existing cases without treating it as a breaking persistence change.
+Shape, type, fit, and aspect-ratio enums encode stable string values. Most use
+their lower-camel Swift case names, while matrix-size dithering values use the
+Paper Shaders strings `"2x2"`, `"4x4"`, and `"8x8"`.
+
+The enums still keep `Float` raw values for Metal uniform encoding. Those raw
+values are part of shader behavior and parity with Paper Shaders; do not
+renumber existing cases without treating it as a breaking rendering change.

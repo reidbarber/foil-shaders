@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -31,12 +32,12 @@ struct GrainGradientUniforms {
     float u_shape;
 };
 
-inline float randomR(texture2d<float> noiseTexture, float2 p) {
+static inline float randomR(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 100.0 + 0.5;
     return noiseTexture.sample(linearSampler, fract(uv)).r;
 }
 
-inline float valueNoiseR(float2 st, texture2d<float> noiseTexture) {
+static inline float valueNoiseR(float2 st, texture2d<float> noiseTexture) {
     float2 i = floor(st);
     float2 f = fract(st);
     float a = randomR(noiseTexture, i);
@@ -49,7 +50,7 @@ inline float valueNoiseR(float2 st, texture2d<float> noiseTexture) {
     return mix(x1, x2, u.y);
 }
 
-inline float4 fbmR(float2 n0, float2 n1, float2 n2, float2 n3, texture2d<float> noiseTexture) {
+static inline float4 fbmR(float2 n0, float2 n1, float2 n2, float2 n3, texture2d<float> noiseTexture) {
     float amplitude = 0.2;
     float4 total = float4(0.0);
     for (int i = 0; i < 3; i++) {
@@ -70,7 +71,7 @@ inline float4 fbmR(float2 n0, float2 n1, float2 n2, float2 n3, texture2d<float> 
     return total;
 }
 
-inline float2 truchet(float2 uv, float idx) {
+static inline float2 truchet(float2 uv, float idx) {
     idx = fract(((idx - 0.5) * 2.0));
     if (idx > 0.75) {
         uv = float2(1.0) - uv;
@@ -82,7 +83,7 @@ inline float2 truchet(float2 uv, float idx) {
     return uv;
 }
 
-inline float blobReferenceClamp(float x) {
+static inline float blobReferenceClamp(float x) {
     return max(min(0.0, x), 1.0);
 }
 

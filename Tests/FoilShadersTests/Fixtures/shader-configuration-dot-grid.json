@@ -31,7 +31,7 @@
       "gapX" : 4,
       "gapY" : 5,
       "opacityRange" : 0.4,
-      "shape" : 1,
+      "shape" : "diamond",
       "sizeRange" : 0.7,
       "strokeWidth" : 0.5
     },
@@ -42,7 +42,7 @@
     "minPixelRatio" : 1.5
   },
   "sizing" : {
-    "fit" : 1,
+    "fit" : "contain",
     "offsetX" : 0.1,
     "offsetY" : -0.2,
     "originX" : 0.4,

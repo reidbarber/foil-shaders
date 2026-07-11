@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -18,13 +19,13 @@ struct VoronoiUniforms {
     float u_glow;
 };
 
-inline float2 randomGB(texture2d<float> noiseTexture, float2 p) {
+static inline float2 randomGB(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 100.0 + 0.5;
     float4 sample = noiseTexture.sample(linearSampler, fract(uv));
     return sample.gb;
 }
 
-inline float4 voronoi(float2 x, float t, constant VoronoiUniforms &uniforms, texture2d<float> noiseTexture) {
+static inline float4 voronoi(float2 x, float t, constant VoronoiUniforms &uniforms, texture2d<float> noiseTexture) {
     float2 ip = floor(x);
     float2 fp = fract(x);
     float2 mg = float2(0.0);

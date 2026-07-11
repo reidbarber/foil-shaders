@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -34,7 +35,7 @@ struct FragmentVertexUniforms {
     float u_offsetY;
 };
 
-inline float valueNoise(float2 st) {
+static inline float valueNoise(float2 st) {
     float2 i = floor(st);
     float2 f = fract(st);
     float a = hash21(i);
@@ -47,20 +48,20 @@ inline float valueNoise(float2 st) {
     return mix(x1, x2, u.y);
 }
 
-inline float getCircle(float2 uv, float r, float baseR) {
+static inline float getCircle(float2 uv, float r, float baseR) {
     r = mix(0.25 * baseR, 0.0, r);
     float d = length(uv - 0.5);
     float aa = fwidth(d);
     return 1.0 - smoothstep(r - aa, r + aa, d);
 }
 
-inline float getCell(float2 uv) {
+static inline float getCell(float2 uv) {
     float insideX = step(0.0, uv.x) * (1.0 - step(1.0, uv.x));
     float insideY = step(0.0, uv.y) * (1.0 - step(1.0, uv.y));
     return insideX * insideY;
 }
 
-inline float getCircleWithHole(float2 uv, float r, float baseR) {
+static inline float getCircleWithHole(float2 uv, float r, float baseR) {
     float cell = getCell(uv);
     r = mix(0.75 * baseR, 0.0, r);
     float rMod = fmod(r, 0.5);
@@ -73,7 +74,7 @@ inline float getCircleWithHole(float2 uv, float r, float baseR) {
     return cell - circle;
 }
 
-inline float getGooeyBall(float2 uv, float r, float baseR, float grid) {
+static inline float getGooeyBall(float2 uv, float r, float baseR, float grid) {
     float d = length(uv - 0.5);
     float sizeRadius = 0.3;
     if (grid == 1.0) {
@@ -85,7 +86,7 @@ inline float getGooeyBall(float2 uv, float r, float baseR, float grid) {
     return d;
 }
 
-inline float getSoftBall(float2 uv, float r, float baseR) {
+static inline float getSoftBall(float2 uv, float r, float baseR) {
     float d = length(uv - 0.5);
     float sizeRadius = clamp(baseR, 0.0, 1.0);
     sizeRadius = mix(0.5 * sizeRadius, 0.0, r);
@@ -95,7 +96,7 @@ inline float getSoftBall(float2 uv, float r, float baseR) {
     return d;
 }
 
-inline float getUvFrame(float2 uv, float2 pad) {
+static inline float getUvFrame(float2 uv, float2 pad) {
     float aa = 0.0001;
     float left = smoothstep(-pad.x, -pad.x + aa, uv.x);
     float right = smoothstep(1.0 + pad.x, 1.0 + pad.x - aa, uv.x);
@@ -104,11 +105,11 @@ inline float getUvFrame(float2 uv, float2 pad) {
     return left * right * bottom * top;
 }
 
-inline float sigmoid(float x, float k) {
+static inline float sigmoid(float x, float k) {
     return 1.0 / (1.0 + exp(-k * (x - 0.5)));
 }
 
-inline float getLumAtPx(texture2d<float> imageTexture, float2 uv, float contrast, bool inverted) {
+static inline float getLumAtPx(texture2d<float> imageTexture, float2 uv, float contrast, bool inverted) {
     float4 tex = imageTexture.sample(linearSampler, uv);
     float3 color = float3(
         sigmoid(tex.r, contrast),
@@ -121,7 +122,7 @@ inline float getLumAtPx(texture2d<float> imageTexture, float2 uv, float contrast
     return lum;
 }
 
-inline float getLumBall(texture2d<float> imageTexture,
+static inline float getLumBall(texture2d<float> imageTexture,
                         float2 p,
                         float2 pad,
                         float2 inCellOffset,

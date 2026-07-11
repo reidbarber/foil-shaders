@@ -2126,8 +2126,8 @@ extension ImageDitheringPreset {
         type: .eightByEight,
         size: 2,
         colorSteps: 2,
-        originalColors: 0,
-        inverted: 0
+        originalColors: false,
+        inverted: false
       ),
       sizing: ShaderSizingParams(
         fit: .cover, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2145,8 +2145,8 @@ extension ImageDitheringPreset {
         type: .random,
         size: 1,
         colorSteps: 1,
-        originalColors: 0,
-        inverted: 0
+        originalColors: false,
+        inverted: false
       ),
       sizing: ShaderSizingParams(
         fit: .cover, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2164,8 +2164,8 @@ extension ImageDitheringPreset {
         type: .twoByTwo,
         size: 3,
         colorSteps: 1,
-        originalColors: 1,
-        inverted: 0
+        originalColors: true,
+        inverted: false
       ),
       sizing: ShaderSizingParams(
         fit: .cover, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2183,8 +2183,8 @@ extension ImageDitheringPreset {
         type: .eightByEight,
         size: 2,
         colorSteps: 5,
-        originalColors: 1,
-        inverted: 0
+        originalColors: true,
+        inverted: false
       ),
       sizing: ShaderSizingParams(
         fit: .cover, scale: 1, rotation: 0, originX: 0.5, originY: 0.5, offsetX: 0, offsetY: 0,
@@ -2343,8 +2343,8 @@ extension HalftoneDotsPreset {
         grid: .hex,
         radius: 1.25,
         contrast: 0.4,
-        originalColors: 0,
-        inverted: 0,
+        originalColors: false,
+        inverted: false,
         grainMixer: 0.2,
         grainOverlay: 0.2,
         grainSize: 0.5,
@@ -2366,8 +2366,8 @@ extension HalftoneDotsPreset {
         grid: .square,
         radius: 1.5,
         contrast: 0.3,
-        originalColors: 0,
-        inverted: 0,
+        originalColors: false,
+        inverted: false,
         grainMixer: 0,
         grainOverlay: 0,
         grainSize: 0.5,
@@ -2389,8 +2389,8 @@ extension HalftoneDotsPreset {
         grid: .hex,
         radius: 2,
         contrast: 0.01,
-        originalColors: 1,
-        inverted: 0,
+        originalColors: true,
+        inverted: false,
         grainMixer: 0,
         grainOverlay: 0,
         grainSize: 0.5,
@@ -2412,8 +2412,8 @@ extension HalftoneDotsPreset {
         grid: .square,
         radius: 1,
         contrast: 1,
-        originalColors: 0,
-        inverted: 1,
+        originalColors: false,
+        inverted: true,
         grainMixer: 0.05,
         grainOverlay: 0.3,
         grainSize: 0.5,

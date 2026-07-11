@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -19,7 +20,7 @@ struct MeshGradientUniforms {
 
 // MARK: - Noise Helpers
 
-inline float valueNoise(float2 st) {
+static inline float valueNoise(float2 st) {
     float2 i = floor(st);
     float2 f = fract(st);
     float a = hash21(i);
@@ -32,11 +33,11 @@ inline float valueNoise(float2 st) {
     return mix(x1, x2, u.y);
 }
 
-inline float noise(float2 n, float2 seedOffset) {
+static inline float noise(float2 n, float2 seedOffset) {
     return valueNoise(n + seedOffset);
 }
 
-inline float2 getPosition(int i, float t) {
+static inline float2 getPosition(int i, float t) {
     float a = float(i) * 0.37;
     float b = 0.6 + fract(float(i) / 3.0) * 0.9;
     float c = 0.8 + fract(float(i + 1) / 4.0);

@@ -20,12 +20,7 @@ final class GoldenParityTests: XCTestCase {
   /// tells you to remove the entry, so this list can only shrink.
   ///
   /// Matched by prefix against the case id (`shader` or `shader/Preset`).
-  static let knownParityGaps: [String] = [
-    "heatmap",  // image preprocessing / heat sampling still diverges
-    "halftone-dots/Default",  // dot density/contrast systematically off (mean delta ~6)
-    "halftone-dots/Mosaic",
-    "halftone-dots/Round and square",
-  ]
+  static let knownParityGaps: [String] = []
 
   private static func isKnownGap(_ id: String) -> Bool {
     knownParityGaps.contains { gap in

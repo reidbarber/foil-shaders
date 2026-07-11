@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -18,12 +19,12 @@ struct SmokeRingUniforms {
     float u_noiseIterations;
 };
 
-inline float randomR(texture2d<float> noiseTexture, float2 p) {
+static inline float randomR(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 100.0 + 0.5;
     return noiseTexture.sample(linearSampler, fract(uv)).r;
 }
 
-inline float valueNoise(float2 st, texture2d<float> noiseTexture) {
+static inline float valueNoise(float2 st, texture2d<float> noiseTexture) {
     float2 i = floor(st);
     float2 f = fract(st);
     float a = randomR(noiseTexture, i);
@@ -36,7 +37,7 @@ inline float valueNoise(float2 st, texture2d<float> noiseTexture) {
     return mix(x1, x2, u.y);
 }
 
-inline float2 fbm(float2 n0, float2 n1, float iterations, texture2d<float> noiseTexture) {
+static inline float2 fbm(float2 n0, float2 n1, float iterations, texture2d<float> noiseTexture) {
     float2 total = float2(0.0);
     float amplitude = 0.4;
     for (int i = 0; i < kSmokeRingMaxNoiseIterations; i++) {
@@ -50,7 +51,7 @@ inline float2 fbm(float2 n0, float2 n1, float iterations, texture2d<float> noise
     return total;
 }
 
-inline float getNoise(float2 uv, float2 pUv, float t, constant SmokeRingUniforms &uniforms, texture2d<float> noiseTexture) {
+static inline float getNoise(float2 uv, float2 pUv, float t, constant SmokeRingUniforms &uniforms, texture2d<float> noiseTexture) {
     float2 pUvLeft = pUv + 0.03 * t;
     float period = max(abs(uniforms.u_noiseScale * TWO_PI), 1e-6);
     float2 pUvRight = float2(fract(pUv.x / period) * period, pUv.y) + 0.03 * t;
@@ -58,7 +59,7 @@ inline float getNoise(float2 uv, float2 pUv, float t, constant SmokeRingUniforms
     return mix(noise.y, noise.x, smoothstep(-0.25, 0.25, uv.x));
 }
 
-inline float getRingShape(float2 uv, constant SmokeRingUniforms &uniforms) {
+static inline float getRingShape(float2 uv, constant SmokeRingUniforms &uniforms) {
     float radius = uniforms.u_radius;
     float thickness = uniforms.u_thickness;
     float distance = length(uv);

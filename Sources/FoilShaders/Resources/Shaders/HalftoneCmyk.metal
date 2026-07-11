@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -43,23 +44,23 @@ struct FragmentVertexUniforms {
     float u_offsetY;
 };
 
-inline float2 randomRG(texture2d<float> noiseTexture, float2 p) {
+static inline float2 randomRG(texture2d<float> noiseTexture, float2 p) {
     float2 uv = floor(p) / 100.0 + 0.5;
     float4 sample = noiseTexture.sample(linearSampler, fract(uv));
     return sample.rg;
 }
 
-inline float3 hash23(float2 p) {
+static inline float3 hash23(float2 p) {
     float3 p3 = fract(float3(p.x, p.y, p.x) * float3(0.3183099, 0.3678794, 0.3141592)) + 0.1;
     p3 += dot(p3, p3.yzx + 19.19);
     return fract(float3(p3.x * p3.y, p3.y * p3.z, p3.z * p3.x));
 }
 
-inline float sst(float edge0, float edge1, float x) {
+static inline float sst(float edge0, float edge1, float x) {
     return smoothstep(edge0, edge1, x);
 }
 
-inline float3 valueNoise3(float2 st) {
+static inline float3 valueNoise3(float2 st) {
     float2 i = floor(st);
     float2 f = fract(st);
     float3 a = hash23(i);
@@ -72,7 +73,7 @@ inline float3 valueNoise3(float2 st) {
     return mix(x1, x2, u.y);
 }
 
-inline float getUvFrame(float2 uv, float2 pad) {
+static inline float getUvFrame(float2 uv, float2 pad) {
     float left = smoothstep(-pad.x, 0.0, uv.x);
     float right = smoothstep(1.0 + pad.x, 1.0, uv.x);
     float bottom = smoothstep(-pad.y, 0.0, uv.y);
@@ -80,7 +81,7 @@ inline float getUvFrame(float2 uv, float2 pad) {
     return left * right * bottom * top;
 }
 
-inline float4 RGBAtoCMYK(float4 rgba) {
+static inline float4 RGBAtoCMYK(float4 rgba) {
     float k = 1.0 - max(max(rgba.r, rgba.g), rgba.b);
     float denom = 1.0 - k;
     float3 cmy = float3(0.0);
@@ -90,39 +91,39 @@ inline float4 RGBAtoCMYK(float4 rgba) {
     return float4(cmy, k) * rgba.a;
 }
 
-inline float3 applyContrast(float3 rgb, float contrast) {
+static inline float3 applyContrast(float3 rgb, float contrast) {
     return clamp((rgb - 0.5) * contrast + 0.5, 0.0, 1.0);
 }
 
-inline float getCyan(float4 rgba, float contrast) {
+static inline float getCyan(float4 rgba, float contrast) {
     float3 c = applyContrast(rgba.rgb, contrast);
     float maxRGB = max(max(c.r, c.g), c.b);
     return (maxRGB > 1e-5 ? (maxRGB - c.r) / maxRGB : 0.0) * rgba.a;
 }
 
-inline float getMagenta(float4 rgba, float contrast) {
+static inline float getMagenta(float4 rgba, float contrast) {
     float3 c = applyContrast(rgba.rgb, contrast);
     float maxRGB = max(max(c.r, c.g), c.b);
     return (maxRGB > 1e-5 ? (maxRGB - c.g) / maxRGB : 0.0) * rgba.a;
 }
 
-inline float getYellow(float4 rgba, float contrast) {
+static inline float getYellow(float4 rgba, float contrast) {
     float3 c = applyContrast(rgba.rgb, contrast);
     float maxRGB = max(max(c.r, c.g), c.b);
     return (maxRGB > 1e-5 ? (maxRGB - c.b) / maxRGB : 0.0) * rgba.a;
 }
 
-inline float getBlack(float4 rgba, float contrast) {
+static inline float getBlack(float4 rgba, float contrast) {
     float3 c = applyContrast(rgba.rgb, contrast);
     return (1.0 - max(max(c.r, c.g), c.b)) * rgba.a;
 }
 
-inline float2 cellCenterPos(float2 uv, float2 cellOffset, float channelIdx, float gridNoise, texture2d<float> noiseTexture) {
+static inline float2 cellCenterPos(float2 uv, float2 cellOffset, float channelIdx, float gridNoise, texture2d<float> noiseTexture) {
     float2 cellCenter = floor(uv) + 0.5 + cellOffset;
     return cellCenter + (randomRG(noiseTexture, cellCenter + channelIdx * 50.0) - 0.5) * gridNoise;
 }
 
-inline float2 gridToImageUV(float2 cellCenter, float cosA, float sinA, float shift, float2 pad) {
+static inline float2 gridToImageUV(float2 cellCenter, float cosA, float sinA, float shift, float2 pad) {
     float2 shifted = cellCenter - shift;
     float2 uvGrid = float2(
         cosA * shifted.x + sinA * shifted.y,
@@ -131,7 +132,7 @@ inline float2 gridToImageUV(float2 cellCenter, float cosA, float sinA, float shi
     return uvGrid * pad + 0.5;
 }
 
-inline float colorMask(float2 pos,
+static inline float colorMask(float2 pos,
                       float2 cellCenter,
                       float rad,
                       float outOfFrame,
@@ -160,7 +161,7 @@ inline float colorMask(float2 pos,
     return outMask + mask;
 }
 
-inline float3 applyInk(float3 paper, float3 inkColor, float cov) {
+static inline float3 applyInk(float3 paper, float3 inkColor, float cov) {
     float3 inkEffect = mix(float3(1.0), inkColor, clamp(cov, 0.0, 1.0));
     return paper * inkEffect;
 }

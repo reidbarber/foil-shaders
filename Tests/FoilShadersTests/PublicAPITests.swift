@@ -84,6 +84,17 @@ final class PublicAPITests: XCTestCase {
     XCTAssertEqual(color.alpha, 0.7, accuracy: 0.0001)
   }
 
+  @MainActor
+  func testShaderPresetsCanDriveSwiftUIForEachWithoutExplicitID() {
+    XCTAssertEqual(AnimatedMeshGradientPreset.default.id, AnimatedMeshGradientPreset.default.name)
+
+    let view = ForEach(AnimatedMeshGradient.presets) { preset in
+      Text(preset.name)
+    }
+
+    _ = view
+  }
+
   func testColorArrayParamsKeepOnlyMaxColorCountColors() {
     let colors = (0..<(AnimatedMeshGradientParams.maxColorCount + 2)).map {
       ShaderColor(red: Float($0) / 20, green: 0, blue: 0)
@@ -192,6 +203,25 @@ final class PublicAPITests: XCTestCase {
     XCTAssertEqual(
       error.localizedDescription,
       "FoilShaders could not find the required Metal shader function 'missing_fragment'.")
+  }
+
+  @MainActor
+  func testImageDerivedShaderFlagsArePublicBools() {
+    let color = ShaderColor(red: 1, green: 1, blue: 1)
+    let imageParams = ImageDitheringParams(
+      colorFront: color, originalColors: true, inverted: false)
+    let halftoneParams = HalftoneDotsParams(
+      colorFront: color, originalColors: false, inverted: true)
+
+    let imageView = ImageDithering(originalColors: true, inverted: false)
+    let halftoneView = HalftoneDots(originalColors: false, inverted: true)
+
+    XCTAssertTrue(imageParams.originalColors)
+    XCTAssertFalse(imageParams.inverted)
+    XCTAssertFalse(halftoneParams.originalColors)
+    XCTAssertTrue(halftoneParams.inverted)
+    XCTAssertFalse(String(describing: type(of: imageView)).isEmpty)
+    XCTAssertFalse(String(describing: type(of: halftoneView)).isEmpty)
   }
 
   @MainActor

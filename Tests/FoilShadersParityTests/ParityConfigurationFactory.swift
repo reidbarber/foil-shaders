@@ -188,6 +188,10 @@ enum ParityConfigurationFactory {
 
   private static func compare(_ value: Any, to expected: ParityValue, path: String) throws {
     switch value {
+    case let scalar as Bool:
+      guard let want = expected.boolValue, scalar == want else {
+        throw ParityError.paramsMismatch("\(path): Swift has \(scalar), manifest has \(expected)")
+      }
     case let scalar as Float:
       guard let want = expected.doubleValue, abs(Double(scalar) - want) <= accuracy else {
         throw ParityError.paramsMismatch("\(path): Swift has \(scalar), manifest has \(expected)")

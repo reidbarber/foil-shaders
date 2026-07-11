@@ -132,11 +132,11 @@ if [[ ! -d "$ICON_SOURCE_DIR" ]]; then
   exit 1
 fi
 
-# The .metal shaders ship as raw source and are compiled at runtime, so every
-# slice must be built with the default SwiftPM build system (which copies them
-# verbatim). A `swift build --arch a --arch b` universal build routes through
-# XCBuild, which instead compiles the shaders and drops the source the app
-# needs. We therefore build each slice separately and lipo them together.
+# Each architecture slice is built separately and lipo'd together so both
+# builds go through the default SwiftPM build system, whose resource-bundle
+# layout (including the plugin-compiled FoilShaders.metallib) is what this
+# script assembles into the app. A `swift build --arch a --arch b` universal
+# build would route through XCBuild, which lays out resources differently.
 mkdir -p "$MODULE_CACHE_DIR" "$SWIFTPM_MODULE_CACHE_DIR"
 if [[ ! -f "$MODULE_CACHE_ROOT_MARKER" ]] || [[ "$(cat "$MODULE_CACHE_ROOT_MARKER")" != "$MODULE_CACHE_ROOT_MARKER_VALUE" ]]; then
   echo "Refreshing Swift module caches for ${REPO_ROOT}..."

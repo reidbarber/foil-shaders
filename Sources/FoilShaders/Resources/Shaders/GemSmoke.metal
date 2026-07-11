@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -25,7 +26,7 @@ struct GemSmokeUniforms {
     float u_isImage;
 };
 
-inline float4 gemColorAt(constant GemSmokeUniforms &u, int index) {
+static inline float4 gemColorAt(constant GemSmokeUniforms &u, int index) {
     if (index == 0) { return u.u_colors0; }
     if (index == 1) { return u.u_colors1; }
     if (index == 2) { return u.u_colors2; }
@@ -34,18 +35,7 @@ inline float4 gemColorAt(constant GemSmokeUniforms &u, int index) {
     return u.u_colors5;
 }
 
-inline float4 gemPalette(float value, constant GemSmokeUniforms &u) {
-    int count = max(1, int(u.u_colorsCount));
-    if (count == 1) {
-        return gemColorAt(u, 0);
-    }
-    float scaled = clamp(value, 0.0, 0.9999) * float(count - 1);
-    int index = int(floor(scaled));
-    float t = fract(scaled);
-    return mix(gemColorAt(u, index), gemColorAt(u, min(index + 1, count - 1)), smoothstep(0.0, 1.0, t));
-}
-
-inline float gemShapeEdge(VertexOutput in, float shape, float time) {
+static inline float gemShapeEdge(VertexOutput in, float shape, float time) {
     float2 uv = in.objectUV + 0.5;
     uv.y = 1.0 - uv.y;
 
@@ -100,7 +90,7 @@ inline float gemShapeEdge(VertexOutput in, float shape, float time) {
     return pow(edge, 4.0);
 }
 
-inline float2 gaussBlur9x9RG(texture2d<float> tex, float2 uv, float2 dudx, float2 dudy, float radius) {
+static inline float2 gaussBlur9x9RG(texture2d<float> tex, float2 uv, float2 dudx, float2 dudy, float radius) {
     float2 texel = 1.0 / float2(tex.get_width(), tex.get_height());
     float2 r = max(radius, 0.0) * texel;
     const float k[9] = {1.0, 8.0, 28.0, 56.0, 70.0, 56.0, 28.0, 8.0, 1.0};
@@ -116,7 +106,7 @@ inline float2 gaussBlur9x9RG(texture2d<float> tex, float2 uv, float2 dudx, float
     return sum / 65536.0;
 }
 
-inline float sst(float a, float b, float x) {
+static inline float sst(float a, float b, float x) {
     return smoothstep(a, b, x);
 }
 

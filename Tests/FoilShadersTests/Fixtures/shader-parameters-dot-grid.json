@@ -22,7 +22,7 @@
     "gapX" : 4,
     "gapY" : 5,
     "opacityRange" : 0.4,
-    "shape" : 1,
+    "shape" : "diamond",
     "sizeRange" : 0.7,
     "strokeWidth" : 0.5
   },

@@ -14878,17 +14878,17 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "Float",
-                "printedName": "Swift.Float",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
-                "usr": "s:Sf"
+                "usr": "s:Sb"
               },
               {
                 "kind": "TypeNominal",
-                "name": "Float",
-                "printedName": "Swift.Float",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
-                "usr": "s:Sf"
+                "usr": "s:Sb"
               },
               {
                 "kind": "TypeNominal",
@@ -14998,8 +14998,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders14ImageDitheringV10colorFront0E4Back0E9Highlight4type4size0E5Steps14originalColors8inverted3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5imageAcA11ShaderColorV_A_A_AA0D4TypeOS4fAA9ShaderFitOS11fSiAA06ShaderC0VSgtcfc",
-            "mangledName": "$s11FoilShaders14ImageDitheringV10colorFront0E4Back0E9Highlight4type4size0E5Steps14originalColors8inverted3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5imageAcA11ShaderColorV_A_A_AA0D4TypeOS4fAA9ShaderFitOS11fSiAA06ShaderC0VSgtcfc",
+            "usr": "s:11FoilShaders14ImageDitheringV10colorFront0E4Back0E9Highlight4type4size0E5Steps14originalColors8inverted3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5imageAcA11ShaderColorV_A_A_AA0D4TypeOS2fS2bAA9ShaderFitOS11fSiAA06ShaderC0VSgtcfc",
+            "mangledName": "$s11FoilShaders14ImageDitheringV10colorFront0E4Back0E9Highlight4type4size0E5Steps14originalColors8inverted3fit5scale8rotation7originX0R1Y7offsetX0S1Y10worldWidth0T6Height5speed5frame13minPixelRatio03maxZ5Count5imageAcA11ShaderColorV_A_A_AA0D4TypeOS2fS2bAA9ShaderFitOS11fSiAA06ShaderC0VSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -16723,17 +16723,17 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "Float",
-                "printedName": "Swift.Float",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
-                "usr": "s:Sf"
+                "usr": "s:Sb"
               },
               {
                 "kind": "TypeNominal",
-                "name": "Float",
-                "printedName": "Swift.Float",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
-                "usr": "s:Sf"
+                "usr": "s:Sb"
               },
               {
                 "kind": "TypeNominal",
@@ -16871,8 +16871,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders12HalftoneDotsV10colorFront0E4Back4size4grid6radius8contrast14originalColors8inverted10grainMixer0O7Overlay0O4Size4type3fit5scale8rotation7originX0W1Y7offsetX0X1Y10worldWidth0Y6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A3_SfAA0cD4GridOS7fAA0cD4TypeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
-            "mangledName": "$s11FoilShaders12HalftoneDotsV10colorFront0E4Back4size4grid6radius8contrast14originalColors8inverted10grainMixer0O7Overlay0O4Size4type3fit5scale8rotation7originX0W1Y7offsetX0X1Y10worldWidth0Y6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A3_SfAA0cD4GridOS7fAA0cD4TypeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "usr": "s:11FoilShaders12HalftoneDotsV10colorFront0E4Back4size4grid6radius8contrast14originalColors8inverted10grainMixer0O7Overlay0O4Size4type3fit5scale8rotation7originX0W1Y7offsetX0X1Y10worldWidth0Y6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A3_SfAA0cD4GridOS2fS2bS3fAA0cD4TypeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
+            "mangledName": "$s11FoilShaders12HalftoneDotsV10colorFront0E4Back4size4grid6radius8contrast14originalColors8inverted10grainMixer0O7Overlay0O4Size4type3fit5scale8rotation7originX0W1Y7offsetX0X1Y10worldWidth0Y6Height5speed5frame13minPixelRatio13maxPixelCount5imageAcA11ShaderColorV_A3_SfAA0cD4GridOS2fS2bS3fAA0cD4TypeOAA9ShaderFitOS11fSiAA11ShaderImageVSgtcfc",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "Preconcurrency",
@@ -20821,106 +20821,6 @@
           },
           {
             "kind": "Var",
-            "name": "librarySourceReadError",
-            "printedName": "librarySourceReadError",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(FoilShaders.FoilShadersError.Type) -> (any Swift.Error) -> FoilShaders.FoilShadersError",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(any Swift.Error) -> FoilShaders.FoilShadersError",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FoilShadersError",
-                        "printedName": "FoilShaders.FoilShadersError",
-                        "usr": "s:11FoilShaders0aB5ErrorO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Error",
-                        "printedName": "any Swift.Error",
-                        "usr": "s:s5ErrorP"
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "FoilShaders.FoilShadersError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FoilShadersError",
-                        "printedName": "FoilShaders.FoilShadersError",
-                        "usr": "s:11FoilShaders0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:11FoilShaders0aB5ErrorO017librarySourceReadC0yACs0C0_pcACmF",
-            "mangledName": "$s11FoilShaders0aB5ErrorO017librarySourceReadC0yACs0C0_pcACmF",
-            "moduleName": "FoilShaders"
-          },
-          {
-            "kind": "Var",
-            "name": "libraryCompileError",
-            "printedName": "libraryCompileError",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(FoilShaders.FoilShadersError.Type) -> (Swift.String) -> FoilShaders.FoilShadersError",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(Swift.String) -> FoilShaders.FoilShadersError",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FoilShadersError",
-                        "printedName": "FoilShaders.FoilShadersError",
-                        "usr": "s:11FoilShaders0aB5ErrorO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "FoilShaders.FoilShadersError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FoilShadersError",
-                        "printedName": "FoilShaders.FoilShadersError",
-                        "usr": "s:11FoilShaders0aB5ErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:11FoilShaders0aB5ErrorO014libraryCompileC0yACSScACmF",
-            "mangledName": "$s11FoilShaders0aB5ErrorO014libraryCompileC0yACSScACmF",
-            "moduleName": "FoilShaders"
-          },
-          {
-            "kind": "Var",
             "name": "captureInvalidSize",
             "printedName": "captureInvalidSize",
             "children": [
@@ -22949,6 +22849,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders11ShaderColorV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders11ShaderColorV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders11ShaderColorV9hashValueSivp",
+            "mangledName": "$s11FoilShaders11ShaderColorV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders11ShaderColorV9hashValueSivg",
+                "mangledName": "$s11FoilShaders11ShaderColorV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -23190,6 +23154,13 @@
           },
           {
             "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
             "name": "Sendable",
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
@@ -23373,6 +23344,70 @@
               "Implements"
             ],
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders11ShaderImageV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders11ShaderImageV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders11ShaderImageV9hashValueSivp",
+            "mangledName": "$s11FoilShaders11ShaderImageV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders11ShaderImageV9hashValueSivg",
+                "mangledName": "$s11FoilShaders11ShaderImageV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
           }
         ],
         "declKind": "Struct",
@@ -23414,6 +23449,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -23764,6 +23806,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders19ShaderRenderOptionsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders19ShaderRenderOptionsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders19ShaderRenderOptionsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders19ShaderRenderOptionsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders19ShaderRenderOptionsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders19ShaderRenderOptionsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -23829,6 +23935,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -24311,6 +24424,44 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "id",
+            "printedName": "id",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders12ShaderPresetV2idSSvp",
+            "mangledName": "$s11FoilShaders12ShaderPresetV2idSSvp",
+            "moduleName": "FoilShaders",
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders12ShaderPresetV2idSSvg",
+                "mangledName": "$s11FoilShaders12ShaderPresetV2idSSvg",
+                "moduleName": "FoilShaders",
+                "genericSig": "<Params where Params : Swift.Equatable, Params : Swift.Sendable>",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(name:params:sizing:motion:renderOptions:image:)",
@@ -24382,6 +24533,25 @@
             "moduleName": "FoilShaders",
             "genericSig": "<Params where Params : Swift.Equatable, Params : Swift.Sendable>",
             "init_kind": "Designated"
+          },
+          {
+            "kind": "TypeAlias",
+            "name": "ID",
+            "printedName": "ID",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "TypeAlias",
+            "usr": "s:11FoilShaders12ShaderPresetV2IDa",
+            "mangledName": "$s11FoilShaders12ShaderPresetV2IDa",
+            "moduleName": "FoilShaders",
+            "genericSig": "<Params where Params : Swift.Equatable, Params : Swift.Sendable>",
+            "implicit": true
           },
           {
             "kind": "Function",
@@ -34334,6 +34504,75 @@
             "isFromExtension": true,
             "throwing": true,
             "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders12ShaderPresetVAASHRzrlE4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders12ShaderPresetVAASHRzrlE4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "genericSig": "<Params where Params : Swift.Hashable, Params : Swift.Sendable>",
+            "implicit": true,
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders12ShaderPresetVAASHRzrlE9hashValueSivp",
+            "mangledName": "$s11FoilShaders12ShaderPresetVAASHRzrlE9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders12ShaderPresetVAASHRzrlE9hashValueSivg",
+                "mangledName": "$s11FoilShaders12ShaderPresetVAASHRzrlE9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "genericSig": "<Params where Params : Swift.Hashable, Params : Swift.Sendable>",
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
           }
         ],
         "declKind": "Struct",
@@ -34376,6 +34615,35 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Identifiable",
+            "printedName": "Identifiable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "ID",
+                "printedName": "ID",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s12IdentifiableP",
+            "mangledName": "$ss12IdentifiableP"
           },
           {
             "kind": "Conformance",
@@ -34720,6 +34988,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DotGridShape",
+                "printedName": "FoilShaders.DotGridShape",
+                "usr": "s:11FoilShaders12DotGridShapeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders12DotGridShapeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders12DotGridShapeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders12DotGridShapeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders12DotGridShapeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -35277,6 +35596,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DitheringShape",
+                "printedName": "FoilShaders.DitheringShape",
+                "usr": "s:11FoilShaders14DitheringShapeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders14DitheringShapeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders14DitheringShapeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders14DitheringShapeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders14DitheringShapeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -35723,6 +36093,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DitheringType",
+                "printedName": "FoilShaders.DitheringType",
+                "usr": "s:11FoilShaders13DitheringTypeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders13DitheringTypeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders13DitheringTypeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders13DitheringTypeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders13DitheringTypeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -36132,6 +36553,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WarpPattern",
+                "printedName": "FoilShaders.WarpPattern",
+                "usr": "s:11FoilShaders11WarpPatternO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders11WarpPatternO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders11WarpPatternO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders11WarpPatternO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders11WarpPatternO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -36689,6 +37161,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GrainGradientShape",
+                "printedName": "FoilShaders.GrainGradientShape",
+                "usr": "s:11FoilShaders18GrainGradientShapeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders18GrainGradientShapeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders18GrainGradientShapeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders18GrainGradientShapeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders18GrainGradientShapeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -37061,6 +37584,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PulsingBorderAspectRatio",
+                "printedName": "FoilShaders.PulsingBorderAspectRatio",
+                "usr": "s:11FoilShaders24PulsingBorderAspectRatioO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders24PulsingBorderAspectRatioO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders24PulsingBorderAspectRatioO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders24PulsingBorderAspectRatioO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders24PulsingBorderAspectRatioO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -37507,6 +38081,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "HalftoneDotsType",
+                "printedName": "FoilShaders.HalftoneDotsType",
+                "usr": "s:11FoilShaders16HalftoneDotsTypeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders16HalftoneDotsTypeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders16HalftoneDotsTypeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders16HalftoneDotsTypeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders16HalftoneDotsTypeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -37879,6 +38504,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "HalftoneDotsGrid",
+                "printedName": "FoilShaders.HalftoneDotsGrid",
+                "usr": "s:11FoilShaders16HalftoneDotsGridO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders16HalftoneDotsGridO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders16HalftoneDotsGridO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders16HalftoneDotsGridO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders16HalftoneDotsGridO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -38288,6 +38964,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "HalftoneCMYKType",
+                "printedName": "FoilShaders.HalftoneCMYKType",
+                "usr": "s:11FoilShaders16HalftoneCMYKTypeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders16HalftoneCMYKTypeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders16HalftoneCMYKTypeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders16HalftoneCMYKTypeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -38771,6 +39498,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LiquidMetalShape",
+                "printedName": "FoilShaders.LiquidMetalShape",
+                "usr": "s:11FoilShaders16LiquidMetalShapeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders16LiquidMetalShapeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders16LiquidMetalShapeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders16LiquidMetalShapeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders16LiquidMetalShapeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -39254,6 +40032,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GlassGridShape",
+                "printedName": "FoilShaders.GlassGridShape",
+                "usr": "s:11FoilShaders14GlassGridShapeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders14GlassGridShapeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders14GlassGridShapeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders14GlassGridShapeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders14GlassGridShapeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -39737,6 +40566,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GlassDistortionShape",
+                "printedName": "FoilShaders.GlassDistortionShape",
+                "usr": "s:11FoilShaders20GlassDistortionShapeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders20GlassDistortionShapeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders20GlassDistortionShapeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders20GlassDistortionShapeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders20GlassDistortionShapeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -40220,6 +41100,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GemSmokeShape",
+                "printedName": "FoilShaders.GemSmokeShape",
+                "usr": "s:11FoilShaders13GemSmokeShapeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders13GemSmokeShapeO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders13GemSmokeShapeO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders13GemSmokeShapeO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders13GemSmokeShapeO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -41908,6 +42839,70 @@
               "Semantics"
             ],
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders16ShaderParametersO4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders16ShaderParametersO4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders16ShaderParametersO9hashValueSivp",
+            "mangledName": "$s11FoilShaders16ShaderParametersO9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders16ShaderParametersO9hashValueSivg",
+                "mangledName": "$s11FoilShaders16ShaderParametersO9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
           }
         ],
         "declKind": "Enum",
@@ -41950,6 +42945,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -42406,24 +43408,48 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "ShaderSizingParams",
-                "printedName": "FoilShaders.ShaderSizingParams",
+                "name": "Optional",
+                "printedName": "FoilShaders.ShaderSizingParams?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ShaderSizingParams",
+                    "printedName": "FoilShaders.ShaderSizingParams",
+                    "usr": "s:11FoilShaders18ShaderSizingParamsV"
+                  }
+                ],
                 "hasDefaultArg": true,
-                "usr": "s:11FoilShaders18ShaderSizingParamsV"
+                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
-                "name": "ShaderMotionParams",
-                "printedName": "FoilShaders.ShaderMotionParams",
+                "name": "Optional",
+                "printedName": "FoilShaders.ShaderMotionParams?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ShaderMotionParams",
+                    "printedName": "FoilShaders.ShaderMotionParams",
+                    "usr": "s:11FoilShaders18ShaderMotionParamsV"
+                  }
+                ],
                 "hasDefaultArg": true,
-                "usr": "s:11FoilShaders18ShaderMotionParamsV"
+                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
-                "name": "ShaderRenderOptions",
-                "printedName": "FoilShaders.ShaderRenderOptions",
+                "name": "Optional",
+                "printedName": "FoilShaders.ShaderRenderOptions?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ShaderRenderOptions",
+                    "printedName": "FoilShaders.ShaderRenderOptions",
+                    "usr": "s:11FoilShaders19ShaderRenderOptionsV"
+                  }
+                ],
                 "hasDefaultArg": true,
-                "usr": "s:11FoilShaders19ShaderRenderOptionsV"
+                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
@@ -42442,8 +43468,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders19ShaderConfigurationV10parameters6sizing6motion13renderOptions5imageAcA0C10ParametersO_AA0C12SizingParamsVAA0c6MotionM0VAA0c6RenderI0VAA0C5ImageVSgtcfc",
-            "mangledName": "$s11FoilShaders19ShaderConfigurationV10parameters6sizing6motion13renderOptions5imageAcA0C10ParametersO_AA0C12SizingParamsVAA0c6MotionM0VAA0c6RenderI0VAA0C5ImageVSgtcfc",
+            "usr": "s:11FoilShaders19ShaderConfigurationV10parameters6sizing6motion13renderOptions5imageAcA0C10ParametersO_AA0C12SizingParamsVSgAA0c6MotionM0VSgAA0c6RenderI0VSgAA0C5ImageVSgtcfc",
+            "mangledName": "$s11FoilShaders19ShaderConfigurationV10parameters6sizing6motion13renderOptions5imageAcA0C10ParametersO_AA0C12SizingParamsVSgAA0c6MotionM0VSgAA0c6RenderI0VSgAA0C5ImageVSgtcfc",
             "moduleName": "FoilShaders",
             "init_kind": "Designated"
           },
@@ -42506,6 +43532,70 @@
             "implicit": true,
             "throwing": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders19ShaderConfigurationV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders19ShaderConfigurationV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders19ShaderConfigurationV9hashValueSivp",
+            "mangledName": "$s11FoilShaders19ShaderConfigurationV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders19ShaderConfigurationV9hashValueSivg",
+                "mangledName": "$s11FoilShaders19ShaderConfigurationV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
           },
           {
             "kind": "Constructor",
@@ -42573,6 +43663,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -42794,6 +43891,57 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ShaderFit",
+                "printedName": "FoilShaders.ShaderFit",
+                "usr": "s:11FoilShaders9ShaderFitO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11FoilShaders9ShaderFitO4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11FoilShaders9ShaderFitO4fromACs7Decoder_p_tKcfc",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders9ShaderFitO6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11FoilShaders9ShaderFitO6encode2toys7Encoder_p_tKF",
+            "moduleName": "FoilShaders",
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -43671,6 +44819,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders18ShaderSizingParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders18ShaderSizingParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders18ShaderSizingParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders18ShaderSizingParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders18ShaderSizingParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders18ShaderSizingParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -43838,6 +45050,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -44090,6 +45309,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders18ShaderMotionParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders18ShaderMotionParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders18ShaderMotionParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders18ShaderMotionParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders18ShaderMotionParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders18ShaderMotionParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -44155,6 +45438,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -44718,6 +46008,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders26AnimatedMeshGradientParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders26AnimatedMeshGradientParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -44783,6 +46137,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -45662,6 +47023,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders24StaticMeshGradientParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders24StaticMeshGradientParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders24StaticMeshGradientParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders24StaticMeshGradientParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders24StaticMeshGradientParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders24StaticMeshGradientParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -45727,6 +47152,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -46843,6 +48275,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders26StaticRadialGradientParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders26StaticRadialGradientParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders26StaticRadialGradientParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders26StaticRadialGradientParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders26StaticRadialGradientParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders26StaticRadialGradientParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -46908,6 +48404,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -47787,6 +49290,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders11SwirlParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders11SwirlParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders11SwirlParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders11SwirlParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders11SwirlParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders11SwirlParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -47852,6 +49419,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -48735,6 +50309,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders12SpiralParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders12SpiralParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders12SpiralParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders12SpiralParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders12SpiralParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders12SpiralParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -48800,6 +50438,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -49682,6 +51327,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders13DotGridParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders13DotGridParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders13DotGridParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders13DotGridParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders13DotGridParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders13DotGridParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -49747,6 +51456,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -50152,6 +51868,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders18SimplexNoiseParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders18SimplexNoiseParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders18SimplexNoiseParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders18SimplexNoiseParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders18SimplexNoiseParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders18SimplexNoiseParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -50217,6 +51997,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -50863,6 +52650,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders17PerlinNoiseParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders17PerlinNoiseParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders17PerlinNoiseParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders17PerlinNoiseParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders17PerlinNoiseParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders17PerlinNoiseParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -50928,6 +52779,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -51415,6 +53273,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders16NeuroNoiseParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders16NeuroNoiseParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders16NeuroNoiseParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders16NeuroNoiseParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders16NeuroNoiseParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders16NeuroNoiseParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -51480,6 +53402,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -52205,6 +54134,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders11WavesParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders11WavesParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders11WavesParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders11WavesParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders11WavesParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders11WavesParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -52270,6 +54263,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -52758,6 +54758,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders15DitheringParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders15DitheringParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders15DitheringParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders15DitheringParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders15DitheringParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders15DitheringParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -52823,6 +54887,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -53860,6 +55931,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders17ColorPanelsParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders17ColorPanelsParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders17ColorPanelsParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders17ColorPanelsParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders17ColorPanelsParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders17ColorPanelsParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -53925,6 +56060,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -54567,6 +56709,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders14DotOrbitParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders14DotOrbitParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders14DotOrbitParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders14DotOrbitParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders14DotOrbitParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders14DotOrbitParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -54632,6 +56838,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -55511,6 +57724,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders13GodRaysParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders13GodRaysParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders13GodRaysParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders13GodRaysParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders13GodRaysParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders13GodRaysParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -55576,6 +57853,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -56218,6 +58502,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders19GrainGradientParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders19GrainGradientParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders19GrainGradientParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders19GrainGradientParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders19GrainGradientParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders19GrainGradientParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -56283,6 +58631,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -56846,6 +59201,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders15MetaballsParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders15MetaballsParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders15MetaballsParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders15MetaballsParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders15MetaballsParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders15MetaballsParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -56911,6 +59330,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -57711,6 +60137,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders10WarpParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders10WarpParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders10WarpParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders10WarpParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders10WarpParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders10WarpParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -57776,6 +60266,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -58497,6 +60994,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders13VoronoiParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders13VoronoiParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders13VoronoiParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders13VoronoiParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders13VoronoiParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders13VoronoiParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -58562,6 +61123,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -60073,6 +62641,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders19PulsingBorderParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders19PulsingBorderParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders19PulsingBorderParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders19PulsingBorderParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders19PulsingBorderParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders19PulsingBorderParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -60138,6 +62770,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -60859,6 +63498,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders15SmokeRingParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders15SmokeRingParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders15SmokeRingParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders15SmokeRingParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders15SmokeRingParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders15SmokeRingParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -60924,6 +63627,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -61378,14 +64088,14 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Float",
-                "printedName": "Swift.Float",
-                "usr": "s:Sf"
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders20ImageDitheringParamsV14originalColorsSfvp",
-            "mangledName": "$s11FoilShaders20ImageDitheringParamsV14originalColorsSfvp",
+            "usr": "s:11FoilShaders20ImageDitheringParamsV14originalColorsSbvp",
+            "mangledName": "$s11FoilShaders20ImageDitheringParamsV14originalColorsSbvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -61399,14 +64109,14 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "Float",
-                    "printedName": "Swift.Float",
-                    "usr": "s:Sf"
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders20ImageDitheringParamsV14originalColorsSfvg",
-                "mangledName": "$s11FoilShaders20ImageDitheringParamsV14originalColorsSfvg",
+                "usr": "s:11FoilShaders20ImageDitheringParamsV14originalColorsSbvg",
+                "mangledName": "$s11FoilShaders20ImageDitheringParamsV14originalColorsSbvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -61426,14 +64136,14 @@
                   },
                   {
                     "kind": "TypeNominal",
-                    "name": "Float",
-                    "printedName": "Swift.Float",
-                    "usr": "s:Sf"
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders20ImageDitheringParamsV14originalColorsSfvs",
-                "mangledName": "$s11FoilShaders20ImageDitheringParamsV14originalColorsSfvs",
+                "usr": "s:11FoilShaders20ImageDitheringParamsV14originalColorsSbvs",
+                "mangledName": "$s11FoilShaders20ImageDitheringParamsV14originalColorsSbvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -61450,14 +64160,14 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Float",
-                "printedName": "Swift.Float",
-                "usr": "s:Sf"
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders20ImageDitheringParamsV8invertedSfvp",
-            "mangledName": "$s11FoilShaders20ImageDitheringParamsV8invertedSfvp",
+            "usr": "s:11FoilShaders20ImageDitheringParamsV8invertedSbvp",
+            "mangledName": "$s11FoilShaders20ImageDitheringParamsV8invertedSbvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -61471,14 +64181,14 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "Float",
-                    "printedName": "Swift.Float",
-                    "usr": "s:Sf"
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders20ImageDitheringParamsV8invertedSfvg",
-                "mangledName": "$s11FoilShaders20ImageDitheringParamsV8invertedSfvg",
+                "usr": "s:11FoilShaders20ImageDitheringParamsV8invertedSbvg",
+                "mangledName": "$s11FoilShaders20ImageDitheringParamsV8invertedSbvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -61498,14 +64208,14 @@
                   },
                   {
                     "kind": "TypeNominal",
-                    "name": "Float",
-                    "printedName": "Swift.Float",
-                    "usr": "s:Sf"
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders20ImageDitheringParamsV8invertedSfvs",
-                "mangledName": "$s11FoilShaders20ImageDitheringParamsV8invertedSfvs",
+                "usr": "s:11FoilShaders20ImageDitheringParamsV8invertedSbvs",
+                "mangledName": "$s11FoilShaders20ImageDitheringParamsV8invertedSbvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -61569,22 +64279,22 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "Float",
-                "printedName": "Swift.Float",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
-                "usr": "s:Sf"
+                "usr": "s:Sb"
               },
               {
                 "kind": "TypeNominal",
-                "name": "Float",
-                "printedName": "Swift.Float",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
-                "usr": "s:Sf"
+                "usr": "s:Sb"
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders20ImageDitheringParamsV10colorFront0F4Back0F9Highlight4type4size0F5Steps14originalColors8invertedAcA11ShaderColorV_A2mA0D4TypeOS4ftcfc",
-            "mangledName": "$s11FoilShaders20ImageDitheringParamsV10colorFront0F4Back0F9Highlight4type4size0F5Steps14originalColors8invertedAcA11ShaderColorV_A2mA0D4TypeOS4ftcfc",
+            "usr": "s:11FoilShaders20ImageDitheringParamsV10colorFront0F4Back0F9Highlight4type4size0F5Steps14originalColors8invertedAcA11ShaderColorV_A2mA0D4TypeOS2fS2btcfc",
+            "mangledName": "$s11FoilShaders20ImageDitheringParamsV10colorFront0F4Back0F9Highlight4type4size0F5Steps14originalColors8invertedAcA11ShaderColorV_A2mA0D4TypeOS2fS2btcfc",
             "moduleName": "FoilShaders",
             "init_kind": "Designated"
           },
@@ -61647,6 +64357,70 @@
             "implicit": true,
             "throwing": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders20ImageDitheringParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders20ImageDitheringParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders20ImageDitheringParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders20ImageDitheringParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders20ImageDitheringParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders20ImageDitheringParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
           },
           {
             "kind": "Constructor",
@@ -61714,6 +64488,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -62168,14 +64949,14 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Float",
-                "printedName": "Swift.Float",
-                "usr": "s:Sf"
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneDotsParamsV14originalColorsSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneDotsParamsV14originalColorsSfvp",
+            "usr": "s:11FoilShaders18HalftoneDotsParamsV14originalColorsSbvp",
+            "mangledName": "$s11FoilShaders18HalftoneDotsParamsV14originalColorsSbvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -62189,14 +64970,14 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "Float",
-                    "printedName": "Swift.Float",
-                    "usr": "s:Sf"
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneDotsParamsV14originalColorsSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneDotsParamsV14originalColorsSfvg",
+                "usr": "s:11FoilShaders18HalftoneDotsParamsV14originalColorsSbvg",
+                "mangledName": "$s11FoilShaders18HalftoneDotsParamsV14originalColorsSbvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -62216,14 +64997,14 @@
                   },
                   {
                     "kind": "TypeNominal",
-                    "name": "Float",
-                    "printedName": "Swift.Float",
-                    "usr": "s:Sf"
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneDotsParamsV14originalColorsSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneDotsParamsV14originalColorsSfvs",
+                "usr": "s:11FoilShaders18HalftoneDotsParamsV14originalColorsSbvs",
+                "mangledName": "$s11FoilShaders18HalftoneDotsParamsV14originalColorsSbvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -62240,14 +65021,14 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Float",
-                "printedName": "Swift.Float",
-                "usr": "s:Sf"
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
               }
             ],
             "declKind": "Var",
-            "usr": "s:11FoilShaders18HalftoneDotsParamsV8invertedSfvp",
-            "mangledName": "$s11FoilShaders18HalftoneDotsParamsV8invertedSfvp",
+            "usr": "s:11FoilShaders18HalftoneDotsParamsV8invertedSbvp",
+            "mangledName": "$s11FoilShaders18HalftoneDotsParamsV8invertedSbvp",
             "moduleName": "FoilShaders",
             "declAttributes": [
               "HasStorage"
@@ -62261,14 +65042,14 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "Float",
-                    "printedName": "Swift.Float",
-                    "usr": "s:Sf"
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneDotsParamsV8invertedSfvg",
-                "mangledName": "$s11FoilShaders18HalftoneDotsParamsV8invertedSfvg",
+                "usr": "s:11FoilShaders18HalftoneDotsParamsV8invertedSbvg",
+                "mangledName": "$s11FoilShaders18HalftoneDotsParamsV8invertedSbvg",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -62288,14 +65069,14 @@
                   },
                   {
                     "kind": "TypeNominal",
-                    "name": "Float",
-                    "printedName": "Swift.Float",
-                    "usr": "s:Sf"
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11FoilShaders18HalftoneDotsParamsV8invertedSfvs",
-                "mangledName": "$s11FoilShaders18HalftoneDotsParamsV8invertedSfvs",
+                "usr": "s:11FoilShaders18HalftoneDotsParamsV8invertedSbvs",
+                "mangledName": "$s11FoilShaders18HalftoneDotsParamsV8invertedSbvs",
                 "moduleName": "FoilShaders",
                 "implicit": true,
                 "declAttributes": [
@@ -62647,17 +65428,17 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "Float",
-                "printedName": "Swift.Float",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
-                "usr": "s:Sf"
+                "usr": "s:Sb"
               },
               {
                 "kind": "TypeNominal",
-                "name": "Float",
-                "printedName": "Swift.Float",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
-                "usr": "s:Sf"
+                "usr": "s:Sb"
               },
               {
                 "kind": "TypeNominal",
@@ -62689,8 +65470,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:11FoilShaders18HalftoneDotsParamsV10colorFront0F4Back4size4grid6radius8contrast14originalColors8inverted10grainMixer0P7Overlay0P4Size4typeAcA11ShaderColorV_AQSfAA0cD4GridOS7fAA0cD4TypeOtcfc",
-            "mangledName": "$s11FoilShaders18HalftoneDotsParamsV10colorFront0F4Back4size4grid6radius8contrast14originalColors8inverted10grainMixer0P7Overlay0P4Size4typeAcA11ShaderColorV_AQSfAA0cD4GridOS7fAA0cD4TypeOtcfc",
+            "usr": "s:11FoilShaders18HalftoneDotsParamsV10colorFront0F4Back4size4grid6radius8contrast14originalColors8inverted10grainMixer0P7Overlay0P4Size4typeAcA11ShaderColorV_AQSfAA0cD4GridOS2fS2bS3fAA0cD4TypeOtcfc",
+            "mangledName": "$s11FoilShaders18HalftoneDotsParamsV10colorFront0F4Back4size4grid6radius8contrast14originalColors8inverted10grainMixer0P7Overlay0P4Size4typeAcA11ShaderColorV_AQSfAA0cD4GridOS2fS2bS3fAA0cD4TypeOtcfc",
             "moduleName": "FoilShaders",
             "init_kind": "Designated"
           },
@@ -62753,6 +65534,70 @@
             "implicit": true,
             "throwing": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders18HalftoneDotsParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders18HalftoneDotsParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders18HalftoneDotsParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders18HalftoneDotsParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders18HalftoneDotsParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders18HalftoneDotsParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
           },
           {
             "kind": "Constructor",
@@ -62820,6 +65665,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -64573,6 +67425,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders18HalftoneCMYKParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders18HalftoneCMYKParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders18HalftoneCMYKParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -64638,6 +67554,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -65359,6 +68282,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders13HeatmapParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders13HeatmapParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders13HeatmapParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders13HeatmapParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders13HeatmapParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders13HeatmapParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -65424,6 +68411,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -66308,6 +69302,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders17LiquidMetalParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders17LiquidMetalParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders17LiquidMetalParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders17LiquidMetalParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders17LiquidMetalParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders17LiquidMetalParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -66373,6 +69431,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -67494,6 +70559,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders18PaperTextureParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders18PaperTextureParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders18PaperTextureParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders18PaperTextureParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders18PaperTextureParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders18PaperTextureParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -67559,6 +70688,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -68285,6 +71421,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders11WaterParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders11WaterParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders11WaterParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders11WaterParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders11WaterParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders11WaterParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -68350,6 +71550,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -70024,6 +73231,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders17FlutedGlassParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders17FlutedGlassParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders17FlutedGlassParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders17FlutedGlassParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders17FlutedGlassParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders17FlutedGlassParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -70089,6 +73360,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -71126,6 +74404,70 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11FoilShaders14GemSmokeParamsV4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11FoilShaders14GemSmokeParamsV4hash4intoys6HasherVz_tF",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11FoilShaders14GemSmokeParamsV9hashValueSivp",
+            "mangledName": "$s11FoilShaders14GemSmokeParamsV9hashValueSivp",
+            "moduleName": "FoilShaders",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11FoilShaders14GemSmokeParamsV9hashValueSivg",
+                "mangledName": "$s11FoilShaders14GemSmokeParamsV9hashValueSivg",
+                "moduleName": "FoilShaders",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -71191,6 +74533,13 @@
             "printedName": "Escapable",
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",

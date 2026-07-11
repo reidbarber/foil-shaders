@@ -148,6 +148,11 @@ function shaderFit(value) {
 }
 
 function valueCode(value, field) {
+  if (field?.swiftType === "Bool") {
+    if (typeof value === "boolean") return value ? "true" : "false";
+    if (value === 0 || value === 1) return value === 1 ? "true" : "false";
+    throw new Error(`Expected boolean-compatible value for ${field.swift}: ${value}`);
+  }
   if (field?.enum) {
     const mapped = enumMaps[field.enum]?.[value];
     if (mapped === undefined) throw new Error(`Unknown ${field.enum} value ${value}`);

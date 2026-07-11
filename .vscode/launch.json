@@ -1,40 +1,40 @@
 {
-	"configurations": [
-		{
-			"type": "lldb",
-			"request": "launch",
-			"args": [],
-			"cwd": "${workspaceFolder}",
-			"name": "Debug FoilShadersStudio",
-			"program": "${workspaceFolder}/.build/debug/FoilShadersStudio",
-			"preLaunchTask": "swift: Build Debug FoilShadersStudio"
-		},
-		{
-			"type": "lldb",
-			"request": "launch",
-			"args": [],
-			"cwd": "${workspaceFolder}",
-			"name": "Release FoilShadersStudio",
-			"program": "${workspaceFolder}/.build/release/FoilShadersStudio",
-			"preLaunchTask": "swift: Build Release FoilShadersStudio"
-		},
-		{
-			"type": "lldb",
-			"request": "launch",
-			"args": [],
-			"cwd": "${workspaceFolder}",
-			"name": "Debug FoilShadersExport",
-			"program": "${workspaceFolder}/.build/debug/FoilShadersExport",
-			"preLaunchTask": "swift: Build Debug FoilShadersExport"
-		},
-		{
-			"type": "lldb",
-			"request": "launch",
-			"args": [],
-			"cwd": "${workspaceFolder}",
-			"name": "Release FoilShadersExport",
-			"program": "${workspaceFolder}/.build/release/FoilShadersExport",
-			"preLaunchTask": "swift: Build Release FoilShadersExport"
-		}
-	]
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:foil-shaders}",
+      "name": "Debug FoilShadersStudio",
+      "program": "${workspaceFolder:foil-shaders}/.build/debug/FoilShadersStudio",
+      "preLaunchTask": "swift: Build Debug FoilShadersStudio"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:foil-shaders}",
+      "name": "Release FoilShadersStudio",
+      "program": "${workspaceFolder:foil-shaders}/.build/release/FoilShadersStudio",
+      "preLaunchTask": "swift: Build Release FoilShadersStudio"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:foil-shaders}",
+      "name": "Debug FoilShadersExport",
+      "program": "${workspaceFolder:foil-shaders}/.build/debug/FoilShadersExport",
+      "preLaunchTask": "swift: Build Debug FoilShadersExport"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:foil-shaders}",
+      "name": "Release FoilShadersExport",
+      "program": "${workspaceFolder:foil-shaders}/.build/release/FoilShadersExport",
+      "preLaunchTask": "swift: Build Release FoilShadersExport"
+    }
+  ]
 }

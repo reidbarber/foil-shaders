@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -17,7 +18,7 @@ struct HeatmapUniforms {
     float u_outerGlow;
 };
 
-inline float getImgFrame(float2 uv, float th) {
+static inline float getImgFrame(float2 uv, float th) {
     float frame = 1.0;
     frame *= smoothstep(0.0, th, uv.y);
     frame *= 1.0 - smoothstep(1.0 - th, 1.0, uv.y);
@@ -26,19 +27,24 @@ inline float getImgFrame(float2 uv, float th) {
     return frame;
 }
 
-inline float circle(float2 uv, float2 c, float2 r) {
+static inline float circle(float2 uv, float2 c, float2 r) {
     return 1.0 - smoothstep(r.x, r.y, length(uv - c));
 }
 
-inline float lst(float edge0, float edge1, float x) {
+static inline float lst(float edge0, float edge1, float x) {
     return clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0);
 }
 
-inline float sst(float edge0, float edge1, float x) {
+static inline float sst(float edge0, float edge1, float x) {
+    // SwiftShader's WebGL path treats these reversed-edge smoothsteps as zero;
+    // Metal evaluates the undefined GLSL case differently and overheats the map.
+    if (edge1 < edge0) {
+        return 0.0;
+    }
     return smoothstep(edge0, edge1, x);
 }
 
-inline float shadowShape(float2 uv, float t, float contour) {
+static inline float shadowShape(float2 uv, float t, float contour) {
     float2 scaledUV = uv;
     float posY = mix(-1.0, 2.0, t);
     scaledUV.y -= 0.5;
@@ -100,7 +106,7 @@ inline float shadowShape(float2 uv, float t, float contour) {
     return s;
 }
 
-inline float blurEdge3x3(texture2d<float> tex, float2 uv, float2 dudx, float2 dudy, float radius, float centerSample) {
+static inline float blurEdge3x3(texture2d<float> tex, float2 uv, float2 dudx, float2 dudy, float radius, float centerSample) {
     float2 texel = 1.0 / float2(tex.get_width(), tex.get_height());
     float2 r = radius * texel;
     float w1 = 1.0, w2 = 2.0, w4 = 4.0;

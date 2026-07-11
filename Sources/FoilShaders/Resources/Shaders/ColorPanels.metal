@@ -1,5 +1,6 @@
 #include <metal_stdlib>
-#include "Common.metal"
+#include "Common.h"
+#include "ShaderTypes.h"
 
 using namespace metal;
 
@@ -24,7 +25,7 @@ struct ColorPanelsUniforms {
 
 constant float kZLimit = 0.5;
 
-inline float2 getPanel(float angle, float2 uv, float invLength, float aa,
+static inline float2 getPanel(float angle, float2 uv, float invLength, float aa,
                        constant ColorPanelsUniforms &uniforms) {
     float sinA = sin(angle);
     float cosA = cos(angle);
@@ -54,7 +55,7 @@ inline float2 getPanel(float angle, float2 uv, float invLength, float aa,
     return float2(panel, panelMap);
 }
 
-inline float4 blendColor(float4 colorA, float panelMask, float panelMap,
+static inline float4 blendColor(float4 colorA, float panelMask, float panelMap,
                          constant ColorPanelsUniforms &uniforms) {
     float fade = 1.0 - smoothstep(0.97 - 0.97 * uniforms.u_fadeIn, 1.0, panelMap);
     fade *= smoothstep(-0.2 * (1.0 - uniforms.u_fadeOut), uniforms.u_fadeOut, panelMap);
