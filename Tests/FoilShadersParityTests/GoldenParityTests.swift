@@ -85,13 +85,14 @@ final class GoldenParityTests: XCTestCase {
           print("PARITY STAT \(parityCase.id): \(result.summary)")
         }
         if writeArtifacts {
-          artifactsDirectory = FailureArtifacts.write(
-            caseID: parityCase.id,
-            expected: golden.rgba,
-            actual: capture.rgba,
-            width: capture.width,
-            height: capture.height
-          ) ?? artifactsDirectory
+          artifactsDirectory =
+            FailureArtifacts.write(
+              caseID: parityCase.id,
+              expected: golden.rgba,
+              actual: capture.rgba,
+              width: capture.width,
+              height: capture.height
+            ) ?? artifactsDirectory
         }
         let knownGap = Self.isKnownGap(parityCase.id)
         switch (passes, knownGap) {

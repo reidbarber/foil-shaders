@@ -681,7 +681,8 @@ final class FoilShadersTests: XCTestCase {
     let configurations: [(String, ShaderConfiguration, ShaderConfiguration)] = [
       (
         "AnimatedMeshGradient",
-        ShaderConfiguration(parameters: .animatedMeshGradient(AnimatedMeshGradientPreset.default.params)),
+        ShaderConfiguration(
+          parameters: .animatedMeshGradient(AnimatedMeshGradientPreset.default.params)),
         AnimatedMeshGradient(AnimatedMeshGradientPreset.default).configuration
       ),
       (
@@ -771,7 +772,8 @@ final class FoilShadersTests: XCTestCase {
       ),
       (
         "StaticMeshGradient",
-        ShaderConfiguration(parameters: .staticMeshGradient(StaticMeshGradientPreset.default.params)),
+        ShaderConfiguration(
+          parameters: .staticMeshGradient(StaticMeshGradientPreset.default.params)),
         StaticMeshGradient(StaticMeshGradientPreset.default).configuration
       ),
       (
