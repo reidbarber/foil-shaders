@@ -6,37 +6,33 @@ import UniformTypeIdentifiers
 @MainActor
 final class StudioEditorModel: ObservableObject {
   @Published var selectedShader: StudioShader = .animatedMeshGradient
-  @Published var presetIndexByShader: [StudioShader: Int] = [:]
-  @Published var speed: Float = 0.25
-  @Published var frame: Float = 0
-  @Published var scale: Float = 1
-  @Published var rotation: Float = 0
-  @Published var offsetX: Float = 0
-  @Published var offsetY: Float = 0
-  @Published var selectedImage: ShaderImage?
+  @Published private(set) var presetIndexByShader: [StudioShader: Int]
+  @Published private(set) var configurationByShader: [StudioShader: ShaderConfiguration]
   @Published var didCopyCode = false
+
+  weak var undoManager: UndoManager?
 
   private var copyFeedbackID = UUID()
 
+  init() {
+    presetIndexByShader = Dictionary(
+      uniqueKeysWithValues: StudioShader.allCases.map { ($0, 0) }
+    )
+    configurationByShader = Dictionary(
+      uniqueKeysWithValues: StudioShader.allCases.map { ($0, $0.configuration(at: 0)) }
+    )
+  }
+
   var selectedPresetIndex: Int {
-    get { presetIndexByShader[selectedShader, default: 0] }
-    set {
-      presetIndexByShader[selectedShader] = min(newValue, max(0, selectedShader.presetCount - 1))
-    }
+    presetIndexByShader[selectedShader, default: 0]
   }
 
   var currentConfiguration: ShaderConfiguration {
-    var configuration = selectedShader.configuration(at: selectedPresetIndex)
-    configuration.sizing.scale *= scale
-    configuration.sizing.rotation = rotation
-    configuration.sizing.offsetX = offsetX
-    configuration.sizing.offsetY = offsetY
-    configuration.motion.speed = speed
-    configuration.motion.frame = frame
-    if selectedShader.usesImage, let selectedImage {
-      configuration.image = selectedImage
-    }
-    return configuration
+    configurationByShader[selectedShader] ?? selectedShader.configuration(at: selectedPresetIndex)
+  }
+
+  var isCurrentConfigurationEdited: Bool {
+    currentConfiguration != selectedShader.configuration(at: selectedPresetIndex)
   }
 
   var currentCode: String {
@@ -50,13 +46,58 @@ final class StudioEditorModel: ObservableObject {
     )
   }
 
+  func configurationBinding<Value: Equatable>(
+    _ keyPath: WritableKeyPath<ShaderConfiguration, Value>,
+    actionName: String
+  ) -> Binding<Value> {
+    let shader = selectedShader
+    return Binding(
+      get: { self.configuration(for: shader)[keyPath: keyPath] },
+      set: { newValue in
+        var configuration = self.configuration(for: shader)
+        guard configuration[keyPath: keyPath] != newValue else { return }
+        configuration[keyPath: keyPath] = newValue
+        self.setConfiguration(configuration, for: shader, actionName: actionName)
+      }
+    )
+  }
+
+  func selectPreset(_ index: Int) {
+    let shader = selectedShader
+    let boundedIndex = min(index, max(0, shader.presetCount - 1))
+    let oldIndex = presetIndexByShader[shader, default: 0]
+    let oldConfiguration = configuration(for: shader)
+    let newConfiguration = shader.configuration(at: boundedIndex)
+    guard oldIndex != boundedIndex || oldConfiguration != newConfiguration else { return }
+
+    registerUndo(
+      shader: shader,
+      presetIndex: oldIndex,
+      configuration: oldConfiguration,
+      actionName: "Select Preset"
+    )
+    presetIndexByShader[shader] = boundedIndex
+    configurationByShader[shader] = newConfiguration
+  }
+
+  func resetToPreset() {
+    let shader = selectedShader
+    setConfiguration(
+      shader.configuration(at: selectedPresetIndex),
+      for: shader,
+      actionName: "Reset to Preset"
+    )
+  }
+
   func chooseImage() {
     let panel = NSOpenPanel()
     panel.allowedContentTypes = [.image]
     panel.allowsMultipleSelection = false
     panel.canChooseDirectories = false
     if panel.runModal() == .OK, let url = panel.url {
-      selectedImage = .url(url)
+      var configuration = currentConfiguration
+      configuration.image = .url(url)
+      setConfiguration(configuration, for: selectedShader, actionName: "Choose Image")
     }
   }
 
@@ -75,5 +116,47 @@ final class StudioEditorModel: ObservableObject {
         self.didCopyCode = false
       }
     }
+  }
+
+  private func configuration(for shader: StudioShader) -> ShaderConfiguration {
+    configurationByShader[shader]
+      ?? shader.configuration(at: presetIndexByShader[shader, default: 0])
+  }
+
+  private func setConfiguration(
+    _ configuration: ShaderConfiguration,
+    for shader: StudioShader,
+    actionName: String
+  ) {
+    let oldConfiguration = self.configuration(for: shader)
+    guard oldConfiguration != configuration else { return }
+    registerUndo(
+      shader: shader,
+      presetIndex: presetIndexByShader[shader, default: 0],
+      configuration: oldConfiguration,
+      actionName: actionName
+    )
+    configurationByShader[shader] = configuration
+  }
+
+  private func registerUndo(
+    shader: StudioShader,
+    presetIndex: Int,
+    configuration: ShaderConfiguration,
+    actionName: String
+  ) {
+    undoManager?.registerUndo(withTarget: self) { model in
+      let redoIndex = model.presetIndexByShader[shader, default: 0]
+      let redoConfiguration = model.configuration(for: shader)
+      model.registerUndo(
+        shader: shader,
+        presetIndex: redoIndex,
+        configuration: redoConfiguration,
+        actionName: actionName
+      )
+      model.presetIndexByShader[shader] = presetIndex
+      model.configurationByShader[shader] = configuration
+    }
+    undoManager?.setActionName(actionName)
   }
 }

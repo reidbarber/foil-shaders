@@ -6,27 +6,56 @@ struct StudioInspectorView: View {
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 18) {
-        Picker("Preset", selection: $model.selectedPresetIndex) {
+        Picker("Preset", selection: presetBinding) {
           ForEach(0..<model.selectedShader.presetCount, id: \.self) { index in
-            Text(model.selectedShader.presetName(at: index)).tag(index)
+            Text(presetLabel(at: index)).tag(index)
           }
         }
         .pickerStyle(.menu)
+
+        Button("Reset to Preset", systemImage: "arrow.counterclockwise") {
+          model.resetToPreset()
+        }
+        .disabled(!model.isCurrentConfigurationEdited)
 
         if model.selectedShader.usesImage {
           Button("Choose Image", systemImage: "photo", action: model.chooseImage)
         }
 
         GroupBox("Motion") {
-          StudioSlider("Speed", value: $model.speed, range: -2...2)
-          StudioSlider("Frame", value: $model.frame, range: 0...5000)
+          StudioSlider(
+            "Speed",
+            value: model.configurationBinding(\.motion.speed, actionName: "Change Speed"),
+            range: -2...2
+          )
+          StudioSlider(
+            "Frame",
+            value: model.configurationBinding(\.motion.frame, actionName: "Change Frame"),
+            range: 0...5000
+          )
         }
 
         GroupBox("Sizing") {
-          StudioSlider("Scale", value: $model.scale, range: 0.1...4)
-          StudioSlider("Rotation", value: $model.rotation, range: 0...360)
-          StudioSlider("Offset X", value: $model.offsetX, range: -1...1)
-          StudioSlider("Offset Y", value: $model.offsetY, range: -1...1)
+          StudioSlider(
+            "Scale",
+            value: model.configurationBinding(\.sizing.scale, actionName: "Change Scale"),
+            range: 0.1...4
+          )
+          StudioSlider(
+            "Rotation",
+            value: model.configurationBinding(\.sizing.rotation, actionName: "Change Rotation"),
+            range: 0...360
+          )
+          StudioSlider(
+            "Offset X",
+            value: model.configurationBinding(\.sizing.offsetX, actionName: "Change Offset X"),
+            range: -1...1
+          )
+          StudioSlider(
+            "Offset Y",
+            value: model.configurationBinding(\.sizing.offsetY, actionName: "Change Offset Y"),
+            range: -1...1
+          )
         }
 
         StudioCodeView(
@@ -38,6 +67,21 @@ struct StudioInspectorView: View {
       .padding(18)
     }
     .background(.regularMaterial)
+  }
+
+  private var presetBinding: Binding<Int> {
+    Binding(
+      get: { model.selectedPresetIndex },
+      set: { index in model.selectPreset(index) }
+    )
+  }
+
+  private func presetLabel(at index: Int) -> String {
+    let name = model.selectedShader.presetName(at: index)
+    if index == model.selectedPresetIndex, model.isCurrentConfigurationEdited {
+      return "\(name) • Edited"
+    }
+    return name
   }
 }
 
