@@ -28,7 +28,7 @@ struct StudioPreviewView: View {
             size: displaySize
           )
           .contextMenu {
-            StudioExportView(exporter: exporter, previewSize: displaySize)
+            StudioExportView(exporter: exporter, canvasSize: canvasSize)
           }
           .frame(
             minWidth: proxy.size.width - 32,
@@ -46,8 +46,8 @@ struct StudioPreviewView: View {
           customHeight: $model.customCanvasHeight,
           zoom: $zoom,
           toggleFullScreen: toggleFullScreen,
-          copy: { exporter.copyImage(size: displaySize) },
-          export: { exporter.saveImage(size: displaySize) }
+          copy: { exporter.copyImage(size: canvasSize) },
+          export: { exporter.saveImage(size: canvasSize) }
         )
       }
     }

@@ -7,14 +7,14 @@ import UniformTypeIdentifiers
 
 struct StudioExportView: View {
   let exporter: StudioPreviewExporter
-  let previewSize: CGSize
+  let canvasSize: CGSize
 
   var body: some View {
     Button("Copy Image", systemImage: "doc.on.clipboard") {
-      exporter.copyImage(size: previewSize)
+      exporter.copyImage(size: canvasSize)
     }
     Button("Save Image...", systemImage: "square.and.arrow.down") {
-      exporter.saveImage(size: previewSize)
+      exporter.saveImage(size: canvasSize)
     }
   }
 }
