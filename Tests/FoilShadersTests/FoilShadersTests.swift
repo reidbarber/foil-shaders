@@ -960,6 +960,38 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertFalse(code.contains("ShaderRenderOptions"))
   }
 
+  func testStandaloneCodeGeneratorIncludesEveryConfigurationEdit() throws {
+    let configuration = ShaderConfiguration(
+      parameters: .imageDithering(
+        ImageDitheringParams(
+          colorFront: "#ff0000",
+          type: .fourByFour,
+          size: 2.75,
+          colorSteps: 5,
+          originalColors: true,
+          inverted: true
+        )
+      ),
+      sizing: ShaderSizingParams(scale: 1.25, rotation: 30),
+      motion: ShaderMotionParams(speed: 0.75, frame: 1200)
+    )
+
+    let code = FoilShadersCodeGenerator.standaloneSwiftUICode(
+      configuration: configuration,
+      layoutSize: CGSize(width: 640, height: 480)
+    )
+
+    XCTAssertTrue(code.contains("let configurationJSON"))
+    XCTAssertTrue(code.contains("\"type\" : \"4x4\""))
+    XCTAssertTrue(code.contains("\"originalColors\" : true"))
+    XCTAssertTrue(code.contains("\"inverted\" : true"))
+    XCTAssertTrue(code.contains("\"size\" : 2.75"))
+    XCTAssertTrue(code.contains("\"scale\" : 1.25"))
+    XCTAssertTrue(code.contains("\"frame\" : 1200"))
+    XCTAssertTrue(code.contains("FoilShaderView(configuration: configuration)"))
+    XCTAssertTrue(code.contains(".frame(width: 640, height: 480)"))
+  }
+
   func testCodeGeneratorEmitsTerseSmokeRingExport() {
     let code = FoilShadersCodeGenerator.swiftUICode(
       componentName: "SmokeRing",

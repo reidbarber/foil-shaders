@@ -22,6 +22,8 @@ struct StudioInspectorView: View {
           Button("Choose Image", systemImage: "photo", action: model.chooseImage)
         }
 
+        StudioParametersView(model: model)
+
         GroupBox("Motion") {
           StudioSlider(
             "Speed",

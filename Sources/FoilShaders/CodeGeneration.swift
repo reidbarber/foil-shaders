@@ -4,6 +4,41 @@ import Foundation
 @_spi(Studio)
 public enum FoilShadersCodeGenerator {
   @_spi(Studio)
+  public static func standaloneSwiftUICode(
+    configuration: ShaderConfiguration,
+    layoutSize: CGSize? = nil
+  ) -> String {
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
+    guard
+      let data = try? encoder.encode(configuration),
+      let json = String(data: data, encoding: .utf8)
+    else {
+      return "// This configuration contains an image that cannot be encoded."
+    }
+
+    var lines = [
+      "import FoilShaders",
+      "import Foundation",
+      "",
+      "let configurationJSON = #\"\"\"",
+      json,
+      "\"\"\"#",
+      "let configuration = try! JSONDecoder().decode(",
+      "  ShaderConfiguration.self,",
+      "  from: Data(configurationJSON.utf8)",
+      ")",
+      "FoilShaderView(configuration: configuration)",
+    ]
+    if let layoutSize {
+      lines.append(
+        "  .frame(width: \(number(Float(layoutSize.width))), height: \(number(Float(layoutSize.height))))"
+      )
+    }
+    return lines.joined(separator: "\n")
+  }
+
+  @_spi(Studio)
   public static func swiftUICode(
     componentName: String,
     presetReference: String,

@@ -36,13 +36,16 @@ final class StudioEditorModel: ObservableObject {
   }
 
   var currentCode: String {
-    FoilShadersCodeGenerator.swiftUICode(
-      componentName: selectedShader.componentName,
-      presetReference: selectedShader.presetReference(at: selectedPresetIndex),
-      sizing: currentConfiguration.sizing,
-      motion: currentConfiguration.motion,
-      renderOptions: currentConfiguration.renderOptions,
+    FoilShadersCodeGenerator.standaloneSwiftUICode(
+      configuration: currentConfiguration,
       layoutSize: CGSize(width: 1280, height: 720)
+    )
+  }
+
+  var parameterDescriptors: [StudioParameterDescriptor] {
+    StudioParameterCodec.descriptors(
+      for: currentConfiguration.parameters,
+      shader: selectedShader
     )
   }
 
@@ -87,6 +90,42 @@ final class StudioEditorModel: ObservableObject {
       for: shader,
       actionName: "Reset to Preset"
     )
+  }
+
+  func setParameter(_ descriptor: StudioParameterDescriptor, value: StudioParameterValue) {
+    guard
+      let parameters = StudioParameterCodec.setting(
+        descriptor.name,
+        to: value,
+        in: currentConfiguration.parameters
+      )
+    else { return }
+    var configuration = currentConfiguration
+    configuration.parameters = parameters
+    setConfiguration(
+      configuration,
+      for: selectedShader,
+      actionName: "Change \(descriptor.title)"
+    )
+  }
+
+  func resetParameter(_ descriptor: StudioParameterDescriptor) {
+    let preset = selectedShader.configuration(at: selectedPresetIndex)
+    guard
+      let value = StudioParameterCodec.value(
+        named: descriptor.name,
+        in: preset.parameters,
+        shader: selectedShader
+      )
+    else { return }
+    setParameter(descriptor, value: value)
+  }
+
+  func resetParametersToPreset() {
+    let shader = selectedShader
+    var configuration = currentConfiguration
+    configuration.parameters = shader.configuration(at: selectedPresetIndex).parameters
+    setConfiguration(configuration, for: shader, actionName: "Reset Parameters")
   }
 
   func chooseImage() {
