@@ -10,7 +10,9 @@ import XCTest
 ///
 /// Regenerate goldens with Scripts/parity-harness (see its README).
 /// Env vars: PARITY_FILTER=<shader> or <shader>/<preset> limits the cases run;
-/// PARITY_ARTIFACTS_DIR overrides where failure images are written.
+/// PARITY_PRINT_STATS=1 prints every comparison; PARITY_WRITE_ARTIFACTS=1 writes
+/// expected/actual/diff images even for passing cases; PARITY_ARTIFACTS_DIR
+/// overrides where artifacts are written.
 final class GoldenParityTests: XCTestCase {
 
   /// Known parity gaps: cases that currently render structurally differently
@@ -39,6 +41,8 @@ final class GoldenParityTests: XCTestCase {
     let renderer = try FoilShadersRenderer(device: device)
 
     let filter = ProcessInfo.processInfo.environment["PARITY_FILTER"]
+    let printStats = ProcessInfo.processInfo.environment["PARITY_PRINT_STATS"] == "1"
+    let writeArtifacts = ProcessInfo.processInfo.environment["PARITY_WRITE_ARTIFACTS"] == "1"
     var cases = manifest.cases
     if let filter {
       cases = cases.filter { $0.id.hasPrefix(filter) }
@@ -77,6 +81,18 @@ final class GoldenParityTests: XCTestCase {
         )
 
         let passes = result.passes(tolerance)
+        if printStats {
+          print("PARITY STAT \(parityCase.id): \(result.summary)")
+        }
+        if writeArtifacts {
+          artifactsDirectory = FailureArtifacts.write(
+            caseID: parityCase.id,
+            expected: golden.rgba,
+            actual: capture.rgba,
+            width: capture.width,
+            height: capture.height
+          ) ?? artifactsDirectory
+        }
         let knownGap = Self.isKnownGap(parityCase.id)
         switch (passes, knownGap) {
         case (true, false):
@@ -103,7 +119,7 @@ final class GoldenParityTests: XCTestCase {
     }
 
     if let artifactsDirectory {
-      print("Parity failure artifacts written to: \(artifactsDirectory.path)")
+      print("Parity artifacts written to: \(artifactsDirectory.path)")
     }
     print("Parity: \(cases.count - failed)/\(cases.count) cases passed")
   }

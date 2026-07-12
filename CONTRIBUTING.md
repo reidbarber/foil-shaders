@@ -148,6 +148,9 @@ PARITY_FILTER="swirl/Candy" swift test --filter FoilShadersParityTests
 Comparison uses a tight per-pixel tolerance, with per-shader overrides in
 `ParityTolerances`. On failure, expected, actual, and diff PNGs are written to
 a temporary directory. Set `PARITY_ARTIFACTS_DIR` to choose the output path.
+To inspect tolerated differences, set `PARITY_PRINT_STATS=1` to print raw
+comparison metrics for every case and `PARITY_WRITE_ARTIFACTS=1` to write the
+expected, actual, and diff PNGs for passing cases too.
 
 Shaders that currently diverge structurally from the reference are tracked in
 `GoldenParityTests.knownParityGaps`. Those cases do not fail the suite, but the
