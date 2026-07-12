@@ -49,6 +49,17 @@ final class StudioEditorModel: ObservableObject {
     )
   }
 
+  func configurationForThumbnail(_ shader: StudioShader) -> ShaderConfiguration {
+    configuration(for: shader)
+  }
+
+  func presetPreviewConfiguration(at index: Int) -> ShaderConfiguration {
+    if index == selectedPresetIndex {
+      return currentConfiguration
+    }
+    return selectedShader.configuration(at: index)
+  }
+
   func configurationBinding<Value: Equatable>(
     _ keyPath: WritableKeyPath<ShaderConfiguration, Value>,
     actionName: String
@@ -198,4 +209,5 @@ final class StudioEditorModel: ObservableObject {
     }
     undoManager?.setActionName(actionName)
   }
+
 }

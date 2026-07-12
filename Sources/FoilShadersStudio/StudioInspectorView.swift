@@ -6,17 +6,7 @@ struct StudioInspectorView: View {
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 18) {
-        Picker("Preset", selection: presetBinding) {
-          ForEach(0..<model.selectedShader.presetCount, id: \.self) { index in
-            Text(presetLabel(at: index)).tag(index)
-          }
-        }
-        .pickerStyle(.menu)
-
-        Button("Reset to Preset", systemImage: "arrow.counterclockwise") {
-          model.resetToPreset()
-        }
-        .disabled(!model.isCurrentConfigurationEdited)
+        StudioPresetBrowserView(model: model)
 
         if model.selectedShader.usesImage {
           Button("Choose Image", systemImage: "photo", action: model.chooseImage)
@@ -71,20 +61,6 @@ struct StudioInspectorView: View {
     .background(.regularMaterial)
   }
 
-  private var presetBinding: Binding<Int> {
-    Binding(
-      get: { model.selectedPresetIndex },
-      set: { index in model.selectPreset(index) }
-    )
-  }
-
-  private func presetLabel(at index: Int) -> String {
-    let name = model.selectedShader.presetName(at: index)
-    if index == model.selectedPresetIndex, model.isCurrentConfigurationEdited {
-      return "\(name) • Edited"
-    }
-    return name
-  }
 }
 
 private struct StudioSlider: View {

@@ -1,5 +1,15 @@
 @_spi(Studio) import FoilShaders
 
+enum StudioShaderCategory: String, CaseIterable, Identifiable {
+  case gradients = "Gradients"
+  case noise = "Noise"
+  case patterns = "Patterns"
+  case imageEffects = "Image Effects"
+  case materials = "Materials"
+
+  var id: String { rawValue }
+}
+
 enum StudioShader: String, CaseIterable, Identifiable {
   case animatedMeshGradient
   case smokeRing
@@ -72,6 +82,22 @@ enum StudioShader: String, CaseIterable, Identifiable {
     case .animatedMeshGradient: "AnimatedMeshGradient"
     case .halftoneCMYK: "HalftoneCMYK"
     default: displayName.replacingOccurrences(of: " ", with: "")
+    }
+  }
+
+  var category: StudioShaderCategory {
+    switch self {
+    case .animatedMeshGradient, .staticMeshGradient, .staticRadialGradient, .grainGradient:
+      .gradients
+    case .neuroNoise, .simplexNoise, .perlinNoise, .voronoi, .warp:
+      .noise
+    case .smokeRing, .dotOrbit, .dotGrid, .metaballs, .waves, .godRays, .spiral,
+      .swirl, .dithering, .pulsingBorder, .colorPanels:
+      .patterns
+    case .imageDithering, .heatmap, .halftoneDots, .halftoneCMYK:
+      .imageEffects
+    case .paperTexture, .flutedGlass, .water, .liquidMetal, .gemSmoke:
+      .materials
     }
   }
 

@@ -6,7 +6,7 @@ struct StudioEditorView: View {
 
   var body: some View {
     NavigationSplitView {
-      StudioSidebarView(selectedShader: $model.selectedShader)
+      StudioSidebarView(model: model)
     } detail: {
       HSplitView {
         StudioPreviewView(
