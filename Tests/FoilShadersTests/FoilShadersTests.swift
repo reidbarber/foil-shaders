@@ -982,6 +982,11 @@ final class FoilShadersTests: XCTestCase {
     )
 
     XCTAssertTrue(code.contains("let configurationJSON"))
+    XCTAssertTrue(code.contains("import SwiftUI"))
+    XCTAssertTrue(code.contains("struct ShaderPreview: View"))
+    XCTAssertTrue(code.contains("private static let configurationResult = Result"))
+    XCTAssertTrue(code.contains("case .failure(let error):"))
+    XCTAssertFalse(code.contains("try!"))
     XCTAssertTrue(code.contains("\"type\" : \"4x4\""))
     XCTAssertTrue(code.contains("\"originalColors\" : true"))
     XCTAssertTrue(code.contains("\"inverted\" : true"))
@@ -990,6 +995,32 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertTrue(code.contains("\"frame\" : 1200"))
     XCTAssertTrue(code.contains("FoilShaderView(configuration: configuration)"))
     XCTAssertTrue(code.contains(".frame(width: 640, height: 480)"))
+  }
+
+  func testPresetViewCodeGeneratorProducesPasteReadySwiftUIView() {
+    let code = FoilShadersCodeGenerator.presetSwiftUIViewCode(
+      componentName: "AnimatedMeshGradient",
+      presetReference: "AnimatedMeshGradientPreset.default",
+      sizing: .defaultPatternSizing,
+      motion: ShaderMotionParams(speed: 0.2),
+      renderOptions: ShaderRenderOptions(),
+      layoutSize: CGSize(width: 393, height: 852)
+    )
+
+    XCTAssertEqual(
+      code,
+      """
+      import SwiftUI
+      import FoilShaders
+
+      struct ShaderPreview: View {
+        var body: some View {
+          AnimatedMeshGradient(fit: .none, speed: 0.2)
+            .frame(width: 393, height: 852)
+        }
+      }
+      """
+    )
   }
 
   func testCodeGeneratorEmitsTerseSmokeRingExport() {

@@ -5,21 +5,15 @@ import SwiftUI
 struct StudioPreviewView: View {
   @ObservedObject var model: StudioEditorModel
 
-  @State private var canvasPreset: StudioCanvasPreset = .widescreen
-  @State private var customWidth = 1280.0
-  @State private var customHeight = 720.0
   @State private var zoom: StudioPreviewZoom = .fit
 
   private var canvasSize: CGSize {
-    canvasPreset.size(
-      customWidth: max(1, customWidth),
-      customHeight: max(1, customHeight)
-    )
+    model.canvasSize
   }
 
   var body: some View {
     GeometryReader { proxy in
-      let footerHeight = canvasPreset == .custom ? 84.0 : 48.0
+      let footerHeight = model.canvasPreset == .custom ? 84.0 : 48.0
       let viewport = CGSize(
         width: max(1, proxy.size.width - 32),
         height: max(1, proxy.size.height - footerHeight - 32)
@@ -47,9 +41,9 @@ struct StudioPreviewView: View {
 
         StudioPreviewFooter(
           canvasSize: canvasSize,
-          canvasPreset: $canvasPreset,
-          customWidth: $customWidth,
-          customHeight: $customHeight,
+          canvasPreset: $model.canvasPreset,
+          customWidth: $model.customCanvasWidth,
+          customHeight: $model.customCanvasHeight,
           zoom: $zoom,
           toggleFullScreen: toggleFullScreen,
           copy: { exporter.copyImage(size: displaySize) },
@@ -163,36 +157,6 @@ private struct StudioPreviewFooter: View {
     .padding(.horizontal, 12)
     .padding(.vertical, 7)
     .background(.regularMaterial)
-  }
-}
-
-private enum StudioCanvasPreset: String, CaseIterable, Identifiable {
-  case iPhone
-  case square
-  case portrait
-  case widescreen
-  case custom
-
-  var id: String { rawValue }
-
-  var title: String {
-    switch self {
-    case .iPhone: "iPhone"
-    case .square: "Square"
-    case .portrait: "Portrait"
-    case .widescreen: "16:9"
-    case .custom: "Custom"
-    }
-  }
-
-  func size(customWidth: Double, customHeight: Double) -> CGSize {
-    switch self {
-    case .iPhone: CGSize(width: 393, height: 852)
-    case .square: CGSize(width: 1080, height: 1080)
-    case .portrait: CGSize(width: 1080, height: 1350)
-    case .widescreen: CGSize(width: 1280, height: 720)
-    case .custom: CGSize(width: customWidth, height: customHeight)
-    }
   }
 }
 

@@ -2,11 +2,13 @@ import SwiftUI
 
 struct StudioCodeView: View {
   let code: String
+  @Binding var outputMode: StudioCodeOutputMode
+  let canUsePreset: Bool
   let didCopy: Bool
   let copy: () -> Void
 
   var body: some View {
-    GroupBox("Code") {
+    GroupBox {
       ZStack(alignment: .topTrailing) {
         GeometryReader { proxy in
           ScrollView([.horizontal, .vertical]) {
@@ -33,6 +35,22 @@ struct StudioCodeView: View {
         .padding(8)
       }
       .frame(maxWidth: .infinity, minHeight: 220)
+    } label: {
+      HStack {
+        Text("Code")
+        Spacer()
+        Picker("Output", selection: $outputMode) {
+          ForEach(StudioCodeOutputMode.allCases) { mode in
+            Text(mode.title)
+              .tag(mode)
+              .disabled(mode == .presetBased && !canUsePreset)
+          }
+        }
+        .labelsHidden()
+        .pickerStyle(.segmented)
+        .controlSize(.small)
+        .frame(width: 150)
+      }
     }
   }
 }

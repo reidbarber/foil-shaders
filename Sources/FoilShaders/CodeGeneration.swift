@@ -17,25 +17,79 @@ public enum FoilShadersCodeGenerator {
       return "// This configuration contains an image that cannot be encoded."
     }
 
-    var lines = [
-      "import FoilShaders",
-      "import Foundation",
-      "",
-      "let configurationJSON = #\"\"\"",
-      json,
-      "\"\"\"#",
-      "let configuration = try! JSONDecoder().decode(",
-      "  ShaderConfiguration.self,",
-      "  from: Data(configurationJSON.utf8)",
-      ")",
-      "FoilShaderView(configuration: configuration)",
+    var viewLines = ["FoilShaderView(configuration: configuration)"]
+    var errorLines = [
+      "Text(\"Unable to load the generated shader: \\(error.localizedDescription)\")",
+      "  .foregroundStyle(.secondary)",
     ]
     if let layoutSize {
-      lines.append(
+      let frame =
         "  .frame(width: \(number(Float(layoutSize.width))), height: \(number(Float(layoutSize.height))))"
-      )
+      viewLines.append(frame)
+      errorLines.append(frame)
     }
-    return lines.joined(separator: "\n")
+
+    return
+      ([
+        "import SwiftUI",
+        "import FoilShaders",
+        "import Foundation",
+        "",
+        "struct ShaderPreview: View {",
+        "  private static let configurationJSON = #\"\"\"",
+      ] + json.split(separator: "\n", omittingEmptySubsequences: false).map { "  \($0)" } + [
+        "  \"\"\"#",
+        "",
+        "  private static let configurationResult = Result {",
+        "    try JSONDecoder().decode(",
+        "      ShaderConfiguration.self,",
+        "      from: Data(configurationJSON.utf8)",
+        "    )",
+        "  }",
+        "",
+        "  var body: some View {",
+        "    switch Self.configurationResult {",
+        "    case .success(let configuration):",
+      ] + viewLines.map { "      \($0)" } + [
+        "    case .failure(let error):"
+      ] + errorLines.map { "      \($0)" } + [
+        "    }",
+        "  }",
+        "}",
+      ]).joined(separator: "\n")
+  }
+
+  @_spi(Studio)
+  public static func presetSwiftUIViewCode(
+    componentName: String,
+    presetReference: String,
+    sizing: ShaderSizingParams,
+    motion: ShaderMotionParams,
+    renderOptions: ShaderRenderOptions,
+    layoutSize: CGSize? = nil
+  ) -> String {
+    let snippet = swiftUICode(
+      componentName: componentName,
+      presetReference: presetReference,
+      sizing: sizing,
+      motion: motion,
+      renderOptions: renderOptions,
+      layoutSize: layoutSize
+    )
+    let snippetLines = snippet.split(separator: "\n", omittingEmptySubsequences: false)
+      .dropFirst(2)
+      .map { "    \($0)" }
+    return
+      ([
+        "import SwiftUI",
+        "import FoilShaders",
+        "",
+        "struct ShaderPreview: View {",
+        "  var body: some View {",
+      ] + snippetLines + [
+        "  }",
+        "}",
+      ]).joined(separator: "\n")
   }
 
   @_spi(Studio)

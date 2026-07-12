@@ -7,7 +7,7 @@ struct StudioSidebarView: View {
   private var selection: Binding<StudioShader> {
     Binding(
       get: { model.selectedShader },
-      set: { model.selectedShader = $0 }
+      set: { model.selectShader($0) }
     )
   }
 

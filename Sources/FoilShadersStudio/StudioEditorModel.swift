@@ -8,6 +8,10 @@ final class StudioEditorModel: ObservableObject {
   @Published var selectedShader: StudioShader = .animatedMeshGradient
   @Published private(set) var presetIndexByShader: [StudioShader: Int]
   @Published private(set) var configurationByShader: [StudioShader: ShaderConfiguration]
+  @Published var canvasPreset: StudioCanvasPreset = .widescreen
+  @Published var customCanvasWidth = 1280.0
+  @Published var customCanvasHeight = 720.0
+  @Published var codeOutputMode: StudioCodeOutputMode = .presetBased
   @Published var didCopyCode = false
 
   weak var undoManager: UndoManager?
@@ -35,10 +39,33 @@ final class StudioEditorModel: ObservableObject {
     currentConfiguration != selectedShader.configuration(at: selectedPresetIndex)
   }
 
+  var canvasSize: CGSize {
+    canvasPreset.size(
+      customWidth: max(1, customCanvasWidth),
+      customHeight: max(1, customCanvasHeight)
+    )
+  }
+
+  var canGeneratePresetBasedCode: Bool {
+    let preset = selectedShader.configuration(at: selectedPresetIndex)
+    return currentConfiguration.parameters == preset.parameters
+      && currentConfiguration.image == preset.image
+  }
+
   var currentCode: String {
-    FoilShadersCodeGenerator.standaloneSwiftUICode(
+    if codeOutputMode == .presetBased, canGeneratePresetBasedCode {
+      return FoilShadersCodeGenerator.presetSwiftUIViewCode(
+        componentName: selectedShader.componentName,
+        presetReference: selectedShader.presetReference(at: selectedPresetIndex),
+        sizing: currentConfiguration.sizing,
+        motion: currentConfiguration.motion,
+        renderOptions: currentConfiguration.renderOptions,
+        layoutSize: canvasSize
+      )
+    }
+    return FoilShadersCodeGenerator.standaloneSwiftUICode(
       configuration: currentConfiguration,
-      layoutSize: CGSize(width: 1280, height: 720)
+      layoutSize: canvasSize
     )
   }
 
@@ -47,6 +74,11 @@ final class StudioEditorModel: ObservableObject {
       for: currentConfiguration.parameters,
       shader: selectedShader
     )
+  }
+
+  func selectShader(_ shader: StudioShader) {
+    selectedShader = shader
+    codeOutputMode = canGeneratePresetBasedCode ? .presetBased : .standalone
   }
 
   func configurationForThumbnail(_ shader: StudioShader) -> ShaderConfiguration {
@@ -92,6 +124,7 @@ final class StudioEditorModel: ObservableObject {
     )
     presetIndexByShader[shader] = boundedIndex
     configurationByShader[shader] = newConfiguration
+    codeOutputMode = .presetBased
   }
 
   func resetToPreset() {
@@ -187,6 +220,9 @@ final class StudioEditorModel: ObservableObject {
       actionName: actionName
     )
     configurationByShader[shader] = configuration
+    if shader == selectedShader, !canGeneratePresetBasedCode {
+      codeOutputMode = .standalone
+    }
   }
 
   private func registerUndo(
@@ -206,6 +242,9 @@ final class StudioEditorModel: ObservableObject {
       )
       model.presetIndexByShader[shader] = presetIndex
       model.configurationByShader[shader] = configuration
+      if shader == model.selectedShader, !model.canGeneratePresetBasedCode {
+        model.codeOutputMode = .standalone
+      }
     }
     undoManager?.setActionName(actionName)
   }

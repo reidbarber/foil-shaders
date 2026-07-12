@@ -52,6 +52,8 @@ struct StudioInspectorView: View {
 
         StudioCodeView(
           code: model.currentCode,
+          outputMode: $model.codeOutputMode,
+          canUsePreset: model.canGeneratePresetBasedCode,
           didCopy: model.didCopyCode,
           copy: model.copyCurrentCode
         )
