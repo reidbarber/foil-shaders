@@ -232,18 +232,20 @@ final class StudioEditorModel: ObservableObject {
     actionName: String
   ) {
     undoManager?.registerUndo(withTarget: self) { model in
-      let redoIndex = model.presetIndexByShader[shader, default: 0]
-      let redoConfiguration = model.configuration(for: shader)
-      model.registerUndo(
-        shader: shader,
-        presetIndex: redoIndex,
-        configuration: redoConfiguration,
-        actionName: actionName
-      )
-      model.presetIndexByShader[shader] = presetIndex
-      model.configurationByShader[shader] = configuration
-      if shader == model.selectedShader, !model.canGeneratePresetBasedCode {
-        model.codeOutputMode = .standalone
+      MainActor.assumeIsolated {
+        let redoIndex = model.presetIndexByShader[shader, default: 0]
+        let redoConfiguration = model.configuration(for: shader)
+        model.registerUndo(
+          shader: shader,
+          presetIndex: redoIndex,
+          configuration: redoConfiguration,
+          actionName: actionName
+        )
+        model.presetIndexByShader[shader] = presetIndex
+        model.configurationByShader[shader] = configuration
+        if shader == model.selectedShader, !model.canGeneratePresetBasedCode {
+          model.codeOutputMode = .standalone
+        }
       }
     }
     undoManager?.setActionName(actionName)
