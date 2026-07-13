@@ -29,34 +29,40 @@ public enum FoilShadersCodeGenerator {
       errorLines.append(frame)
     }
 
-    return
-      ([
-        "import SwiftUI",
-        "import FoilShaders",
-        "import Foundation",
-        "",
-        "struct ShaderPreview: View {",
-        "  private static let configurationJSON = #\"\"\"",
-      ] + json.split(separator: "\n", omittingEmptySubsequences: false).map { "  \($0)" } + [
-        "  \"\"\"#",
-        "",
-        "  private static let configurationResult = Result {",
-        "    try JSONDecoder().decode(",
-        "      ShaderConfiguration.self,",
-        "      from: Data(configurationJSON.utf8)",
-        "    )",
-        "  }",
-        "",
-        "  var body: some View {",
-        "    switch Self.configurationResult {",
-        "    case .success(let configuration):",
-      ] + viewLines.map { "      \($0)" } + [
-        "    case .failure(let error):"
-      ] + errorLines.map { "      \($0)" } + [
-        "    }",
-        "  }",
-        "}",
-      ]).joined(separator: "\n")
+    var lines: [String] = [
+      "import SwiftUI",
+      "import FoilShaders",
+      "import Foundation",
+      "",
+      "struct ShaderPreview: View {",
+      "  private static let configurationJSON = #\"\"\"",
+    ]
+    lines.append(
+      contentsOf: json.split(separator: "\n", omittingEmptySubsequences: false).map { "  \($0)" }
+    )
+    lines.append(contentsOf: [
+      "  \"\"\"#",
+      "",
+      "  private static let configurationResult = Result {",
+      "    try JSONDecoder().decode(",
+      "      ShaderConfiguration.self,",
+      "      from: Data(configurationJSON.utf8)",
+      "    )",
+      "  }",
+      "",
+      "  var body: some View {",
+      "    switch Self.configurationResult {",
+      "    case .success(let configuration):",
+    ])
+    lines.append(contentsOf: viewLines.map { "      \($0)" })
+    lines.append("    case .failure(let error):")
+    lines.append(contentsOf: errorLines.map { "      \($0)" })
+    lines.append(contentsOf: [
+      "    }",
+      "  }",
+      "}",
+    ])
+    return lines.joined(separator: "\n")
   }
 
   @_spi(Studio)
