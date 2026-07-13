@@ -12,18 +12,18 @@ A Metal-based SwiftUI port of
 1. Open your app project in Xcode.
 2. Choose File > Add Package Dependencies.
 3. Enter `https://github.com/reidbarber/foil-shaders.git`.
-4. Select version `0.6.0`.
+4. Select version `0.7.0`.
 5. Add the `FoilShaders` product to your app target.
 
 For alpha releases, pinning to an exact version is the safest option. If you
 want automatic compatible updates, use the standard package rule starting at
-`0.6.0`.
+`0.7.0`.
 
 ## Install With Package.swift
 
 ```swift
 dependencies: [
-  .package(url: "https://github.com/reidbarber/foil-shaders.git", from: "0.6.0")
+  .package(url: "https://github.com/reidbarber/foil-shaders.git", from: "0.7.0")
 ],
 targets: [
   .target(

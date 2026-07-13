@@ -2,6 +2,16 @@
 
 All notable changes to Foil Shaders will be documented in this file.
 
+## 0.7.0 - 2026-07-12
+
+- Redesign Foil Shader Studio with shader-specific controls and configuration state.
+- Add per-shader preset reset and undo support.
+- Generate paste-ready SwiftUI code that accurately preserves edited shader configurations and canvas dimensions.
+- Export images at the selected canvas dimensions instead of the zoomed preview dimensions.
+- Improve the Studio layout, preview, preset browser, inspector, and export workflow.
+- Add diagnostics for inspecting tolerated visual parity differences.
+- Refresh the Foil Shader Studio app icon and README hero image.
+
 ## 0.6.0 - 2026-07-11
 
 - Compile Metal shaders at build time instead of from source at runtime.

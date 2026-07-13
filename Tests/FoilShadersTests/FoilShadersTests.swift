@@ -681,7 +681,8 @@ final class FoilShadersTests: XCTestCase {
     let configurations: [(String, ShaderConfiguration, ShaderConfiguration)] = [
       (
         "AnimatedMeshGradient",
-        ShaderConfiguration(parameters: .animatedMeshGradient(AnimatedMeshGradientPreset.default.params)),
+        ShaderConfiguration(
+          parameters: .animatedMeshGradient(AnimatedMeshGradientPreset.default.params)),
         AnimatedMeshGradient(AnimatedMeshGradientPreset.default).configuration
       ),
       (
@@ -771,7 +772,8 @@ final class FoilShadersTests: XCTestCase {
       ),
       (
         "StaticMeshGradient",
-        ShaderConfiguration(parameters: .staticMeshGradient(StaticMeshGradientPreset.default.params)),
+        ShaderConfiguration(
+          parameters: .staticMeshGradient(StaticMeshGradientPreset.default.params)),
         StaticMeshGradient(StaticMeshGradientPreset.default).configuration
       ),
       (
@@ -956,6 +958,69 @@ final class FoilShadersTests: XCTestCase {
     XCTAssertFalse(code.contains("ShaderSizingParams"))
     XCTAssertFalse(code.contains("ShaderMotionParams"))
     XCTAssertFalse(code.contains("ShaderRenderOptions"))
+  }
+
+  func testStandaloneCodeGeneratorIncludesEveryConfigurationEdit() throws {
+    let configuration = ShaderConfiguration(
+      parameters: .imageDithering(
+        ImageDitheringParams(
+          colorFront: "#ff0000",
+          type: .fourByFour,
+          size: 2.75,
+          colorSteps: 5,
+          originalColors: true,
+          inverted: true
+        )
+      ),
+      sizing: ShaderSizingParams(scale: 1.25, rotation: 30),
+      motion: ShaderMotionParams(speed: 0.75, frame: 1200)
+    )
+
+    let code = FoilShadersCodeGenerator.standaloneSwiftUICode(
+      configuration: configuration,
+      layoutSize: CGSize(width: 640, height: 480)
+    )
+
+    XCTAssertTrue(code.contains("let configurationJSON"))
+    XCTAssertTrue(code.contains("import SwiftUI"))
+    XCTAssertTrue(code.contains("struct ShaderPreview: View"))
+    XCTAssertTrue(code.contains("private static let configurationResult = Result"))
+    XCTAssertTrue(code.contains("case .failure(let error):"))
+    XCTAssertFalse(code.contains("try!"))
+    XCTAssertTrue(code.contains("\"type\" : \"4x4\""))
+    XCTAssertTrue(code.contains("\"originalColors\" : true"))
+    XCTAssertTrue(code.contains("\"inverted\" : true"))
+    XCTAssertTrue(code.contains("\"size\" : 2.75"))
+    XCTAssertTrue(code.contains("\"scale\" : 1.25"))
+    XCTAssertTrue(code.contains("\"frame\" : 1200"))
+    XCTAssertTrue(code.contains("FoilShaderView(configuration: configuration)"))
+    XCTAssertTrue(code.contains(".frame(width: 640, height: 480)"))
+  }
+
+  func testPresetViewCodeGeneratorProducesPasteReadySwiftUIView() {
+    let code = FoilShadersCodeGenerator.presetSwiftUIViewCode(
+      componentName: "AnimatedMeshGradient",
+      presetReference: "AnimatedMeshGradientPreset.default",
+      sizing: .defaultPatternSizing,
+      motion: ShaderMotionParams(speed: 0.2),
+      renderOptions: ShaderRenderOptions(),
+      layoutSize: CGSize(width: 393, height: 852)
+    )
+
+    XCTAssertEqual(
+      code,
+      """
+      import SwiftUI
+      import FoilShaders
+
+      struct ShaderPreview: View {
+        var body: some View {
+          AnimatedMeshGradient(fit: .none, speed: 0.2)
+            .frame(width: 393, height: 852)
+        }
+      }
+      """
+    )
   }
 
   func testCodeGeneratorEmitsTerseSmokeRingExport() {

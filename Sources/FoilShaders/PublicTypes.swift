@@ -1272,14 +1272,14 @@ private typealias ShaderConfigurationDefaults = (
   renderOptions: ShaderRenderOptions
 )
 
-private extension ShaderPreset {
-  var configurationDefaults: ShaderConfigurationDefaults {
+extension ShaderPreset {
+  fileprivate var configurationDefaults: ShaderConfigurationDefaults {
     (sizing: sizing, motion: motion, renderOptions: renderOptions)
   }
 }
 
-private extension ShaderParameters {
-  var defaultConfiguration: ShaderConfigurationDefaults {
+extension ShaderParameters {
+  fileprivate var defaultConfiguration: ShaderConfigurationDefaults {
     switch self {
     case .animatedMeshGradient:
       AnimatedMeshGradientPreset.default.configurationDefaults
