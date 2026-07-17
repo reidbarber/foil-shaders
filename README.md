@@ -1,11 +1,21 @@
-# Foil Shaders
 
-A Metal-based SwiftUI port of
-[Paper Shaders](https://github.com/paper-design/shaders) for iOS and macOS.
+<p align="center">
+  <img src="Icons/Assets.xcassets/AppIcon.appiconset/1024.png" alt="App Icon" width="256">
+</p>
 
-<img src="Docs/Media/readme/hero.png" alt="Screenshot of Foil Shader Studio app featuring Mesh Gradient shader preview" width="830">
+<h1 align="center">Foil Shaders</h1> 
 
-[**Download the Foil Shader Studio app**](https://github.com/reidbarber/foil-shaders/releases/latest/download/FoilShadersStudio.dmg)
+<p align="center">
+  A Metal-based SwiftUI port of <a href="https://github.com/paper-design/shaders">Paper Shaders</a> for iOS and macOS.
+</p>
+
+<p align="center">
+  <img src="Docs/Media/readme/hero.png" alt="Screenshot of Foil Shader Studio app featuring Mesh Gradient shader preview" width="830">
+</p>
+
+<p align="center">
+  <a href="https://github.com/reidbarber/foil-shaders/releases/latest/download/FoilShadersStudio.dmg"><b>Download the Foil Shader Studio app</b></a>
+</p>
 
 ## Install With Xcode
 
@@ -110,9 +120,6 @@ These examples use the same preset, frame, and 320x240 canvas on both sides.
 | Voronoi / Default         | <img src="Docs/Media/parity/paper-voronoi-default.png" alt="Paper Shaders Voronoi Default" width="220">                 | <img src="Docs/Media/parity/foil-voronoi-default.png" alt="Foil Shaders Voronoi Default" width="220">                 |
 | Paper Texture / Cardboard | <img src="Docs/Media/parity/paper-paper-texture-cardboard.png" alt="Paper Shaders Paper Texture Cardboard" width="220"> | <img src="Docs/Media/parity/foil-paper-texture-cardboard.png" alt="Foil Shaders Paper Texture Cardboard" width="220"> |
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the local parity test and golden
-regeneration workflow.
-
 ## Status
 
 Alpha, pre-1.0. APIs may change before the first stable release.
@@ -123,8 +130,6 @@ Development setup, testing, parity workflow, preset generation, and release
 packaging notes live in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
-
-Copyright 2026 Reid Barber.
 
 Foil Shaders is licensed under the Apache License, Version 2.0. See
 [LICENSE](LICENSE).
