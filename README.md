@@ -10,7 +10,9 @@
 </p>
 
 <p align="center">
-  <img src="Docs/Media/readme/hero.png" alt="Screenshot of Foil Shader Studio app featuring Mesh Gradient shader preview" width="830">
+  <a href="https://github.com/reidbarber/foil-shaders/releases/latest/download/FoilShadersStudio.dmg">
+     <img src="Docs/Media/readme/hero.png" alt="Screenshot of Foil Shader Studio app featuring Mesh Gradient shader preview" width="830">
+  </a>
 </p>
 
 <p align="center">
